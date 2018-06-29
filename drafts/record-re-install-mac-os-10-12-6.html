@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="RECORD RE-INSTALL MAC OS 10.12.6"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> RECORD RE-INSTALL MAC OS 10.12.6 - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <article class="post">
+    <div class="post-content">
+      <h1 id="从-macOS-10-13-1-降级到-10-12-6-的一些记录"><a href="#从-macOS-10-13-1-降级到-10-12-6-的一些记录" class="headerlink" title="从  macOS 10.13.1 降级到 10.12.6 的一些记录"></a>从  macOS 10.13.1 降级到 10.12.6 的一些记录</h1><h2 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h2><ol>
+<li><p>下载 macOS 的系统镜像文件。</p>
+</li>
+<li><p>准备一个大于等于 8G 的 USB 3.0 的U盘，制作 macOS 的系统安装盘。<br>将U盘插入电脑，打开磁盘工具，将U盘抹掉（格式化）成HFS格式（OS X 扩展），方案选择 GUID 分区图。</p>
+</li>
+<li><p>输入终端命令制作系统安装盘<br>其他版本只要更换这里的名字即可。回车，输入密码，开始制作，继续等待其显示成 “Copy complete. Done.” 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Canvio --applicationpath /Applications/Install\ macOS\ Sierra.app --nointeraction</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新启动，开机按下 option 键，选择系统安装盘，抹掉系统盘，命名为 “APPLE SSD SM0512L Media”，继续安装，读条之后，U盘就可以拔掉了。继续等待至进入欢迎界面。</p>
+</li>
+<li><p>过程中遇到一些问题，第一次盘全部抹掉之后，U盘安装，拷贝文件至电脑之后，重新启动，读条到一半变成 “禁止” 符号，表示系统文件丢失或者没有系统。重新再走一遍安装流程却又正常了。</p>
+</li>
+</ol>
+<p>在使用磁盘工具格式化U盘的时候，出现 <code>MediaKit reports not enough space on device for requested operation</code> ，详细参考<a href="https://priyanksharma.com/tech/mediakit-reports-not-enough-space-on-device-for-requested-operation/" target="_blank" rel="noopener">这里</a>。</p>
+<a id="more"></a>
+<h2 id="恢复软件和工作状态"><a href="#恢复软件和工作状态" class="headerlink" title="恢复软件和工作状态"></a>恢复软件和工作状态</h2><h3 id="Home-Brew"><a href="#Home-Brew" class="headerlink" title="Home Brew"></a><a href="https://brew.sh/" target="_blank" rel="noopener">Home Brew</a></h3><p>首先安装 Home Brew</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Home-Brew-Cask"><a href="#Home-Brew-Cask" class="headerlink" title="Home Brew Cask"></a><a href="http://caskroom.github.io/" target="_blank" rel="noopener">Home Brew Cask</a></h3><p> 首先安装 Home Brew Cask</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew tap caskroom/cask</span></span><br></pre></td></tr></table></figure>
+<p> 常用软件安装</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew cask install qq</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install evernote</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install the-unarchiver</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install google-chrome</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install sublime-text</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install cheatsheet</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install iterm2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install autojump</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install zsh</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install zsh-autosuggestions</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install zsh-completions</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install zsh-syntax-highlighting</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install go</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install anki</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install neteasemusic</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install postman</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install macdown</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install handshaker</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install kindle</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install sip</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install imazing</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install thunder</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install macdown</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install macdown</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew cask install macdown</span></span><br></pre></td></tr></table></figure>
+<p> 附上常用的 <code>brew</code> 命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew search qq // 搜索</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew install telnet // 安装</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew uninstall telnet // 卸载</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew list // 列出已安装的软件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew update // 更新brew</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew home // 用浏览器打开brew的官方网站</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew info // 显示软件信息</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew deps //显示包依赖</span></span><br></pre></td></tr></table></figure>
+<h3 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h3><p>在命令行输入以下命令安装 oh-my-zsh：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span></span><br></pre></td></tr></table></figure>
+<p>配置 iTerm2 主题，设置了主题「agnoster」之后，发现命令行出现了乱码，点击这个「<a href="https://gist.github.com/kevinis/c788f85a654b2d7581d8" target="_blank" rel="noopener">Monaco PowerLine</a>」，解决 agnoster 出现的乱码问题。</p>
+<p>配置 iTerm2 字符颜色，「ls -ilh」命令没有出现应有的颜色，在 iTerm2 的设置 <code>Preferences/Profiles/Text</code> 去掉 <code>Draw bold text in bright colors</code>，即可使列出的文件和文件夹的名字高亮显示。</p>
+<p>配置 iTerm2 的呼出快捷键，<code>Preferences/Keys/Hotkey</code>下，将 <code>Show/hide all windows with a system-wide hotkey</code>勾上，并设置快捷键为<code>⌘.</code>。</p>
+<ul>
+<li>检查版本 <code>brew search node</code></li>
+<li>[<a href="https://nodejs.org/dist/latest-v6.x/]" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v6.x/]</a></li>
+<li><code>shift + command + .</code></li>
+</ul>
+<ol>
+<li><p>安装 Java SE，安装 Eclipse，导入项目（gradle），自动下载 Gradle 和 依赖包，不需要翻墙，速度很快。</p>
+</li>
+<li><p>安装 ShadowsocksX-NG-R8，输入配置文件，没问题。</p>
+</li>
+<li><p>安装 Bartender 3，需要重新输入 License，输入后没问题。</p>
+</li>
+<li><p>安装 1Password，将备份的 1password vaults 文件放到 <code>~/Library/Application Support/</code> 中，打开 <code>Preferences/Backup</code> 还原即可，然后在  <code>Sync</code> 中同步到 <code>iCloud</code>。</p>
+</li>
+<li><p>安装 Chrome，登录即可。</p>
+</li>
+<li><p>安装 TextExpander，第一次使用会发现在中文输入法状态下无法使用，解决办法是，先安装 [Dropbox]，然后打开 <code>TextExpander/Preferences/Sync</code>，勾选 <code>Sync with TextExpander 4 ot TextExpander touch 3.2（Dropbox only）</code>，然后打开 [工具]，将中文删除即可。最后同样需要将备份的文件放到 <code>~/Library/Application Support/</code> 最后还原。</p>
+</li>
+<li><p>oh my zsh </p>
+</li>
+</ol>
+<ul>
+<li>安装 oh my zsh<br>  <code>curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh</code><br>[powerline 字体]</li>
+<li>卸载 oh my zsh<br>  <code>uninstall_oh_my_zsh</code></li>
+<li>更新 oh my zsh<br>  <code>upgrade_oh_my_zsh</code></li>
+</ul>
+<ol start="8">
+<li>oh my zsh 插件</li>
+</ol>
+<ul>
+<li>zsh-syntax-highlighting</li>
+<li>[zsh-autosuggestions]</li>
+<li>[sublime]</li>
+<li>[vi-mode]</li>
+<li>[官方 wiki]</li>
+<li>[autojump]</li>
+<li>sudo</li>
+<li>extract</li>
+<li>osx</li>
+</ul>
+<p>Oh my zsh 命令</p>
+<ul>
+<li><code>zsh_stats</code> 查看使用频率前 20 的命令</li>
+<li><code>take</code> </li>
+</ul>
+<p>Oh my zsh 主题</p>
+<ul>
+<li>[官方主题]</li>
+<li>[外部主题]</li>
+</ul>
+<p>其他工具</p>
+<ul>
+<li>htop <code>./configure; make; sudo make; sudo make check; sudo make install</code></li>
+</ul>
+<ol start="9">
+<li>HHKB<br>下载 Karabiner[]</li>
+</ol>
+
+    </div>
+  </article>
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>

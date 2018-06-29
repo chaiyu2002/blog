@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux netstat命令用法详解"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-netstat.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> Linux netstat命令用法详解 - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux netstat命令用法详解
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-07
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出信息含义"><span class="toc-text">输出信息含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用命令"><span class="toc-text">实用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、列出所有连接（包括监听和未监听的）"><span class="toc-text">一、列出所有连接（包括监听和未监听的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、列出所有处于监听状态的-Sockets"><span class="toc-text">二、列出所有处于监听状态的 Sockets</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>netstat命令用来查看系统中所有的网络套接字连接情况。</p>
+<a id="more"></a>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>netstat [选项]</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>netstat命令用来查看系统中所有的网络套接字连接情况，包括TCP、UDP和Unix套接字。也可以显示路由表，接口状态，masquerade 连接，多播成员（Multicast Memberships）等等。另外，它还可以列出处于监听状态（等待接入请求）的套接字，比如想确认系统中的web服务是否起来，就可以查看80端口有没有打开。</p>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
+<li>-a或–all：显示所有选项，默认不显示LISTEN相关。</li>
+<li>-t或–tcp：(TCP)仅显示TCP相关选项。</li>
+<li>-u或–udp：(UDP)仅显示UDP相关选项。</li>
+<li>-x或–unix：此参数的效果和指定”-A unix”参数相同。</li>
+<li>-n或–numeric：拒绝显示别名，能显示数字的全部转化成数字。</li>
+<li>-l或–listening：仅列出有在Listen(监听)的服务状态。</li>
+<li>-g或–groups：显示多重广播功能群组组员名单。</li>
+<li>-p或–programs：显示建立相关链接的程序名和PID。</li>
+<li>-r或–route：显示路由信息，路由表。</li>
+<li>-e或–extend：显示扩展信息，例如UID等。</li>
+<li>-s或–statistics：按各个协议进行统计。</li>
+<li>-c或–continuous：每隔一个固定时间，执行该netstat命令。</li>
+<li>-g或–groups：显示多重广播功能群组组员名单。</li>
+</ul>
+<p>提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到。</p>
+<h2 id="输出信息含义"><a href="#输出信息含义" class="headerlink" title="输出信息含义"></a>输出信息含义</h2><p>执行netstat后，其输出结果为</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat.png" alt=""></p>
+<p>netstat的输出结构可以分为两个部分：<br>一个是Active Internet connections，称为有源TCP连接。其中”Recv-Q”和”Send-Q”指的是接收队列和发送队列。<br>另一个是Active UNIX domain sockets，称为有源Unix域套接口(和网络套接字一样，但是只能用于本机通信，性能可以提高一倍)。Proto显示连接使用的协议，RefCnt表示连接到本套接口上的进程号，Types显示套接口的类型，State显示套接口当前的状态，Path表示连接到套接口的其它进程使用的路径名。</p>
+<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><h3 id="一、列出所有连接（包括监听和未监听的）"><a href="#一、列出所有连接（包括监听和未监听的）" class="headerlink" title="一、列出所有连接（包括监听和未监听的）"></a>一、列出所有连接（包括监听和未监听的）</h3><p><strong>示例：1. 列出当前所有的连接</strong><br>命令：netstat -a<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-a.png" alt=""></p>
+<p><strong>示例：2. 列出所有TCP端口</strong><br>命令：netstat -at<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-at.png" alt=""></p>
+<p><strong>示例：3. 列出所有UDP端口</strong><br>描述：-u选项查看UDP端口，-x选项查看UNIX端口。<br>命令：netstat -au<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-au.png" alt=""></p>
+<h3 id="二、列出所有处于监听状态的-Sockets"><a href="#二、列出所有处于监听状态的-Sockets" class="headerlink" title="二、列出所有处于监听状态的 Sockets"></a>二、列出所有处于监听状态的 Sockets</h3><p><strong>示例：4. 只列出所有监听TCP的端口</strong><br>描述：查看本机监听的（l）TCP连接（t）的IP地址（n）。<br>命令：netstat -tnl<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tnl.png" alt=""></p>
+<p><strong>示例：5. 在netstat的输出中不显示主机，端口和用户名（host，port，user）</strong><br>描述：-n选项禁用域名解析功能。例如，查看所有（a）TCP连接的（t）IP地址（n）等信息。<br>命令：netstat -ant<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-ant.png" alt=""></p>
+<p><strong>示例：6. 获取进程名、进程号以及用户ID</strong><br>描述：<br>使用-p选项查看进程信息，-ep选项可以同时查看进程名和用户名。另外，-n和-e选项一起使用，User列的属性就是用户ID，而不是用户名。netstat运行在root权限之下才可以得到运行在root权限下的进程名。<br>输出：</p>
+<p>查看本机监听的（l）TCP连接的（t）进程名（p）和IP地址（n）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tnlp.png" alt=""></p>
+<p>查看本机监听的（l）TCP连接的（t）进程名（p）和用户名（e）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tlpe.png" alt=""></p>
+<p>查看本机监听的（l）TCP连接的（t）进程名（p）和用户名ID（ne）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tlpen.png" alt=""></p>
+<p><strong>示例：7. 显示每个协议的统计信息</strong><br>描述：-s选项可以打印出网络统计数据，包括某个协议下的收发包数量。<br>命令：netstat -s<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-s.png" alt=""></p>
+<p><strong>示例：8. 持续输出netstat信息</strong><br>描述：-c选项持续输出信息，默认时间间隔 1 秒。例如，下面这个命令可持续输出 TCP 协议信息。<br>命令：netstat -c 1<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-c.png" alt=""></p>
+<p><strong>示例：9. 查看服务是否在运行</strong><br>描述：结合grep，查看ntp服务是否在运行。例如，查看本机所有的（a）监听连接（l）中与ntp服务有关的信息，包括进程信息（p）等额外的信息（e）。<br>命令：sudo netstat -aple | grep ntp<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-grep.png" alt=""></p>
+<p><strong>示例：10. 查看端口被占用的情况</strong><br>描述：结合grep，查看端口被占用的情况。例如，查看本机所有的（a）连接中与端口80有关的信息，包括IP地址（n）以及进程信息（p）等额外的信息（e）。<br>命令：netstat -anpe | grep “80”<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-grep-port.png" alt=""></p>
+<p><strong>示例：11. 显示核心路由信息</strong><br>描述：-r选项打印内核路由信息，打印出来的信息与route命令输出的信息一样。<br>命令：netstat -nr<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-rn.png" alt=""></p>
+<p><strong>示例：12. 显示网络接口列表</strong><br>描述：-i选项打印网络接口信息。<br>命令：netstat -i<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-i.png" alt=""></p>
+<p><strong>示例：13. 显示网络接口的详细信息</strong><br>描述：将-e选项和-i选项搭配使用，可以输出用户友好的信息。下面的输出信息与ifconfig输出的信息一样。<br>命令：netstat -ie<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-ie.png" alt=""></p>
+<p><strong>示例：14. 显示多播组信息</strong><br>描述：选项-g输出IPv4和IPv6的多播组信息。<br>命令：netstat -g<br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-g.png" alt=""></p>
+<p><strong>示例：15. IP和TCP分析</strong><br>描述：查看连接某服务器端口最多的IP地址<br>命令：watch -d -n0 “netstat -nat | grep ‘172.16.14.151’ | awk ‘{print $5}’ | awk -F: ‘{print $1}’ | sort | uniq -c | sort -nr | head -20”</p>
+<p>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-watch.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/linux/daily-command-netstat.html">http://www.oxysun.cn/linux/daily-command-netstat.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月07日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/linux/daily-command-find.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux find命令用法详解</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/linux/daily-command-ps.html">
+        下一篇：
+        <span class="next-text nav-default">Linux ps命令用法详解</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>

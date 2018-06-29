@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux tail命令用法详解"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-tail.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> Linux tail命令用法详解 - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux tail命令用法详解
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-26
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用示例"><span class="toc-text">实用示例</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>tail命令用于显示来自文件或者管道结尾（最新实时）的内容。</p>
+<a id="more"></a>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>tail命令用于显示来自文件或者管道结尾（最新实时）的内容。默认情况下，tail命令显示文件的最后10行内容。支持多文件处理，在输出每个文件之前都有一个标识文件名的标题。如果未指定文件，或者文件被指定为破折号「-」，则tail命令从标准输入中读取。</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>tail [选项] [文件(s)]</code></p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>–retry：即是在tail命令启动时，文件不可访问或者文件稍后变得不可访问，都始终尝试打开文件。使用此选项时需要与选项“——follow=name”连用；</li>
+<li>-c<n>或——bytes=<n>：输出文件尾部的N（N为整数）个字节内容；</n></n></li>
+<li>-f&lt;name/descriptor&gt;或；–follow<nameldescript>：显示文件最新追加的内容。“name”表示以文件名的方式监视文件的变化。“-f”与“-fdescriptor”等效；</nameldescript></li>
+<li>-F：与选项“-follow=name”和“–retry”连用时功能相同；</li>
+<li>-n<n>或——line=<n>：输出文件的尾部N（N位数字）行内容。</n></n></li>
+<li>–pid=&lt;进程号&gt;：与“-f”选项连用，当指定的进程号的进程终止后，自动退出tail命令；</li>
+<li>-q或——quiet或——silent：当有多个文件参数时，不输出各个文件名；</li>
+<li>-s&lt;秒数&gt;或——sleep-interal=&lt;秒数&gt;：与“-f”选项连用，指定监视文件变化时间隔的秒数；</li>
+<li>-v或——verbose：当有多个文件参数时，总是输出各个文件名；</li>
+<li>–help：显示指令的帮助信息；</li>
+<li>–version：显示指令的版本信息。tail -f  /usr/local/webserver/tomcat/logs/catalina.out</li>
+</ul>
+<h2 id="实用示例"><a href="#实用示例" class="headerlink" title="实用示例"></a>实用示例</h2><p><strong>实例：1. 查看文件的后十行</strong><br>描述：查看words文件的后10行。默认情况下，tail命令显示文件的最后10行内容。<br>命令：<code>tail letter</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail.png" alt=""></p>
+<p><strong>实例：2. 限制要显示的行数</strong><br>描述：显示words文件的最后3行。-n选项限制要显示的行数。<br>命令：<br><code>tail -n 3 letter</code><br><code>tail -3 letter</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-n.png" alt=""></p>
+<p>描述：显示words文件的最后1000行。可以在num后加上后缀，例如：b，KB，K等等。<br>命令：<code>tail -n 1K /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-n-1K.png" alt=""></p>
+<p><strong>实例：3. 监视日志文件</strong><br>描述：显示words文件（日志文件）的最后10行，并且一直监视它，一旦有新的内容加入，就立即打印出来。-f选项将监视文件的更新。<br>命令：<code>tail -f /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-f-CTRL-C.png" alt=""><br>注意：tail -f将一直监视着文件，要停止它，按CTRL+C。</p>
+<p><strong>实例：4. 监视日志文件并只输出指定内容</strong><br>描述：tail将监视access.log文件，它将通过管道传送access.log的最后十行和任何新加入到文件中的行给grep。grep读取从tail传送过来的输出，只打印出包含IP地址10.10.10.10的那些行。<br>命令：<code>tail -f access.log | grep 10.10.10.10</code></p>
+<p><strong>实例：5. 监视日志文件并指定刷新间隔</strong><br>描述：tail将监视access.log文件，其监视的时间间隔为5秒。<br>命令：<code>tail -f -s 5 access.log</code></p>
+<p><strong>实例：6. tail -f的代替命令</strong><br>描述：与tail -f效果相同的命令是less。使用下面命令打开文件后，按下shift+f，就与tail -f的效果相同了。<br>命令：<br><code>less /usr/share/dict/words</code><br>press<code>SHIFT+F</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-less.png" alt=""></p>
+<p><strong>实例：7. 限制要显示的字节数</strong><br>描述：显示words文件的最后32个字节。-c选项限制显示的字节数。<br>命令：<code>tail -c 32 /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-c.png" alt=""></p>
+<p><strong>实例：8. 显示多个文件</strong><br>描述：显示多个文件的前十行，同时标题会显示哪个文件正在显示。<br>命令：<code>tail /usr/share/dict/words /usr/share/dict/propernames</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-multi-file.png" alt=""></p>
+<p><strong>实例：9. 多个文件不显示标题</strong><br>描述：显示多个文件的前3行，不显示正在显示文件的标题。<br>命令：<code>tail -n 3 -q /usr/share/dict/words /usr/share/dict/propernames</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-q.png" alt=""></p>
+<p><strong>实例：10. 与管道配合使用</strong><br>描述：显示/etc/目录下的最近修改的前5个文件或文件夹。tail命令可以接受其他命令通过管道传送过来的信息。<br>命令：<code>cat letter | tail -n 5</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/tail/tail-pipe.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/linux/daily-command-tail.html">http://www.oxysun.cn/linux/daily-command-tail.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月26日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/linux/daily-command-uniq.html">
+        下一篇：
+        <span class="next-text nav-default">Linux uniq命令用法详解</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux ls命令用法详解"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-ls.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> Linux ls命令用法详解 - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux ls命令用法详解
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-15
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：1-查看文件和目录"><span class="toc-text">示例：1. 查看文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：2-区分文件和目录"><span class="toc-text">示例：2. 区分文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：3-显示隐藏文件和普通文件"><span class="toc-text">示例：3. 显示隐藏文件和普通文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：4-递归显示文件"><span class="toc-text">示例：4. 递归显示文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：5-查看长（详细）列表"><span class="toc-text">示例：5. 查看长（详细）列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：6-列出每个文件分配的blocks大小"><span class="toc-text">示例：6. 列出每个文件分配的blocks大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：7-查看文件的author"><span class="toc-text">示例：7. 查看文件的author</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：8-以字节为单位打印文件大小"><span class="toc-text">示例：8. 以字节为单位打印文件大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：9-使ls在输出中仅显示文件名和文件大小"><span class="toc-text">示例：9. 使ls在输出中仅显示文件名和文件大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：10-过滤输出列表"><span class="toc-text">示例：10. 过滤输出列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：11-以人类可阅读的格式列出文件信息"><span class="toc-text">示例：11. 以人类可阅读的格式列出文件信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：12-反转显示结果"><span class="toc-text">示例：12. 反转显示结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：13-按照修改时间的从远到近顺序排列"><span class="toc-text">示例：13. 按照修改时间的从远到近顺序排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：14-按照文件的大小排列"><span class="toc-text">示例：14. 按照文件的大小排列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：15-自定义显示日期格式"><span class="toc-text">示例：15. 自定义显示日期格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：16-根据不同的规则进行排序"><span class="toc-text">示例：16. 根据不同的规则进行排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：17-更改ls命令输出格式"><span class="toc-text">示例：17.更改ls命令输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：18-使ls隐藏特定类型的文件"><span class="toc-text">示例：18.使ls隐藏特定类型的文件</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>ls命令用来列出目标目录中所有子目录和文件。</p>
+<a id="more"></a>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>ls（list）命令用来列出目标目录（缺省为当前目录）中所有子目录和文件。</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>ls [选项] [参数]</code></p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">-a：列出任何以.开头的文件（常用）。</span><br><span class="line">-A：列出除.与..之外的任何文件。</span><br><span class="line">-c：显示的最后更改时间（ctime）。默认以创建时间（最后更改时间）排序，最新的排在前面；如果与-l搭配使用，那么会以文件名排序；如果与-lt搭配，会显示创建时间（最后更改时间），根据时间排序。</span><br><span class="line">-B：忽略备份文件，Linux中的备份文件以波浪号（~）结尾。</span><br><span class="line">-d：仅列出目录本身，而不是列出目录内的文件数据（常用）</span><br><span class="line">-f：不排序，与启用-aU，不启用-ls --color效果一样。</span><br><span class="line">-F：根据文件、目录等信息，给与附加数据结构，例如：</span><br><span class="line">	- @：代表一个符号链接。</span><br><span class="line">	- *：代表可执行文件。</span><br><span class="line">	- /：代表目录。</span><br><span class="line">	- =：代表socket文件。</span><br><span class="line">	- |：代表FIFO文件。</span><br><span class="line">-g：像-l，但不列出拥有者。</span><br><span class="line">-G：在-l下，不列出组名字。</span><br><span class="line">-h：以人类可读的形式，打印文件大小，例如1K、234M、2G等等。</span><br><span class="line">-i：打印inode信息。</span><br><span class="line">-l：使用长数据串格式。</span><br><span class="line">-r：排序时反转列表。</span><br><span class="line">-R：递归列出子目录。</span><br><span class="line">-s：列出每个文件分配的blocks大小。</span><br><span class="line">-S：根据文件大小排序，最大的列在前面。</span><br><span class="line">-t：根据最近修改时间排序，最新的列在前面。</span><br><span class="line">-u：与-l搭配显示访问时间（atime）。</span><br><span class="line">-U：不排序，按照目录顺序列出所有文件。</span><br><span class="line">--author：在-l下，打印出作者的信息。</span><br><span class="line">--color=never：不根据文件特性显示颜色。</span><br><span class="line">--color=always：显示颜色。</span><br><span class="line">--color=auto：系统自动判断是否显示颜色。</span><br><span class="line">--format：以各种格式输出目录的内容。下文将介绍。</span><br><span class="line">--full-time：以完整时间模式（包括年、月、日、时、分）输出。</span><br><span class="line">--sort：根据不同规则排序。下文将介绍。</span><br><span class="line">--time-style=[STYLE]：设置日期格式输出格式。</span><br><span class="line">--time=&#123;atime,ctime&#125;：将时间显示为atime、ctime和mtime其中一个，默认显示的是内容修改时间。</span><br><span class="line">	- atime：访问时间。</span><br><span class="line">	- ctime：权限改变属性时间。</span><br><span class="line">	- mtime：内容修改时间。</span><br></pre></td></tr></table></figure>
+<h3 id="示例：1-查看文件和目录"><a href="#示例：1-查看文件和目录" class="headerlink" title="示例：1. 查看文件和目录"></a>示例：1. 查看文件和目录</h3><p>描述：ls命令最基本的形式会显示当前目录下的文件和目录。<br>命令：<code>ls</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls.png" alt=""></p>
+<h3 id="示例：2-区分文件和目录"><a href="#示例：2-区分文件和目录" class="headerlink" title="示例：2. 区分文件和目录"></a>示例：2. 区分文件和目录</h3><p>描述：如果用户用的不是支持彩色的终端仿真器，可以用-F选项的ls命令轻松区分文件和目录。-F参数在目录名后加了正斜线（/），在可执行文件的后面加了星号。有关的指示符如下：</p>
+<ul>
+<li>@：代表一个符号链接。</li>
+<li>*：代表可执行文件。</li>
+<li>/：代表目录。</li>
+<li>=：代表socket文件。</li>
+<li>|：代表FIFO文件。<br>命令：<code>ls -F</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-F.png" alt=""></li>
+</ul>
+<h3 id="示例：3-显示隐藏文件和普通文件"><a href="#示例：3-显示隐藏文件和普通文件" class="headerlink" title="示例：3. 显示隐藏文件和普通文件"></a>示例：3. 显示隐藏文件和普通文件</h3><p>描述：显示当前目录下的所有以点号开头的隐藏文件和普通文件及目录。-a选项可以显示将隐藏文件显示出来。如果要跳过输出中的（.）和（..），使用-A选项。<br>命令：<br><code>ls -a</code><br><code>ls -A</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-a.png" alt=""></p>
+<h3 id="示例：4-递归显示文件"><a href="#示例：4-递归显示文件" class="headerlink" title="示例：4. 递归显示文件"></a>示例：4. 递归显示文件</h3><p>描述：列出当前目录下包含的子目录中的文件。-R选项，它叫做递归选项，它先显示了当前目录下的内容，然后还显示了所有子目录及其内容，如果子目录有跟多的子目录，-R选项会继续进行遍历。-F -R可以合并起来，如-FR。<br>命令：<br><code>ls -F -R</code><br><code>ls -FR</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-R.png" alt=""></p>
+<h3 id="示例：5-查看长（详细）列表"><a href="#示例：5-查看长（详细）列表" class="headerlink" title="示例：5. 查看长（详细）列表"></a>示例：5. 查看长（详细）列表</h3><p>描述：显示文件或目录的附加信息。-l显示文件或者目录的大小，修改日期和时间，文件或者文件夹的名字和拥有者，以及它的权限信息。<br>命令：<code>ls -l</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-l.png" alt=""></p>
+<p>以.开头的文件是隐藏文件，（.）（..）分别代表当前目录和上一级目录，目录的颜色是以蓝色显示的。<br>每一行都包含了关于文件（或目录）的下述信息：</p>
+<ul>
+<li><p>第1字段：文件属性字段<br>文件属性字段总共有10个字母组成，第一个字符表示文件类型：<br>字符（-）：普通文件。<br>字母（d）：目录。<br>字母（l）：链接文件。<br>字母（c）：字符设备文件（character）。<br>字母（b）：块设备文件（block），一般置于/dev目录下，设备文件是普通文件和程序访问硬件设备的入口，一类特殊文件。<br>字母（p）：命令管道文件。与shell编程有关的文件。<br>字母（s）：sock文件。与shell编程有关的文件。<br>第1个字符后面的9个字母表示该文件或目录的权限位。三个为一组，均为rwx三个参数的组合。[r]代表可读、[w]代表可写、[x]代表可执行。如果没有权限，则会出现减号[-]。第一组为文件拥有者可具备的权限，第二个为加入此群组之账号的权限，第三组为非本人且没有加入本群组之其他账号的权限。</p>
+</li>
+<li><p>第2字段：如果一个文件不是目录，此时这一字段表示文件所具有的硬链接数。</p>
+</li>
+<li>第3字段：文件属主的用户名</li>
+<li>第4字段：文件属组的组名。</li>
+<li>第5字段：文件的大小（以字节为单位）。</li>
+<li>第6字段：文件的上次修改时间。</li>
+<li>第7字段：文件名或目录名。</li>
+</ul>
+<h3 id="示例：6-列出每个文件分配的blocks大小"><a href="#示例：6-列出每个文件分配的blocks大小" class="headerlink" title="示例：6. 列出每个文件分配的blocks大小"></a>示例：6. 列出每个文件分配的blocks大小</h3><p>描述：-s列出每个文件分配的blocks大小。-s与-l搭配使用，第一列的数字就是该文件的blocks大小。<br>命令：<code>ls -ls</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-show-blocks.png" alt=""></p>
+<p>注意到第一行的total后跟的数字，它是指当前目录下所有文件所占用的空间总和。文件系统在格式化时就规范好了块（block）的大小，每个block仅能容纳一个文件，如果块大小为4K，而文件只有1K，则会有3K的空间被浪费。第一列数字的总和就是total的值。</p>
+<h3 id="示例：7-查看文件的author"><a href="#示例：7-查看文件的author" class="headerlink" title="示例：7. 查看文件的author"></a>示例：7. 查看文件的author</h3><p>描述：–author选项与-l相结合可以在第五列显示每个文件的作者。<br>命令：<code>ls -l --author</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-author.png" alt=""></p>
+<p>注意到第一行的total后跟的数字，它是指当前目录下所有文件所占用的空间总和。文件系统在格式化时就规范好了块（block）的大小，每个block仅能容纳一个文件，如果块大小为4K，而文件只有1K，则会有3K的空间被浪费。第一列数字的总和就是total的值。</p>
+<h3 id="示例：8-以字节为单位打印文件大小"><a href="#示例：8-以字节为单位打印文件大小" class="headerlink" title="示例：8. 以字节为单位打印文件大小"></a>示例：8. 以字节为单位打印文件大小</h3><p>描述：使用–block-size选项，以千字节或兆字节等为单词显示文件的大小。<br>命令：<code>ls -l --block-size=k [file-name]</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-block-size.png" alt=""></p>
+<h3 id="示例：9-使ls在输出中仅显示文件名和文件大小"><a href="#示例：9-使ls在输出中仅显示文件名和文件大小" class="headerlink" title="示例：9. 使ls在输出中仅显示文件名和文件大小"></a>示例：9. 使ls在输出中仅显示文件名和文件大小</h3><p>描述：使-h选项和-s选项配合使用，让ls输出仅包含文件/目录名称及其各自的大小。<br>命令：<code>ls -s -h</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-s-h.png" alt=""></p>
+<h3 id="示例：10-过滤输出列表"><a href="#示例：10-过滤输出列表" class="headerlink" title="示例：10. 过滤输出列表"></a>示例：10. 过滤输出列表</h3><p>描述：过滤器l?tter与目录中的两个文件匹配。问号可用于过滤器字符串中替代任意位置的单个字符。<br>命令：<code>ls -l l?tter</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-one-letter.png" alt=""></p>
+<p>描述：使用星号找到了四个名字以l开头的文件。和问号一样，可以把星号放在过滤器中的任意位置。<br>命令：<code>ls -l l*</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-asterisk.png" alt=""></p>
+<p>描述：中括号表示一个字符位置并给出多个可能的选择。例如列出文件名为latter或letter的文件。<br>命令：<code>ls -l l[ae]tter</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-metacharacter-wildcards.png" alt=""></p>
+<p>描述：中括号[a-i]还可以表示从一个字母范围里匹配。<br>命令：<code>ls -l f[a-i]ll</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-range.png" alt=""></p>
+<p>描述：感叹号（!）将不需要的内容排除在外。<br>命令：<code>ls -l f[!a]ll</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-exclamation.png" alt=""></p>
+<h3 id="示例：11-以人类可阅读的格式列出文件信息"><a href="#示例：11-以人类可阅读的格式列出文件信息" class="headerlink" title="示例：11. 以人类可阅读的格式列出文件信息"></a>示例：11. 以人类可阅读的格式列出文件信息</h3><p>描述：-h选项会将文件大小变为K，M，G等人类可阅读的格式。<br>命令：<code>ls -lh</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-h.png" alt=""></p>
+<h3 id="示例：12-反转显示结果"><a href="#示例：12-反转显示结果" class="headerlink" title="示例：12. 反转显示结果"></a>示例：12. 反转显示结果</h3><p>描述：-r参数将默认的显示结构进行倒序显示。<br>命令：<code>ls -r</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-reverse.png" alt=""></p>
+<h3 id="示例：13-按照修改时间的从远到近顺序排列"><a href="#示例：13-按照修改时间的从远到近顺序排列" class="headerlink" title="示例：13. 按照修改时间的从远到近顺序排列"></a>示例：13. 按照修改时间的从远到近顺序排列</h3><p>描述：-t参数将按照时间从近到远进行排序。<br>命令：<code>ls -lt</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-t.png" alt=""></p>
+<h3 id="示例：14-按照文件的大小排列"><a href="#示例：14-按照文件的大小排列" class="headerlink" title="示例：14. 按照文件的大小排列"></a>示例：14. 按照文件的大小排列</h3><p>描述：-S参数按照文件的大小进行排序。<br>命令：<code>ls -lS</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-S.png" alt=""></p>
+<h3 id="示例：15-自定义显示日期格式"><a href="#示例：15-自定义显示日期格式" class="headerlink" title="示例：15. 自定义显示日期格式"></a>示例：15. 自定义显示日期格式</h3><p>描述：–time-style=[STYLE]可以自定义的文件修改日期格式进行显示。也可以直接使用–full-time显示最全的时间信息。[STYLE]的选项如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- full-iso</span><br><span class="line">- long-iso</span><br><span class="line">- iso</span><br><span class="line">- locale</span><br><span class="line">- +%H:%M:%S:%D</span><br></pre></td></tr></table></figure>
+<p>命令：<br><code>ls -l --time-style=iso</code><br><code>ls --full-time ~</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-time-style.png" alt=""></p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-full-time.png" alt=""></p>
+<h3 id="示例：16-根据不同的规则进行排序"><a href="#示例：16-根据不同的规则进行排序" class="headerlink" title="示例：16. 根据不同的规则进行排序"></a>示例：16. 根据不同的规则进行排序</h3><p>描述：根据–sort不同的规则进行排序。可选值如下（括号里表示等效的命令行参数）：</p>
+<ul>
+<li>extension(-X)：根据文件扩展名排序。</li>
+<li>size(-S)：根据文件大小排序。</li>
+<li>time(-t)：根据时间先后排序。</li>
+<li>version(-v)</li>
+<li>none(-U)</li>
+</ul>
+<p>命令：<code>ls -l --sort=extension</code><br>输出：</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-sort-extension.png" alt=""></p>
+<h3 id="示例：17-更改ls命令输出格式"><a href="#示例：17-更改ls命令输出格式" class="headerlink" title="示例：17.更改ls命令输出格式"></a>示例：17.更改ls命令输出格式</h3><p>描述：–-format可以以各种格式输出目录的内容，例如逗号，水平、垂直分隔等等。可选值如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- comma：逗号。</span><br><span class="line">- horizontal或across：水平。</span><br><span class="line">- long或verbose：长列表，如-l选项。</span><br><span class="line">- single-column：单列。</span><br><span class="line">- vertical：垂直排列，根据屏幕宽度决定显示几列。</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-commas.png" alt=""></p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-single-column.png" alt=""></p>
+<h3 id="示例：18-使ls隐藏特定类型的文件"><a href="#示例：18-使ls隐藏特定类型的文件" class="headerlink" title="示例：18.使ls隐藏特定类型的文件"></a>示例：18.使ls隐藏特定类型的文件</h3><p>描述：使用–hide可以强制ls命令在输出中隐藏特定类型的文件。例如，在输出中隐藏以.txt结尾的文件。<br>命令：<code>ls --hide=*.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ls/ls-hide.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/linux/daily-command-ls.html">http://www.oxysun.cn/linux/daily-command-ls.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月15日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/linux/daily-command-sort.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux sort命令用法详解</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/linux/daily-command-touch.html">
+        下一篇：
+        <span class="next-text nav-default">Linux touch命令用法详解</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>

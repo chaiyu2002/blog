@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="hexo-theme-melody v1.5 supports slides & iframe"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/drafts/iframe.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> hexo-theme-melody v1.5 supports slides & iframe - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <article class="post">
+    <div class="post-content">
+      <h2 id="hexo-theme-melody-v1-5"><a href="#hexo-theme-melody-v1-5" class="headerlink" title="hexo-theme-melody v1.5"></a>hexo-theme-melody <small>v1.5</small></h2><!-- .slide: data-background="#49B1F5" -->
+<p>Supports iframe &amp; slides. You can use a layout called <code>slides</code> to enabled the slides layout.</p>
+<p>Also you can add a <code>iframe</code> front-matter with the <code>slides</code> layout in your <code>md</code> file to enable the iframe page.</p>
+<p>===</p>
+<h2 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h2><!-- .slide: data-transition="concave" data-background="#C7916B" -->
+<h3 id="1-Add-a-slides-page"><a href="#1-Add-a-slides-page" class="headerlink" title="1. Add a slides page"></a>1. Add a slides page</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page slides</span><br><span class="line"><span class="built_in">cd</span> ./<span class="built_in">source</span>/slides</span><br></pre></td></tr></table></figure>
+<p>===</p>
+<h3 id="2-Add-the-layout-type"><a href="#2-Add-the-layout-type" class="headerlink" title="2. Add the layout type"></a>2. Add the layout type</h3><!-- .slide: data-transition="fade" data-background="#00C4B6" -->
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim index.md</span><br></pre></td></tr></table></figure>
+<p>Add a type called <code>slides</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">slides</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-03</span><span class="bullet">-06</span> <span class="number">20</span><span class="string">:24:48</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">slides</span></span><br></pre></td></tr></table></figure>
+<p>===</p>
+<h3 id="3-Modified-the-melody-yml"><a href="#3-Modified-the-melody-yml" class="headerlink" title="3. Modified the melody.yml"></a>3. Modified the melody.yml</h3><!-- .slide: data-transition="convex" data-background="#1B9EF3" -->
+<p>Add slides default config:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">slide:</span></span><br><span class="line"><span class="attr">  separator:</span> <span class="string">whatever</span> <span class="string">you</span> <span class="string">like</span></span><br><span class="line"><span class="attr">  separator_vertical:</span> <span class="string">whatever</span> <span class="string">you</span> <span class="string">like</span></span><br><span class="line"><span class="attr">  charset:</span> <span class="string">utf-8</span></span><br><span class="line"><span class="attr">  theme:</span> <span class="string">black</span></span><br><span class="line"><span class="attr">  mouseWheel:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  transition:</span> <span class="string">slide</span></span><br><span class="line"><span class="attr">  transitionSpeed:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  parallaxBackgroundImage:</span> <span class="string">''</span></span><br><span class="line"><span class="attr">  parallaxBackgroundSize:</span> <span class="string">''</span></span><br><span class="line"><span class="attr">  parallaxBackgroundHorizontal:</span> <span class="literal">null</span></span><br><span class="line"><span class="attr">  parallaxBackgroundVertical:</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>See reveal.js <a href="https://github.com/hakimel/reveal.js#configuration" target="_blank" rel="noopener">config</a></p>
+</blockquote>
+<p>===</p>
+<h3 id="4-Write-a-md-file-with-slides-layout"><a href="#4-Write-a-md-file-with-slides-layout" class="headerlink" title="4. Write a md file with slides layout"></a>4. Write a md file with slides layout</h3><!-- .slide: data-transition="zoom" data-background="#F47466" -->
+<p>In <code>_posts</code> folder, add a <code>md</code> file.</p>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: hexo-theme-melody v1.5 supports iframe &amp; slides</span><br><span class="line">date: 2018-03-06 19:57:52</span><br><span class="line">layout: slides</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">// balalala...</span><br></pre></td></tr></table></figure>
+<p>Then you will get a post of slides type.</p>
+<p>===</p>
+<h2 id="Slides-layout-with-iframe"><a href="#Slides-layout-with-iframe" class="headerlink" title="Slides layout with iframe"></a>Slides layout with iframe</h2><p>If you want to add a website whatever you like within an iframe, try this:</p>
+<p>In <code>_posts</code> folder, add a <code>md</code> file.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: hexo-theme-melody v1.5 supports iframe &amp; slides</span><br><span class="line">date: 2018-03-06 19:57:52</span><br><span class="line">layout: slides</span><br><span class="line">iframe: https://the-url-whatever-you-like</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>Then you will get a post of iframe.</p>
+<p>===</p>
+<h2 id="Configurate-single-slides-in-md"><a href="#Configurate-single-slides-in-md" class="headerlink" title="Configurate single slides in md"></a>Configurate single slides in md</h2><!-- .slide: data-transition="convex" data-background="#69C282" -->
+<p>The slides config in <code>meldoy.yml</code> can change whole slides page.</p>
+<p>But if you set the config in the md file, it will effect the single page.</p>
+<p>==</p>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title: hexo-theme-melody v1.5 supports iframe &amp; slides</span><br><span class="line">date: 2018-03-06 19:57:52</span><br><span class="line">layout: slides</span><br><span class="line">slide:</span><br><span class="line">  theme: white</span><br><span class="line">  transition: zoom</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">// balalala...</span><br></pre></td></tr></table></figure>
+<p>===</p>
+<h1 id="Enjoy"><a href="#Enjoy" class="headerlink" title="Enjoy!"></a>Enjoy!</h1><!-- .slide: data-background="#49B1F5" -->
+
+    </div>
+  </article>
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>

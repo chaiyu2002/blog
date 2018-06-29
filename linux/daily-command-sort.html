@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux sort命令用法详解"/>
+
+
+
+
+  <meta name="keywords" content="Linux,linux,命令,大全,速查,手册,用法,详解,总结" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Linux命令速查">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-sort.html"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-120983285-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <title> Linux sort命令用法详解 - Linux命令速查 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Linux命令速查</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Linux命令速查</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux sort命令用法详解
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-16
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用命令"><span class="toc-text">实用命令</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>sort命令用于对单个或多个文本文件内容进行排序。</p>
+<a id="more"></a>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>sort命令将许多不同的域按不同的列顺序分类。sort命令以空格作为字段分隔符，将一行分割为多个关键字对文件进行排序。需要注意的是sort命令并不对文件内容进行实际的排序(即文件内容没有修改)，只是将文件内容按有序输出。</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>sort -cmu -o output_file [other_options] +pos1 +pos2 input_files</code></p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>-c：检查文件是否已经按照顺序排序。</li>
+<li>-m：将几个排序号的文件进行合并。</li>
+<li>-u：删除所有重复行。</li>
+<li>-o&lt;输出文件&gt;：将排序后的结果存入指定的文件。</li>
+<li>-b：忽略每行前面开始出的空格字符。</li>
+<li>-h：人类可阅读的格式。</li>
+<li>-d：排序时，处理英文字母、数字及空格字符外，忽略其他的字符。</li>
+<li>-f：排序时，将小写字母视为大写字母。</li>
+<li>-i：排序时，除了040至176之间的ASCII字符外，忽略其他的字符。</li>
+<li>-M：将前面3个字母依照月份的缩写进行排序。</li>
+<li>-n：按照数值的大小排序。</li>
+<li>-r：以相反的顺序来排序。</li>
+<li>-t&lt;分隔字符&gt;：指定排序时所用的栏位分隔字符。</li>
+<li>+&lt;起始栏位&gt;-&lt;结束栏位&gt;：以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。</li>
+</ul>
+<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：0. 测试文件</strong><br>描述：下面是device_sort的清单，包含了用户设备登录次数情况，各域为：（1）用户ID，（2）手机系统版本，（3）登录访问次数。域分隔符为冒号。域号从0开始，第1列用户ID为域0，即分类键0，以此类推。</p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-origin-file.png" alt=""></p>
+<p><strong>实例：1. 文件是否已分类</strong><br>描述：检查device文件的域用户ID是否已经有序。sort不加任何参数默认以域0（也就是第一列）进行排序，-c选项检查文件是否已按某种顺序排序。<br>命令：<code>sort -c device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-origin-file.png" alt=""></p>
+<p><strong>实例：2. 使用分隔符</strong><br>描述：将device用:作为域分隔符分类，然后按第一列进行排序。实际上读文件时sort操作将行中各域进行比较，这里只返回基于第一域sort的结果。<br>命令：<code>sort -t : device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-t.png" alt=""></p>
+<p><strong>实例：3. 排序求逆</strong><br>描述：反转实例2中的排序结果。这里先按照第一列进行排序，然后反转其结果。<br>命令：<code>sort -t: -r device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-r.png" alt=""></p>
+<p><strong>实例：4.  使用选项k按指定列排序</strong><br>描述：使用选项k指定第1列进行排序。<br>命令：<code>sort -k1 -t: device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-k.png" alt=""></p>
+<p><strong>实例：5. 数值域排序</strong></p>
+<p>描述：使用n选项指明对数值内容进行排序，否则会按字符串从第一个字符开始进行比较。<br>命令：<code>sort -nk3 -t: device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-n.png" alt=""></p>
+<p><strong>实例：6. 唯一性排序</strong></p>
+<p>描述：使用u选项过滤所有重复的行，每个重复的行只显示一次。<br>命令：<code>sort -u -t: device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-u.png" alt=""></p>
+<p><strong>实例：7. 两个文件进行排序、合并，并且删除重复行</strong></p>
+<p>描述：两个文件进行排序、合并，并且删除重复行。<br>命令：<code>sort -u device device2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-u-merge.png" alt=""></p>
+<p><strong>实例：8. pos用法</strong></p>
+<p>格式：<code>F[.C][OPTS][,F[.C][OPTS]]</code><br>解释：指定排序域开始和结束的位置，F是字段的序号，C是字符的序号，两者初始都是1，结束位置可以不指定，默认是到行结束位置。如果-t和-b选项都没有指定，那么字段中的字符从前面的空白开始计数。OPTS由一个或多个单个字母排序的选项[bdfgiMhnRrV]，它们将重写全局排序选项，如果没有排序键被指定，sort就会以一整行作为键。-b选项去除每个键的前导空白。</p>
+<p>假设有五列字段。<br>-k 2：表示从第二列开始到最后一列作为排序的关键字。<br>-k 2,5：表示从第二列开始到第五列作为排序的关键字。<br>-k 2,2：表示仅以第二列作为排序的关键字。<br>-k 4 -k 5：-k5是多余的。<br>-k 2,2 -k 1,1：先以第二列进行排序，再以第一列排序。<br>-k 2.2,2.5 -k 4.3,4.5：先以第二列的第二个字符开始到第五个字符进行排序，然后先以第四列的第三个字符开始到第五个字符进行排序。</p>
+<p>格式：<code>sort +field_number .characters_in</code><br>描述：从第三列的第二个字符开始排序。<br>命令：<code>sort -k3.2 -t: device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-pos.png" alt=""></p>
+<p>描述：对/root目录执行ls -l的命令，其结果通过管道传递给sort进行排序，先以第二列排序，然后第五列，最后是第九列倒序。<br>命令：<code>ls -l /root | sort -k 2,2n -k 5,5n -r -k 9,9</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-k-pos.png" alt=""></p>
+<p><strong>实例：9. head和tail与sort配合使用</strong></p>
+<p>格式：<code>sort +field_number .characters_in</code><br>描述：以第三列的数值形式进行排序，从结果中抽取前3条和倒数3条记录。<br>命令：<br><code>sort -nk3 -t: device | head -3</code><br><code>sort -nk3 -t: device | tail -3</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-head-tail.png" alt=""></p>
+<p><strong>实例：10. awk与sort配合使用</strong></p>
+<p>描述：将sort结果用awk进行加一点附加信息。<br>命令：<code>sort -nk3 -t: device | tail -1 | awk -F: &#39;{print $1&quot;--&quot;$2&quot;--&quot;$3}&#39;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-awk.png" alt=""></p>
+<p><strong>实例：11. 两个输入文件进行sort，然后把它们连接成一行</strong><br>描述：创建两个文件，并用数据填充，然后对这两个文件排序并连接。<br>命令：<br><code>echo -e &quot;5 Reliable\n2 Fast\n3 Secure\n1 open-source\n4 customizable&quot; &gt; file1.txt</code><br><code>echo -e &quot;3 RedHat\n1 Debian\n5 Ubuntu\n2 Kali\n4 Fedora&quot; &gt; file2.txt</code><br><code>join &lt;(sort -n file1.txt) &lt;(sort file2.txt)
+1 open-source Debian</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-join.png" alt=""></p>
+<p><strong>实例：12. 将两个分类文件合并</strong></p>
+<p>描述：device_sorted和device_sorted2是两个已排好序的文件，文件合并前，它们必须以被分类。<br>命令：<code>sort -t: -m -k1 device_sorted device_sorted2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-merge.png" alt=""></p>
+<p><strong>实例：13. 按照月份顺序进行排序</strong></p>
+<p>描述：M选项对month.txt文件按照月份顺序进行排序。sort命令需要至少3个字符来确认月份名称。<br>命令：<code>sort -M month.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-M.png" alt=""></p>
+<p><strong>实例：14. 把数据整理成方便人们阅读的形式</strong></p>
+<p>描述：-h选项将把数据整理成方便人们阅读的形式，比如1K、2M、3G、2T，这里面的K、G、M、T代表千、兆、吉、梯。<br>命令：<code>ls -lh /root | sort -h -k5</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-h.png" alt=""></p>
+<p><strong>实例：15. 随机化结果</strong><br>描述：-R选项将结果进行hash随机化排序。<br>命令：<code>ls -lh /root | sort -k5 -R</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/sort/sort-Random.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/linux/daily-command-sort.html">http://www.oxysun.cn/linux/daily-command-sort.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月16日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/linux/daily-command-df.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux df命令用法详解</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/linux/daily-command-ls.html">
+        下一篇：
+        <span class="next-text nav-default">Linux ls命令用法详解</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+      
+      <footer id="footer" class="footer">
+
+<!--
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+ -->
+
+<div class="copyright">
+  <!--
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">荒于嬉</span>
+  </span>  -->
+  <script src="https://s13.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+</div>
+
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+	<script>
+	  var _czc = _czc || [];
+	  _czc.push(["_setAccount","1273963895"]);
+	  var _a = $('a[title="站长统计"]')
+	  _a.css('display','none');
+	</script>
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </body>
+</html>
