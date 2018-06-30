@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Linux命令速查</title>
+  <title>老兵驿站</title>
   
-  <subtitle>linux 命令 速查</subtitle>
+  <subtitle>linux MongoDB</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.oxysun.cn/"/>
-  <updated>2018-06-28T15:01:13.210Z</updated>
+  <updated>2018-06-30T10:18:39.724Z</updated>
   <id>http://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MongoDB：创建数据集合</title>
+    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-create.html"/>
+    <id>http://www.oxysun.cn/mongodb/mongodb-collection-create.html</id>
+    <published>2018-06-30T07:53:48.000Z</published>
+    <updated>2018-06-30T10:18:39.724Z</updated>
+    
+    <content type="html"><![CDATA[<p>MongoDB如何创建数据集合（collection）。<br><a id="more"></a></p><p>官网地址：<a href="https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。</a></p><p>这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。</p><p>快速创建一个集合，参考<a href="https://blog.csdn.net/chaiyu2002/article/details/80862002" target="_blank" rel="noopener">插入</a>这一节。</p><p>集合不存在的情况下，插入一条记录就会创建集合。</p><p>稍微啰嗦一点，如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.test.insert(&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure><p>这样即会创建集合test，又会给这个集合插入一条记录。</p><p>非要规矩地创建（其实是可以设置一些选项），那么：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;,</span><br><span class="line">                              autoIndexId: &lt;boolean&gt;,</span><br><span class="line">                              size: &lt;number&gt;,</span><br><span class="line">                              max: &lt;number&gt;,</span><br><span class="line">                              storageEngine: &lt;document&gt;,</span><br><span class="line">                              validator: &lt;document&gt;,</span><br><span class="line">                              validationLevel: &lt;string&gt;,</span><br><span class="line">                              validationAction: &lt;string&gt;,</span><br><span class="line">                              indexOptionDefaults: &lt;document&gt;,</span><br><span class="line">                              viewOn: &lt;string&gt;,</span><br><span class="line">                              pipeline: &lt;pipeline&gt;,</span><br><span class="line">                              collation: &lt;document&gt;,</span><br><span class="line">                              writeConcern: &lt;document&gt;&#125; )</span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td>name</td><td>字符串</td><td>要创建的集合的名称。</td></tr><tr><td>options</td><td>文档</td><td>可选。一大堆选项，暂时没用到，将来再补充了。</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MongoDB如何创建数据集合（collection）。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB：创建数据库</title>
+    <link href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html"/>
+    <id>http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</id>
+    <published>2018-06-30T07:53:48.000Z</published>
+    <updated>2018-06-30T10:15:14.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>MongoDB如何创建数据库。<br><a id="more"></a></p><p>官网位置：<a href="https://docs.mongodb.com/manual/mongo/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/mongo/。</a></p><p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p><p>进入mongo：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# mongo</span><br><span class="line">MongoDB shell version: 2.6.10</span><br><span class="line">connecting to: test</span><br><span class="line">......</span><br></pre></td></tr></table></figure><p>如果没有mongo这个命令，表示路径没有配置好。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure><p>尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很<code>猪头</code>的错误的，你不要证明你也<code>猪头</code>了。</p><p>如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。</p><p><strong>实例</strong>：创建一个数据库，名字为my_test。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br><span class="line">switched to db my_test</span><br></pre></td></tr></table></figure><p>好，创建成功。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MongoDB如何创建数据库。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux tail命令用法详解</title>
@@ -380,46 +420,6 @@
     <summary type="html">
     
       &lt;p&gt;route命令用来显示并设置Linux内核中的网络路由表。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux ping命令用法详解</title>
-    <link href="http://www.oxysun.cn/linux/daily-command-ping.html"/>
-    <id>http://www.oxysun.cn/linux/daily-command-ping.html</id>
-    <published>2018-06-12T03:18:24.000Z</published>
-    <updated>2018-06-28T15:01:13.206Z</updated>
-    
-    <content type="html"><![CDATA[<p>ping命令用来测试主机之间网络的连通性。</p><a id="more"></a><h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>ping通过发送ICMP ECHO_REQUEST数据包到网络主机，并显示响应情况，可以根据远程主机输出的信息来确定其是否可访问（不是绝对的），有些服务器为了防止通过ping探测到，通过防火墙设置了禁止ping或者在内核参数中禁止ping，这样就不能通过ping确定该主机是否处于开启状态。</p><p><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-man.png" alt=""></p><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>ping [选项] [主机名或IP地址]</code></p><h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul><li>-d：使用Socket的SO_DEBUG功能；</li><li>-c&lt;完成次数&gt;：设置完成要求回应的次数；</li><li>-f：极限检测；</li><li>-i&lt;间隔秒数&gt;：指定收发信息的间隔时间；</li><li>-I&lt;网络界面&gt;：使用指定的网络界面送出数据包；</li><li>-l&lt;前置载入&gt;：设置在送出要求信息之前，先行发出的数据包；</li><li>-n：只输出数值；</li><li>-p&lt;范本样式&gt;：设置填满数据包的范本样式；</li><li>-q：不显示指令执行过程，开头和结尾的相关信息除外；</li><li>-r：忽略普通的Routing Table，直接将数据包送到远端主机上；</li><li>-R：记录路由过程；</li><li>-s&lt;数据包大小&gt;：设置数据包的大小；</li><li>-t&lt;存活数值&gt;：设置存活数值TTL的大小；</li><li>-v：详细显示指令的执行过程。</li></ul><h2 id="实用实例"><a href="#实用实例" class="headerlink" title="实用实例"></a>实用实例</h2><p><strong>实例：1. 使用ping命令</strong><br>ping命令不断向网络发送请求，当收到响应时，将收到包含如下信息的输出：</p><p><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping.png" alt=""></p><p>第一行表示每次向域名/IP地址发送指定大小的数据包。接下来的数行是响应信息，具体包含以下字段：</p><ul><li>接收的字节数</li><li>IP地址</li><li>序列号</li><li>响应的时间</li></ul><p>最后一行是此次ping命令执行的统计信息：发送6个数据包，其中6个目标主机已收到，丢包率为0，总耗时5000毫秒。</p><p><strong>实例：2. 更改ping数据包之间的时间间隔</strong><br>描述：每隔3秒发送一个数据包。-i选项指定包之间的时间间隔。<br>命令：<code>ping -i 3 iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-i.png" alt=""></p><p><strong>实例：3. 更改ping数据包大小</strong><br>描述：默认情况下，ping数据包中的字节数为56（如果包含8个字节的ICMP头，则为64）。可以使用-s选项更改此值。例如，发送一个1024字节的数据包（1032包括ICMP头）：<br>命令：<code>ping -s 1024 iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-s.png" alt=""></p><p><strong>实例：4. 发送指定数量的ping数据包</strong><br>描述：ping的默认行为是保持发送数据包知道用户中断为止。使用-c选项可以在发送一定数量的数据包之后强制ping停止执行。例如，在发送3个数据包之后，停止执行：<br>命令：<code>ping -c 3 iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-host.png" alt=""></p><p><strong>实例：5. 指定时间间隔和发送次数</strong><br>描述：总共花费20秒发出10个数据包，数据包的时间间隔为2秒。<br>命令：<code>ping -i 2 -c 10 127.0.0.1</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-i-c.png" alt=""></p><p><strong>实例：6. 设置ping的硬超时（最长运行时间）</strong><br>描述：每隔3秒发送一个数据包，最长运行10秒。可见，最多输出发送4个数据包。-w选项指定ping的退出时间，单位是秒。以下是官方解释：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-w deadline</span><br><span class="line">       Specify a timeout, in seconds, before ping exits regardless of how many packets have</span><br><span class="line">       been  sent or received. In this case ping does not stop after count packet are sent,</span><br><span class="line">       it waits either for deadline expire or until count probes are answered or  for  some</span><br><span class="line">       error notification from network.</span><br></pre></td></tr></table></figure><p>命令：<code>ping -w 10 -i 3 iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-w.png" alt=""></p><p><strong>实例：7. 设置ping的软超时</strong><br>描述：-w选项确保ping在截止日期过期后停止，-W选项也可以使ping停止，但仅限于目标端没有响应时。以下是官方解释：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-W timeout</span><br><span class="line">       Time to wait for a response, in seconds. The option affects only</span><br><span class="line">       timeout  in  absence  of any responses, otherwise ping waits for</span><br><span class="line">       two RTTs.</span><br></pre></td></tr></table></figure><p>命令：<code>ping -W 3 iweeek.com</code> </p><p><strong>实例：8. 使用ping启动大量数据包</strong><br>描述：-f选项可以启动大量数据包。下面是官方的解释：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-f     Flood  ping. For every ECHO_REQUEST sent a period ``.&apos;&apos; is printed,</span><br><span class="line">       while for ever ECHO_REPLY received a backspace  is  printed.   This</span><br><span class="line">       provides a rapid display of how many packets are being dropped.  If</span><br><span class="line">       interval is not given, it sets interval to zero and outputs packets</span><br><span class="line">       as  fast  as they come back or one hundred times per second, which‐</span><br><span class="line">       ever is more.  Only the super-user may use this  option  with  zero</span><br><span class="line">       interval.</span><br></pre></td></tr></table></figure><p>命令：<code>ping -f iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-f.png" alt=""></p><p><strong>实例：9. 在每行之前打印ping时间戳</strong><br>描述：-D选项可以打印unix时间和微妙的组合。<br>命令：<code>ping -D iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-D.png" alt=""></p><p><strong>实例：10. 不显示具体请求信息</strong><br>描述：-q不显示发送和接收的美和请求之间发生的所有事情，而只是开始和结束时的输出。<br>命令：<code>ping -q iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-q.png" alt=""></p><p><strong>实例：11. 多参数使用</strong><br>描述：向域名iweeek.com发送5个数据包，每个间隔2秒，数据包大小为1024字节，TTL值为255，测试其连通性。<br>命令：<code>ping -c 5 -i 2 -s 1024 -t 255 iweeek.com</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ping/ping-mul-params.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ping命令用来测试主机之间网络的连通性。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux scp命令用法详解</title>
-    <link href="http://www.oxysun.cn/linux/daily-command-scp.html"/>
-    <id>http://www.oxysun.cn/linux/daily-command-scp.html</id>
-    <published>2018-06-11T06:16:41.000Z</published>
-    <updated>2018-06-28T15:01:13.208Z</updated>
-    
-    <content type="html"><![CDATA[<p>scp命令用来在服务器之间安全传输文件，scp传输是加密的。</p><a id="more"></a><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>top source_file_name username@destination_host:destination_folder</code></p><p>一句话解释：以username用户拷贝source_file到destination_host上的destination_folder里。</p><h2 id="命令作用"><a href="#命令作用" class="headerlink" title="命令作用"></a>命令作用</h2><p>scp命令是安全拷贝协议Secure Copy Protocol的缩写，和众多Linux/Unix使用者所熟知的拷贝（cp）命令一样。scp的使用方式类似于cp命令，cp命令将一个文件或文件夹从本地操作系统的一个位置（源）拷贝到目标位置（目的），而scp用来将文件或文件夹从网络上的一个主机拷贝到另一个主机当中去。</p><h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul><li>-1：强制scp命令使用协议ssh1。</li><li>-2：强制scp命令使用协议ssh2。</li><li>-4：强行使用IPV4地址。</li><li>-6：强行使用IPV6地址。</li><li>-B：采取批量模式（避免询问密码或口令）。</li><li>-C：启用压缩。通过指明-C参数来开启压缩模式。</li><li>-c：加密方式<ul><li>选择在传输过程中用来加密的加密方式 这个选项会被直接传递到ssh。</li></ul></li><li>-F：ssh配置<ul><li>给ssh指定一个用来替代默认配置的配置文件。这个选项会被直接传递到ssh。</li></ul></li><li>-i：identity_file从指定文件中读取传输时使用的密钥文件，此参数直接传递给ssh。  </li><li>-l：限速<ul><li>限制命令使用的带宽，默认单位是Kbit/s。</li></ul></li><li>-P：端口<ul><li>指定需要的连接的远程主机的端口。  </li><li>注意，这个选项使用的是一个大写的“P”，因为小写的“-p”已经用来保留目标文件的时间和模式相关信息。</li></ul></li><li>-p：保留文件原来的修改时间，访问时间以及权限模式。</li><li>-q：静默模式：不显示来自ssh命令的进度信息，警告和诊断信息。</li><li>-r：递归拷贝整个目录。<ul><li>注意，scp命令在树形遍历的时候同样会跟随符号连接，复制所连接的文件。</li></ul></li><li>-v：详细模式。scp和ssh将会打印出处理过程中的调试信息。这可以帮助你调试连接、认证和配置方面的问题。</li></ul><h2 id="实用示例"><a href="#实用示例" class="headerlink" title="实用示例"></a>实用示例</h2><p><strong>实例：1. 从远程服务器复制文件到本地目录</strong><br>描述：从远程39.106.99.114机器上的/root/develop/目录中下载scp.tar.gz文件到本地/root/目录中。<br>命令：<code>scp root@39.106.99.114:/root/develop/scp.tar.gz /root/</code></p><p><strong>实例：2. 从远程服务器复制目录到本地</strong><br>描述：从远程39.106.99.114机器上的/root/develop/目录中下载所有文件到本地/root/目录中。<br>命令：<code>scp -r root@39.106.99.114:/root/develop/ /root/</code></p><p><strong>实例：3. 上传本地目录文件到远程服务器</strong><br>描述：将本地当前目录中的scp.tar.gz文件上传到39.106.99.114机器上的/root/develpop/目录中。<br>命令：<code>scp scp.tar.gz root@39.106.99.114:/root/develop/</code></p><p><strong>实例：4. 上传本地目录到远程服务器</strong><br>描述：将本地root/dev/目录中所有文件上传到39.106.99.114机器上的/root/develop/目录中。<br>命令：<code>scp -r /root/dev/ root@39.106.99.114:/root/develop/</code></p><h2 id="基础示例"><a href="#基础示例" class="headerlink" title="基础示例"></a>基础示例</h2><p><strong>实例：1. v：得到认证、调试等相关细节信息</strong><br>描述：-v选项，可以得到认证、调试等相关细节信息。<br>命令：<code>scp -v index.html root@39.106.99.114:/root/scp/</code></p><p><strong>实例：2. r：递归拷贝整个目录</strong><br>描述：-r选项，递归拷贝整个目录。<br>命令：<code>scp -r ./iweeek root@39.106.99.114:/root/scp/</code><br>输出：</p><p><img src="http://p9xqnn501.bkt.clouddn.com/scp/scp-r.png" alt=""></p><p><strong>实例：3. q：静默模式</strong><br>描述：-q选项，可以关闭进度信息以及警告和诊断信息。<br>命令：<code>scp -r -q ./iweeek root@39.106.99.114:/root/scp/</code><br>输出：</p><p><img src="http://p9xqnn501.bkt.clouddn.com/scp/scp-q.png" alt=""></p><p><strong>实例：4. l：限制命令使用的带宽</strong><br>描述：-l选项来指定命令使用的带宽，在此我们将速度限制为512Kbit/s，也就是64KB/s。因为带宽是以千比特/秒（kbps）表示的，而8比特等于1字节。<br>命令：<code>scp -l 512 index.html root@39.106.99.114:/root/scp/</code><br>输出：</p><p><img src="http://p9xqnn501.bkt.clouddn.com/scp/scp-l.png" alt=""></p><p><strong>实例：5. p：保留原始信息</strong><br>描述：-p选项，可以保留目标文件的更新时间，访问时间和权限模式。<br>命令：<code>scp -c blowfish index.html root@39.106.99.114:/root/</code></p><p><strong>实例：6. P：指定端口</strong><br>描述：ssh默认使用22端口，-p选项可以指定所需的端口号。<br>命令：<code>scp -P 2222 index.html root@39.106.99.114:/root/</code></p><p><strong>实例：7. C：开启压缩模式</strong><br>描述：-C选项开启压缩模式，scp会不停压缩所传输的文件来节省传输过程中的带宽和时间。它特别之处在于压缩是在网络传输中进行，当文件传到目标服务器时，它会变回压缩之前的原始大小。<br>压缩的方法不是适用于所有文件。当源文件已经被压缩过了，那就没办法再压缩很多了。诸如那些像.zip，.rar，pictures和.iso的文件，用-C参数就没什么意义。<br>命令：<code>scp -C index.html root@39.106.99.114:/root/</code></p><p><strong>实例：8. c：选择加密数据的加密方式</strong><br>描述：scp默认使用AES-128的加密方式，可以通过-c参数来指定其他的加密方式。<br>命令：<code>scp -c blowfish index.html root@39.106.99.114:/root/</code></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;scp命令用来在服务器之间安全传输文件，scp传输是加密的。&lt;/p&gt;
     
     </summary>
     

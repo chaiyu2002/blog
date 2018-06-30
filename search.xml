@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MongoDB：创建数据集合]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据集合（collection）。 官网地址：https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。 这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 快速创建一个集合，参考插入这一节。 集合不存在的情况下，插入一条记录就会创建集合。 稍微啰嗦一点，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-dababase-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 官网位置：https://docs.mongodb.com/manual/mongo/。 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 进入mongo： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。 1use &lt;database&gt; 尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很猪头的错误的，你不要证明你也猪头了。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 好，创建成功。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Linux tail命令用法详解]]></title>
     <url>%2Flinux%2Fdaily-command-tail.html</url>
     <content type="text"><![CDATA[tail命令用于显示来自文件或者管道结尾（最新实时）的内容。 命令功能tail命令用于显示来自文件或者管道结尾（最新实时）的内容。默认情况下，tail命令显示文件的最后10行内容。支持多文件处理，在输出每个文件之前都有一个标识文件名的标题。如果未指定文件，或者文件被指定为破折号「-」，则tail命令从标准输入中读取。 命令格式tail [选项] [文件(s)] 命令选项 –retry：即是在tail命令启动时，文件不可访问或者文件稍后变得不可访问，都始终尝试打开文件。使用此选项时需要与选项“——follow=name”连用； -c或——bytes=：输出文件尾部的N（N为整数）个字节内容； -f&lt;name/descriptor&gt;或；–follow：显示文件最新追加的内容。“name”表示以文件名的方式监视文件的变化。“-f”与“-fdescriptor”等效； -F：与选项“-follow=name”和“–retry”连用时功能相同； -n或——line=：输出文件的尾部N（N位数字）行内容。 –pid=&lt;进程号&gt;：与“-f”选项连用，当指定的进程号的进程终止后，自动退出tail命令； -q或——quiet或——silent：当有多个文件参数时，不输出各个文件名； -s&lt;秒数&gt;或——sleep-interal=&lt;秒数&gt;：与“-f”选项连用，指定监视文件变化时间隔的秒数； -v或——verbose：当有多个文件参数时，总是输出各个文件名； –help：显示指令的帮助信息； –version：显示指令的版本信息。tail -f /usr/local/webserver/tomcat/logs/catalina.out 实用示例实例：1. 查看文件的后十行描述：查看words文件的后10行。默认情况下，tail命令显示文件的最后10行内容。命令：tail letter输出： 实例：2. 限制要显示的行数描述：显示words文件的最后3行。-n选项限制要显示的行数。命令：tail -n 3 lettertail -3 letter输出： 描述：显示words文件的最后1000行。可以在num后加上后缀，例如：b，KB，K等等。命令：tail -n 1K /usr/share/dict/words输出： 实例：3. 监视日志文件描述：显示words文件（日志文件）的最后10行，并且一直监视它，一旦有新的内容加入，就立即打印出来。-f选项将监视文件的更新。命令：tail -f /usr/share/dict/words输出：注意：tail -f将一直监视着文件，要停止它，按CTRL+C。 实例：4. 监视日志文件并只输出指定内容描述：tail将监视access.log文件，它将通过管道传送access.log的最后十行和任何新加入到文件中的行给grep。grep读取从tail传送过来的输出，只打印出包含IP地址10.10.10.10的那些行。命令：tail -f access.log | grep 10.10.10.10 实例：5. 监视日志文件并指定刷新间隔描述：tail将监视access.log文件，其监视的时间间隔为5秒。命令：tail -f -s 5 access.log 实例：6. tail -f的代替命令描述：与tail -f效果相同的命令是less。使用下面命令打开文件后，按下shift+f，就与tail -f的效果相同了。命令：less /usr/share/dict/wordspressSHIFT+F输出： 实例：7. 限制要显示的字节数描述：显示words文件的最后32个字节。-c选项限制显示的字节数。命令：tail -c 32 /usr/share/dict/words输出： 实例：8. 显示多个文件描述：显示多个文件的前十行，同时标题会显示哪个文件正在显示。命令：tail /usr/share/dict/words /usr/share/dict/propernames输出： 实例：9. 多个文件不显示标题描述：显示多个文件的前3行，不显示正在显示文件的标题。命令：tail -n 3 -q /usr/share/dict/words /usr/share/dict/propernames输出： 实例：10. 与管道配合使用描述：显示/etc/目录下的最近修改的前5个文件或文件夹。tail命令可以接受其他命令通过管道传送过来的信息。命令：cat letter | tail -n 5输出：]]></content>

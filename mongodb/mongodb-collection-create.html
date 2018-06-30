@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="books"/>
+  <meta name="description" content="MongoDB：创建数据集合"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/books/"/>
+<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-collection-create.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> books - 老兵驿站 </title>
+    <title> MongoDB：创建数据集合 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -172,11 +172,126 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
+  
   <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          MongoDB：创建数据集合
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-30
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/MongoDB/">MongoDB</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
     <div class="post-content">
       
+        <p>MongoDB如何创建数据集合（collection）。<br><a id="more"></a></p>
+<p>官网地址：<a href="https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。</a></p>
+<p>这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。</p>
+<p>快速创建一个集合，参考<a href="https://blog.csdn.net/chaiyu2002/article/details/80862002" target="_blank" rel="noopener">插入</a>这一节。</p>
+<p>集合不存在的情况下，插入一条记录就会创建集合。</p>
+<p>稍微啰嗦一点，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.test.insert(&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure>
+<p>这样即会创建集合test，又会给这个集合插入一条记录。</p>
+<p>非要规矩地创建（其实是可以设置一些选项），那么：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;,</span><br><span class="line">                              autoIndexId: &lt;boolean&gt;,</span><br><span class="line">                              size: &lt;number&gt;,</span><br><span class="line">                              max: &lt;number&gt;,</span><br><span class="line">                              storageEngine: &lt;document&gt;,</span><br><span class="line">                              validator: &lt;document&gt;,</span><br><span class="line">                              validationLevel: &lt;string&gt;,</span><br><span class="line">                              validationAction: &lt;string&gt;,</span><br><span class="line">                              indexOptionDefaults: &lt;document&gt;,</span><br><span class="line">                              viewOn: &lt;string&gt;,</span><br><span class="line">                              pipeline: &lt;pipeline&gt;,</span><br><span class="line">                              collation: &lt;document&gt;,</span><br><span class="line">                              writeConcern: &lt;document&gt;&#125; )</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>字符串</td>
+<td>要创建的集合的名称。</td>
+</tr>
+<tr>
+<td>options</td>
+<td>文档</td>
+<td>可选。一大堆选项，暂时没用到，将来再补充了。</td>
+</tr>
+</tbody>
+</table>
+
+      
     </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/mongodb/mongodb-collection-create.html">http://www.oxysun.cn/mongodb/mongodb-collection-create.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月30日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/mongodb/mongodb-dababase-create.html">
+        下一篇：
+        <span class="next-text nav-default">MongoDB：创建数据库</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
   </article>
+
 
           </div>
           
