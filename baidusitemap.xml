@@ -5,12 +5,12 @@
     
   <url>
     <loc>http://www.oxysun.cn/linux/daily-command-sed.html</loc>
-    <lastmod>2018-07-01T05:13:36.245Z</lastmod>
+    <lastmod>2018-07-01T05:25:16.298Z</lastmod>
     <data>
         <display>
         <title>Linux下shell命令用法及常见用例：sed</title>
-        <pubTime>2018-06-09T08:17:44.000Z</pubTime>   
-         <content><p><code>sed</code>是stream editor（流式编辑器）的缩写，是一个非交互式的流编辑器，用于过滤或者转换文本。<br><a id="more"></a></p>
+        <pubTime>2018-07-01T02:00:00.000Z</pubTime>   
+         <content><p><code>sed</code>是stream editor（流式编辑器）的缩写，是一个非交互式的流编辑器，用于过滤或者转换文本。<br>未完待续…<br><a id="more"></a></p>
 <p>#概要<br>sed 选项…  [脚本]  [输入文件…]</p>
 <p>#描述<br><code>sed</code>编辑器被称作流编辑器(stream editor)，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中(比如vim)，你可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。<br><code>sed</code>编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中。sed编辑器会执行下列操作。<br>(1) 一次从输入中读取一行数据。<br>(2) 根据所提供的编辑器命令匹配数据。<br>(3) 按照命令修改流中的数据。<br>(4) 将新的数据输出到STDOUT。 在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程。在流编辑器处理完流中的所有数据行后，它就会终止。 由于命令是按顺序逐行给出的，sed编辑器只需对数据流进行一遍处理就可以完成编辑操作。<br>这使得sed编辑器要比交互式编辑器快得多，你可以快速完成对数据的自动修改。</p>
 <p>#理解<br>这个命令使用起来有些复杂，复杂在于功能强大，需要逐步消化。</p>
@@ -28,11 +28,11 @@
     
   <url>
     <loc>http://www.oxysun.cn/linux/daily-command-awk.html</loc>
-    <lastmod>2018-07-01T02:24:34.754Z</lastmod>
+    <lastmod>2018-07-01T05:20:35.161Z</lastmod>
     <data>
         <display>
         <title>Linux下shell命令用法及常见用例： awk</title>
-        <pubTime>2018-06-09T08:17:44.000Z</pubTime>   
+        <pubTime>2018-07-01T02:00:00.000Z</pubTime>   
          <content><p>awk命令在文件或字符串中基于指定规则浏览和抽取信息。<br><a id="more"></a></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>awk是一种小巧的编程语言及命令行工具。（其名称得自于它的创始人Alfred Aho、Peter Weinberger 和 Brian Kernighan姓氏的首个字母）。它非常适合服务器上的日志处理，主要是因为awk可以对文件进行操作，通常以可读文本构建行。<br>awk命令在文件或字符串中基于指定规则浏览和抽取信息。awk抽取信息后，才能进行其他文本操作，awk脚本通常用来格式化文本文件中的信息。</p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>有三种方式调用awk，第一种是命令行方式，例如：<br><code>awk [-F field-separator] &#39;commands&#39; input-file(s)</code><br>awk默认使用空格作为缺省的域分隔符。如果要浏览诸如passwd文件，此文件是以冒号作为分隔符，则必须指明-F选项。例如：<br><code>awk -F : &#39;commands&#39; input-file</code><br>第二种方式是将所有awk命令插入一个文件，并使awk程序可执行，然后用awk命令解释器作为脚本的首行，以便通过键入脚本名称来调用它。<br>第三种方式是将所有的awk命令插入一个单独文件，然后调用：<br><code>awl -f awk-script-file input-file(s)</code><br>-f选项指明在文件awk-script-file中的awk脚本，input_file(s)是使用awk进行浏览的文件名。</p>
@@ -1897,51 +1897,6 @@
 
     
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-join.html</loc>
-    <lastmod>2018-06-28T15:01:13.203Z</lastmod>
-    <data>
-        <display>
-        <title>Linux join命令用法详解</title>
-        <pubTime>2018-06-18T08:59:13.000Z</pubTime>   
-         <content><p>join命令用来将两个分类文本文件的行连在一起，与SQL语言中的join命令相似。</p>
-<a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>join命令根据两个分类文本文件的两个相同字段，将两个文件连接起来，结果写入标准输出。默认连接字段是由空格分隔的第一个字段。</p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>join [选项] 文件1 文件2</code></p>
-<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
-<li>-a&lt;1或2&gt;：除了显示原来的输出内容之外，还显示指令文件中没有匹配的行。</li>
-<li>-e&lt;字符串&gt;：若[文件1]与[文件2]中找不到指定的栏位，则在输出中填入选项中的字符串。</li>
-<li>-i或–ignore-case：比较栏位内容时，忽略大小写的差异。</li>
-<li>-o&lt;格式&gt;：按照指定的格式来显示结果。</li>
-<li>-t&lt;字符&gt;：使用栏位的分割字符。</li>
-<li>-v&lt;1或2&gt;：更-a相同，但是只显示文件中没有匹配的行。</li>
-<li>-1&lt;栏位&gt;：连接[文件1]指定的栏位。</li>
-<li>-2&lt;栏位&gt;：连接[文件2]指定的栏位。</li>
-</ul>
-<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 相同域连接</strong><br>描述：将foodtype.txt和foods.txt两个文件共享的第一个字段作为连接字段，将文件连接起来。<br>命令：<code>join foodtype.txt foods.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-two-file.png" alt=""></p>
-<p><strong>实例：2. 不同域连接</strong><br>描述：将wine.txt的第二列和reviews.txt的第一列连接起来。也可以使用-j选项，即-j1 2 -j2 1。<br>命令：<code>join -1 2 -2 1 wine.txt reviews.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-1-2.png" alt=""></p>
-<p><strong>实例：3. 先排序再连接</strong></p>
-<p>描述：如果上述两个文件指定的文件未排序，那么在连接的时候会发生错误。<br>命令：<code>join -1 2 -2 1 wine.txt reviews.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-sort-file.png" alt=""></p>
-<p>描述：先按wine.txt的第二列排好序，再按reviews的第一列排好序，最后将两个排好序的文件连接起来。<br>命令：<code>join -1 2 -2 1 &lt;(sort -k 2 wine.txt) &lt;(sort reviews.txt)</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-sort.png" alt=""></p>
-<p><strong>实例：4. 指定字段分隔符</strong><br>描述：将names.csv和transactions.csv两个文件指定分隔符为，号进行连接，-t选项指定字段分隔符。<br>命令：<code>join -1 2 -2 3 -t , names.csv transactions.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-t.png" alt=""></p>
-<p><strong>实例：5. 指定显示的字段</strong><br>描述：-o选项指定连接的输出格式。<br>命令：<code>join -1 2 -2 3 -t , -o 1.1,1.2,1.3,2.2,2.1 names.csv transactions.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-o.png" alt=""></p>
-<p><strong>实例：6. 用默认字符串代替未匹配的字段</strong><br>描述：-e选项告诉join当找不到匹配项的时候应该用什么字符串来替换空位，-o选项告诉join哪些不匹配的字段应该被代替。-e只能与-o搭配使用。</p>
-<ul>
-<li>0,1.1,2.2：0表示匹配的关键字段。<ul>
-<li>1.1：表示第一个文件中第一个字段。</li>
-<li>2.2：表示第二个文件中第二个字段。</li>
-</ul>
-</li>
-</ul>
-<p>命令：<br><code>join -a 1 -a 2 -e &quot;NULL&quot; -o 1.1,1.2,2.2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-e.png" alt=""></p>
-<p><strong>实例：7. 显示匹配和不匹配的行</strong><br>描述：既显示成功匹配的行，也显示两个文件中不匹配的所有行。-a选项可选值为1或2，分别表示前后两个文件，意思是显示指定文件中不匹配的行。<br>命令：<br><code>join -a 1 foods.txt foodtype.txt</code><br><code>join -a 2 foods.txt foodtype.txt</code><br><code>join -a 1 -a 2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-a.png" alt=""></p>
-<p><strong>实例：8. 只显示不匹配的行</strong><br>描述：只两个文件中不匹配的所有行。-v选项可选值为1或2，分别表示前后两个文件，意思是只显示指定文件中不匹配的行，将忽略已匹配连接的行。<br>命令：<br><code>join -v 1 -v 2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-v.png" alt=""></p>
-</content>   
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-kill.html</loc>
     <lastmod>2018-06-28T15:01:13.203Z</lastmod>
     <data>
@@ -2004,6 +1959,51 @@
 <h3 id="killall杀死多个进程"><a href="#killall杀死多个进程" class="headerlink" title="killall杀死多个进程"></a><strong>killall杀死多个进程</strong></h3><p>描述：一次杀死多个进程。<br>命令：<br><code>kill PID1 PID2 PID3</code><br><code>kill -9 PID1 PID2 PID3</code><br><code>kill -SIGKILL PID1 PID2 PID3</code></p>
 <p>描述：killall用进程名替代PID，并且会kill掉所有的同名进程。<br>语法：<code>killall [signal or option] Process name</code><br>命令：<code>killall mysqld</code><br>检查：验证进程是否处于运行状态。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> service mysql status</span><br><span class="line"><span class="meta">#</span> pgrep mysql</span><br><span class="line"><span class="meta">#</span> ps -aux | grep mysql</span><br></pre></td></tr></table></figure>
+</content>   
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.oxysun.cn/linux/daily-command-join.html</loc>
+    <lastmod>2018-06-28T15:01:13.203Z</lastmod>
+    <data>
+        <display>
+        <title>Linux join命令用法详解</title>
+        <pubTime>2018-06-18T08:59:13.000Z</pubTime>   
+         <content><p>join命令用来将两个分类文本文件的行连在一起，与SQL语言中的join命令相似。</p>
+<a id="more"></a>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>join命令根据两个分类文本文件的两个相同字段，将两个文件连接起来，结果写入标准输出。默认连接字段是由空格分隔的第一个字段。</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>join [选项] 文件1 文件2</code></p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>-a&lt;1或2&gt;：除了显示原来的输出内容之外，还显示指令文件中没有匹配的行。</li>
+<li>-e&lt;字符串&gt;：若[文件1]与[文件2]中找不到指定的栏位，则在输出中填入选项中的字符串。</li>
+<li>-i或–ignore-case：比较栏位内容时，忽略大小写的差异。</li>
+<li>-o&lt;格式&gt;：按照指定的格式来显示结果。</li>
+<li>-t&lt;字符&gt;：使用栏位的分割字符。</li>
+<li>-v&lt;1或2&gt;：更-a相同，但是只显示文件中没有匹配的行。</li>
+<li>-1&lt;栏位&gt;：连接[文件1]指定的栏位。</li>
+<li>-2&lt;栏位&gt;：连接[文件2]指定的栏位。</li>
+</ul>
+<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 相同域连接</strong><br>描述：将foodtype.txt和foods.txt两个文件共享的第一个字段作为连接字段，将文件连接起来。<br>命令：<code>join foodtype.txt foods.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-two-file.png" alt=""></p>
+<p><strong>实例：2. 不同域连接</strong><br>描述：将wine.txt的第二列和reviews.txt的第一列连接起来。也可以使用-j选项，即-j1 2 -j2 1。<br>命令：<code>join -1 2 -2 1 wine.txt reviews.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-1-2.png" alt=""></p>
+<p><strong>实例：3. 先排序再连接</strong></p>
+<p>描述：如果上述两个文件指定的文件未排序，那么在连接的时候会发生错误。<br>命令：<code>join -1 2 -2 1 wine.txt reviews.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-sort-file.png" alt=""></p>
+<p>描述：先按wine.txt的第二列排好序，再按reviews的第一列排好序，最后将两个排好序的文件连接起来。<br>命令：<code>join -1 2 -2 1 &lt;(sort -k 2 wine.txt) &lt;(sort reviews.txt)</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-sort.png" alt=""></p>
+<p><strong>实例：4. 指定字段分隔符</strong><br>描述：将names.csv和transactions.csv两个文件指定分隔符为，号进行连接，-t选项指定字段分隔符。<br>命令：<code>join -1 2 -2 3 -t , names.csv transactions.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-t.png" alt=""></p>
+<p><strong>实例：5. 指定显示的字段</strong><br>描述：-o选项指定连接的输出格式。<br>命令：<code>join -1 2 -2 3 -t , -o 1.1,1.2,1.3,2.2,2.1 names.csv transactions.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-o.png" alt=""></p>
+<p><strong>实例：6. 用默认字符串代替未匹配的字段</strong><br>描述：-e选项告诉join当找不到匹配项的时候应该用什么字符串来替换空位，-o选项告诉join哪些不匹配的字段应该被代替。-e只能与-o搭配使用。</p>
+<ul>
+<li>0,1.1,2.2：0表示匹配的关键字段。<ul>
+<li>1.1：表示第一个文件中第一个字段。</li>
+<li>2.2：表示第二个文件中第二个字段。</li>
+</ul>
+</li>
+</ul>
+<p>命令：<br><code>join -a 1 -a 2 -e &quot;NULL&quot; -o 1.1,1.2,2.2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-e.png" alt=""></p>
+<p><strong>实例：7. 显示匹配和不匹配的行</strong><br>描述：既显示成功匹配的行，也显示两个文件中不匹配的所有行。-a选项可选值为1或2，分别表示前后两个文件，意思是显示指定文件中不匹配的行。<br>命令：<br><code>join -a 1 foods.txt foodtype.txt</code><br><code>join -a 2 foods.txt foodtype.txt</code><br><code>join -a 1 -a 2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-a.png" alt=""></p>
+<p><strong>实例：8. 只显示不匹配的行</strong><br>描述：只两个文件中不匹配的所有行。-v选项可选值为1或2，分别表示前后两个文件，意思是只显示指定文件中不匹配的行，将忽略已匹配连接的行。<br>命令：<br><code>join -v 1 -v 2 foods.txt foodtype.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/join/join-v.png" alt=""></p>
 </content>   
         </display>
     </data>
@@ -2906,6 +2906,58 @@
 
     
   <url>
+    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
+    <lastmod>2018-06-28T15:01:13.197Z</lastmod>
+    <data>
+        <display>
+        <title>Linux cat命令用法详解</title>
+        <pubTime>2018-06-10T15:58:31.000Z</pubTime>   
+         <content><p>cat命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。</p>
+<a id="more"></a>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cat [选项] [文件]</code></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cat（concatenate）命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。<br>cat命令不会在文件分页处停下来，而是一下子显示完整整个文件。如果希望每次显示一页，可以使用more命令或把cat命令的输出通过管道传递到另外一个具有分页功能的命令中。</p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>-n或-number：显示行号。</li>
+<li>-b或–number-nonblank：和-n相似，只不过对于空白行不编号。</li>
+<li>-s或–squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。</li>
+<li>-A：显示不可打印字符，行尾显示$，等价于-vET。</li>
+<li>-v或–show-nonprinting：使用^和M-引用，除了LFD和TAB之外。</li>
+<li>-E或–show-ends：在每行结束处显示$。</li>
+<li>-e：等价于”-vE”选项。</li>
+<li>-T或–show-tabs 将TAB字符显示为^I。</li>
+<li>-t：显示 tab 分隔符，等价于”-vT”选项。</li>
+</ul>
+<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 显示文件的内容</strong><br>描述：打印passwd文件的所有内容。<br>命令：<code>cat /etc/passwd</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-file.png" alt=""></p>
+<p><strong>实例：2. 查看终端中多个文件的内容</strong><br>描述：打印linux.txt和Find.txt两个文件的内容。<br>命令：<code>cat linux.txt Find.txt</code><br>等同于：<code>cat linux.txt; cat Find.txt;</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-mul-file.png" alt=""></p>
+<p><strong>实例：3. 从文件中读入内容</strong><br>描述：从文件fairy中读取内容，通过cat显示到标准输出上。cat默认是加上&lt;操作符。<br>命令：<code>cat &lt; fairy</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-read.png" alt=""></p>
+<p><strong>实例：4. 与more或less命令配合使用</strong><br>描述：输入完成后，按CTRL+D退出输入。输入的内容通过IO重定向创建文件被写入到test文件中。<br>命令：<code>cat /etc/passwd | more</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-more.png" alt=""></p>
+<p><strong>实例：5. 显示行号</strong><br>描述：在打印的行前加上行号，从1开始。<br>命令：<code>cat -n fairy</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-n.png" alt=""></p>
+<p><strong>实例：6. 在结尾显示<code>$</code>符号</strong><br>描述：<code>$</code>符号将出现在每行的末尾和每个空行之间，这个选项有助于压缩行数。<br>命令：<code>cat -e fairy</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-e.png" alt=""></p>
+<p><strong>实例：7. 显示TAB分隔符</strong><br>描述：TAB空格将以^I显示。<br>命令：<code>cat -T test</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-T.png" alt=""></p>
+<p><strong>实例：8. 通过IO重定向创建文件</strong><br>描述：输入完成后，按CTRL+D退出输入。输入的内容通过IO重定向创建文件被写入到test文件中。<br>命令：<code>cat &gt; test</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-to-file.png" alt=""></p>
+<p><strong>实例：9. 使用重定向机制追加到文件中</strong><br>描述：将文件aa的内容追加到文件bb中。<br>命令：<code>cat aa &gt;&gt; bb</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-append.png" alt=""></p>
+<p><strong>实例：10. 重定向多个文件到一个文件中</strong><br>描述：将文件aa和bb的内容合并输入到cc文件中。若cc不存在，则创建，若存在，则覆盖它。<br>命令：<code>cat aa bb &gt; cc</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-merge.png" alt=""></p>
+<p><strong>实例：11. 重定向多个文件到一个文件中并排序</strong><br>描述：将文件aa，bb和cc的内容合并，通过管道并排序后输入到dd文件中。若dd不存在，则创建，若存在，则覆盖它。<br>命令：<code>cat aa bb cc | sort &gt; dd</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-merge-and-sort.png" alt=""></p>
+<p><strong>实例：12. 在/home/$USER/iweeek创建一个文件并填入内容</strong><br>描述：在/home/$USER/Desktop创建一个文件（例如 test）并填入以下内容。要求创建，编辑，输入内容这些操作一步完成。<br>命令：<code>cat &lt;&lt; EOF &gt; /home/$USER/iweeek/test</code> </p>
+<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-redirection.png" alt=""></p>
+</content>   
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-cd.html</loc>
     <lastmod>2018-06-28T15:01:13.197Z</lastmod>
     <data>
@@ -2964,58 +3016,6 @@
 <h3 id="保存当前工作目录至内存"><a href="#保存当前工作目录至内存" class="headerlink" title="保存当前工作目录至内存"></a><strong>保存当前工作目录至内存</strong></h3><p>描述：保存当前目录到内存，然后切换到要求的目录。一旦popd被执行，它会从内存取出保存的目录位置，作为当前目录。<br>命令：<br><code>cd /home/nijun/sed</code><br><code>popd</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cd/cd-pushd-popd.png" alt=""><br>说明：pushd和popd是Linux bash命令，也是其他几个能够保存当前工作目录位置至内存，并且从内存读取目录作为当前目录的脚本，这些脚本也可以切换目录。</p>
 <h3 id="切换到某个字符串开头的目录"><a href="#切换到某个字符串开头的目录" class="headerlink" title="切换到某个字符串开头的目录"></a><strong>切换到某个字符串开头的目录</strong></h3><p>描述：如果目录中只有一个以s开头的目录，就会直接移动security目录中。如果有很多目录以s开头，而且命令行没有提供更多的标准，这将会移动到第一个以s开头的命令（以标准字典的顺序）。<br>命令：<br><code>cd /etc/s*</code><br><code>cd /etc/securi*</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cd/cd-asterisk.png" alt=""></p>
 <p>命令：<code>cd /etc/p?</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cd/cd-question.png" alt=""></p>
-</content>   
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
-    <lastmod>2018-06-28T15:01:13.197Z</lastmod>
-    <data>
-        <display>
-        <title>Linux cat命令用法详解</title>
-        <pubTime>2018-06-10T15:58:31.000Z</pubTime>   
-         <content><p>cat命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。</p>
-<a id="more"></a>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cat [选项] [文件]</code></p>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cat（concatenate）命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。<br>cat命令不会在文件分页处停下来，而是一下子显示完整整个文件。如果希望每次显示一页，可以使用more命令或把cat命令的输出通过管道传递到另外一个具有分页功能的命令中。</p>
-<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
-<li>-n或-number：显示行号。</li>
-<li>-b或–number-nonblank：和-n相似，只不过对于空白行不编号。</li>
-<li>-s或–squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。</li>
-<li>-A：显示不可打印字符，行尾显示$，等价于-vET。</li>
-<li>-v或–show-nonprinting：使用^和M-引用，除了LFD和TAB之外。</li>
-<li>-E或–show-ends：在每行结束处显示$。</li>
-<li>-e：等价于”-vE”选项。</li>
-<li>-T或–show-tabs 将TAB字符显示为^I。</li>
-<li>-t：显示 tab 分隔符，等价于”-vT”选项。</li>
-</ul>
-<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 显示文件的内容</strong><br>描述：打印passwd文件的所有内容。<br>命令：<code>cat /etc/passwd</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-file.png" alt=""></p>
-<p><strong>实例：2. 查看终端中多个文件的内容</strong><br>描述：打印linux.txt和Find.txt两个文件的内容。<br>命令：<code>cat linux.txt Find.txt</code><br>等同于：<code>cat linux.txt; cat Find.txt;</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-mul-file.png" alt=""></p>
-<p><strong>实例：3. 从文件中读入内容</strong><br>描述：从文件fairy中读取内容，通过cat显示到标准输出上。cat默认是加上&lt;操作符。<br>命令：<code>cat &lt; fairy</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-read.png" alt=""></p>
-<p><strong>实例：4. 与more或less命令配合使用</strong><br>描述：输入完成后，按CTRL+D退出输入。输入的内容通过IO重定向创建文件被写入到test文件中。<br>命令：<code>cat /etc/passwd | more</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-more.png" alt=""></p>
-<p><strong>实例：5. 显示行号</strong><br>描述：在打印的行前加上行号，从1开始。<br>命令：<code>cat -n fairy</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-n.png" alt=""></p>
-<p><strong>实例：6. 在结尾显示<code>$</code>符号</strong><br>描述：<code>$</code>符号将出现在每行的末尾和每个空行之间，这个选项有助于压缩行数。<br>命令：<code>cat -e fairy</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-e.png" alt=""></p>
-<p><strong>实例：7. 显示TAB分隔符</strong><br>描述：TAB空格将以^I显示。<br>命令：<code>cat -T test</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-T.png" alt=""></p>
-<p><strong>实例：8. 通过IO重定向创建文件</strong><br>描述：输入完成后，按CTRL+D退出输入。输入的内容通过IO重定向创建文件被写入到test文件中。<br>命令：<code>cat &gt; test</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-to-file.png" alt=""></p>
-<p><strong>实例：9. 使用重定向机制追加到文件中</strong><br>描述：将文件aa的内容追加到文件bb中。<br>命令：<code>cat aa &gt;&gt; bb</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-append.png" alt=""></p>
-<p><strong>实例：10. 重定向多个文件到一个文件中</strong><br>描述：将文件aa和bb的内容合并输入到cc文件中。若cc不存在，则创建，若存在，则覆盖它。<br>命令：<code>cat aa bb &gt; cc</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-merge.png" alt=""></p>
-<p><strong>实例：11. 重定向多个文件到一个文件中并排序</strong><br>描述：将文件aa，bb和cc的内容合并，通过管道并排序后输入到dd文件中。若dd不存在，则创建，若存在，则覆盖它。<br>命令：<code>cat aa bb cc | sort &gt; dd</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-merge-and-sort.png" alt=""></p>
-<p><strong>实例：12. 在/home/$USER/iweeek创建一个文件并填入内容</strong><br>描述：在/home/$USER/Desktop创建一个文件（例如 test）并填入以下内容。要求创建，编辑，输入内容这些操作一步完成。<br>命令：<code>cat &lt;&lt; EOF &gt; /home/$USER/iweeek/test</code> </p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/cat/cat-redirection.png" alt=""></p>
 </content>   
         </display>
     </data>
