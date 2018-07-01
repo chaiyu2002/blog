@@ -203,14 +203,21 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概要"><span class="toc-text">概要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#理解"><span class="toc-text">理解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见用例"><span class="toc-text">常见用例</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
         <p><code>sed</code>是stream editor（流式编辑器）的缩写，是一个非交互式的流编辑器，用于过滤或者转换文本。<br>未完待续…<br><a id="more"></a></p>
-<p>#概要<br>sed 选项…  [脚本]  [输入文件…]</p>
-<p>#描述<br><code>sed</code>编辑器被称作流编辑器(stream editor)，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中(比如vim)，你可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。<br><code>sed</code>编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中。sed编辑器会执行下列操作。<br>(1) 一次从输入中读取一行数据。<br>(2) 根据所提供的编辑器命令匹配数据。<br>(3) 按照命令修改流中的数据。<br>(4) 将新的数据输出到STDOUT。 在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程。在流编辑器处理完流中的所有数据行后，它就会终止。 由于命令是按顺序逐行给出的，sed编辑器只需对数据流进行一遍处理就可以完成编辑操作。<br>这使得sed编辑器要比交互式编辑器快得多，你可以快速完成对数据的自动修改。</p>
-<p>#理解<br>这个命令使用起来有些复杂，复杂在于功能强大，需要逐步消化。</p>
-<p>#常见用例<br><strong>实例</strong> 替换input.txt文件中所有的“hello”为“world”，并且输出到output.txt中。</p>
+<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>sed 选项…  [脚本]  [输入文件…]</p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p><code>sed</code>编辑器被称作流编辑器(stream editor)，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中(比如vim)，你可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。<br><code>sed</code>编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中。sed编辑器会执行下列操作。<br>(1) 一次从输入中读取一行数据。<br>(2) 根据所提供的编辑器命令匹配数据。<br>(3) 按照命令修改流中的数据。<br>(4) 将新的数据输出到STDOUT。 在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程。在流编辑器处理完流中的所有数据行后，它就会终止。 由于命令是按顺序逐行给出的，sed编辑器只需对数据流进行一遍处理就可以完成编辑操作。<br>这使得sed编辑器要比交互式编辑器快得多，你可以快速完成对数据的自动修改。</p>
+<h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><p>这个命令使用起来有些复杂，复杂在于功能强大，需要逐步消化。</p>
+<h1 id="常见用例"><a href="#常见用例" class="headerlink" title="常见用例"></a>常见用例</h1><p><strong>实例</strong> 替换input.txt文件中所有的“hello”为“world”，并且输出到output.txt中。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;s/hello/world/&apos; input.txt &gt; output.txt</span><br></pre></td></tr></table></figure>
 <p>这可能是最常用的例子了（至少在我工作这么多年的经验中），这里使用了<code>sed</code>的命令<code>s</code>。如果想输出到原文件的话，使用<code>-i</code>参数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/hello/world/&apos; input.txt</span><br></pre></td></tr></table></figure>
@@ -264,17 +271,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-awk.html">
+      <a class="prev" href="/linux/daily-command-touch.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux下shell命令用法及常见用例： awk</span>
+        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：touch</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/mongodb/mongodb-dababase-create.html">
+      <a class="next" href="/linux/daily-command-awk.html">
         下一篇：
-        <span class="next-text nav-default">MongoDB：创建数据库</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例： awk</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
