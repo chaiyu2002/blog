@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux awk命令用法详解"/>
+  <meta name="description" content="Linux下shell命令用法及常见用例： awk"/>
 
 
 
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> Linux awk命令用法详解 - 老兵驿站 </title>
+    <title> Linux下shell命令用法及常见用例： awk - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -177,7 +177,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux awk命令用法详解
+          Linux下shell命令用法及常见用例： awk
         
       </h1>
       
@@ -188,6 +188,12 @@
         <span class="post-time">
            日期: 2018-06-09
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/linux/">linux</a>
+            
+          </div>
         
         
       </div>
@@ -205,8 +211,7 @@
 
     <div class="post-content">
       
-        <p>awk命令在文件或字符串中基于指定规则浏览和抽取信息。</p>
-<a id="more"></a>
+        <p>awk命令在文件或字符串中基于指定规则浏览和抽取信息。<br><a id="more"></a></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>awk是一种小巧的编程语言及命令行工具。（其名称得自于它的创始人Alfred Aho、Peter Weinberger 和 Brian Kernighan姓氏的首个字母）。它非常适合服务器上的日志处理，主要是因为awk可以对文件进行操作，通常以可读文本构建行。<br>awk命令在文件或字符串中基于指定规则浏览和抽取信息。awk抽取信息后，才能进行其他文本操作，awk脚本通常用来格式化文本文件中的信息。</p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>有三种方式调用awk，第一种是命令行方式，例如：<br><code>awk [-F field-separator] &#39;commands&#39; input-file(s)</code><br>awk默认使用空格作为缺省的域分隔符。如果要浏览诸如passwd文件，此文件是以冒号作为分隔符，则必须指明-F选项。例如：<br><code>awk -F : &#39;commands&#39; input-file</code><br>第二种方式是将所有awk命令插入一个文件，并使awk程序可执行，然后用awk命令解释器作为脚本的首行，以便通过键入脚本名称来调用它。<br>第三种方式是将所有的awk命令插入一个单独文件，然后调用：<br><code>awl -f awk-script-file input-file(s)</code><br>-f选项指明在文件awk-script-file中的awk脚本，input_file(s)是使用awk进行浏览的文件名。</p>
 <h2 id="awk脚本"><a href="#awk脚本" class="headerlink" title="awk脚本"></a>awk脚本</h2><h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p>awk脚本的代码结构很简单，就是一系列的模式（pattern）和动作（action）。</p>
@@ -421,9 +426,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-tee.html">
+      <a class="prev" href="/linux/daily-command-sed.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux tee命令用法详解</span>
+        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：sed</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
