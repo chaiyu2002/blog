@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.oxysun.cn/about/index.html</loc>
+    
+    <lastmod>2018-07-01T13:14:50.098Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-touch.html</loc>
     
     <lastmod>2018-07-01T06:55:53.794Z</lastmod>
@@ -79,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-tar.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-tail.html</loc>
     
     <lastmod>2018-06-28T15:01:13.210Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-tail.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-tar.html</loc>
     
     <lastmod>2018-06-28T15:01:13.210Z</lastmod>
     
@@ -107,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-scp.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-route.html</loc>
     
     <lastmod>2018-06-28T15:01:13.208Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-route.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-scp.html</loc>
     
     <lastmod>2018-06-28T15:01:13.208Z</lastmod>
     
@@ -135,14 +142,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-pipe.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-ping.html</loc>
     
     <lastmod>2018-06-28T15:01:13.206Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-ping.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-pipe.html</loc>
     
     <lastmod>2018-06-28T15:01:13.206Z</lastmod>
     
@@ -177,13 +184,6 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-join.html</loc>
-    
-    <lastmod>2018-06-28T15:01:13.203Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-kill.html</loc>
     
     <lastmod>2018-06-28T15:01:13.203Z</lastmod>
@@ -191,9 +191,9 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-head.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-join.html</loc>
     
-    <lastmod>2018-06-28T15:01:13.202Z</lastmod>
+    <lastmod>2018-06-28T15:01:13.203Z</lastmod>
     
   </url>
   
@@ -205,14 +205,21 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-find.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-head.html</loc>
+    
+    <lastmod>2018-06-28T15:01:13.202Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/linux/daily-command-grep.html</loc>
     
     <lastmod>2018-06-28T15:01:13.201Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-grep.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-find.html</loc>
     
     <lastmod>2018-06-28T15:01:13.201Z</lastmod>
     
@@ -240,13 +247,6 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cut.html</loc>
-    
-    <lastmod>2018-06-28T15:01:13.198Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-date.html</loc>
     
     <lastmod>2018-06-28T15:01:13.198Z</lastmod>
@@ -254,14 +254,21 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-cut.html</loc>
+    
+    <lastmod>2018-06-28T15:01:13.198Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/linux/daily-command-cd.html</loc>
     
     <lastmod>2018-06-28T15:01:13.197Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cd.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
     
     <lastmod>2018-06-28T15:01:13.197Z</lastmod>
     
@@ -275,14 +282,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/tags/index.html</loc>
+    <loc>http://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/slides/index.html</loc>
+    <loc>http://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
@@ -296,13 +303,6 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/manifest.json</loc>
-    
-    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.oxysun.cn/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
@@ -310,9 +310,9 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>http://www.oxysun.cn/manifest.json</loc>
     
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
   </url>
   
@@ -324,9 +324,23 @@
   </url>
   
   <url>
+    <loc>http://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.oxysun.cn/drafts/iframe.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/atom/index.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
@@ -341,20 +355,6 @@
     <loc>http://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.oxysun.cn/atom/index.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.oxysun.cn/about/index.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.990Z</lastmod>
     
   </url>
   
