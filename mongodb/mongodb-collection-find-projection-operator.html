@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="MongoDB：创建数据库"/>
+  <meta name="description" content="MongoDB：查询和投影操作符"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> MongoDB：创建数据库 - 老兵驿站 </title>
+    <title> MongoDB：查询和投影操作符 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -195,7 +195,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          MongoDB：创建数据库
+          MongoDB：查询和投影操作符
         
       </h1>
       
@@ -204,7 +204,7 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-30
+           日期: 2018-07-02
         </span>
         
           <div class="post-category">
@@ -219,21 +219,253 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#查询选择器"><span class="toc-text">查询选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#比较"><span class="toc-text">比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑"><span class="toc-text">逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元素"><span class="toc-text">元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评估"><span class="toc-text">评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#地理空间"><span class="toc-text">地理空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位操作"><span class="toc-text">位操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#投影操作"><span class="toc-text">投影操作</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>MongoDB如何创建数据库。<br><a id="more"></a></p>
-<p>官网位置：<a href="https://docs.mongodb.com/manual/mongo/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/mongo/。</a></p>
-<p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
-<p>进入mongo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# mongo</span><br><span class="line">MongoDB shell version: 2.6.10</span><br><span class="line">connecting to: test</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>如果没有mongo这个命令，表示路径没有配置好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure>
-<p>尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很<code>猪头</code>的错误的，你不要证明你也<code>猪头</code>了。</p>
-<p>如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。</p>
-<p><strong>实例</strong>：创建一个数据库，名字为my_test。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br><span class="line">switched to db my_test</span><br></pre></td></tr></table></figure>
-<p>好，创建成功。</p>
+        <p>MongoDB查询和投影操作符。<br><a id="more"></a></p>
+<p>官网：<a href="https://docs.mongodb.com/manual/reference/operator/query/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/query/。</a></p>
+<p>这一章节都是很简单的英语，就做一个很简单的备注，如果连这个英语都看不懂，那就需要提高了，程序员看不懂基本的英语是很难提高的。<br>这一章节还需要完善一些样例，这个有待补充。</p>
+<h1 id="查询选择器"><a href="#查询选择器" class="headerlink" title="查询选择器"></a>查询选择器</h1><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$eq</td>
+<td>Matches values that are equal to a specified value.（判断相等）</td>
+</tr>
+<tr>
+<td>$gt</td>
+<td>Matches values that are greater than a specified value.（判断大于）</td>
+</tr>
+<tr>
+<td>$gte</td>
+<td>Matches values that are greater than or equal to a specified value.（判断大于等于）</td>
+</tr>
+<tr>
+<td>$in</td>
+<td>Matches any of the values specified in an array.（判断在其中）</td>
+</tr>
+<tr>
+<td>$lt</td>
+<td>Matches values that are less than a specified value.（判断小于）</td>
+</tr>
+<tr>
+<td>$lte</td>
+<td>Matches values that are less than or equal to a specified value.（判断小于等于）</td>
+</tr>
+<tr>
+<td>$ne</td>
+<td>Matches all values that are not equal to a specified value.（判断所有值都不等于指定值）</td>
+</tr>
+<tr>
+<td>$nin</td>
+<td>Matches none of the values specified in an array.（判断不在其中）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$and</td>
+<td>Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.（与）</td>
+</tr>
+<tr>
+<td>$not</td>
+<td>Inverts the effect of a query expression and returns documents that do not match the query expression.（非）</td>
+</tr>
+<tr>
+<td>$nor</td>
+<td>Joins query clauses with a logical NOR returns all documents that fail to match both clauses.（异或）</td>
+</tr>
+<tr>
+<td>$or</td>
+<td>Joins query clauses with a logical OR returns all documents that match the conditions of either clause.（或）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$exists</td>
+<td>Matches documents that have the specified field.</td>
+</tr>
+<tr>
+<td>$type</td>
+<td>Selects documents if a field is of the specified type.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$expr</td>
+<td>Allows use of aggregation expressions within the query language.</td>
+</tr>
+<tr>
+<td>$jsonSchema</td>
+<td>Validate documents against the given JSON Schema.</td>
+</tr>
+<tr>
+<td>$mod</td>
+<td>Performs a modulo operation on the value of a field and selects documents with a specified result.</td>
+</tr>
+<tr>
+<td>$regex</td>
+<td>Selects documents where values match a specified regular expression.</td>
+</tr>
+<tr>
+<td>$text</td>
+<td>Performs text search.</td>
+</tr>
+<tr>
+<td>$where</td>
+<td>Matches documents that satisfy a JavaScript expression.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="地理空间"><a href="#地理空间" class="headerlink" title="地理空间"></a>地理空间</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$geoIntersects</td>
+<td>Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports <code>$geoIntersects</code>.</td>
+</tr>
+<tr>
+<td>$geoWithin</td>
+<td>Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support <code>$geoWithin</code>.</td>
+</tr>
+<tr>
+<td>$near</td>
+<td>Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support <code>$near</code>.</td>
+</tr>
+<tr>
+<td>$nearSphere</td>
+<td>Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support <code>$nearSphere</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$all</td>
+<td>Matches arrays that contain all elements specified in the query.</td>
+</tr>
+<tr>
+<td>$elemMatch</td>
+<td>Selects documents if element in the array field matches all the specified <code>$elemMatch</code> conditions.</td>
+</tr>
+<tr>
+<td>$size</td>
+<td>Selects documents if the array field is a specified size.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$bitsAllClear</td>
+<td>Matches numeric or binary values in which a set of bit positions all have a value of 0.</td>
+</tr>
+<tr>
+<td>$bitsAllSet</td>
+<td>Matches numeric or binary values in which a set of bit positions all have a value of 1.</td>
+</tr>
+<tr>
+<td>$bitsAnyClear</td>
+<td>Matches numeric or binary values in which any bit from a set of bit positions has a value of 0.</td>
+</tr>
+<tr>
+<td>$bitsAnySet</td>
+<td>Matches numeric or binary values in which any bit from a set of bit positions has a value of 1.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$comment</td>
+<td>Adds a comment to a query predicate.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="投影操作"><a href="#投影操作" class="headerlink" title="投影操作"></a>投影操作</h1><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$</td>
+<td>Projects the first element in an array that matches the query condition.</td>
+</tr>
+<tr>
+<td>$elemMatch</td>
+<td>Projects the first element in an array that matches the specified <code>$elemMatch</code> condition.</td>
+</tr>
+<tr>
+<td>$meta</td>
+<td>Projects the document’s score assigned during <code>$text</code> operation.</td>
+</tr>
+<tr>
+<td>$slice</td>
+<td>Limits the number of elements projected from an array. Supports skip and limit slices.</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -255,11 +487,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html">http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</a>
+      <a href="http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html">http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月30日</a>
+      <a href=""> 2018年07月02日</a>
     </p>
   </div>
 
@@ -276,17 +508,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-sed.html">
+      <a class="prev" href="/mongodb/mongodb-collection-find-1.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：sed</span>
+        <span class="prev-text nav-default">MongoDB：查找记录 find（1）</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/mongodb/mongodb-collection-create.html">
+      <a class="next" href="/linux/daily-command-touch.html">
         下一篇：
-        <span class="next-text nav-default">MongoDB：创建数据集合</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例：touch</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

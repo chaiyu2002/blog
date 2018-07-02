@@ -228,7 +228,6 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>tar [OPTION...] [FILE]...</code></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>Tar（Tape ARchive，磁带归档的缩写，最初设计用于将文件打包到磁带上，现在大都使用它来实现备份某个分区或者某些重要的目录）是类Unix系统中使用最广泛的命令，用于归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩，还能保留其文件权限。换言之，tar命令也可以用于备份：先是归档多个文件和目录到一个单独的tar文件或归档文件，然后在需要之时将tar文件中的文件和目录释放出来。</p>
 <h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><p>表:tar命令选项</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -238,7 +237,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">-A或—catenate</td>
+<td style="text-align:left">-A或–catenate</td>
 <td style="text-align:left">新增文件到以存在的备份文件</td>
 </tr>
 <tr>
@@ -246,7 +245,7 @@
 <td style="text-align:left">设置区块大小</td>
 </tr>
 <tr>
-<td style="text-align:left">-c或—create</td>
+<td style="text-align:left">-c或–create</td>
 <td style="text-align:left">建立新的备份文件</td>
 </tr>
 <tr>
@@ -258,27 +257,27 @@
 <td style="text-align:left">记录文件的差别</td>
 </tr>
 <tr>
-<td style="text-align:left">-x或—extract或—get</td>
+<td style="text-align:left">-x或–extract或–get</td>
 <td style="text-align:left">从备份文件中还原文件</td>
 </tr>
 <tr>
-<td style="text-align:left">-t或—list</td>
+<td style="text-align:left">-t或–list</td>
 <td style="text-align:left">列出备份文件的内容</td>
 </tr>
 <tr>
-<td style="text-align:left">-z或—gzip或—ungzip</td>
+<td style="text-align:left">-z或–gzip或–ungzip</td>
 <td style="text-align:left">通过gzip指令处理备份文件</td>
 </tr>
 <tr>
-<td style="text-align:left">-Z或—compress或—uncompress</td>
+<td style="text-align:left">-Z或–compress或–uncompress</td>
 <td style="text-align:left">通过compress指令处理备份文件</td>
 </tr>
 <tr>
-<td style="text-align:left">-f&lt;备份文件&gt;或—file=&lt;备份文件&gt;</td>
+<td style="text-align:left">-f&lt;备份文件&gt;或–file=&lt;备份文件&gt;</td>
 <td style="text-align:left">指定备份文件</td>
 </tr>
 <tr>
-<td style="text-align:left">-v或—verbose</td>
+<td style="text-align:left">-v或–verbose</td>
 <td style="text-align:left">显示指令执行过程</td>
 </tr>
 <tr>
@@ -314,24 +313,23 @@
 <td style="text-align:left">确认压缩文件的正确性</td>
 </tr>
 <tr>
-<td style="text-align:left">-p或—same-permissions</td>
+<td style="text-align:left">-p或–same-permissions</td>
 <td style="text-align:left">用原来的文件权限还原文件</td>
 </tr>
 <tr>
-<td style="text-align:left">-P或—absolute-names</td>
+<td style="text-align:left">-P或–absolute-names</td>
 <td style="text-align:left">文件名使用绝对名称，不移除文件名称前的“/”号</td>
 </tr>
 <tr>
 <td style="text-align:left">-N</td>
-<td style="text-align:left">&lt;日期格式&gt;或—newer=&lt;日期时间&gt;只将较指定日期更新的文件保存到备份文件里</td>
+<td style="text-align:left">&lt;日期格式&gt;或–newer=&lt;日期时间&gt;只将较指定日期更新的文件保存到备份文件里</td>
 </tr>
 <tr>
-<td style="text-align:left">—exclude=&lt;范本样式&gt;</td>
+<td style="text-align:left">–exclude=&lt;范本样式&gt;</td>
 <td style="text-align:left">排除符合范本样式的文件</td>
 </tr>
 </tbody>
 </table>
-</div>
 <h2 id="什么是“文件压缩”？"><a href="#什么是“文件压缩”？" class="headerlink" title="什么是“文件压缩”？"></a>什么是“文件压缩”？</h2><p>我们知道，在计算机系统中文件的内容是信息，信息实际上就是一个由值0和值1组成的位（又称为比特）序列，8个位被组织成一组，称为字节。一般来说，一个字节的8位是没有被全部利用起来的，这些没有被利用的位占据了一个文件的大部分空间，而“文件压缩”就是利用复杂的计算方式，将这些没有利用的空间腾出来，以让文件占用的空间变小。</p>
 <p>简单来说，「压缩」就是把文件中没有完全填满的空间填满。压缩过的文件不能直接被操作系统所使用，因此，「解压缩」就是指把文件「还原」为未压缩之前的模样。压缩前与压缩后的文件所占用的磁盘空间大小之比就是「压缩比」。</p>
 <!-- more -->
@@ -350,8 +348,8 @@
 </ul>
 <p>filename.tar.bz2 既然tar不是一个压缩命令，是个打包命令，那么是如何做到打包并压缩的呢？我们先来看一下tar命令的常用参数：</p>
 <h3 id="模式参数"><a href="#模式参数" class="headerlink" title="模式参数"></a>模式参数</h3><ul>
-<li>-c（—create）：创建新的归档文件。</li>
-<li>-r（—append）：与-c一样创建新的归档文件，但这是以追加的模式，只能往未压缩过的归档文件中追加，要求指定-f参数。</li>
+<li>-c（–create）：创建新的归档文件。</li>
+<li>-r（–append）：与-c一样创建新的归档文件，但这是以追加的模式，只能往未压缩过的归档文件中追加，要求指定-f参数。</li>
 <li>-t：查看归档文件的内容含有哪些文件，可以看到包括文件名在内的详细信息。</li>
 <li>-u：与-r一样，但是只往归档文件添加更新的文件。</li>
 <li>-x：解压缩归档文件。如果一个归档文件里有相同文件名的多个文件，那么会先将每个文件解压，最新的文件将覆盖旧的文件。</li>
@@ -365,11 +363,11 @@
 <li>-C：指定解压的目录。</li>
 <li>-p：保留文件的原始信息，权限等等</li>
 <li>-P：解压时保留绝对路径。</li>
-<li>—exclude=FILE：在打包压缩的时候，不要将FILE打包。</li>
+<li>–exclude=FILE：在打包压缩的时候，不要将FILE打包。</li>
 </ul>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>本文讲解的案例在CentOS Linux release 7.4.1708下进行。</p>
 <h3 id="打包并创建归档文件"><a href="#打包并创建归档文件" class="headerlink" title="打包并创建归档文件"></a><strong>打包并创建归档文件</strong></h3><p>示例：打包一个目录。<br>描述：将/home/nijun这个目录打包，生成文件名为command-18-06-02.tar的归档文件，保存在当前目录下。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -cv -f command-18-06-02.tar /home/nijun</span><br><span class="line">/home/nijun/.bash_logout</span><br><span class="line">/home/nijun/.bashrc</span><br><span class="line">/home/nijun/apache-tomcat-9.0.7.tar.gz</span><br><span class="line">/home/nijun/.bash_profile</span><br><span class="line">/home/nijun/nginx-1.10.1.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>-c（—create的简写）参数，这表示为指定的文件或者目录创建新的归档文件。使用-f指定读取或者写入的归档文件，可以用-表示标准输入或者标准输出，-f可以与其他参数连起来写，必须保证f参数后面跟的是文件名。但不推荐这样写，因为参数调换顺序是允许的，如果写成-cfv就会导致压缩后的文件名变成了v。</p>
+<p>-c（–create的简写）参数，这表示为指定的文件或者目录创建新的归档文件。使用-f指定读取或者写入的归档文件，可以用-表示标准输入或者标准输出，-f可以与其他参数连起来写，必须保证f参数后面跟的是文件名。但不推荐这样写，因为参数调换顺序是允许的，如果写成-cfv就会导致压缩后的文件名变成了v。</p>
 <p>使用-v表示生成详细的输出，在压缩或者解压的模式中，会列出正在向归档文件读或者写的文件名字。</p>
 <h3 id="创建tar-gz归档文件"><a href="#创建tar-gz归档文件" class="headerlink" title="创建tar.gz归档文件"></a><strong>创建tar.gz归档文件</strong></h3><p>示例：打包并且使用gzip压缩。<br>描述：将/home/nijun/images目录下的所有文件以及目录中的文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.gz /home/nijun/images</span><br><span class="line">OR</span><br><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.tgz /home/nijun/images</span><br><span class="line">/home/nijun/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">/home/nijun/images/brooke-lark-275181.jpg</span><br><span class="line">/home/nijun/images/brenda-godinez-228181.jpg</span><br><span class="line">/home/nijun/images/artur-rutkowski-97622.jpg</span><br><span class="line">/home/nijun/images/ben-white-138743.jpg</span><br></pre></td></tr></table></figure>

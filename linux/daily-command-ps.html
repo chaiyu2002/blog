@@ -229,7 +229,6 @@
 <p><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-man.png" alt=""></p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>ps [options]</code></p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><p>表: ps命令选项</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -272,7 +271,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>ps命令支持三种使用的语法格式:</p>
 <ol>
 <li>UNIX 风格，选项可以组合在一起，并且选项前必须有“-”连字符</li>
@@ -280,7 +278,6 @@
 <li>GNU 风格的长选项，选项前有两个“-”连字符</li>
 </ol>
 <h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="不加参数执行ps命令"><a href="#不加参数执行ps命令" class="headerlink" title="不加参数执行ps命令"></a><strong>不加参数执行ps命令</strong></h3><p>描述：结果显示4列信息，这些信息并未排序。<br>命令：<code>ps</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps.png" alt=""><br>表: ps命令默认的列表所代表的含义</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -307,7 +304,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 <h3 id="显示更多信息"><a href="#显示更多信息" class="headerlink" title="显示更多信息"></a><strong>显示更多信息</strong></h3><p>描述：ps默认只显示属于当前用户这次登录的PID与相关信息，-l参数显示更详细的信息。<br>命令：<code>ps -l</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-l.png" alt=""></p>
 <p>-l显示信息的每个字段具体含义如下：</p>
 <ul>
@@ -343,12 +339,11 @@
 <p>描述：只打印进程ID为27815的进程名字。<br>命令：<code>ps -q 27815 -o comm=</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-f-C.png" alt=""></p>
 <h3 id="通过cpu和内存使用来过滤进程"><a href="#通过cpu和内存使用来过滤进程" class="headerlink" title="通过cpu和内存使用来过滤进程"></a><strong>通过cpu和内存使用来过滤进程</strong></h3><p>描述：列出目前所有的正在内存当中的程序。ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。</p>
 <p>命令：<code>ps aux | less</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-aux-less.png" alt=""></p>
-<p>描述：根据CPU使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过—sort命令来排序。<br>命令：<code>ps -aux --sort -pcpu | less</code></p>
-<p>描述：根据内存使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过—sort命令来排序。<br>命令：<code>ps -aux --sort -pmem | less</code></p>
+<p>描述：根据CPU使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过–sort命令来排序。<br>命令：<code>ps -aux --sort -pcpu | less</code></p>
+<p>描述：根据内存使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过–sort命令来排序。<br>命令：<code>ps -aux --sort -pmem | less</code></p>
 <p>描述：将前两个命令合并，通过管道显示前10个结果。<br>命令：<br><code>ps -aux --sort -pcpu,+pmem | head -n 10</code><br><code>ps -aux --sort=-pcpu,+pmem | head -n 10</code></p>
 <p>描述：ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：<code>ps -aux &gt; out.txt</code></p>
 <p>表: ps命令显示字段的意义</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -403,9 +398,8 @@
 </tr>
 </tbody>
 </table>
-</div>
 <h3 id="格式化输出root用户（真实的或有效的UID）创建的进程"><a href="#格式化输出root用户（真实的或有效的UID）创建的进程" class="headerlink" title="格式化输出root用户（真实的或有效的UID）创建的进程"></a><strong>格式化输出root用户（真实的或有效的UID）创建的进程</strong></h3><p>描述：查看由root用户运行的进程以及其他相关信息。<br>命令：<code>ps -U root -u root u</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-U-u.png" alt=""><br>说明：<br>-U参数按真实用户ID(RUID)筛选进程，它会从用户列表中选择真实用户名或 ID。真实用户即实际创建该进程的用户。<br>-u参数用来筛选有效用户ID（EUID）。<br>最后的u参数用来决定以针对用户的格式输出，由User，PID，%CPU，%MEM，VSZ，RSS，TTY，STAT，START，TIME和COMMAND这几列组成。</p>
-<h3 id="指定显示的格式"><a href="#指定显示的格式" class="headerlink" title="指定显示的格式"></a><strong>指定显示的格式</strong></h3><p>描述：-o显示指定的格式输出，—sort=-%mem指定以内存倒序的方式显示程序。<br>命令：<code>ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</code><br>输出：</p>
+<h3 id="指定显示的格式"><a href="#指定显示的格式" class="headerlink" title="指定显示的格式"></a><strong>指定显示的格式</strong></h3><p>描述：-o显示指定的格式输出，–sort=-%mem指定以内存倒序的方式显示程序。<br>命令：<code>ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</code><br>输出：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</span><br><span class="line">  PID  PPID CMD                         %MEM %CPU</span><br><span class="line"> 1248  1029 /usr/local/cloudmonitor/jre  3.6  0.4</span><br><span class="line">  690     1 /usr/bin/python -Es /usr/sb  0.8  0.0</span><br><span class="line">  976     1 /usr/local/aegis/aegis_clie  0.6  0.1</span><br><span class="line">  423     1 /usr/lib/polkit-1/polkitd -  0.6  0.0</span><br><span class="line">16409  2099 sshd: root@pts/0             0.3  0.0</span><br><span class="line">15920  2099 sshd: root@pts/2             0.3  0.0</span><br><span class="line">16213  2099 sshd: root@pts/1             0.3  0.0</span><br><span class="line">16451  2099 sshd: root@pts/3             0.3  0.0</span><br><span class="line">  687     1 /usr/sbin/rsyslogd -n        0.2  0.0</span><br></pre></td></tr></table></figure>
 <p>描述：显示安全信息，查看谁登录了服务器。能够与-e参数一起使用的关键字是args，cmd，comm，command，fname，ucmd，ucomm，lstart，bsdstart和start。<br>命令：<code>ps -eo pid,user,args</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-o.png" alt=""></p>
 <h3 id="通过线程过滤进程"><a href="#通过线程过滤进程" class="headerlink" title="通过线程过滤进程"></a><strong>通过线程过滤进程</strong></h3><p>描述：-L选项可以过滤特定进程的线程。<br>命令：<code>ps -L 456</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/ps/ps-thread-L.png" alt=""></p>

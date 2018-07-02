@@ -232,7 +232,6 @@
 <p>这样即会创建集合test，又会给这个集合插入一条记录。</p>
 <p>非要规矩地创建（其实是可以设置一些选项），那么：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;,</span><br><span class="line">                              autoIndexId: &lt;boolean&gt;,</span><br><span class="line">                              size: &lt;number&gt;,</span><br><span class="line">                              max: &lt;number&gt;,</span><br><span class="line">                              storageEngine: &lt;document&gt;,</span><br><span class="line">                              validator: &lt;document&gt;,</span><br><span class="line">                              validationLevel: &lt;string&gt;,</span><br><span class="line">                              validationAction: &lt;string&gt;,</span><br><span class="line">                              indexOptionDefaults: &lt;document&gt;,</span><br><span class="line">                              viewOn: &lt;string&gt;,</span><br><span class="line">                              pipeline: &lt;pipeline&gt;,</span><br><span class="line">                              collation: &lt;document&gt;,</span><br><span class="line">                              writeConcern: &lt;document&gt;&#125; )</span><br></pre></td></tr></table></figure>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -254,7 +253,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 
       
     </div>

@@ -244,7 +244,7 @@
 <p>所有模式都是可选的，下面的脚本形式会对输入的每一行都会简单地执行ACRIONS。<br><code>{ ACTIONS }</code></p>
 <h3 id="特殊的模式"><a href="#特殊的模式" class="headerlink" title="特殊的模式"></a>特殊的模式</h3><p>模式包括两个特殊字段：BEGIN和END。BEGIN在所有输入未被处理之前，即文本浏览动作之前进行匹配。可以初始化脚本变量和所有种类的状态的主要地方。END会在所有的输入都被处理完后，即完成文本浏览动作后进行匹配。可以在退出前进行清除工作和一些最后的输出。<br>最后一类模式，要把它进行归类有点困难。它处于变量和特殊值之间，我们通常称它们为域（Field）。而且名副其实。</p>
 <h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># According to the following line</span><br><span class="line">#</span><br><span class="line"># $1 $2 $3</span><br><span class="line"># 00:34:23 GET /foo/bar.html</span><br><span class="line"># _____________ _____________/</span><br><span class="line"># $0</span><br><span class="line"> </span><br><span class="line"># Hack attempt?</span><br><span class="line">/admin.html$/ &amp;&amp; $2 == &quot;DELETE&quot; &#123;</span><br><span class="line">print &quot;Hacker Alert!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>域（默认地）由空格分隔。$0域代表了一整行的字符串。$1 域是第一块字符串（在任何空格之前），$2$域是后一块，以此类推。<br>awk执行时，其浏览域标记为$1, $2, $3…$n。这种方式称为域标识。使用$1, $3标识表示第1和第3域。使用$0$标识表示所有域。<br>awk浏览到一新行时，即到达域的记录末尾，执行新记录下一行的读动作，重新设置域分隔。</p>
+<p>域（默认地）由空格分隔。$0域代表了一整行的字符串。$1 域是第一块字符串（在任何空格之前），$2\$域是后一块，以此类推。<br>awk执行时，其浏览域标记为$1, $2, $3…$n。这种方式称为域标识。使用$1, $3标识表示第1和第3域。使用$0$标识表示所有域。<br>awk浏览到一新行时，即到达域的记录末尾，执行新记录下一行的读动作，重新设置域分隔。</p>
 <h3 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h3><p>最常用和最有用的行为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123; print $0; &#125; # prints $0. In this case, equivalent to &apos;print&apos; alone</span><br><span class="line">&#123; exit; &#125; # ends the program</span><br><span class="line">&#123; next; &#125; # skips to the next line of input</span><br><span class="line">&#123; a=$1; b=$0 &#125; # variable assignment</span><br><span class="line">&#123; c[$1] = $2 &#125; # variable assignment (array)</span><br><span class="line"> </span><br><span class="line">&#123; if (BOOLEAN) &#123; ACTION &#125;</span><br><span class="line">else if (BOOLEAN) &#123; ACTION &#125;</span><br><span class="line">else &#123; ACTION &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123; for (i=1; i&lt;x; i++) &#123; ACTION &#125; &#125;</span><br><span class="line">&#123; for (item in c) &#123; ACTION &#125; &#125;</span><br></pre></td></tr></table></figure>
 <p>awk里的变量都是全局变量。</p>
@@ -336,7 +336,7 @@
 <p>描述：使用+=累加访问次数的值。awk的每一个操作匹配时，如果没有说明打印记录，那默认会打印所有记录。<br>命令：<code>awk &#39;(total+=$5); END {print &quot;total visits : &quot; total}&#39; device</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/awk/awk-add-column-value.png" alt=""></p>
 <p><strong>实例：8. 文件长度相加</strong></p>
-<p>描述：查看当前目录中所有文件的长度及其综合，但要排除子目录，使用ls -l命令，然后管道输出到awk，awk首先剔除首字符d（/^<sup><a href="#fn_d" id="reffn_d">d</a></sup>/）的记录，然后将文件长度相加，并输出每一文件长度及在END部分输出所有文件的长度。<br>命令：<code>ls -l | awk &#39;/^[^d]/ {print $9&quot;\t&quot;$5} {total+=$5} END {print &quot;total KB: &quot; total}&#39;</code><br>输出：</p>
+<p>描述：查看当前目录中所有文件的长度及其综合，但要排除子目录，使用ls -l命令，然后管道输出到awk，awk首先剔除首字符d（/^[^d]/）的记录，然后将文件长度相加，并输出每一文件长度及在END部分输出所有文件的长度。<br>命令：<code>ls -l | awk &#39;/^[^d]/ {print $9&quot;\t&quot;$5} {total+=$5} END {print &quot;total KB: &quot; total}&#39;</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/awk/awk-acc-file-size.png" alt=""></p>
 <h3 id="内置字符串函数"><a href="#内置字符串函数" class="headerlink" title="内置字符串函数"></a>内置字符串函数</h3><p><img src="http://p9xqnn501.bkt.clouddn.com/awk/awk-string-function.png" alt=""></p>
 <p>gsub类似于sed查找和替换。它允许替换一个字符串或字符为另一个字符串或字符，并以正则表达式的形式执行，第一个函数作用于记录$0，第二个gsub函数允许指定目标，如果未指定，默认是$0。<br>index(s, t)函数返回目标字符串s中查询字符串t的首位置。<br>length函数返回字符串s字符长度。<br>match函数测试字符串s是否包含一个正则表达式r定义的匹配。<br>split函数使用域分隔符fs，将字符串s划分为指定序列a。<br>sprint函数类似于printf函数，返回基本输出格式fmt的结果字符串exp。<br>sub(r, s)函数将用s代替$0中最左边最长的子串，该子串被（r）匹配。<br>sub(s, p)返回字符串s在位置p后的后缀部分。<br>substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。</p>
@@ -446,17 +446,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-sed.html">
+      <a class="prev" href="/linux/daily-command-touch.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：sed</span>
+        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：touch</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/mongodb/mongodb-dababase-create.html">
+      <a class="next" href="/linux/daily-command-sed.html">
         下一篇：
-        <span class="next-text nav-default">MongoDB：创建数据库</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例：sed</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

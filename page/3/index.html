@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="MongoDB：创建数据库"/>
+  <meta name="description" content="Linux, shell, MongoDB, 命令"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/page/3/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> MongoDB：创建数据库 - 老兵驿站 </title>
+    <title> 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -190,12 +190,14 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+  <section id="posts" class="posts">
+    
+      
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
         
-          MongoDB：创建数据库
+          <a class="post-link" href="/linux/5-ways-to-empty-or-delete-a-large-file-content-in-linux.html">Linux清空文件内容最便捷的5种方法</a>
         
       </h1>
       
@@ -204,14 +206,8 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-30
+           日期: 2018-05-16
         </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/MongoDB/">MongoDB</a>
-            
-          </div>
         
         
       </div>
@@ -222,99 +218,49 @@
 
     <div class="post-content">
       
-        <p>MongoDB如何创建数据库。<br><a id="more"></a></p>
-<p>官网位置：<a href="https://docs.mongodb.com/manual/mongo/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/mongo/。</a></p>
-<p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
-<p>进入mongo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# mongo</span><br><span class="line">MongoDB shell version: 2.6.10</span><br><span class="line">connecting to: test</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>如果没有mongo这个命令，表示路径没有配置好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure>
-<p>尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很<code>猪头</code>的错误的，你不要证明你也<code>猪头</code>了。</p>
-<p>如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。</p>
-<p><strong>实例</strong>：创建一个数据库，名字为my_test。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br><span class="line">switched to db my_test</span><br></pre></td></tr></table></figure>
-<p>好，创建成功。</p>
+        
+        
+          
+        
 
+        
+          <p>我们在处理 Linux 文件的时候，如果想直接清空文件的内容而不借助 Linux 命令行编辑器去打开这些文件。那怎样才能实现这个功能呢，本文就将介绍借助一些实用的命令来清空文件内容的方法。</p>
+<p>值得注意的是：在 Linux 中，一切都是文件。所以必须始终确保你正在清空的文件不是重要的用户文件或系统文件。意外清空了系统文件或配置文件可能会导致严重的应用失败或系统错误。</p>
+          <div class="read-more">
+            <a href="/linux/5-ways-to-empty-or-delete-a-large-file-content-in-linux.html" class="read-more-link">阅读更多</a>
+          </div>
+        
       
     </div>
 
     
-      
-      
 
-  <div class="post-copyright">
-    <h3> 文档信息 </h3>
-    <p class="copyright-item">
-      <span>许可协议: </span>
-      
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="http://www.oxysun.cn">荒于嬉</a>
-    </p>
-    <!-- <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html">http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</a>
-    </p> -->
-    <p class="copyright-item">
-      <span>发表日期: </span>
-      <a href=""> 2018年06月30日</a>
-    </p>
-  </div>
-
-
-
-      
-      
-    
-
-    
-      <footer class="post-footer">
-        
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/linux/daily-command-sed.html">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：sed</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-        ：上一篇
-      </a>
-    
-    
-      <a class="next" href="/mongodb/mongodb-collection-create.html">
-        下一篇：
-        <span class="next-text nav-default">MongoDB：创建数据集合</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
     
 
   </article>
 
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/page/2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">上一页</span>
+      </a>
+    
+    
+  </nav>
+
 
           </div>
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
       </main>
 
       
-  
-  
-
-  
-
 
       
       <footer id="footer" class="footer">
@@ -390,11 +336,6 @@
     </div>
 
     
-  
-  
-
-  
-
 
 
     

@@ -229,22 +229,22 @@
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>xargs是给其他命令传递参数的一个过滤器，也是组合多个命令的一个工具。它擅长将标准输入数据转换成命令行参数。xargs能够处理管道或者标准输入，并将其转换成特定命令的命令参数。xargs也可以将单行或多行文本输入转换为其他格式，例如多行变单行，单行变多行。xargs的默认命令是echo，空格是默认分隔符。这意味着通过管道传递给xargs的输入将会包含换行和空白，不过通过xargs的处理，换行和空白将被空格取代。xargs是构建单行命令的重要组件之一。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
 <li>-0：表示以\0作为分隔符，一般与find结合使用。</li>
-<li>-a或—arg-file=&lt;文件&gt;：从文件中读入。</li>
-<li>-d或—delimiter=&lt;分隔符&gt;：自定义一个分隔符。</li>
+<li>-a或–arg-file=&lt;文件&gt;：从文件中读入。</li>
+<li>-d或–delimiter=&lt;分隔符&gt;：自定义一个分隔符。</li>
 <li>-E：结束符，遇到-e指定的命令行参数，则只会将-e指定的命令行参数之前的参数传递给xargs后面的命令。</li>
-<li>-i或—replace=&lt;替换的字符串&gt;：将xargs接收到的每个名称赋给{}，用{}代替。</li>
+<li>-i或–replace=&lt;替换的字符串&gt;：将xargs接收到的每个名称赋给{}，用{}代替。</li>
 <li>-I：与-i选项相同，可以用其他字符代替{}，例如[]。</li>
-<li>-n或—max-args=&lt;最大的参数数&gt;：每次传递几个参数给后面的命令执行。</li>
+<li>-n或–max-args=&lt;最大的参数数&gt;：每次传递几个参数给后面的命令执行。</li>
 <li>-p：并不马上执行命令，而是先输出将要执行的完整的命令（包括命令以及传递给命令的命令行参数），询问是否执行。</li>
-<li>-r或—no-run-if-empty：当xargs的输入为空的时候则停止xargs，不再去执行。</li>
-<li>-s或—max-chars=&lt;最大的字符数&gt;：xargs后面那个命令的最大命令行字符数。</li>
-<li>-t或—verbose：表示先打印命令，然后再执行。</li>
-<li>-x或—exit：配合-s使用，退出。</li>
-<li>—help：显示帮助信息。</li>
-<li>—version：显示版本。</li>
+<li>-r或–no-run-if-empty：当xargs的输入为空的时候则停止xargs，不再去执行。</li>
+<li>-s或–max-chars=&lt;最大的字符数&gt;：xargs后面那个命令的最大命令行字符数。</li>
+<li>-t或–verbose：表示先打印命令，然后再执行。</li>
+<li>-x或–exit：配合-s使用，退出。</li>
+<li>–help：显示帮助信息。</li>
+<li>–version：显示版本。</li>
 </ul>
 <h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 多行变单行</strong><br>描述：将alpha.txt内多行数据处理成单行。<br>命令：<code>cat alpha.txt | xargs</code><br>输出：<br>alpha.txt内容：<br><img src="http://p9xqnn501.bkt.clouddn.com/xargs/xargs-multiple-file.png" alt=""><br>经过xargs处理之后：<br><img src="http://p9xqnn501.bkt.clouddn.com/xargs/xargs-multiple-to-single.png" alt=""></p>
-<p><strong>实例：2. 传递字符串给xargs</strong><br>描述：执行cat命令。echo命令将”—help”字符串作为输出重定向给xargs作为输入，并将”—help”做成一个命令参数来运行cat命令。<br>命令：<code>echo &#39;--help&#39; | xargs cat</code><br>输出：</p>
+<p><strong>实例：2. 传递字符串给xargs</strong><br>描述：执行cat命令。echo命令将”–help”字符串作为输出重定向给xargs作为输入，并将”–help”做成一个命令参数来运行cat命令。<br>命令：<code>echo &#39;--help&#39; | xargs cat</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/xargs/xargs-echo.png" alt=""></p>
 <p><strong>实例：3. 显示执行的命令</strong><br>描述：-t选项在执行前先打印即将执行的命令。<br>命令：<code>echo &#39;--help&#39; | xargs -t cat</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/xargs/xargs-t.png" alt=""></p>

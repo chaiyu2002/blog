@@ -229,32 +229,32 @@
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>grep命令用于搜索与正则表达式匹配的行的纯文本数据。如果将 grep 拆分为 <code>g/re/p</code>，其实代表全局搜索正则表达式并打印结果（globally search a regular expression and print），也就是从文件中搜索模式，然后打印匹配的行到屏幕。它在一个或多个文件中搜索字符串模板，如果模板包括空格，则必须被引用，模板后的所有字符串被看作文件名。搜索的结果被送到标准输出，不影响源文件内容。不过grep只能使用基本的正则表达式来搜索文本，并且在查找字符串时，是以整行为单位进行数据筛选的。<br>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。<br>egrep命令等同于grep -E，可以使用扩展的正则表达式来对文本进行搜索。fgrep命令等同于grep -F，可以使用固定的字符串来对文本进行搜索，不支持正则表达式，执行速度很快。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
 <li>？：同时显示匹配行上下的？行，同-C选项。</li>
-<li>-a或—text：不要忽略二进制的数据。   </li>
-<li>-A&lt;显示行数&gt;或—after-context=&lt;显示行数&gt;：除了显示符合范本样式的那一列之外，并显示该行之后的内容。   </li>
-<li>-b或—byte-offset：在显示符合样式的那一行之前，标示出该行第一个字符的编号。   </li>
-<li>-B&lt;显示行数&gt;或—before-context=&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前的内容。   </li>
-<li>-c或—count：只打印匹配的行数，不显示匹配的内容。   </li>
-<li>-C&lt;显示行数&gt;或—context=&lt;显示行数&gt;或-&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前后的内容。   </li>
-<li>-d&lt;动作&gt;或—directories=&lt;动作&gt;：当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作。   </li>
-<li>-e&lt;范本样式&gt;或—regexp=&lt;范本样式&gt;：指定字符串做为查找文件内容的样式。   </li>
-<li>-E或—extended-regexp：将样式为延伸的普通表示法来使用。   </li>
-<li>-f&lt;规则文件&gt;或—file=&lt;规则文件&gt;：指定规则文件，从文件中提取规则，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式。空文件包含0个规则，什么都不匹配，</li>
-<li>-F或—fixed-regexp：将样式视为固定字符串的列表。   </li>
-<li>-G或—basic-regexp：将样式视为普通的表示法来使用。   </li>
-<li>-h或—no-filename：在显示符合样式的那一行之前，不标示该行所属的文件名称前缀。   </li>
-<li>-H或—with-filename：在显示符合样式的那一行之前，表示该行所属的文件名称。   </li>
-<li>-i或—ignore-case：忽略字符大小写的差别。   </li>
-<li>-l或—file-with-matches：列出文件内容符合指定的样式的文件名称。   </li>
-<li>-L或—files-without-match：列出文件内容不符合指定的样式的文件名称。   </li>
-<li>-n或—line-number：在显示符合样式的那一行之前，标示出该行的列数编号。   </li>
+<li>-a或–text：不要忽略二进制的数据。   </li>
+<li>-A&lt;显示行数&gt;或–after-context=&lt;显示行数&gt;：除了显示符合范本样式的那一列之外，并显示该行之后的内容。   </li>
+<li>-b或–byte-offset：在显示符合样式的那一行之前，标示出该行第一个字符的编号。   </li>
+<li>-B&lt;显示行数&gt;或–before-context=&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前的内容。   </li>
+<li>-c或–count：只打印匹配的行数，不显示匹配的内容。   </li>
+<li>-C&lt;显示行数&gt;或–context=&lt;显示行数&gt;或-&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前后的内容。   </li>
+<li>-d&lt;动作&gt;或–directories=&lt;动作&gt;：当指定要查找的是目录而非文件时，必须使用这项参数，否则grep指令将回报信息并停止动作。   </li>
+<li>-e&lt;范本样式&gt;或–regexp=&lt;范本样式&gt;：指定字符串做为查找文件内容的样式。   </li>
+<li>-E或–extended-regexp：将样式为延伸的普通表示法来使用。   </li>
+<li>-f&lt;规则文件&gt;或–file=&lt;规则文件&gt;：指定规则文件，从文件中提取规则，其内容含有一个或多个规则样式，让grep查找符合规则条件的文件内容，格式为每行一个规则样式。空文件包含0个规则，什么都不匹配，</li>
+<li>-F或–fixed-regexp：将样式视为固定字符串的列表。   </li>
+<li>-G或–basic-regexp：将样式视为普通的表示法来使用。   </li>
+<li>-h或–no-filename：在显示符合样式的那一行之前，不标示该行所属的文件名称前缀。   </li>
+<li>-H或–with-filename：在显示符合样式的那一行之前，表示该行所属的文件名称。   </li>
+<li>-i或–ignore-case：忽略字符大小写的差别。   </li>
+<li>-l或–file-with-matches：列出文件内容符合指定的样式的文件名称。   </li>
+<li>-L或–files-without-match：列出文件内容不符合指定的样式的文件名称。   </li>
+<li>-n或–line-number：在显示符合样式的那一行之前，标示出该行的列数编号。   </li>
 <li>-o：只输出文件中匹配到的部分。</li>
-<li>-q或—quiet或—silent：不显示任何信息。   </li>
-<li>-r或—recursive：此参数的效果和指定“-d recurse”参数相同。   </li>
-<li>-s或—no-messages：不显示错误信息。   </li>
-<li>-v或—revert-match：显示不包含匹配文本的所有行。   </li>
-<li>-V或—version：显示版本信息。   </li>
-<li>-w或—word-regexp：只显示全字符合的列。   </li>
-<li>-x或—line-regexp：只显示全列符合的列。   </li>
+<li>-q或–quiet或–silent：不显示任何信息。   </li>
+<li>-r或–recursive：此参数的效果和指定“-d recurse”参数相同。   </li>
+<li>-s或–no-messages：不显示错误信息。   </li>
+<li>-v或–revert-match：显示不包含匹配文本的所有行。   </li>
+<li>-V或–version：显示版本信息。   </li>
+<li>-w或–word-regexp：只显示全字符合的列。   </li>
+<li>-x或–line-regexp：只显示全列符合的列。   </li>
 <li>-y：此参数的效果和指定“-i”参数相同。</li>
 </ul>
 <h2 id="规则表达式"><a href="#规则表达式" class="headerlink" title="规则表达式"></a>规则表达式</h2><p>grep正则表达式元字符集（基本集）：</p>
@@ -265,13 +265,13 @@
 <li>*：匹配零个或多个先前字符，如：’*grep’匹配所有一个或多个空格后紧跟grep的行。</li>
 <li>.* ：一起用代表任意字符。   </li>
 <li>[] ：匹配一个指定范围内的字符，如’[Gg]rep’匹配Grep和grep。</li>
-<li><sup><a href="#fn_" id="reffn_"></a></sup>：匹配一个不在指定范围内的字符，如：’<sup><a href="#fn_A-FH-Z" id="reffn_A-FH-Z">A-FH-Z</a></sup>rep’匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。</li>
+<li>[^]：匹配一个不在指定范围内的字符，如：’[^A-FH-Z]rep’匹配不包含A-R和T-Z的一个字母开头，紧跟rep的行。</li>
 <li>(..)：标记匹配字符，如’(love)‘，love被标记为1。</li>
 <li>\&lt;：锚定单词的开始，如:’\&lt;grep’匹配包含以grep开头的单词的行。</li>
 <li>>：锚定单词的结束，如’grep>‘匹配包含以grep结尾的单词的行。</li>
 <li>x{m}：重复字符x，m次，如：’o{5}‘匹配包含5个o的行。</li>
 <li>x{m,}：重复字符x,至少m次，如：’o{5,}‘匹配至少有5个o的行。</li>
-<li>x{m,n}：重复字符x，至少m次，不多于n次，如：’o{5,10}‘匹配5—10个o的行。   </li>
+<li>x{m,n}：重复字符x，至少m次，不多于n次，如：’o{5,10}‘匹配5–10个o的行。   </li>
 <li>\w：匹配文字和数字字符，也就是[A-Za-z0-9]，如：’G\w*p’匹配以G后跟零个或多个文字或数字字符，然后是p。   </li>
 <li>\W：\w的反置形式，匹配一个或多个非单词字符，如点号句号等。   </li>
 <li>\b：单词锁定符，如: ‘\bgrep\b’只匹配grep。  </li>
@@ -326,9 +326,9 @@
 <p><img src="http://p9xqnn501.bkt.clouddn.com/grep/grep-zgrep.png" alt=""></p>
 <p><strong>实例：13. 搜索目录并列出内容含有指定字符串的文件名称</strong><br>描述：从/root目录下列出文件内容中含有Hello字样的文件名称，忽略大小写。-l列出的是符合指定字符串的文件名称，-L列出的是不符合指定字符串的文件名称。<br>命令：<code>grep -i -l Hello /root/*</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/grep/grep-l.png" alt=""></p>
-<p><strong>实例：14. 只列出包含或者不包含的文件内容</strong><br>描述：在当前目录下所有以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。—include只搜索匹配正则表达式的文件。<br>命令：<code>grep -i -r hello . --include &quot;*.txt&quot;</code><br>输出：</p>
+<p><strong>实例：14. 只列出包含或者不包含的文件内容</strong><br>描述：在当前目录下所有以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。–include只搜索匹配正则表达式的文件。<br>命令：<code>grep -i -r hello . --include &quot;*.txt&quot;</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/grep/grep-include.png" alt=""></p>
-<p>描述：在当前目录下所有不以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。—exclude搜索不匹配正则表达式的文件。<br>命令：<code>grep -i -r hello . --exclude &quot;*.txt&quot;</code><br>输出：</p>
+<p>描述：在当前目录下所有不以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。–exclude搜索不匹配正则表达式的文件。<br>命令：<code>grep -i -r hello . --exclude &quot;*.txt&quot;</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/grep/grep-exclude.png" alt=""></p>
 <h2 id="正则表达式用法"><a href="#正则表达式用法" class="headerlink" title="正则表达式用法"></a>正则表达式用法</h2><p><strong>实例：15. 显示所有以f开头的文件中包含hello的行</strong><br>描述：在当前目录下显示所有以f开头的文件中包含hello的行。<br>命令：<code>grep -i &#39;hello&#39; f*</code><br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-*.png" alt=""></p>

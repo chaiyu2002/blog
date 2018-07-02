@@ -4,7 +4,14 @@
   <url>
     <loc>http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</loc>
     
-    <lastmod>2018-07-02T13:11:01.141Z</lastmod>
+    <lastmod>2018-07-02T15:15:43.385Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</loc>
+    
+    <lastmod>2018-07-02T15:08:33.373Z</lastmod>
     
   </url>
   
@@ -107,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-sort.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-stat.html</loc>
     
     <lastmod>2018-06-28T15:01:13.209Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-stat.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-sort.html</loc>
     
     <lastmod>2018-06-28T15:01:13.209Z</lastmod>
     
@@ -149,13 +156,6 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-pipe.html</loc>
-    
-    <lastmod>2018-06-28T15:01:13.206Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.oxysun.cn/linux/daily-command-ping.html</loc>
     
     <lastmod>2018-06-28T15:01:13.206Z</lastmod>
@@ -163,9 +163,9 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-netstat.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-pipe.html</loc>
     
-    <lastmod>2018-06-28T15:01:13.205Z</lastmod>
+    <lastmod>2018-06-28T15:01:13.206Z</lastmod>
     
   </url>
   
@@ -177,14 +177,21 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-mkdir.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-netstat.html</loc>
+    
+    <lastmod>2018-06-28T15:01:13.205Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/linux/daily-command-ls.html</loc>
     
     <lastmod>2018-06-28T15:01:13.204Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-ls.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-mkdir.html</loc>
     
     <lastmod>2018-06-28T15:01:13.204Z</lastmod>
     
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-io-redirection.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-head.html</loc>
     
     <lastmod>2018-06-28T15:01:13.202Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-head.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-io-redirection.html</loc>
     
     <lastmod>2018-06-28T15:01:13.202Z</lastmod>
     
@@ -268,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-cd.html</loc>
     
     <lastmod>2018-06-28T15:01:13.197Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/daily-command-cd.html</loc>
+    <loc>http://www.oxysun.cn/linux/daily-command-cat.html</loc>
     
     <lastmod>2018-06-28T15:01:13.197Z</lastmod>
     
@@ -289,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/tags/index.html</loc>
+    <loc>http://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/slides/index.html</loc>
+    <loc>http://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
@@ -324,13 +331,6 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
@@ -339,6 +339,13 @@
   
   <url>
     <loc>http://www.oxysun.cn/drafts/iframe.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     

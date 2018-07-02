@@ -229,11 +229,11 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>uniq [选项] [文件]</code></p>
 <h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
 <li>-c或——count：在每列旁边显示该行重复出现的次数；</li>
-<li>-d或—repeated：仅显示重复出现的行列；</li>
-<li>-f&lt;栏位&gt;或—skip-fields=&lt;栏位&gt;：忽略比较指定的栏位；</li>
-<li>-s&lt;字符位置&gt;或—skip-chars=&lt;字符位置&gt;：忽略比较指定的字符；</li>
+<li>-d或–repeated：仅显示重复出现的行列；</li>
+<li>-f&lt;栏位&gt;或–skip-fields=&lt;栏位&gt;：忽略比较指定的栏位；</li>
+<li>-s&lt;字符位置&gt;或–skip-chars=&lt;字符位置&gt;：忽略比较指定的字符；</li>
 <li>-u或——unique：仅显示出一次的行列；</li>
-<li>-w&lt;字符位置&gt;或—check-chars=&lt;字符位置&gt;：指定要比较的字符。</li>
+<li>-w&lt;字符位置&gt;或–check-chars=&lt;字符位置&gt;：指定要比较的字符。</li>
 </ul>
 <h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><h3 id="实例：删除相邻重复的行"><a href="#实例：删除相邻重复的行" class="headerlink" title="实例：删除相邻重复的行"></a><strong>实例：删除相邻重复的行</strong></h3><p>描述：uniq命令删除了给定文件中所有连续重复的行，剩下显示的行都不重复。可以看到输出中，第1行和第3行重复了，第2行和第5行重复了。这是因为uniq命令只有在相邻的情况下才会删除重复的行。<br>命令：<code>uniq device</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/uniq/uniq.png" alt=""></p>
 <h3 id="实例：删除所有重复的行"><a href="#实例：删除所有重复的行" class="headerlink" title="实例：删除所有重复的行"></a><strong>实例：删除所有重复的行</strong></h3><p>描述：经过排序之后，所有相同的行都连续地排在一起，达到了删除所有行的目的。<br>命令：<br><code>sort -u device</code><br><code>sort device | uniq</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/uniq/uniq-sort.png" alt=""></p>

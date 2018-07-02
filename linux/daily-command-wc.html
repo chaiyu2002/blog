@@ -233,14 +233,14 @@
 <a id="more"></a>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>wc命令可以计算文件的新行、字符数、字节数。如果指定多于一个文件，也列出总的行数。单词是由空格分隔的非零长度的字符序列。如果没有指定文件，或当文件为-，则读取标准输入。</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/wc/wc-man.png" alt=""></p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>wc [OPTION]… [FILE]…<br>wc [OPTION]… —files0-from=F</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>wc [OPTION]… [FILE]…<br>wc [OPTION]… –files0-from=F</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-c或—bytes或——chars：只显示Bytes数；</li>
+<li>-c或–bytes或——chars：只显示Bytes数；</li>
 <li>-l或——lines：只显示列数；</li>
 <li>-w或——words：只显示字数。</li>
 <li>-m或——chars：只显示字符数。</li>
-<li>-L或—max-line-length：打印最长行的长度。</li>
-<li>—files0-from=F：从文件读取文件名，文件名应该是NUL-terminated空字符结尾。如果是-则从标准输入中读取。</li>
+<li>-L或–max-line-length：打印最长行的长度。</li>
+<li>–files0-from=F：从文件读取文件名，文件名应该是NUL-terminated空字符结尾。如果是-则从标准输入中读取。</li>
 </ul>
 <h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="打印字节数"><a href="#打印字节数" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印letter文件的行数，字符数，字节数和文件名。默认没有参数。<br>命令：<code>wc letter</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/wc/wc.png" alt=""></p>
 <h3 id="打印字节数-1"><a href="#打印字节数-1" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印file.txt文件的字节数，包含29个字节。-c选项打印字节数。<br>命令：<code>wc -c file.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/wc/wc-c.png" alt=""></p>
