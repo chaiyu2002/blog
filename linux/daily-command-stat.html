@@ -235,15 +235,15 @@
 <p><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-man.png" alt=""></p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>stat [OPTION]… FILE…</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-c或–format：使用特定或自定义格式而不是默认格式，在每一行结束之后打印一个新行。</li>
+<li>-c或—format：使用特定或自定义格式而不是默认格式，在每一行结束之后打印一个新行。</li>
 <li>-L：支持符号连接。</li>
 <li>-f：显示文件系统状态而非文件状态。</li>
-<li>–printf：类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。</li>
+<li>—printf：类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。</li>
 <li>-t：以简洁方式输出信息。</li>
-<li>–help：显示指令的帮助信息。</li>
-<li>–version：显示指令的版本信息。</li>
+<li>—help：显示指令的帮助信息。</li>
+<li>—version：显示指令的版本信息。</li>
 </ul>
-<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="stat显示更多信息"><a href="#stat显示更多信息" class="headerlink" title="stat显示更多信息"></a><strong>stat显示更多信息</strong></h3><p>描述：使用ls命令的长列表模式和使用stat命令查看文件信息。<br>命令：<br><code>ls -l names.txt</code><br><code>stat names.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-ls.png" alt=""><br>说明：图中，文件状态改变和文件修改的日期/时间是相同的，而访问时间是更近的时间。文件使用了8个块，以两个格式显示文件权限，八进制（0664）和-rw-rw-r–格式。在第三行显示索引为393342，文件没有其他硬链接（Links:1）。这个文件是一个常规文件。</p>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="stat显示更多信息"><a href="#stat显示更多信息" class="headerlink" title="stat显示更多信息"></a><strong>stat显示更多信息</strong></h3><p>描述：使用ls命令的长列表模式和使用stat命令查看文件信息。<br>命令：<br><code>ls -l names.txt</code><br><code>stat names.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-ls.png" alt=""><br>说明：图中，文件状态改变和文件修改的日期/时间是相同的，而访问时间是更近的时间。文件使用了8个块，以两个格式显示文件权限，八进制（0664）和-rw-rw-r—格式。在第三行显示索引为393342，文件没有其他硬链接（Links:1）。这个文件是一个常规文件。</p>
 <h3 id="显示文件系统的状态"><a href="#显示文件系统的状态" class="headerlink" title="显示文件系统的状态"></a><strong>显示文件系统的状态</strong></h3><p>描述：f选项将显示指定文件系统的信息。需要提供一个目录/文件系统作为参数。<br>命令：<br><code>stat -f /dev/vda1</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-file-system.png" alt=""></p>
 <h3 id="重命名改变状态时间"><a href="#重命名改变状态时间" class="headerlink" title="重命名改变状态时间"></a><strong>重命名改变状态时间</strong></h3><p>描述：重命名文件将会改变状态时间，即ctime。文件创建的时候ctime存储文件的创建日期和时间，修改文件后就变为记录文件的状态改动时间。<br>命令：<br><code>mv fairy fairy2</code><br><code>stat fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-mv.png" alt=""></p>
 <h3 id="查看多个文件"><a href="#查看多个文件" class="headerlink" title="查看多个文件"></a><strong>查看多个文件</strong></h3><p>描述：使用通配符查看多个文件的状态。<br>命令：<code>stat t*</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-wild.png" alt=""></p>
@@ -251,6 +251,7 @@
 <h3 id="用ls获取额外的信息-1"><a href="#用ls获取额外的信息-1" class="headerlink" title="用ls获取额外的信息"></a><strong>用ls获取额外的信息</strong></h3><p>描述：ls的u选项显示最后访问时间，c选项显示状态改动时间。<br>命令：<br><code>ls -lu fairy2</code><br><code>ls -lc fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-ls-u-c.png" alt=""></p>
 <h3 id="显示指定的信息"><a href="#显示指定的信息" class="headerlink" title="显示指定的信息"></a><strong>显示指定的信息</strong></h3><p>--format选项可以单独显示具体的信息。可用的选项如下：</p>
 <p>表: 文件的格式序列</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -365,7 +366,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>表: 文件系统的格式序列</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -428,9 +431,10 @@
 </tr>
 </tbody>
 </table>
-<p>描述：–format选项可以一次显示所有指定的信息。例如只查看文件类型，和硬链接数。<br>命令：<br><code>stat --format=%F %h fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-F-h.png" alt=""></p>
-<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。–format或-c选项可以打印特定或自定义格式，在每一行结束之后打印一个新行。<br>命令：<br><code>stat --format=%a fairy2</code><br><code>stat --format=%A fairy2</code><br><code>stat --format=%X fairy2</code><br><code>stat --format=%U fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-format.png" alt=""></p>
-<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。–printf类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。<br>命令：<br><code>stat --printf=&quot;%a\n&quot; fairy2</code><br><code>stat --printf=&quot;%A\n&quot; fairy2</code><br><code>stat --printf=&quot;%X\n&quot; fairy2</code><br><code>stat --printf=&quot;%U\n&quot; fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-printf.png" alt=""></p>
+</div>
+<p>描述：—format选项可以一次显示所有指定的信息。例如只查看文件类型，和硬链接数。<br>命令：<br><code>stat --format=%F %h fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-F-h.png" alt=""></p>
+<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。—format或-c选项可以打印特定或自定义格式，在每一行结束之后打印一个新行。<br>命令：<br><code>stat --format=%a fairy2</code><br><code>stat --format=%A fairy2</code><br><code>stat --format=%X fairy2</code><br><code>stat --format=%U fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-format.png" alt=""></p>
+<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。—printf类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。<br>命令：<br><code>stat --printf=&quot;%a\n&quot; fairy2</code><br><code>stat --printf=&quot;%A\n&quot; fairy2</code><br><code>stat --printf=&quot;%X\n&quot; fairy2</code><br><code>stat --printf=&quot;%U\n&quot; fairy2</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/stat/stat-printf.png" alt=""></p>
 
       
     </div>

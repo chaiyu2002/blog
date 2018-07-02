@@ -234,6 +234,7 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cd [选项] 目录</code></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cd命令（change directory）用来切换工作目录。其中目录可以表示为绝对路径或相对路径，若目录名称省略，则变换至使用者的home directory（登录时所在的目录）。使用者只能访问自己的目录或者其余指定目录。通常与pwd命令一同使用，pwd命令获取当前目录路径并打印出来。</p>
 <p>表: 特殊目录</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -264,6 +265,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
 <li>-p 如果要切换到的目标目录是一个符号连接，直接切换到符号连接指向的目标目录。</li>
 <li>-L 如果要切换的目标目录是一个符号的连接，直接切换到字符连接名代表的目录，而非符号连接所指向的目标目录。</li>

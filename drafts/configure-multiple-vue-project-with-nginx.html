@@ -198,7 +198,7 @@
 <h3 id="VUE-项目配置"><a href="#VUE-项目配置" class="headerlink" title="VUE 项目配置"></a>VUE 项目配置</h3><ol>
 <li>找到并修改 <code>config/index.js</code> 这个文件，在配置的 build 中的 <code>assetsPublicPath</code> 从 <code>/</code> 修改为<code>/&lt;项目名&gt;/</code>。</li>
 </ol>
-<ol start="2">
+<ol>
 <li>找到并修改 <code>src/router.js</code>。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">	    base: "/<span class="tag">&lt;<span class="name">项目名</span>&gt;</span>/",  // 添加这句</span><br><span class="line">    routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>

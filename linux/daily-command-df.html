@@ -228,22 +228,22 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>df [选项] [文件]</p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>df（disk filesystem 的简称）用于显示文件系统磁盘空间使用情况。默认显示单位为KB。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-a或–all：全部文件系统列表。</li>
-<li>-h或–human-readable：方便阅读方式显示。</li>
-<li>-H或–si：等于“-h”，但是计算式，1K=1000，而不是1K=1024。</li>
-<li>-i或–inodes：显示inode信息。</li>
-<li>-k或–kilobytes：区块为1024字节。</li>
-<li>-l或–local：只显示本地文件系统。</li>
-<li>-m或–megabytes：区块为1048576字节。</li>
-<li>–no-sync：忽略sync命令。</li>
-<li>-P或–portability：输出格式为POSIX。</li>
-<li>–sync：在取得磁盘信息前，先执行sync命令。</li>
-<li>-T或–print-type：文件系统类型。</li>
-<li>–block-size=&lt;区块大小&gt;：指定区块大小。</li>
-<li>-t&lt;文件系统类型&gt;或–type=&lt;文件系统类型&gt;：只显示选定文件系统的磁盘信息。</li>
-<li>-x&lt;文件系统类型&gt;或–exclude-type=&lt;文件系统类型&gt;：不显示选定文件系统的磁盘信息。</li>
-<li>–help：显示帮助信息。</li>
-<li>–version：显示版本信息。</li>
+<li>-a或—all：全部文件系统列表。</li>
+<li>-h或—human-readable：方便阅读方式显示。</li>
+<li>-H或—si：等于“-h”，但是计算式，1K=1000，而不是1K=1024。</li>
+<li>-i或—inodes：显示inode信息。</li>
+<li>-k或—kilobytes：区块为1024字节。</li>
+<li>-l或—local：只显示本地文件系统。</li>
+<li>-m或—megabytes：区块为1048576字节。</li>
+<li>—no-sync：忽略sync命令。</li>
+<li>-P或—portability：输出格式为POSIX。</li>
+<li>—sync：在取得磁盘信息前，先执行sync命令。</li>
+<li>-T或—print-type：文件系统类型。</li>
+<li>—block-size=&lt;区块大小&gt;：指定区块大小。</li>
+<li>-t&lt;文件系统类型&gt;或—type=&lt;文件系统类型&gt;：只显示选定文件系统的磁盘信息。</li>
+<li>-x&lt;文件系统类型&gt;或—exclude-type=&lt;文件系统类型&gt;：不显示选定文件系统的磁盘信息。</li>
+<li>—help：显示帮助信息。</li>
+<li>—version：显示版本信息。</li>
 </ul>
 <h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 检查文件系统磁盘空间使用情况</strong><br>描述：显示设备名称、总块数、总磁盘空间、已用磁盘空间、可用磁盘空间和文件系统上的挂载点。<br>命令：df<br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/df/df.png" alt=""></p>

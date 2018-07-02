@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux head命令用法详解"/>
+  <meta name="description" content="MongoDB：查找记录 find（1）"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-head.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> Linux head命令用法详解 - 老兵驿站 </title>
+    <title> MongoDB：查找记录 find（1） - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -195,7 +195,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux head命令用法详解
+          MongoDB：查找记录 find（1）
         
       </h1>
       
@@ -204,8 +204,14 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-13
+           日期: 2018-07-02
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/MongoDB/">MongoDB</a>
+            
+          </div>
         
         
       </div>
@@ -216,45 +222,32 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用示例"><span class="toc-text">实用示例</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义："><span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#行为"><span class="toc-text">行为</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#投影"><span class="toc-text">投影</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>head命令用于显示来自文件或者管道开头的内容。</p>
-<a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>head命令用于显示来自文件或者管道开头的内容。默认情况下，head命令显示文件的头10行内容。支持多文件处理，在输出每个文件之前都有一个标识文件名的标题。如果未指定文件，或者文件被指定为破折号「-」，则head命令从标准输入中读取。</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/head/head-man.png" alt=""></p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>head [选项] [文件]</code></p>
-<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
-<li>-n, —bytes=[-]<em>num</em>：指定显示头部内容的行数；</li>
-<li>-c, —lines=[-]<em>num</em>：指定显示头部内容的字节数；</li>
-<li>-v, —vervose：总是显示文件名的头信息；</li>
-<li>-q, —quirt, —silent：不显示文件名的头信息。</li>
-<li>—help：显示一段帮助信息后退出。</li>
-<li>—version：打印版本后退出。</li>
-</ul>
-<p>上面选项中的<em>num</em>可能有一个乘数后缀：</p>
+        <p>MongoDB如何查询记录之一。<br><a id="more"></a></p>
+<p>官网：<a href="https://docs.mongodb.com/manual/reference/method/db.collection.find/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.collection.find/。</a></p>
+<h1 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.collection.find(query, projection)</span><br></pre></td></tr></table></figure>
+<p>在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）<br>参数|类型|描述<br>-|-|-<br>query|文档型|可选。使用查询操作符(有待解释)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。<br>projection|文档型|可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。 </p>
+<h1 id="行为"><a href="#行为" class="headerlink" title="行为"></a>行为</h1><h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>projection参数决定了哪些域需要被返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125;</span><br></pre></td></tr></table></figure>
+<p><code>&lt;value&gt;</code>可以是:</p>
 <ul>
-<li>b：512</li>
-<li>kB：1000</li>
-<li>K：1024</li>
-<li>MB：1000*1000</li>
-<li>M：1024*1024</li>
-<li>GB：1000*1000*1000</li>
-<li>G：1024*1024*1024</li>
+<li>1 或 true 表示要在返回文档中包含这个域。</li>
+<li>0 或 false 表示不包含这个域。</li>
+<li>表达式使用了投影操作符（有待解释）。</li>
 </ul>
-<p>还有T，P，E，Z，Y等等。</p>
-<h2 id="实用示例"><a href="#实用示例" class="headerlink" title="实用示例"></a>实用示例</h2><p><strong>实例：1. 查看文件的前十行</strong><br>描述：查看words文件的前10行。默认情况下，head命令显示文件的头10行内容。<br>命令：<code>head /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head.png" alt=""></p>
-<p><strong>实例：2. 限制要显示的行数</strong><br>描述：显示words文件的前3行。-n选项限制要显示的行数。<br>命令：<br><code>head -n 3 /usr/share/dict/words</code><br><code>head -3 /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-n.png" alt=""></p>
-<p>描述：显示words文件的前1000行。可以在num后加上后缀，例如：b，KB，K等等。<br>命令：<code>head -n 1K /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-n-1K.png" alt=""></p>
-<p><strong>实例：3. 限制要显示的字节数</strong><br>描述：显示words文件的前16个字节。-c选项限制显示的字节数。<br>命令：<code>head -c 16 /usr/share/dict/words</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-c.png" alt=""></p>
-<p><strong>实例：4. 显示多个文件</strong><br>描述：显示多个文件的前十行，同时标题会显示哪个文件正在显示。<br>命令：<code>head /usr/share/dict/words /usr/share/dict/propernames</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-multi-file.png" alt=""></p>
-<p>描述：显示多个文件和标准输入的前三行，同时标题会显示哪个文件正在显示。<br>命令：<code>head -n 3 /usr/share/dict/words /usr/share/dict/propernames -</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-standard-input.png.png" alt=""></p>
-<p><strong>实例：5. 多个文件不显示标题</strong><br>描述：显示多个文件的前十行，不显示正在显示文件的标题。<br>命令：<code>head -q /usr/share/dict/words /usr/share/dict/propernames</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-q.png" alt=""></p>
-<p><strong>实例：6. 与管道配合使用</strong><br>描述：显示/etc/目录下的最近修改的前5个文件或文件夹。head命令可以接受其他命令通过管道传送过来的信息。<br>命令：<code>ls -t /etc/ | head -n 5</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/head/head-pipe.png" alt=""></p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p><strong>实例</strong> 查找<a href="http://www.oxysun.cn/mongodb/mongodb-collection-create.html">上文</a>test集合中的所有文档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>pretty()</code>是用来让展示更加舒适。</p>
+<p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code>的记录，这里要注意<code>“3”</code>和<code>3</code>是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">	&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">	&quot;meta&quot; : &#123;</span><br><span class="line">		&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">		&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">	&quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，这次只查出了一条符合条件的记录。</p>
+<p><strong>实例</strong> 查找test集合中的b=”3”的记录a和b两个域，不要其它域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()</span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。</p>
 
       
     </div>
@@ -276,11 +269,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/linux/daily-command-head.html">http://www.oxysun.cn/linux/daily-command-head.html</a>
+      <a href="http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html">http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月13日</a>
+      <a href=""> 2018年07月02日</a>
     </p>
   </div>
 
@@ -293,27 +286,14 @@
     
       <footer class="post-footer">
         
-          <div class="post-tags"> 分类：
-            
-              <a href="/tags/Linux/">Linux</a>
-            
-          </div>
-        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-more.html">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux more命令用法详解</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-        ：上一篇
-      </a>
     
-    
-      <a class="next" href="/linux/daily-command-type.html">
+      <a class="next" href="/linux/daily-command-touch.html">
         下一篇：
-        <span class="next-text nav-default">Linux type命令用法详解</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例：touch</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

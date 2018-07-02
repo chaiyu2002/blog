@@ -228,19 +228,19 @@
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>netstat [选项]</p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>netstat命令用来查看系统中所有的网络套接字连接情况，包括TCP、UDP和Unix套接字。也可以显示路由表，接口状态，masquerade 连接，多播成员（Multicast Memberships）等等。另外，它还可以列出处于监听状态（等待接入请求）的套接字，比如想确认系统中的web服务是否起来，就可以查看80端口有没有打开。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-a或–all：显示所有选项，默认不显示LISTEN相关。</li>
-<li>-t或–tcp：(TCP)仅显示TCP相关选项。</li>
-<li>-u或–udp：(UDP)仅显示UDP相关选项。</li>
-<li>-x或–unix：此参数的效果和指定”-A unix”参数相同。</li>
-<li>-n或–numeric：拒绝显示别名，能显示数字的全部转化成数字。</li>
-<li>-l或–listening：仅列出有在Listen(监听)的服务状态。</li>
-<li>-g或–groups：显示多重广播功能群组组员名单。</li>
-<li>-p或–programs：显示建立相关链接的程序名和PID。</li>
-<li>-r或–route：显示路由信息，路由表。</li>
-<li>-e或–extend：显示扩展信息，例如UID等。</li>
-<li>-s或–statistics：按各个协议进行统计。</li>
-<li>-c或–continuous：每隔一个固定时间，执行该netstat命令。</li>
-<li>-g或–groups：显示多重广播功能群组组员名单。</li>
+<li>-a或—all：显示所有选项，默认不显示LISTEN相关。</li>
+<li>-t或—tcp：(TCP)仅显示TCP相关选项。</li>
+<li>-u或—udp：(UDP)仅显示UDP相关选项。</li>
+<li>-x或—unix：此参数的效果和指定”-A unix”参数相同。</li>
+<li>-n或—numeric：拒绝显示别名，能显示数字的全部转化成数字。</li>
+<li>-l或—listening：仅列出有在Listen(监听)的服务状态。</li>
+<li>-g或—groups：显示多重广播功能群组组员名单。</li>
+<li>-p或—programs：显示建立相关链接的程序名和PID。</li>
+<li>-r或—route：显示路由信息，路由表。</li>
+<li>-e或—extend：显示扩展信息，例如UID等。</li>
+<li>-s或—statistics：按各个协议进行统计。</li>
+<li>-c或—continuous：每隔一个固定时间，执行该netstat命令。</li>
+<li>-g或—groups：显示多重广播功能群组组员名单。</li>
 </ul>
 <p>提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到。</p>
 <h2 id="输出信息含义"><a href="#输出信息含义" class="headerlink" title="输出信息含义"></a>输出信息含义</h2><p>执行netstat后，其输出结果为</p>

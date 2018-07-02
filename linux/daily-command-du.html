@@ -230,19 +230,19 @@
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
 <li>-a或-all：显示目录中个别文件的大小。   </li>
 <li>-b或-bytes：显示目录或文件大小时，以byte为单位。   </li>
-<li>-c或–total：除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。 </li>
-<li>-k或–kilobytes：以KB(1024bytes)为单位输出。</li>
-<li>-m或–megabytes：以MB为单位输出。   </li>
-<li>-s或–summarize：仅显示总计，只列出最后加总的值。</li>
-<li>-h或–human-readable：以K，M，G为单位，提高信息的可读性。</li>
-<li>-x或–one-file-xystem：以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。 </li>
-<li>-L&lt;符号链接&gt;或–dereference&lt;符号链接&gt;：显示选项中所指定符号链接的源文件大小。   </li>
-<li>-S或–separate-dirs：显示个别目录的大小时，并不含其子目录的大小。 </li>
-<li>-X&lt;文件&gt;或–exclude-from=&lt;文件&gt;：在&lt;文件&gt;指定目录或文件。   </li>
-<li>–exclude=&lt;目录或文件&gt;：略过指定的目录或文件。    </li>
-<li>-D或–dereference-args ：显示指定符号链接的源文件大小。   </li>
-<li>-H或–si：与-h参数相同，但是K，M，G是以1000为换算单位。   </li>
-<li>-l或–count-links：重复计算硬件链接的文件。  </li>
+<li>-c或—total：除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。 </li>
+<li>-k或—kilobytes：以KB(1024bytes)为单位输出。</li>
+<li>-m或—megabytes：以MB为单位输出。   </li>
+<li>-s或—summarize：仅显示总计，只列出最后加总的值。</li>
+<li>-h或—human-readable：以K，M，G为单位，提高信息的可读性。</li>
+<li>-x或—one-file-xystem：以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。 </li>
+<li>-L&lt;符号链接&gt;或—dereference&lt;符号链接&gt;：显示选项中所指定符号链接的源文件大小。   </li>
+<li>-S或—separate-dirs：显示个别目录的大小时，并不含其子目录的大小。 </li>
+<li>-X&lt;文件&gt;或—exclude-from=&lt;文件&gt;：在&lt;文件&gt;指定目录或文件。   </li>
+<li>—exclude=&lt;目录或文件&gt;：略过指定的目录或文件。    </li>
+<li>-D或—dereference-args ：显示指定符号链接的源文件大小。   </li>
+<li>-H或—si：与-h参数相同，但是K，M，G是以1000为换算单位。   </li>
+<li>-l或—count-links：重复计算硬件链接的文件。  </li>
 </ul>
 <h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 找出 <code>/root</code> 目录树及其每个子目录的磁盘使用情况摘要</strong><br>描述：以下命令的输出显示了 <code>/root</code> 目录以及其子目录的磁盘块数。<br>命令：du /root<br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/du/du-path.png" alt=""></p>
@@ -254,9 +254,9 @@
 <p><img src="http://p9xqnn501.bkt.clouddn.com/du/du-a-path.png" alt=""></p>
 <p><strong>实例：5. 总的使用磁盘空间</strong><br>描述：-c选项在最后一行提供了一个总的使用磁盘空间。<br>命令：du -c /root<br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/du/du-c-path.png" alt=""></p>
-<p><strong>实例：6. 排除给定模式的文件或目录</strong><br>描述：在计算/root的总大小时排除.ssh文件。<br>命令：du -h –exclude=”.ssh” /root<br>输出：</p>
+<p><strong>实例：6. 排除给定模式的文件或目录</strong><br>描述：在计算/root的总大小时排除.ssh文件。<br>命令：du -h —exclude=”.ssh” /root<br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/du/du-h-exclude-path.png" alt=""></p>
-<p><strong>实例：7. 根据修改时间显示磁盘使用情况</strong><br>描述：在计算/root的总大小时排除.ssh文件。<br>命令：du -h –exclude=”.ssh” /root<br>输出：</p>
+<p><strong>实例：7. 根据修改时间显示磁盘使用情况</strong><br>描述：在计算/root的总大小时排除.ssh文件。<br>命令：du -h —exclude=”.ssh” /root<br>输出：</p>
 <p><img src="http://p9xqnn501.bkt.clouddn.com/du/du-time.png" alt=""></p>
 
       

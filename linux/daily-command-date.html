@@ -235,6 +235,7 @@
 <p><img src="http://p9xqnn501.bkt.clouddn.com/date/date-man.png" alt=""></p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>date [OPTION]... [+FORMAT]</code><br><code>date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]</code></p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><p>表1: 命令参数</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -272,16 +273,18 @@
 <td style="text-align:left">显示或设定为Coordinated Universal Time时间格式（UTC）</td>
 </tr>
 <tr>
-<td style="text-align:left">–help</td>
+<td style="text-align:left">—help</td>
 <td style="text-align:left">显示date命令的帮助信息</td>
 </tr>
 <tr>
-<td style="text-align:left">–version</td>
+<td style="text-align:left">—version</td>
 <td style="text-align:left">显示date命令的版本信息</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>表2: Format参数格式</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -472,6 +475,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="显示UTC时间"><a href="#显示UTC时间" class="headerlink" title="显示UTC时间"></a><strong>显示UTC时间</strong></h3><p>描述：显示当前时间。<br>命令：<br><code>date</code><br><code>date -d now</code><br>描述：显示当前UTC时间，UTC意思是世界上最主要的时钟和时间的标准。<br>命令：<code>date -u</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-u-r.png" alt=""></p>
 <h3 id="查找3周后的日期"><a href="#查找3周后的日期" class="headerlink" title="查找3周后的日期"></a><strong>查找3周后的日期</strong></h3><p>命令：<code>date -d &quot;3 weeks&quot;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-after-three-weeks.png" alt=""></p>
 <h3 id="查找3周又4天后的日期"><a href="#查找3周又4天后的日期" class="headerlink" title="查找3周又4天后的日期"></a><strong>查找3周又4天后的日期</strong></h3><p>命令：<code>date -d &quot;3 weeks 4 days&quot;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-after-three-weeks-four-days.png" alt=""></p>
@@ -484,7 +488,7 @@
 <h3 id="显示今天是一年中的第几天"><a href="#显示今天是一年中的第几天" class="headerlink" title="显示今天是一年中的第几天"></a><strong>显示今天是一年中的第几天</strong></h3><p>命令：<code>date +%j</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-j.png" alt=""></p>
 <h3 id="显示文件最后修改的时间"><a href="#显示文件最后修改的时间" class="headerlink" title="显示文件最后修改的时间"></a><strong>显示文件最后修改的时间</strong></h3><p>命令：<code>date -r date.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-r.png" alt=""></p>
 <h3 id="显示文件中的时间"><a href="#显示文件中的时间" class="headerlink" title="显示文件中的时间"></a><strong>显示文件中的时间</strong></h3><p>描述：-f选项可以显示每行一个日期的文件。<br>命令：<code>date -f date.txt</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-file.png" alt=""></p>
-<h3 id="设置系统时间"><a href="#设置系统时间" class="headerlink" title="设置系统时间"></a><strong>设置系统时间</strong></h3><p>描述：使用-s或–set来设置系统日期和时间。注意，必须拥有root特权，否则会出错。<br>命令：<br><code>date -s &quot;2017-06-19 00:00:00&quot;</code><br><code>date --set=&quot;2017-06-19 00:00:00&quot;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-s.png" alt=""><br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-cannot-set.png" alt=""></p>
+<h3 id="设置系统时间"><a href="#设置系统时间" class="headerlink" title="设置系统时间"></a><strong>设置系统时间</strong></h3><p>描述：使用-s或—set来设置系统日期和时间。注意，必须拥有root特权，否则会出错。<br>命令：<br><code>date -s &quot;2017-06-19 00:00:00&quot;</code><br><code>date --set=&quot;2017-06-19 00:00:00&quot;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-s.png" alt=""><br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-cannot-set.png" alt=""></p>
 <h3 id="打包时以时间命名"><a href="#打包时以时间命名" class="headerlink" title="打包时以时间命名"></a><strong>打包时以时间命名</strong></h3><p>描述：压缩目录/etc到当前目录，文件名为etc-2018-06-19.tar.gz。通过在`之间`或$()中内嵌命令。<br>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># tar czvf etc-$(date +%F).tar.gz /etc</span><br><span class="line">或者</span><br><span class="line"># tar czvf etc-`date +%F`.tar.gz /etc</span><br></pre></td></tr></table></figure></p>
 <h3 id="在脚本中使用date命令"><a href="#在脚本中使用date命令" class="headerlink" title="在脚本中使用date命令"></a><strong>在脚本中使用date命令</strong></h3><p>命令：<br><code>date +&quot;DATE: %A %b-%d-%Y TIME: %T WEEK NUMBER: %W&quot;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/date/date-script.png" alt=""></p>
 

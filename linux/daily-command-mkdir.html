@@ -233,7 +233,8 @@
 <a id="more"></a>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>mkdir命令用来创建目录和子目录，如果目录还不存在，则创建之。<br><img src="http://p9xqnn501.bkt.clouddn.com/mkdir/mkdir-man.png" alt=""></p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>mkdir [OPTION]... DIRECTORY...</code></p>
-<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><table>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:left">选项</th>
@@ -242,11 +243,11 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">m&lt;目标属性&gt;或–mode&lt;目标属性&gt;</td>
+<td style="text-align:left">m&lt;目标属性&gt;或—mode&lt;目标属性&gt;</td>
 <td style="text-align:left">建立目录的同时设置目录的权限</td>
 </tr>
 <tr>
-<td style="text-align:left">p或–parents</td>
+<td style="text-align:left">p或—parents</td>
 <td style="text-align:left">若所要建立目录的上层目录目前尚未建立，则会一并建立上层目录</td>
 </tr>
 <tr>
@@ -255,6 +256,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="运行mkdir命令"><a href="#运行mkdir命令" class="headerlink" title="运行mkdir命令"></a><strong>运行mkdir命令</strong></h3><p>描述：在~下创建mk目录，如果目录已存在，会提示无法创建它。<br>命令：<code>mkdir mk</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/mkdir/mkdir.png" alt=""></p>
 <p>描述：创建目录的首要条件是，在创建目录的目标路径下你必须具有访问权限。<br>命令：<code>mkdir mk</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/mkdir/mkdir-permission.png" alt=""></p>
 <h3 id="创建多个目录"><a href="#创建多个目录" class="headerlink" title="创建多个目录"></a><strong>创建多个目录</strong></h3><p>描述：同时创建foo、bar、baz三个目录。<br>命令：<code>mkdir foo bar baz</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/mkdir/mkdir-multiple-file.png" alt=""></p>

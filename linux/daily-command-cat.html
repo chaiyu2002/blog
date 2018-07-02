@@ -229,13 +229,13 @@
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cat（concatenate）命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。<br>cat命令不会在文件分页处停下来，而是一下子显示完整整个文件。如果希望每次显示一页，可以使用more命令或把cat命令的输出通过管道传递到另外一个具有分页功能的命令中。</p>
 <h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
 <li>-n或-number：显示行号。</li>
-<li>-b或–number-nonblank：和-n相似，只不过对于空白行不编号。</li>
-<li>-s或–squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。</li>
+<li>-b或—number-nonblank：和-n相似，只不过对于空白行不编号。</li>
+<li>-s或—squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。</li>
 <li>-A：显示不可打印字符，行尾显示$，等价于-vET。</li>
-<li>-v或–show-nonprinting：使用^和M-引用，除了LFD和TAB之外。</li>
-<li>-E或–show-ends：在每行结束处显示$。</li>
+<li>-v或—show-nonprinting：使用^和M-引用，除了LFD和TAB之外。</li>
+<li>-E或—show-ends：在每行结束处显示$。</li>
 <li>-e：等价于”-vE”选项。</li>
-<li>-T或–show-tabs 将TAB字符显示为^I。</li>
+<li>-T或—show-tabs 将TAB字符显示为^I。</li>
 <li>-t：显示 tab 分隔符，等价于”-vT”选项。</li>
 </ul>
 <h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 显示文件的内容</strong><br>描述：打印passwd文件的所有内容。<br>命令：<code>cat /etc/passwd</code> </p>
