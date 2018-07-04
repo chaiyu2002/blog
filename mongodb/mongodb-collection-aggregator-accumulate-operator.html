@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="MongoDB：创建数据库"/>
+  <meta name="description" content="MongoDB：聚合之累加操作符"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -97,7 +97,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
 
 
-    <title> MongoDB：创建数据库 - 老兵驿站 </title>
+    <title> MongoDB：聚合之累加操作符 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -195,7 +195,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          MongoDB：创建数据库
+          MongoDB：聚合之累加操作符
         
       </h1>
       
@@ -204,7 +204,7 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-30
+           日期: 2018-07-04
         </span>
         
           <div class="post-category">
@@ -219,21 +219,69 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#累加操作符"><span class="toc-text">累加操作符</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>MongoDB如何创建数据库。<br><a id="more"></a></p>
-<p>官网位置：<a href="https://docs.mongodb.com/manual/mongo/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/mongo/。</a></p>
-<p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
-<p>进入mongo：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# mongo</span><br><span class="line">MongoDB shell version: 2.6.10</span><br><span class="line">connecting to: test</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>如果没有mongo这个命令，表示路径没有配置好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure>
-<p>尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很<code>猪头</code>的错误的，你不要证明你也<code>猪头</code>了。</p>
-<p>如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。</p>
-<p><strong>实例</strong>：创建一个数据库，名字为my_test。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br><span class="line">switched to db my_test</span><br></pre></td></tr></table></figure>
-<p>好，创建成功。</p>
+        <p>MongoDB的聚合之累加操作符。<br><a id="more"></a></p>
+<p>官网：<a href="https://docs.mongodb.com/manual/reference/operator/aggregation/group/#considerations。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/aggregation/group/#considerations。</a></p>
+<h1 id="累加操作符"><a href="#累加操作符" class="headerlink" title="累加操作符"></a>累加操作符</h1><p>感觉这个没有太多可说的，简单翻译一下。</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$avg</td>
+<td>Returns an average of numerical values. Ignores non-numeric values.（返回平均值）</td>
+</tr>
+<tr>
+<td>$first</td>
+<td>Returns a value from the first document for each group. Order is only defined if the documents are in a defined order.（返回第一个）</td>
+</tr>
+<tr>
+<td>$last</td>
+<td>Returns a value from the last document for each group. Order is only defined if the documents are in a defined order.（返回最后一个）</td>
+</tr>
+<tr>
+<td>$max</td>
+<td>Returns the highest expression value for each group.（返回最大值）</td>
+</tr>
+<tr>
+<td>$min</td>
+<td>Returns the lowest expression value for each group.（返回最小值）</td>
+</tr>
+<tr>
+<td>$push</td>
+<td>Returns an array of expression values for each group.</td>
+</tr>
+<tr>
+<td>$addToSet</td>
+<td>Returns an array of unique expression values for each group. Order of the array elements is undefined.（）</td>
+</tr>
+<tr>
+<td>$stdDevPop</td>
+<td>Returns the population standard deviation of the input values.</td>
+</tr>
+<tr>
+<td>$stdDevSamp</td>
+<td>Returns the sample standard deviation of the input values.</td>
+</tr>
+<tr>
+<td>$sum</td>
+<td>Returns a sum of numerical values. Ignores non-numeric values.（返回总和）</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -255,11 +303,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html">http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</a>
+      <a href="http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html">http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月30日</a>
+      <a href=""> 2018年07月04日</a>
     </p>
   </div>
 
@@ -276,17 +324,10 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-sed.html">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：sed</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-        ：上一篇
-      </a>
     
-    
-      <a class="next" href="/mongodb/mongodb-collection-create.html">
+      <a class="next" href="/mongodb/mongodb-collection-aggregation-introduction.html">
         下一篇：
-        <span class="next-text nav-default">MongoDB：创建数据集合</span>
+        <span class="next-text nav-default">MongoDB：聚合之介绍</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
