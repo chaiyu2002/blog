@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux cut命令用法详解"/>
+  <meta name="description" content="Linux下shell命令用法及常见用例：touch"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-cut.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/linux/shell-command-touch.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,7 +112,7 @@
 </script>
 
 
-    <title> Linux cut命令用法详解 - 老兵驿站 </title>
+    <title> Linux下shell命令用法及常见用例：touch - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,7 +210,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux cut命令用法详解
+          Linux下shell命令用法及常见用例：touch
         
       </h1>
       
@@ -219,8 +219,16 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-13
+           日期: 2018-07-01
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/linux/">linux</a>
+            
+              <a href="/categories/linux/shell/">shell</a>
+            
+          </div>
         
         
       </div>
@@ -231,35 +239,39 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用示例"><span class="toc-text">实用示例</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概要"><span class="toc-text">概要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-text">描述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：1-创建空文件"><span class="toc-text">示例：1. 创建空文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：2-只改变文件的修改时间（mtime）和状态改动时间（ctime）"><span class="toc-text">示例：2. 只改变文件的修改时间（mtime）和状态改动时间（ctime）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：3-只改变文件访问时间（atime）和状态改动时间（ctime）"><span class="toc-text">示例：3. 只改变文件访问时间（atime）和状态改动时间（ctime）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：4-指定文件的访问时间和修改时间"><span class="toc-text">示例：4. 指定文件的访问时间和修改时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：5-避免创建新文件"><span class="toc-text">示例：5. 避免创建新文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：6-使用另一个文件的时间戳"><span class="toc-text">示例：6. 使用另一个文件的时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例：7-使用指定的时间戳创建一个文件"><span class="toc-text">示例：7. 使用指定的时间戳创建一个文件</span></a></li></ol></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>cut命令用来从标准输入或文本文件中剪切列或域。</p>
-<a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cut命令用来显示行中的指定部分，删除文件中指定字段。它也可以用于按字节位置、字符和分隔符来剪切部分行。也可以从CSV等文件格式中剪切数据。</p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cut [选项] 文件1 文件2</code></p>
-<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- -b：仅显示行中指定直接范围的内容。</span><br><span class="line">- -c：仅显示行中指定范围的字符。</span><br><span class="line">- -d：指定字段的分隔符，默认的字段分隔符为“TAB”。</span><br><span class="line">- -f：显示指定字段的内容。</span><br><span class="line">- -n：与“-b”选项连用，不分割多字节字符。</span><br><span class="line">- --complement：补足被选择的字节、字符或字段。</span><br><span class="line">- --out-delimiter=&lt;字段分隔符&gt;：指定输出内容是的字段分割符。</span><br><span class="line">- --help：显示指令的帮助信息。</span><br><span class="line">- --version：显示指令的版本信息。</span><br></pre></td></tr></table></figure>
-<h2 id="实用示例"><a href="#实用示例" class="headerlink" title="实用示例"></a>实用示例</h2><p>cut命令可以将一串字符作为列来显示：</p>
+        <p>touch命令用来创建文件，也可以更改和修改一个文件的时间戳。<br><a id="more"></a></p>
+<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p><code>touch [选项]... 文件...</code></p>
+<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>touch命令用来创建文件，也可以更改和修改一个文件的时间戳。Linux中的每个文件都与时间戳相关联，而且每个文件都存储上次访问时间，上次修改时间，上次更改时间的信息。因为，无论何时创建一个新文件，访问或者修改现有文件，时间戳都会被自动更新。<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-man.png" alt=""></p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><p>Linux中的文件有三个时间：</p>
 <ul>
-<li>N-：从第N个字节、字符、字段到结尾。</li>
-<li>N-M：从第N个字节、字符、字段到第M个（包括M在内）字节、字符、字段。</li>
-<li>-M：从第1个字节、字符、字段到第M个（包括M在内）字节、字符、字段。</li>
+<li>access time（atime）：访问时间，对一次文件的内容就会更新。例如cat，vi/vim，cp，touch命令。</li>
+<li>modification time（mtime）：修改时间，对文件内容修改一次就会更新。例如touch，vi/vim命令。</li>
+<li>status time（ctime）：状态改动时间。通过chmod/chown/chgrp等命令更改一次文件属性，通过touch准确地修改时间等，这个时间就会更新。例如mv，touch，chmod/chown/chgrp，vi/vim等命令。</li>
 </ul>
-<p>上面是表示法，下面的选项分别表示字节、字符、字段：</p>
+<p>touch命令选项：</p>
 <ul>
-<li>-b：字节</li>
-<li>-c：字符</li>
-<li>-f：字段</li>
+<li>-a，只改变访问时间。</li>
+<li>-c，如果文件不存在，那就不创建。</li>
+<li>-d，更新访问时间和修改时间。</li>
+<li>-m，只改变修改时间。</li>
+<li>-r，将参照文件ref_file相应的时间戳作为指定文件file时间戳的新值。</li>
+<li>-t，用指定的时间创建文件，格式是[[CC]YY]MMDDhhmm[.SS]。CCYY的范围在1969~2068之内。SS为秒数，范围在0~61之间，这样可以处理闰秒。由于系统的限制，早于1970年1月1日的时间是错误的。</li>
 </ul>
-<p><strong>实例：1. 按字节位置切割</strong><br>描述：三个例子切割的分别是（1）第2个、（2）第1和第2个、（3）第2和第3个、（4）第1和第2个、（5）第1和第3个字节位置的内容。-b选项通过指定一个字节位置来切出一行的一部分。<br>命令：<br><code>echo &#39;baz&#39; | cut -b 2</code><br><code>echo &#39;baz&#39; | cut -b -2</code><br><code>echo &#39;baz&#39; | cut -b 2-</code><br><code>echo &#39;baz&#39; | cut -b 1-2</code><br><code>echo &#39;baz&#39; | cut -b 1,3</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cut/cut-b.png" alt=""></p>
-<p><strong>实例：2. 按字符位置切割</strong><br>描述：两个例子切割的分别是第1个和第6个、第1至3个字符位置的内容。-c选项通过指定一个字符位置来切出一行的一部分。<br>命令：<br><code>echo &#39;♣foobar&#39; | cut -c 1,6</code><br><code>echo &#39;♣foobar&#39; | cut -c 1-4</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cut/cut-c.png" alt=""></p>
-<p><strong>实例：3. 根据分隔符进行剪切</strong><br>描述：两个例子以逗号,作为分隔符进行切割，切割的分别是第1个、第1和第4个字段位置的内容。-d选项指定一个分隔符，-f选项指定选取的字段。<br>命令：<br><code>cut -d , -f 1 names.csv</code><br><code>cut -d , -f 1,4 names.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cut/cut-d-f.png" alt=""></p>
-<p><strong>实例：4. 提取指定字段之外的列</strong><br>描述：第一个例子选取第1个字符之外的其他字符，第二个例子选取第2个字段之外的列。–complement用于提取指定字段之外的字节、字符或列。<br>命令：<br><code>echo &#39;foo&#39; | cut --complement -c 1</code><br><code>cut -f2 -d, --complement names.csv</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cut/cut-complement.png" alt=""></p>
-<p><strong>实例：5. 输出分隔符</strong><br>描述：选取第1、3、4个字段，并用空格替换分号后显示。或者使用$’\n’的形式替换为换行。<br>命令：<br><code>echo &#39;how;now;brown;cow&#39; | cut -d &#39;;&#39; -f 1,3,4 --output-delimiter &#39; &#39;</code><br><code>echo &#39;how;now;brown;cow&#39; | cut -d &#39;;&#39; -f 1,3,4 --output-delimiter $&#39;\n&#39;</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/cut/cut-output-delimiter.png" alt=""></p>
+<h3 id="示例：1-创建空文件"><a href="#示例：1-创建空文件" class="headerlink" title="示例：1. 创建空文件"></a>示例：1. 创建空文件</h3><p>描述：若文件不存在，使用touch命令可以轻松地创建一个空文件，或是创建多个。如果文件已存在，那么文件的3个时间：修改时间（mtime）、状态改动时间（ctime）和访问时间（atime）都会被更新为当前时间。stat命令可以查看文件时间。<br>命令：<br><code>touch my_one</code><br><code>stat my_one</code><br><code>touch my_one my_two my_three</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch.png" alt=""></p>
+<h3 id="示例：2-只改变文件的修改时间（mtime）和状态改动时间（ctime）"><a href="#示例：2-只改变文件的修改时间（mtime）和状态改动时间（ctime）" class="headerlink" title="示例：2. 只改变文件的修改时间（mtime）和状态改动时间（ctime）"></a>示例：2. 只改变文件的修改时间（mtime）和状态改动时间（ctime）</h3><p>描述：只改变my_three文件的修改时间为当前时间，同时状态改动时间会在命令执行后更新为当前时间。这个操作并不需要修改文件内容。-m选项只更改文件的修改时间。<br>命令：<code>touch -m my_three</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-m.png" alt=""></p>
+<h3 id="示例：3-只改变文件访问时间（atime）和状态改动时间（ctime）"><a href="#示例：3-只改变文件访问时间（atime）和状态改动时间（ctime）" class="headerlink" title="示例：3. 只改变文件访问时间（atime）和状态改动时间（ctime）"></a>示例：3. 只改变文件访问时间（atime）和状态改动时间（ctime）</h3><p>描述：只改变my_three文件的访问时间为当前时间，同时状态改动时间会在命令执行后更新为当前时间。如果文件不存在，会创建新的空文件。-a选项只更改文件的访问时间。<br>命令：<code>touch -a my_three</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-a.png" alt=""></p>
+<h3 id="示例：4-指定文件的访问时间和修改时间"><a href="#示例：4-指定文件的访问时间和修改时间" class="headerlink" title="示例：4. 指定文件的访问时间和修改时间"></a>示例：4. 指定文件的访问时间和修改时间</h3><p>描述：同时设置文件的访问时间和修改时间为指定时间，同时会更新状态改变时间为当前命令执行后的时间。如果文件不存在，会创建新的空文件。-d选项同时改变文件的访问时间和修改时间。<br>命令：<code>touch -d &quot;2018-06-14 14:00:00&quot; my_three</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-d.png" alt=""></p>
+<p>描述：将my_three文件的访问时间和修改时间修改成两天前。touch还支持像date命令那样修改文件的时间。<br>命令：<code>touch -d &quot;2 days ago&quot; my_three</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-d-date.png" alt=""></p>
+<h3 id="示例：5-避免创建新文件"><a href="#示例：5-避免创建新文件" class="headerlink" title="示例：5. 避免创建新文件"></a>示例：5. 避免创建新文件</h3><p>描述：更新atime、ctime、mtime，如果文件不存在，-c选项不会创建新的文件。<br>命令：<code>touch -c leena</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-a.png" alt=""></p>
+<h3 id="示例：6-使用另一个文件的时间戳"><a href="#示例：6-使用另一个文件的时间戳" class="headerlink" title="示例：6. 使用另一个文件的时间戳"></a>示例：6. 使用另一个文件的时间戳</h3><p>描述：-r选项将my_three的时间戳作为my_two文件的时间戳的新值，这两个文件有相同的时间戳。<br>命令：<code>touch -r my_three my_two</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-r.png" alt=""></p>
+<h3 id="示例：7-使用指定的时间戳创建一个文件"><a href="#示例：7-使用指定的时间戳创建一个文件" class="headerlink" title="示例：7. 使用指定的时间戳创建一个文件"></a>示例：7. 使用指定的时间戳创建一个文件</h3><p>描述：将my_four文件的时间戳指定为1997年6月14日17点00分55秒。时间格式是[[CC]YY]MMDDhhmm[.SS]。<br>命令：<code>touch -t 199706141700.55 my_four</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/touch/touch-t.png" alt=""></p>
 
       
     </div>
@@ -281,11 +293,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/linux/daily-command-cut.html">http://www.oxysun.cn/linux/daily-command-cut.html</a>
+      <a href="http://www.oxysun.cn/linux/shell-command-touch.html">http://www.oxysun.cn/linux/shell-command-touch.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月13日</a>
+      <a href=""> 2018年07月01日</a>
     </p>
   </div>
 
@@ -308,17 +320,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-type.html">
+      <a class="prev" href="/mongodb/mongodb-collection-find-projection-operator.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux type命令用法详解</span>
+        <span class="prev-text nav-default">MongoDB：查询和投影操作符</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/linux/daily-command-route.html">
+      <a class="next" href="/linux/shell-command-awk.html">
         下一篇：
-        <span class="next-text nav-default">Linux route命令用法详解</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例： awk</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

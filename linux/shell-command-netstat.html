@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux netstat命令用法详解"/>
+  <meta name="description" content="Linux下shell命令用法及常见用例：netstat"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/linux/daily-command-netstat.html"/>
+<link rel="canonical" href="http://www.oxysun.cn/linux/shell-command-netstat.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,7 +112,7 @@
 </script>
 
 
-    <title> Linux netstat命令用法详解 - 老兵驿站 </title>
+    <title> Linux下shell命令用法及常见用例：netstat - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,7 +210,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux netstat命令用法详解
+          Linux下shell命令用法及常见用例：netstat
         
       </h1>
       
@@ -219,8 +219,16 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-07
+           日期: 2018-07-05
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/linux/">linux</a>
+            
+              <a href="/categories/linux/shell/">shell</a>
+            
+          </div>
         
         
       </div>
@@ -231,7 +239,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出信息含义"><span class="toc-text">输出信息含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用命令"><span class="toc-text">实用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、列出所有连接（包括监听和未监听的）"><span class="toc-text">一、列出所有连接（包括监听和未监听的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、列出所有处于监听状态的-Sockets"><span class="toc-text">二、列出所有处于监听状态的 Sockets</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式-1"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式-2"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出信息含义"><span class="toc-text">输出信息含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol>
     </div>
   </div>
 
@@ -241,7 +249,15 @@
         <p>netstat命令用来查看系统中所有的网络套接字连接情况。</p>
 <a id="more"></a>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>netstat [选项]</p>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>netstat命令用来查看系统中所有的网络套接字连接情况，包括TCP、UDP和Unix套接字。也可以显示路由表，接口状态，masquerade 连接，多播成员（Multicast Memberships）等等。另外，它还可以列出处于监听状态（等待接入请求）的套接字，比如想确认系统中的web服务是否起来，就可以查看80端口有没有打开。</p>
+<p>参考：<a href="https://linux.die.net/man/8/netstat。" target="_blank" rel="noopener">https://linux.die.net/man/8/netstat。</a></p>
+<p><code>netstat</code>命令用来查看系统中所有的网络套接字连接情况。</p>
+<!-- more -->
+<h2 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>netstat</code> [选项]</p>
+<p>参考：<a href="https://linux.die.net/man/8/netstat。" target="_blank" rel="noopener">https://linux.die.net/man/8/netstat。</a></p>
+<p><code>netstat</code>命令用来查看系统中所有的网络套接字连接情况。</p>
+<!-- more -->
+<h2 id="命令格式-2"><a href="#命令格式-2" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>netstat</code> [选项]</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p><code>netstat</code>命令用来查看系统中所有的网络套接字连接情况，包括TCP、UDP和Unix套接字。也可以显示路由表，接口状态，masquerade 连接，多播成员（Multicast Memberships）等等。另外，它还可以列出处于监听状态（等待接入请求）的套接字，比如想确认系统中的web服务是否起来，就可以查看80端口有没有打开。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
 <li>-a或–all：显示所有选项，默认不显示LISTEN相关。</li>
 <li>-t或–tcp：(TCP)仅显示TCP相关选项。</li>
@@ -258,42 +274,19 @@
 <li>-g或–groups：显示多重广播功能群组组员名单。</li>
 </ul>
 <p>提示：LISTEN和LISTENING的状态只有用-a或者-l才能看到。</p>
-<h2 id="输出信息含义"><a href="#输出信息含义" class="headerlink" title="输出信息含义"></a>输出信息含义</h2><p>执行netstat后，其输出结果为</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat.png" alt=""></p>
-<p>netstat的输出结构可以分为两个部分：<br>一个是Active Internet connections，称为有源TCP连接。其中”Recv-Q”和”Send-Q”指的是接收队列和发送队列。<br>另一个是Active UNIX domain sockets，称为有源Unix域套接口(和网络套接字一样，但是只能用于本机通信，性能可以提高一倍)。Proto显示连接使用的协议，RefCnt表示连接到本套接口上的进程号，Types显示套接口的类型，State显示套接口当前的状态，Path表示连接到套接口的其它进程使用的路径名。</p>
-<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><h3 id="一、列出所有连接（包括监听和未监听的）"><a href="#一、列出所有连接（包括监听和未监听的）" class="headerlink" title="一、列出所有连接（包括监听和未监听的）"></a>一、列出所有连接（包括监听和未监听的）</h3><p><strong>示例：1. 列出当前所有的连接</strong><br>命令：netstat -a<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-a.png" alt=""></p>
-<p><strong>示例：2. 列出所有TCP端口</strong><br>命令：netstat -at<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-at.png" alt=""></p>
-<p><strong>示例：3. 列出所有UDP端口</strong><br>描述：-u选项查看UDP端口，-x选项查看UNIX端口。<br>命令：netstat -au<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-au.png" alt=""></p>
-<h3 id="二、列出所有处于监听状态的-Sockets"><a href="#二、列出所有处于监听状态的-Sockets" class="headerlink" title="二、列出所有处于监听状态的 Sockets"></a>二、列出所有处于监听状态的 Sockets</h3><p><strong>示例：4. 只列出所有监听TCP的端口</strong><br>描述：查看本机监听的（l）TCP连接（t）的IP地址（n）。<br>命令：netstat -tnl<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tnl.png" alt=""></p>
-<p><strong>示例：5. 在netstat的输出中不显示主机，端口和用户名（host，port，user）</strong><br>描述：-n选项禁用域名解析功能。例如，查看所有（a）TCP连接的（t）IP地址（n）等信息。<br>命令：netstat -ant<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-ant.png" alt=""></p>
-<p><strong>示例：6. 获取进程名、进程号以及用户ID</strong><br>描述：<br>使用-p选项查看进程信息，-ep选项可以同时查看进程名和用户名。另外，-n和-e选项一起使用，User列的属性就是用户ID，而不是用户名。netstat运行在root权限之下才可以得到运行在root权限下的进程名。<br>输出：</p>
-<p>查看本机监听的（l）TCP连接的（t）进程名（p）和IP地址（n）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tnlp.png" alt=""></p>
-<p>查看本机监听的（l）TCP连接的（t）进程名（p）和用户名（e）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tlpe.png" alt=""></p>
-<p>查看本机监听的（l）TCP连接的（t）进程名（p）和用户名ID（ne）。<br><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-tlpen.png" alt=""></p>
-<p><strong>示例：7. 显示每个协议的统计信息</strong><br>描述：-s选项可以打印出网络统计数据，包括某个协议下的收发包数量。<br>命令：netstat -s<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-s.png" alt=""></p>
-<p><strong>示例：8. 持续输出netstat信息</strong><br>描述：-c选项持续输出信息，默认时间间隔 1 秒。例如，下面这个命令可持续输出 TCP 协议信息。<br>命令：netstat -c 1<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-c.png" alt=""></p>
-<p><strong>示例：9. 查看服务是否在运行</strong><br>描述：结合grep，查看ntp服务是否在运行。例如，查看本机所有的（a）监听连接（l）中与ntp服务有关的信息，包括进程信息（p）等额外的信息（e）。<br>命令：sudo netstat -aple | grep ntp<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-grep.png" alt=""></p>
-<p><strong>示例：10. 查看端口被占用的情况</strong><br>描述：结合grep，查看端口被占用的情况。例如，查看本机所有的（a）连接中与端口80有关的信息，包括IP地址（n）以及进程信息（p）等额外的信息（e）。<br>命令：netstat -anpe | grep “80”<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-grep-port.png" alt=""></p>
-<p><strong>示例：11. 显示核心路由信息</strong><br>描述：-r选项打印内核路由信息，打印出来的信息与route命令输出的信息一样。<br>命令：netstat -nr<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-rn.png" alt=""></p>
-<p><strong>示例：12. 显示网络接口列表</strong><br>描述：-i选项打印网络接口信息。<br>命令：netstat -i<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-i.png" alt=""></p>
-<p><strong>示例：13. 显示网络接口的详细信息</strong><br>描述：将-e选项和-i选项搭配使用，可以输出用户友好的信息。下面的输出信息与ifconfig输出的信息一样。<br>命令：netstat -ie<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-ie.png" alt=""></p>
-<p><strong>示例：14. 显示多播组信息</strong><br>描述：选项-g输出IPv4和IPv6的多播组信息。<br>命令：netstat -g<br>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-g.png" alt=""></p>
-<p><strong>示例：15. IP和TCP分析</strong><br>描述：查看连接某服务器端口最多的IP地址<br>命令：watch -d -n0 “netstat -nat | grep ‘172.16.14.151’ | awk ‘{print $5}’ | awk -F: ‘{print $1}’ | sort | uniq -c | sort -nr | head -20”</p>
-<p>输出：</p>
-<p><img src="http://p9xqnn501.bkt.clouddn.com/netstat/netstat-watch.png" alt=""></p>
+<h2 id="输出信息含义"><a href="#输出信息含义" class="headerlink" title="输出信息含义"></a>输出信息含义</h2><p><code>netstat</code>的输出结构可以分为两个部分：<br>一个是Active Internet connections，称为有源TCP连接。其中”Recv-Q”和”Send-Q”指的是接收队列和发送队列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Active Internet connections (w/o servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 VM01.root:ssh           61.149.11.230:21859     ESTABLISHED</span><br><span class="line">tcp        0      0 localhost:51476         localhost:27017         ESTABLISHED</span><br><span class="line">tcp        0      0 VM01.root:ssh           61.149.11.230:50883     ESTABLISHED</span><br><span class="line">tcp        0      0 VM01.root:58300         47.89.193.173:3666      ESTABLISHED</span><br></pre></td></tr></table></figure></p>
+<p>另一个是Active UNIX domain sockets，称为有源Unix域套接口(和网络套接字一样，但是只能用于本机通信，性能可以提高一倍)。Proto显示连接使用的协议，RefCnt表示连接到本套接口上的进程号，Types显示套接口的类型，State显示套接口当前的状态，Path表示连接到套接口的其它进程使用的路径名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Active UNIX domain sockets (w/o servers)</span><br><span class="line">Proto RefCnt Flags       Type       State         I-Node   Path</span><br><span class="line">unix  2      [ ]         DGRAM                    15049    /run/user/0/systemd/notify</span><br><span class="line">unix  3      [ ]         DGRAM                    13640    /run/systemd/notify</span><br><span class="line">unix  2      [ ]         DGRAM                    13645    /run/systemd/journal/syslog</span><br><span class="line">unix  8      [ ]         DGRAM                    13660    /run/systemd/journal/socket</span><br><span class="line">unix  25     [ ]         DGRAM                    10467    /run/systemd/journal/dev-log</span><br></pre></td></tr></table></figure>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p><strong>实例：</strong>列出当前所有的连接（-a）<br>命令：<code>netstat -a</code><br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# netstat -a</span><br><span class="line">Active Internet connections (servers and established)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 *:8838                  *:*                     LISTEN     </span><br><span class="line">tcp        0      0 localhost:27017         *:*                     LISTEN     </span><br><span class="line">tcp        0      0 *:8330                  *:*                     LISTEN     </span><br><span class="line">tcp        0      0 localhost:submission    *:*                     LISTEN </span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p><strong>实例：</strong>列出所有TCP端口（-t）<br>命令：<code>netstat -at</code><br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# netstat -at</span><br><span class="line">Active Internet connections (servers and established)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 *:8838                  *:*                     LISTEN     </span><br><span class="line">tcp        0      0 localhost:27017         *:*                     LISTEN     </span><br><span class="line">tcp        0      0 *:8330                  *:*                     LISTEN     </span><br><span class="line">tcp        0      0 localhost:submission    *:*                     LISTEN</span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong>列出所有监听TCP的端口，数字显示<br>描述：查看本机监听的（-l）TCP连接（-t）的IP地址的数字显示（-n）。不适用-n的话，就会用端口的约定名称来显示，例如80端口，会显示成http。<br>命令：<code>netstat -tnl</code><br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# netstat -tnl</span><br><span class="line">Active Internet connections (only servers)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State      </span><br><span class="line">tcp        0      0 0.0.0.0:8838            0.0.0.0:*               LISTEN     </span><br><span class="line">tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN     </span><br><span class="line">tcp        0      0 0.0.0.0:8330            0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong>获取本机的所有的TCP连接的进程名、进程号以及用户ID<br>描述：使用-p选项查看进程信息，-ep选项可以同时查看进程名和用户名。另外，-n和-e选项一起使用，User列的属性就是用户ID，而不是用户名。<br>查看本机所有的（al）TCP连接的（t）进程名（p）和用户名ID（ne）。<br>命令：<code>netstat -altpen</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# netstat -altpen</span><br><span class="line">Active Internet connections (servers and established)</span><br><span class="line">Proto Recv-Q Send-Q Local Address           Foreign Address         State       User       Inode       PID/Program name</span><br><span class="line">tcp        0      0 0.0.0.0:8838            0.0.0.0:*               LISTEN      0          11863750    31212/bnewd     </span><br><span class="line">tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      110        2945745     18546/mongod    </span><br><span class="line">tcp        0      0 0.0.0.0:8330            0.0.0.0:*               LISTEN      0          22250263    13550/btnd      </span><br><span class="line">tcp        0      0 127.0.0.1:587           0.0.0.0:*               LISTEN      0          12285119    11792/sendmail: MTA</span><br></pre></td></tr></table></figure>
+<p>这个可能是最屌的命令了，也可能是最常用的命令了。</p>
+<p>还有一些实例，暂时不常用，有待完善。</p>
 
       
     </div>
@@ -315,11 +308,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.oxysun.cn/linux/daily-command-netstat.html">http://www.oxysun.cn/linux/daily-command-netstat.html</a>
+      <a href="http://www.oxysun.cn/linux/shell-command-netstat.html">http://www.oxysun.cn/linux/shell-command-netstat.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月07日</a>
+      <a href=""> 2018年07月05日</a>
     </p>
   </div>
 
@@ -342,17 +335,10 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/daily-command-find.html">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux find命令用法详解</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-        ：上一篇
-      </a>
     
-    
-      <a class="next" href="/linux/daily-command-ps.html">
+      <a class="next" href="/mongodb/mongodb-collection-aggregator-accumulate-operator.html">
         下一篇：
-        <span class="next-text nav-default">Linux ps命令用法详解</span>
+        <span class="next-text nav-default">MongoDB：聚合之累加操作符</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
