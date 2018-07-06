@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.oxysun.cn/git/mongodb-collection-aggregation-introduction.html</loc>
+    
+    <lastmod>2018-07-06T13:29:45.928Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.oxysun.cn/about/index.html</loc>
     
     <lastmod>2018-07-05T07:53:32.719Z</lastmod>
@@ -135,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/atom/index.html</loc>
+    <loc>http://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
@@ -149,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/books/index.html</loc>
+    <loc>http://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
