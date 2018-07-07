@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux, shell, MongoDB, 命令"/>
+  <meta name="description" content="Java：Tomcat的部署实例之资源目录"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.oxysun.cn/categories/Git/"/>
+<link rel="canonical" href="http://www.oxysun.cn/java/java-deploy-resource-folder.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,11 +112,7 @@
 </script>
 
 
-    <title>
-  
-    Git · 老兵驿站
-  
-</title>
+    <title> Java：Tomcat的部署实例之资源目录 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,43 +206,116 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Java：Tomcat的部署实例之资源目录
+        
+      </h1>
       
-        <div class="archive-title category">
-          <h1 class="archive-name">Git</h1>
-        </div>
-      
-    
-
-    
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2018-07-06
-          
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
-        <span class="archive-post-title">
-          <a href="/git/git-git-flow.html" class="archive-post-link">
-            Git：工作流程Git Flow
-          </a>
+        <span class="post-time">
+           日期: 2018-07-07
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
       </div>
-    
-  </section>
+    </header>
 
-  
-  <nav class="pagination">
     
+    
+
+    <div class="post-content">
+      
+        <p>Tomcat上部署应用后，原本目录是否会被移除。<br><a id="more"></a></p>
+<p><strong>实例：</strong><br>一个项目的资源放在了WebContent下面，这样每次打包，都会将这些文件打包进去，这样在打包时，导致打出来的war包有好几百兆，这样上传Git也非常不方便。</p>
+<p>方案1：<br>分析：如果删除掉本地WebContent下的资源文件，再部署到服务器上，war包其实是一个压缩包，加压后覆盖原本目录下的相同内容，因为新上传的war包没有相同的资源文件，这样就不会覆盖原本的资源文件。<br>结果：加压后的项目目录也不存在资源文件了，看来这个部署过程，是会删掉原本的项目目录的。</p>
+<p>方案2：<br>分析：因为webapps是web服务根目录，那么把资源文件从项目目录移到webapps下面，这样应该也可以被访问到。<br>结果：成功，可以被访问到。</p>
+<p>为了验证这个，上网查了很多帖子，众说纷纭，最后还是在<a href="https://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html" target="_blank" rel="noopener">官网</a>找到这么一段话：</p>
+<blockquote>
+<p>The following deployment sequence will occur on Tomcat startup in that case:</p>
+<ol>
+<li>Any Context Descriptors will be deployed first.</li>
+<li>Exploded web applications not referenced by any Context Descriptor will then be deployed. If they have an associated .WAR file in the appBase and it is newer than the exploded web application, the exploded directory will be removed and the webapp will be redeployed from the .WAR</li>
+<li>.WAR files will be deployed</li>
+</ol>
+</blockquote>
+<p>注意这里<code>the exploded directory will be removed and the webapp will be redeployed from the .WAR</code>，原本的解压目录会被移除，应用会被重新从<code>war</code>文件中部署。</p>
+<p>寻根究底，而不人云亦云，这样才是端正的学习的态度。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.oxysun.cn/java/java-deploy-resource-folder.html">http://www.oxysun.cn/java/java-deploy-resource-folder.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年07月07日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/git/git-git-flow.html">
+        下一篇：
+        <span class="next-text nav-default">Git：工作流程Git Flow</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
