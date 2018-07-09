@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CSS：文档流]]></title>
+    <url>%2FCSS%2Fgit-git-flow.html</url>
+    <content type="text"><![CDATA[CSS的文档流介绍。 官网：https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。 文档流其实应该叫正常流，英文是Normal flow，理解就是接收到的文档的内容，因为这些内容一直从服务端传输过来，边传输边需要处理，就像水流一样。 在文档流中的盒子是需要归属于一个上下文的，块级盒子参与到块格式化上下文中，内联级盒子参与到内联格式化上下文中，还有表格格式化上下文。 块格式化上下文是按照从上到下，一个一个垂直排列的，块之间的间距是靠margin来控制的。 内联格式化上下文是水平排列的，水平对齐是由一些参数来控制的。 相对定位是根据这个盒子原本在文档流中的位置进行一些偏移。 未完，待续……]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Java：Tomcat的部署实例之资源目录]]></title>
     <url>%2Fjava%2Fjava-deploy-resource-folder.html</url>
     <content type="text"><![CDATA[Tomcat上部署应用后，原本目录是否会被移除。 实例：一个项目的资源放在了WebContent下面，这样每次打包，都会将这些文件打包进去，这样在打包时，导致打出来的war包有好几百兆，这样上传Git也非常不方便。 方案1：分析：如果删除掉本地WebContent下的资源文件，再部署到服务器上，war包其实是一个压缩包，加压后覆盖原本目录下的相同内容，因为新上传的war包没有相同的资源文件，这样就不会覆盖原本的资源文件。结果：加压后的项目目录也不存在资源文件了，看来这个部署过程，是会删掉原本的项目目录的。 方案2：分析：因为webapps是web服务根目录，那么把资源文件从项目目录移到webapps下面，这样应该也可以被访问到。结果：成功，可以被访问到。 为了验证这个，上网查了很多帖子，众说纷纭，最后还是在官网找到这么一段话： The following deployment sequence will occur on Tomcat startup in that case: Any Context Descriptors will be deployed first. Exploded web applications not referenced by any Context Descriptor will then be deployed. If they have an associated .WAR file in the appBase and it is newer than the exploded web application, the exploded directory will be removed and the webapp will be redeployed from the .WAR .WAR files will be deployed 注意这里the exploded directory will be removed and the webapp will be redeployed from the .WAR，原本的解压目录会被移除，应用会被重新从war文件中部署。 寻根究底，而不人云亦云，这样才是端正的学习的态度。]]></content>

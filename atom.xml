@@ -5,9 +5,9 @@
   <subtitle>linux MongoDB</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.oxysun.cn/"/>
-  <updated>2018-07-07T11:59:06.607Z</updated>
-  <id>http://www.oxysun.cn/</id>
+  <link href="https://www.oxysun.club/"/>
+  <updated>2018-07-09T15:25:21.295Z</updated>
+  <id>https://www.oxysun.club/</id>
   
   <author>
     <name>荒于嬉</name>
@@ -17,9 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CSS：文档流</title>
+    <link href="https://www.oxysun.club/CSS/git-git-flow.html"/>
+    <id>https://www.oxysun.club/CSS/git-git-flow.html</id>
+    <published>2018-07-09T15:24:00.000Z</published>
+    <updated>2018-07-09T15:25:21.295Z</updated>
+    
+    <content type="html"><![CDATA[<p>CSS的文档流介绍。<br><a id="more"></a></p><p>官网：<a href="https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。" target="_blank" rel="noopener">https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。</a></p><h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>其实应该叫正常流，英文是Normal flow，理解就是接收到的文档的内容，因为这些内容一直从服务端传输过来，边传输边需要处理，就像水流一样。</p><p>在文档流中的盒子是需要归属于一个上下文的，块级盒子参与到块格式化上下文中，内联级盒子参与到内联格式化上下文中，还有表格格式化上下文。</p><p>块格式化上下文是按照从上到下，一个一个垂直排列的，块之间的间距是靠<code>margin</code>来控制的。</p><p>内联格式化上下文是水平排列的，水平对齐是由一些参数来控制的。</p><p>相对定位是根据这个盒子原本在文档流中的位置进行一些偏移。</p><p>未完，待续……</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;CSS的文档流介绍。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="CSS" scheme="https://www.oxysun.club/categories/CSS/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Java：Tomcat的部署实例之资源目录</title>
-    <link href="http://www.oxysun.cn/java/java-deploy-resource-folder.html"/>
-    <id>http://www.oxysun.cn/java/java-deploy-resource-folder.html</id>
+    <link href="https://www.oxysun.club/java/java-deploy-resource-folder.html"/>
+    <id>https://www.oxysun.club/java/java-deploy-resource-folder.html</id>
     <published>2018-07-07T11:55:00.000Z</published>
     <updated>2018-07-07T11:59:06.607Z</updated>
     
@@ -31,15 +51,15 @@
     
     </summary>
     
-      <category term="Java" scheme="http://www.oxysun.cn/categories/Java/"/>
+      <category term="Java" scheme="https://www.oxysun.club/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Git：工作流程Git Flow</title>
-    <link href="http://www.oxysun.cn/git/git-git-flow.html"/>
-    <id>http://www.oxysun.cn/git/git-git-flow.html</id>
+    <link href="https://www.oxysun.club/git/git-git-flow.html"/>
+    <id>https://www.oxysun.club/git/git-git-flow.html</id>
     <published>2018-07-06T13:22:00.000Z</published>
     <updated>2018-07-07T11:54:48.936Z</updated>
     
@@ -51,15 +71,15 @@
     
     </summary>
     
-      <category term="Git" scheme="http://www.oxysun.cn/categories/Git/"/>
+      <category term="Git" scheme="https://www.oxysun.club/categories/Git/"/>
     
     
   </entry>
   
   <entry>
     <title>Linux下shell命令用法及常见用例：netstat</title>
-    <link href="http://www.oxysun.cn/linux/shell-command-netstat.html"/>
-    <id>http://www.oxysun.cn/linux/shell-command-netstat.html</id>
+    <link href="https://www.oxysun.club/linux/shell-command-netstat.html"/>
+    <id>https://www.oxysun.club/linux/shell-command-netstat.html</id>
     <published>2018-07-05T07:14:47.000Z</published>
     <updated>2018-07-05T07:53:32.718Z</updated>
     
@@ -71,19 +91,19 @@
     
     </summary>
     
-      <category term="linux" scheme="http://www.oxysun.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.oxysun.club/categories/linux/"/>
     
-      <category term="shell" scheme="http://www.oxysun.cn/categories/linux/shell/"/>
+      <category term="shell" scheme="https://www.oxysun.club/categories/linux/shell/"/>
     
     
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
+      <category term="Linux" scheme="https://www.oxysun.club/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>MongoDB：聚合之累加操作符</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-collection-aggregator-accumulate-operator.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-collection-aggregator-accumulate-operator.html</id>
     <published>2018-07-04T15:29:00.000Z</published>
     <updated>2018-07-04T15:31:52.096Z</updated>
     
@@ -95,15 +115,15 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>
   
   <entry>
     <title>MongoDB：聚合之介绍</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-collection-aggregation-introduction.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-collection-aggregation-introduction.html</id>
     <published>2018-07-04T15:24:00.000Z</published>
     <updated>2018-07-04T15:30:54.749Z</updated>
     
@@ -115,19 +135,19 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>
   
   <entry>
     <title>MongoDB：查找记录 find（1）</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-collection-find-1.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-collection-find-1.html</id>
     <published>2018-07-02T13:03:00.000Z</published>
     <updated>2018-07-02T15:15:43.385Z</updated>
     
-    <content type="html"><![CDATA[<p>MongoDB如何查询记录之一。<br><a id="more"></a></p><p>官网：<a href="https://docs.mongodb.com/manual/reference/method/db.collection.find/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.collection.find/。</a></p><h1 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.collection.find(query, projection)</span><br></pre></td></tr></table></figure><p>在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）</p><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td>query</td><td>文档型</td><td>可选。使用查询操作符(<a href="https://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html">参考这里</a>)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。</td></tr><tr><td>projection</td><td>文档型</td><td>可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。</td></tr></tbody></table><h1 id="行为"><a href="#行为" class="headerlink" title="行为"></a>行为</h1><h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>projection参数决定了哪些域需要被返回。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125;</span><br></pre></td></tr></table></figure><p><code>&lt;value&gt;</code>可以是:</p><ul><li>1 或 true 表示要在返回文档中包含这个域。</li><li>0 或 false 表示不包含这个域。</li><li>表达式使用了投影操作符（有待解释）。</li></ul><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p><strong>实例</strong> 查找<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">上文</a>test集合中的所有文档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><code>pretty()</code>是用来让展示更加舒适。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code>的记录，这里要注意<code>“3”</code>和<code>3</code>是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">&quot;meta&quot; : &#123;</span><br><span class="line">&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">&#125;,</span><br><span class="line">&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">&quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>可以看到，这次只查出了一条符合条件的记录。</p><p><strong>实例</strong> 查找test集合中的b=”3”的记录a和b两个域，不要其它域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()</span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125;</span><br></pre></td></tr></table></figure><p>可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。</p>]]></content>
+    <content type="html"><![CDATA[<p>MongoDB如何查询记录之一。<br><a id="more"></a></p><p>官网：<a href="https://docs.mongodb.com/manual/reference/method/db.collection.find/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.collection.find/。</a></p><h1 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.collection.find(query, projection)</span><br></pre></td></tr></table></figure><p>在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）</p><table><thead><tr><th>参数</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td>query</td><td>文档型</td><td>可选。使用查询操作符(<a href="https://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html" target="_blank" rel="noopener">参考这里</a>)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。</td></tr><tr><td>projection</td><td>文档型</td><td>可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。</td></tr></tbody></table><h1 id="行为"><a href="#行为" class="headerlink" title="行为"></a>行为</h1><h2 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h2><p>projection参数决定了哪些域需要被返回。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125;</span><br></pre></td></tr></table></figure><p><code>&lt;value&gt;</code>可以是:</p><ul><li>1 或 true 表示要在返回文档中包含这个域。</li><li>0 或 false 表示不包含这个域。</li><li>表达式使用了投影操作符（有待解释）。</li></ul><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p><strong>实例</strong> 查找<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html" target="_blank" rel="noopener">上文</a>test集合中的所有文档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><code>pretty()</code>是用来让展示更加舒适。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code>的记录，这里要注意<code>“3”</code>和<code>3</code>是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">&quot;meta&quot; : &#123;</span><br><span class="line">&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">&#125;,</span><br><span class="line">&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">&quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>可以看到，这次只查出了一条符合条件的记录。</p><p><strong>实例</strong> 查找test集合中的b=”3”的记录a和b两个域，不要其它域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()</span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125;</span><br></pre></td></tr></table></figure><p>可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。</p>]]></content>
     
     <summary type="html">
     
@@ -135,15 +155,15 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>
   
   <entry>
     <title>MongoDB：查询和投影操作符</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-collection-find-projection-operator.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-collection-find-projection-operator.html</id>
     <published>2018-07-02T13:03:00.000Z</published>
     <updated>2018-07-02T15:08:33.373Z</updated>
     
@@ -155,15 +175,15 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>
   
   <entry>
     <title>Linux下shell命令用法及常见用例：touch</title>
-    <link href="http://www.oxysun.cn/linux/shell-command-touch.html"/>
-    <id>http://www.oxysun.cn/linux/shell-command-touch.html</id>
+    <link href="https://www.oxysun.club/linux/shell-command-touch.html"/>
+    <id>https://www.oxysun.club/linux/shell-command-touch.html</id>
     <published>2018-07-01T06:28:00.000Z</published>
     <updated>2018-07-05T07:53:32.719Z</updated>
     
@@ -175,19 +195,19 @@
     
     </summary>
     
-      <category term="linux" scheme="http://www.oxysun.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.oxysun.club/categories/linux/"/>
     
-      <category term="shell" scheme="http://www.oxysun.cn/categories/linux/shell/"/>
+      <category term="shell" scheme="https://www.oxysun.club/categories/linux/shell/"/>
     
     
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
+      <category term="Linux" scheme="https://www.oxysun.club/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Linux下shell命令用法及常见用例：sed</title>
-    <link href="http://www.oxysun.cn/linux/shell-command-sed.html"/>
-    <id>http://www.oxysun.cn/linux/shell-command-sed.html</id>
+    <link href="https://www.oxysun.club/linux/shell-command-sed.html"/>
+    <id>https://www.oxysun.club/linux/shell-command-sed.html</id>
     <published>2018-07-01T02:00:00.000Z</published>
     <updated>2018-07-05T07:53:32.718Z</updated>
     
@@ -199,19 +219,19 @@
     
     </summary>
     
-      <category term="linux" scheme="http://www.oxysun.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.oxysun.club/categories/linux/"/>
     
-      <category term="shell" scheme="http://www.oxysun.cn/categories/linux/shell/"/>
+      <category term="shell" scheme="https://www.oxysun.club/categories/linux/shell/"/>
     
     
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
+      <category term="Linux" scheme="https://www.oxysun.club/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Linux下shell命令用法及常见用例： awk</title>
-    <link href="http://www.oxysun.cn/linux/shell-command-awk.html"/>
-    <id>http://www.oxysun.cn/linux/shell-command-awk.html</id>
+    <link href="https://www.oxysun.club/linux/shell-command-awk.html"/>
+    <id>https://www.oxysun.club/linux/shell-command-awk.html</id>
     <published>2018-07-01T02:00:00.000Z</published>
     <updated>2018-07-05T07:53:32.717Z</updated>
     
@@ -223,19 +243,19 @@
     
     </summary>
     
-      <category term="linux" scheme="http://www.oxysun.cn/categories/linux/"/>
+      <category term="linux" scheme="https://www.oxysun.club/categories/linux/"/>
     
-      <category term="shell" scheme="http://www.oxysun.cn/categories/linux/shell/"/>
+      <category term="shell" scheme="https://www.oxysun.club/categories/linux/shell/"/>
     
     
-      <category term="Linux" scheme="http://www.oxysun.cn/tags/Linux/"/>
+      <category term="Linux" scheme="https://www.oxysun.club/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>MongoDB：创建数据集合</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-collection-create.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-collection-create.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-collection-create.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-collection-create.html</id>
     <published>2018-06-30T07:53:48.000Z</published>
     <updated>2018-06-30T10:18:39.724Z</updated>
     
@@ -247,15 +267,15 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>
   
   <entry>
     <title>MongoDB：创建数据库</title>
-    <link href="http://www.oxysun.cn/mongodb/mongodb-dababase-create.html"/>
-    <id>http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</id>
+    <link href="https://www.oxysun.club/mongodb/mongodb-dababase-create.html"/>
+    <id>https://www.oxysun.club/mongodb/mongodb-dababase-create.html</id>
     <published>2018-06-30T07:53:48.000Z</published>
     <updated>2018-06-30T10:15:14.155Z</updated>
     
@@ -267,7 +287,7 @@
     
     </summary>
     
-      <category term="MongoDB" scheme="http://www.oxysun.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="https://www.oxysun.club/categories/MongoDB/"/>
     
     
   </entry>

@@ -2,168 +2,175 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
+    <loc>https://www.oxysun.club/CSS/git-git-flow.html</loc>
+    
+    <lastmod>2018-07-09T15:25:21.295Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.club/java/java-deploy-resource-folder.html</loc>
     
     <lastmod>2018-07-07T11:59:06.607Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/git/git-git-flow.html</loc>
+    <loc>https://www.oxysun.club/git/git-git-flow.html</loc>
     
     <lastmod>2018-07-07T11:54:48.936Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/about/index.html</loc>
+    <loc>https://www.oxysun.club/about/index.html</loc>
     
     <lastmod>2018-07-05T07:53:32.719Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.club/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-05T07:53:32.719Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.club/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/shell-command-netstat.html</loc>
+    <loc>https://www.oxysun.club/linux/shell-command-netstat.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/linux/shell-command-awk.html</loc>
+    <loc>https://www.oxysun.club/linux/shell-command-awk.html</loc>
     
     <lastmod>2018-07-05T07:53:32.717Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
     
     <lastmod>2018-07-04T15:31:52.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-collection-aggregation-introduction.html</loc>
     
     <lastmod>2018-07-04T15:30:54.749Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-collection-find-1.html</loc>
     
     <lastmod>2018-07-02T15:15:43.385Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-collection-find-projection-operator.html</loc>
     
     <lastmod>2018-07-02T15:08:33.373Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-collection-create.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-collection-create.html</loc>
     
     <lastmod>2018-06-30T10:18:39.724Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/mongodb/mongodb-dababase-create.html</loc>
+    <loc>https://www.oxysun.club/mongodb/mongodb-dababase-create.html</loc>
     
     <lastmod>2018-06-30T10:15:14.155Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.club/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.club/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/photos/index.html</loc>
+    <loc>https://www.oxysun.club/photos/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.008Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/photos/data.json</loc>
+    <loc>https://www.oxysun.club/manifest.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/manifest.json</loc>
+    <loc>https://www.oxysun.club/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>https://www.oxysun.club/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/drafts/iframe.html</loc>
+    <loc>https://www.oxysun.club/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
+    <loc>https://www.oxysun.club/drafts/iframe.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.club/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/categories/index.html</loc>
+    <loc>https://www.oxysun.club/categories/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.club/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
