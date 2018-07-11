@@ -1,3 +1,3 @@
+https://www.oxysun.cn/js/js-npm-symbol-tilde.html
+https://www.oxysun.cn/js/js-npm-symbol-caret.html
 https://www.oxysun.cn/linux/shell-command-tar.html
-https://www.oxysun.cn/css/git-git-flow.html
-https://www.oxysun.cn/java/java-deploy-resource-folder.html

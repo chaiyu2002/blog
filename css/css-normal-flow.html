@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux, shell, MongoDB, 命令"/>
+  <meta name="description" content="CSS：文档流"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://www.oxysun.cn/archives/2018/"/>
+<link rel="canonical" href="https://www.oxysun.cn/css/css-normal-flow.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,11 +112,7 @@
 </script>
 
 
-    <title>
-  
-    归档 - 老兵驿站
-  
-</title>
+    <title> CSS：文档流 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,360 +206,142 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 16 篇日志
-          </span>
-        </div>
-      
-    
-
-    
-      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          CSS：文档流
         
-
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-07-09
+        </span>
         
-          
-          <div class="collection-title">
-            <h1 class="archive-year">2018</h1>
+          <div class="post-category">
+            
+              <a href="/categories/CSS/">CSS</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-11
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/js/js-npm-symbol-tilde.html" class="archive-post-link">
-            JS：NPM依赖包版本号波浪字符"~"
-          </a>
-        </span>
+        
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文档流"><span class="toc-text">文档流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块格式化上下文（Block-formatting-contexts）"><span class="toc-text">块格式化上下文（Block formatting contexts）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相对定位"><span class="toc-text">相对定位</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>CSS的文档流介绍。<br><a id="more"></a></p>
+<p>官网：<a href="https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。" target="_blank" rel="noopener">https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。</a></p>
+<h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>文档流其实应该叫正常流，英文是<code>Normal flow</code>，我的理解呢，就是接收到的文档的内容，因为这些内容一直从服务端传输过来，边传输边需要处理，就像水流一样，所以称为流。</p>
+<p>在文档流中的盒子是需要归属于一个上下文的，块级盒子参与到块格式化上下文中，内联级盒子参与到内联格式化上下文中，还有表格格式化上下文。</p>
+<h2 id="块格式化上下文（Block-formatting-contexts）"><a href="#块格式化上下文（Block-formatting-contexts）" class="headerlink" title="块格式化上下文（Block formatting contexts）"></a>块格式化上下文（Block formatting contexts）</h2><p>块格式化上下文，简称<code>BFC</code>，是按照从上到下，一个一个垂直排列的，块之间的间距是靠<code>margin</code>来控制的。</p>
+<blockquote>
+<p>In a block formatting context, boxes are laid out one after the other, vertically, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the ‘margin’ properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.</p>
+</blockquote>
+<p>翻译：在块格式化上下文中，框从一个包含块的顶部开始一个接一个地垂直排列。 两个兄弟盒子之间的垂直距离由“margin”属性决定。 块格式化上下文中相邻块级盒子之间的垂直<code>margin</code>会折叠。</p>
+<p>##内联格式化上下文（Inline formatting contexts）<br>内联格式化上下文，简称<code>IFC</code>，主要是水平排列的，水平对齐是由一些参数来控制的。</p>
+<blockquote>
+<p>An inline formatting context is established by a block container box that contains no block-level boxes. In an inline formatting context, boxes are laid out horizontally, one after the other, beginning at the top of a containing block. Horizontal margins, borders, and padding are respected between these boxes. The boxes may be aligned vertically in different ways: their bottoms or tops may be aligned, or the baselines of text within them may be aligned. The rectangular area that contains the boxes that form a line is called a line box.</p>
+</blockquote>
+<p>翻译：内联格式化上下文由不包含块级框的块容器盒子建立。 在内联格式化上下文中，盒子从一个接一个地开始，从一个包含块的顶部开始。 这些框之间会考虑水平边距，边框和填充。 盒子可以以不同的方式垂直对齐：它们的底部或顶部可以对齐，或者它们内的文本的基线可以对齐。 包含形成一条线的框的矩形区域称为线盒子<code>line box</code>。</p>
+<p>这里面有一些父容器和子布局的一些关系，需要梳理。</p>
+<h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p>相对定位是根据这个盒子原本在文档流中的位置或者floated进行一些偏移。</p>
+<p>未完，待续……</p>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-11
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/js/js-npm-symbol-caret.html" class="archive-post-link">
-            JS：NPM依赖包版本号脱字符"^"
-          </a>
-        </span>
-      </div>
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://www.oxysun.cn/css/css-normal-flow.html">https://www.oxysun.cn/css/css-normal-flow.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年07月09日</a>
+    </p>
+  </div>
+
+
+
+      
+      
     
-      
-        
-        
 
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-10
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-tar.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：tar
-          </a>
-        </span>
-      </div>
     
-      
+      <footer class="post-footer">
         
         
-
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-09
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/css/css-normal-flow.html" class="archive-post-link">
-            CSS：文档流
-          </a>
-        </span>
-      </div>
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-07
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/java/java-deploy-resource-folder.html" class="archive-post-link">
-            Java：Tomcat的部署实例之资源目录
-          </a>
-        </span>
-      </div>
+      <a class="prev" href="/linux/shell-command-tar.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux下shell命令用法及常见用例：tar</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-06
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/git/git-git-flow.html" class="archive-post-link">
-            Git：工作流程Git Flow
-          </a>
-        </span>
-      </div>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-netstat.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：netstat
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-aggregator-accumulate-operator.html" class="archive-post-link">
-            MongoDB：聚合之累加操作符
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-aggregation-introduction.html" class="archive-post-link">
-            MongoDB：聚合之介绍
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-02
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-find-1.html" class="archive-post-link">
-            MongoDB：查找记录 find（1）
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-02
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-find-projection-operator.html" class="archive-post-link">
-            MongoDB：查询和投影操作符
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-touch.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：touch
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-sed.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：sed
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-awk.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例： awk
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-create.html" class="archive-post-link">
-            MongoDB：创建数据集合
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-dababase-create.html" class="archive-post-link">
-            MongoDB：创建数据库
-          </a>
-        </span>
-      </div>
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
+      <a class="next" href="/java/java-deploy-resource-folder.html">
+        下一篇：
+        <span class="next-text nav-default">Java：Tomcat的部署实例之资源目录</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
 
       
+  
+  
+
+  
+
 
       
       <footer id="footer" class="footer">
@@ -639,6 +417,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     

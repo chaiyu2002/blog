@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-07-10T15:09:48.541Z</updated>
+  <updated>2018-07-11T15:07:36.601Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
+    <link href="https://www.oxysun.cn/js/js-npm-symbol-tilde.html"/>
+    <id>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</id>
+    <published>2018-07-11T15:07:00.000Z</published>
+    <updated>2018-07-11T15:07:36.601Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号波浪字符”~”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Tilde Ranges ~1.2.3 ~1.2 ~1<br>Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.</p></blockquote><p>如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。</p><blockquote><p>~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0<br>~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)<br>~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)<br>~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0<br>~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)<br>~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)<br>~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="js" scheme="https://www.oxysun.cn/categories/js/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
+    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
+    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
+    <published>2018-07-11T15:07:00.000Z</published>
+    <updated>2018-07-11T15:07:45.069Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p></blockquote><p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。</p><blockquote><p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p></blockquote><p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p><blockquote><ul><li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0</li><li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li><li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li><li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li><li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li></ul></blockquote><blockquote><p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p></blockquote><blockquote><ul><li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li><li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li><li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li></ul></blockquote><blockquote><p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p></blockquote><blockquote><ul><li>^1.x := &gt;=1.0.0 &lt;2.0.0</li><li>^0.x := &gt;=0.0.0 &lt;1.0.0</li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="js" scheme="https://www.oxysun.cn/categories/js/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux下shell命令用法及常见用例：tar</title>
@@ -38,12 +78,12 @@
   
   <entry>
     <title>CSS：文档流</title>
-    <link href="https://www.oxysun.cn/css/git-git-flow.html"/>
-    <id>https://www.oxysun.cn/css/git-git-flow.html</id>
+    <link href="https://www.oxysun.cn/css/css-normal-flow.html"/>
+    <id>https://www.oxysun.cn/css/css-normal-flow.html</id>
     <published>2018-07-09T15:24:00.000Z</published>
-    <updated>2018-07-09T15:33:54.251Z</updated>
+    <updated>2018-07-11T15:08:59.446Z</updated>
     
-    <content type="html"><![CDATA[<p>CSS的文档流介绍。<br><a id="more"></a></p><p>官网：<a href="https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。" target="_blank" rel="noopener">https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。</a></p><h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>其实应该叫正常流，英文是Normal flow，理解就是接收到的文档的内容，因为这些内容一直从服务端传输过来，边传输边需要处理，就像水流一样。</p><p>在文档流中的盒子是需要归属于一个上下文的，块级盒子参与到块格式化上下文中，内联级盒子参与到内联格式化上下文中，还有表格格式化上下文。</p><h2 id="块格式化上下文"><a href="#块格式化上下文" class="headerlink" title="块格式化上下文"></a>块格式化上下文</h2><p>块格式化上下文是按照从上到下，一个一个垂直排列的，块之间的间距是靠<code>margin</code>来控制的。</p><h2 id="内联格式化上下文"><a href="#内联格式化上下文" class="headerlink" title="内联格式化上下文"></a>内联格式化上下文</h2><p>内联格式化上下文是水平排列的，水平对齐是由一些参数来控制的。</p><p>相对定位是根据这个盒子原本在文档流中的位置进行一些偏移。</p><p>未完，待续……</p>]]></content>
+    <content type="html"><![CDATA[<p>CSS的文档流介绍。<br><a id="more"></a></p><p>官网：<a href="https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。" target="_blank" rel="noopener">https://www.w3.org/TR/2016/WD-CSS22-20160412/visuren.html#normal-flow。</a></p><h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>文档流其实应该叫正常流，英文是<code>Normal flow</code>，我的理解呢，就是接收到的文档的内容，因为这些内容一直从服务端传输过来，边传输边需要处理，就像水流一样，所以称为流。</p><p>在文档流中的盒子是需要归属于一个上下文的，块级盒子参与到块格式化上下文中，内联级盒子参与到内联格式化上下文中，还有表格格式化上下文。</p><h2 id="块格式化上下文（Block-formatting-contexts）"><a href="#块格式化上下文（Block-formatting-contexts）" class="headerlink" title="块格式化上下文（Block formatting contexts）"></a>块格式化上下文（Block formatting contexts）</h2><p>块格式化上下文，简称<code>BFC</code>，是按照从上到下，一个一个垂直排列的，块之间的间距是靠<code>margin</code>来控制的。</p><blockquote><p>In a block formatting context, boxes are laid out one after the other, vertically, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the ‘margin’ properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.</p></blockquote><p>翻译：在块格式化上下文中，框从一个包含块的顶部开始一个接一个地垂直排列。 两个兄弟盒子之间的垂直距离由“margin”属性决定。 块格式化上下文中相邻块级盒子之间的垂直<code>margin</code>会折叠。</p><p>##内联格式化上下文（Inline formatting contexts）<br>内联格式化上下文，简称<code>IFC</code>，主要是水平排列的，水平对齐是由一些参数来控制的。</p><blockquote><p>An inline formatting context is established by a block container box that contains no block-level boxes. In an inline formatting context, boxes are laid out horizontally, one after the other, beginning at the top of a containing block. Horizontal margins, borders, and padding are respected between these boxes. The boxes may be aligned vertically in different ways: their bottoms or tops may be aligned, or the baselines of text within them may be aligned. The rectangular area that contains the boxes that form a line is called a line box.</p></blockquote><p>翻译：内联格式化上下文由不包含块级框的块容器盒子建立。 在内联格式化上下文中，盒子从一个接一个地开始，从一个包含块的顶部开始。 这些框之间会考虑水平边距，边框和填充。 盒子可以以不同的方式垂直对齐：它们的底部或顶部可以对齐，或者它们内的文本的基线可以对齐。 包含形成一条线的框的矩形区域称为线盒子<code>line box</code>。</p><p>这里面有一些父容器和子布局的一些关系，需要梳理。</p><h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p>相对定位是根据这个盒子原本在文档流中的位置或者floated进行一些偏移。</p><p>未完，待续……</p>]]></content>
     
     <summary type="html">
     

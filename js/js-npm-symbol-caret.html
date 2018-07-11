@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux, shell, MongoDB, 命令"/>
+  <meta name="description" content="JS：NPM依赖包版本号脱字符"^""/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://www.oxysun.cn/archives/2018/"/>
+<link rel="canonical" href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,11 +112,7 @@
 </script>
 
 
-    <title>
-  
-    归档 - 老兵驿站
-  
-</title>
+    <title> JS：NPM依赖包版本号脱字符"^" - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,360 +206,156 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 16 篇日志
-          </span>
-        </div>
-      
-    
-
-    
-      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          JS：NPM依赖包版本号脱字符"^"
         
-
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-07-11
+        </span>
         
-          
-          <div class="collection-title">
-            <h1 class="archive-year">2018</h1>
+          <div class="post-category">
+            
+              <a href="/categories/js/">js</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-11
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/js/js-npm-symbol-tilde.html" class="archive-post-link">
-            JS：NPM依赖包版本号波浪字符"~"
-          </a>
-        </span>
+        
       </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p>
+<p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p>
+<blockquote>
+<p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p>
+</blockquote>
+<p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。</p>
+<blockquote>
+<p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p>
+</blockquote>
+<p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p>
+<blockquote>
+<ul>
+<li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0</li>
+<li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li>
+<li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li>
+<li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li>
+<li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li>
+<li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li>
+<li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>^1.x := &gt;=1.0.0 &lt;2.0.0</li>
+<li>^0.x := &gt;=0.0.0 &lt;1.0.0</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-11
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/js/js-npm-symbol-caret.html" class="archive-post-link">
-            JS：NPM依赖包版本号脱字符"^"
-          </a>
-        </span>
-      </div>
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://www.oxysun.cn/js/js-npm-symbol-caret.html">https://www.oxysun.cn/js/js-npm-symbol-caret.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年07月11日</a>
+    </p>
+  </div>
+
+
+
+      
+      
     
-      
-        
-        
 
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-10
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-tar.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：tar
-          </a>
-        </span>
-      </div>
     
-      
+      <footer class="post-footer">
         
         
-
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-09
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/css/css-normal-flow.html" class="archive-post-link">
-            CSS：文档流
-          </a>
-        </span>
-      </div>
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-07
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/java/java-deploy-resource-folder.html" class="archive-post-link">
-            Java：Tomcat的部署实例之资源目录
-          </a>
-        </span>
-      </div>
+      <a class="prev" href="/js/js-npm-symbol-tilde.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JS：NPM依赖包版本号波浪字符"~"</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-06
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/git/git-git-flow.html" class="archive-post-link">
-            Git：工作流程Git Flow
-          </a>
-        </span>
-      </div>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-netstat.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：netstat
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-aggregator-accumulate-operator.html" class="archive-post-link">
-            MongoDB：聚合之累加操作符
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-aggregation-introduction.html" class="archive-post-link">
-            MongoDB：聚合之介绍
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-02
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-find-1.html" class="archive-post-link">
-            MongoDB：查找记录 find（1）
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-02
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-find-projection-operator.html" class="archive-post-link">
-            MongoDB：查询和投影操作符
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-touch.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：touch
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-sed.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例：sed
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            07-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/linux/shell-command-awk.html" class="archive-post-link">
-            Linux下shell命令用法及常见用例： awk
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-create.html" class="archive-post-link">
-            MongoDB：创建数据集合
-          </a>
-        </span>
-      </div>
-    
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-dababase-create.html" class="archive-post-link">
-            MongoDB：创建数据库
-          </a>
-        </span>
-      </div>
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
+      <a class="next" href="/linux/shell-command-tar.html">
+        下一篇：
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例：tar</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
 
       
+  
+  
+
+  
+
 
       
       <footer id="footer" class="footer">
@@ -639,6 +431,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     
