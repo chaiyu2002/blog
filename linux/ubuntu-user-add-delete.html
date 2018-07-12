@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="JS：NPM依赖包版本号脱字符"^""/>
+  <meta name="description" content="Ubuntu：新增和删除用户"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
+<link rel="canonical" href="https://www.oxysun.cn/linux/ubuntu-user-add-delete.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,7 +112,7 @@
 </script>
 
 
-    <title> JS：NPM依赖包版本号脱字符"^" - 老兵驿站 </title>
+    <title> Ubuntu：新增和删除用户 - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,7 +210,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          JS：NPM依赖包版本号脱字符"^"
+          Ubuntu：新增和删除用户
         
       </h1>
       
@@ -219,12 +219,14 @@
            作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
         </span>
         <span class="post-time">
-           日期: 2018-07-11
+           日期: 2018-07-12
         </span>
         
           <div class="post-category">
             
-              <a href="/categories/js/">js</a>
+              <a href="/categories/linux/">linux</a>
+            
+              <a href="/categories/linux/ubuntu/">ubuntu</a>
             
           </div>
         
@@ -234,47 +236,38 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#创建用户"><span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#给用户授权"><span class="toc-text">给用户授权</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除用户"><span class="toc-text">删除用户</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p>
-<p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p>
-<blockquote>
-<p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p>
-</blockquote>
-<p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。<br>这里说的改变是说，npm在自动安装时去获取的这个包的版本，如果使用了脱字符或者波浪线等符号，它可以去获取的版本就是在一个范围之内，而不是固定的，这两个符号就是去约束这个范围的。这里还涉及一个版本锁定的概念，涉及yarn的一些理念，回头再讨论。</p>
-<blockquote>
-<p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p>
-</blockquote>
-<p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p>
-<blockquote>
-<ul>
-<li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0（解释：如果是^1.2.3，那么获取包的范围就是版本&gt;=1.2.3，并且&lt;2.0.0。）</li>
-<li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li>
-<li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li>
-<li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li>
-<li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li>
-<li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li>
-<li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>^1.x := &gt;=1.0.0 &lt;2.0.0</li>
-<li>^0.x := &gt;=0.0.0 &lt;1.0.0</li>
-</ul>
-</blockquote>
+        <p>Ubuntu：新增和删除用户，修改用户组信息。<br><a id="more"></a><br>参考：<a href="https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-16-04#how-to-delete-a-user。" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-16-04#how-to-delete-a-user。</a></p>
+<p><code>Linux</code>上root用户是权力最大的用户，但是也非常危险，处于安全考虑，增加个人用户是必要的方法，下文讲了讲在<code>Ubuntu</code>上如何新增和删除用户。</p>
+<h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><p><strong>实例：</strong> <code>root</code>用户新增用户<code>chenming</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# adduser chenming</span><br><span class="line">Adding user `chenming&apos; ...</span><br><span class="line">Adding new group `chenming&apos; (1000) ...</span><br><span class="line">Adding new user `chenming&apos; (1000) with group `chenming&apos; ...</span><br><span class="line">Creating home directory `/home/chenming&apos; ...</span><br><span class="line">Copying files from `/etc/skel&apos; ...</span><br><span class="line">Enter new UNIX password: </span><br><span class="line">Retype new UNIX password: </span><br><span class="line">passwd: password updated successfully</span><br><span class="line">Changing the user information for chenming</span><br><span class="line">Enter the new value, or press ENTER for the default</span><br><span class="line">	Full Name []: </span><br><span class="line">	Room Number []: </span><br><span class="line">	Work Phone []: </span><br><span class="line">	Home Phone []: </span><br><span class="line">	Other []: </span><br><span class="line">Is the information correct? [Y/n] y</span><br></pre></td></tr></table></figure></p>
+<p>首先创建了一个新的用户组<code>chenming</code>。<br>在这个组内新建了用户<code>chenming</code>。<br>要求你输入密码。<br>要求输入一些其他信息，可以按回车略过。<br>最后按下<code>y</code>对以上信息进行确认。</p>
+<p><strong>实例：</strong>非<code>root</code>用户新增用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo adduser chenming</span><br></pre></td></tr></table></figure>
+<h1 id="给用户授权"><a href="#给用户授权" class="headerlink" title="给用户授权"></a>给用户授权</h1><p><strong>实例：</strong>把<code>chenming</code>加到<code>sudo</code>组里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# groups chenming</span><br><span class="line">chenming : chenming</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>chenming</code>只在<code>chenming</code>的组里面（前面是用户名，冒号后面是组名）。在这个组里面，可能很多命令你都不能执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# usermod -aG sudo chenming</span><br></pre></td></tr></table></figure>
+<p>再来看一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# groups chenming</span><br><span class="line">chenming : chenming sudo</span><br></pre></td></tr></table></figure>
+<p>look，进入了sudo组了，这下你可以臭屁了。</p>
+<p>还有一种方法可以加入<code>sodu</code>组。<br>如果是<code>root</code>用户。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# visudo</span><br></pre></td></tr></table></figure></p>
+<p>这个时候会打开一个文本编辑器，去编辑<code>/etc/sudoer</code>这个文件，可能是<code>vim</code>，也可能是<code>nano</code>。<br>找到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>在下面加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chenming ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>保存（vim下是<code>:x</code>，<code>nano</code>下是<code>ctrl+x</code>），退出，这样<code>chenming</code>这个用户就加入了<code>sudo</code>组。</p>
+<h1 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h1><p>仅仅删除用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# deluser chenming</span><br><span class="line">Removing user `chenming&apos; ...</span><br><span class="line">Warning: group `chenming&apos; has no more members.</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure></p>
+<p>将用户的目录也删除：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ay8Z:~# deluser --remove-home chenming</span><br></pre></td></tr></table></figure></p>
+<p>但这个时候，这个已经被删除的用户还是在<code>sudo</code>组里面。<br>参照上面的过程，使用visudo命令，删掉增加的那一行即可。</p>
 
       
     </div>
@@ -296,11 +289,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://www.oxysun.cn/js/js-npm-symbol-caret.html">https://www.oxysun.cn/js/js-npm-symbol-caret.html</a>
+      <a href="https://www.oxysun.cn/linux/ubuntu-user-add-delete.html">https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年07月11日</a>
+      <a href=""> 2018年07月12日</a>
     </p>
   </div>
 
@@ -313,21 +306,27 @@
     
       <footer class="post-footer">
         
+          <div class="post-tags"> 标签：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
         
         
   <nav class="post-nav">
     
-      <a class="prev" href="/linux/ubuntu-user-add-delete.html">
+      <a class="prev" href="/git/git-git-flow.1.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Ubuntu：新增和删除用户</span>
+        <span class="prev-text nav-default">Git：Git merge的--ff和--no-ff</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/js/js-npm-symbol-tilde.html">
+      <a class="next" href="/js/js-npm-symbol-caret.html">
         下一篇：
-        <span class="next-text nav-default">JS：NPM依赖包版本号波浪字符"~"</span>
+        <span class="next-text nav-default">JS：NPM依赖包版本号脱字符"^"</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

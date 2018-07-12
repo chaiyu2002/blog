@@ -242,7 +242,7 @@
 <blockquote>
 <p>Tilde Ranges ~1.2.3 ~1.2 ~1<br>Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.</p>
 </blockquote>
-<p>如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。</p>
+<p>如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子）</p>
 <blockquote>
 <p>~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0<br>~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)<br>~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)<br>~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0<br>~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)<br>~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)<br>~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</p>
 </blockquote>
@@ -288,10 +288,17 @@
         
   <nav class="post-nav">
     
+      <a class="prev" href="/js/js-npm-symbol-caret.html">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JS：NPM依赖包版本号脱字符"^"</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
     
-      <a class="next" href="/js/js-npm-symbol-caret.html">
+    
+      <a class="next" href="/linux/shell-command-tar.html">
         下一篇：
-        <span class="next-text nav-default">JS：NPM依赖包版本号脱字符"^"</span>
+        <span class="next-text nav-default">Linux下shell命令用法及常见用例：tar</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

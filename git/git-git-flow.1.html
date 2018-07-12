@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux, shell, MongoDB, 命令"/>
+  <meta name="description" content="Git：Git merge的--ff和--no-ff"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://www.oxysun.cn/archives/2018/06/"/>
+<link rel="canonical" href="https://www.oxysun.cn/git/git-git-flow.1.html"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -112,11 +112,7 @@
 </script>
 
 
-    <title>
-  
-    归档 - 老兵驿站
-  
-</title>
+    <title> Git：Git merge的--ff和--no-ff - 老兵驿站 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -210,80 +206,129 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            目前共计 18 篇日志
-          </span>
-        </div>
-      
-    
-
-    
-      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          Git：Git merge的--ff和--no-ff
         
-
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="http://www.oxysun.cn/"> 荒于嬉 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-07-12
+        </span>
         
-          
-          <div class="collection-title">
-            <h1 class="archive-year">2018</h1>
+          <div class="post-category">
+            
+              <a href="/categories/Git/">Git</a>
+            
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-collection-create.html" class="archive-post-link">
-            MongoDB：创建数据集合
-          </a>
-        </span>
+        
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>Git：Git merge的–ff和–no-ff。<br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git merge最容易糊涂的地方就是这个<code>--ff</code>参数和<code>--no-ff</code> 参数，通过本文，把这个整理清楚。</p>
+<p>其实官网讲的非常清楚，不过可能因为是英文的，所以大家阅读起来会有一些障碍。（PS：其实还是应该逐步逐步提高自己阅读英文文档的能力，想达到一个更高的高度，是需要客服自己本身很多的弱点的）</p>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>假设合并前的分支是这样，这个一个非常常见的场景，如果不明白，可以参考另外一篇文章Git Flow工作流：<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-4.png" alt="这里写图片描述"><br>这是一个很常见的用例，功能开发分支是<code>iss53</code>，在开发新功能，<code>master</code>分支是线上分支，出现了问题，开辟了<code>hotfix</code>分支进行修复，修复完成，进行合并，需要把<code>hotfix</code>合并回<code>master</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge hotfix</span><br><span class="line">Updating f42c576..3a0874c</span><br><span class="line">Fast-forward</span><br><span class="line"> index.html | 2 ++</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br></pre></td></tr></table></figure>
+<p>步骤如下：</p>
+<ol>
+<li>切换回master分支。</li>
+<li>将hotfix分支合并会master分支。<br>然后看到了<code>Fast-forward</code> 的字样，这个词组的意思就是快进，播放电影的时候，可以注意一下，快进按钮上面就是这个词组。<br>那么实际变成了什么样呢？<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-5.png" alt="这里写图片描述"><br>仅仅是<code>master</code>指针指向了这个提交<code>C4</code>。这样是一种比较快的合并方式，轻量级，简单。<br>这个时候，我们往往会删掉<code>hotfix</code>分支，因为它的历史作用已经结束，这个时候，我们的<code>iss53</code>这个功能又向前开发，进行了一次提交，到了<code>C5</code>，那么变成了这样：<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-6.png" alt="这里写图片描述"><br>然后，我们要把<code>iss53</code> 这个分支合并回<code>master</code>，就变成了这样：<br><img src="https://git-scm.com/book/en/v2/images/basic-merging-2.png" alt="这里写图片描述"><br>这个时候生成了一个新的<code>commit</code>号，这种提交就不是<code>fast-forward</code>（这个时候也无法生成<code>fast-forward</code>提交，因为要将两个版本的内容进行合并，只有在没有需要合并内容的时候，会有这个<code>fast-forward</code> 方式的提交）。<br>如果我们对第一次合并，使用了<code>--no-ff</code>参数，那么也会产生这样的结果，生成一个新的提交，实际上等于是对<code>C4</code> 进行一次复制，创建一个新的<code>commit</code>，这就是<code>--no-ff</code>的作用。<br><img src="https://i.stack.imgur.com/FMD5h.png" alt="这里写图片描述"></li>
+</ol>
+<p>参考：<a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging，这里讲了原理。" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging，这里讲了原理。</a><br>参考：<a href="https://git-scm.com/docs/git-merge，这里是参考。" target="_blank" rel="noopener">https://git-scm.com/docs/git-merge，这里是参考。</a></p>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-30
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/mongodb/mongodb-dababase-create.html" class="archive-post-link">
-            MongoDB：创建数据库
-          </a>
-        </span>
-      </div>
-    
-  </section>
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://www.oxysun.cn">荒于嬉</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://www.oxysun.cn/git/git-git-flow.1.html">https://www.oxysun.cn/git/git-git-flow.1.html</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年07月12日</a>
+    </p>
+  </div>
 
-  
-  <nav class="pagination">
+
+
+      
+      
     
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/linux/ubuntu-user-add-delete.html">
+        下一篇：
+        <span class="next-text nav-default">Ubuntu：新增和删除用户</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
 
       
+  
+  
+
+  
+
 
       
       <footer id="footer" class="footer">
@@ -359,6 +404,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     
