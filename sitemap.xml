@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-git-flow.1.html</loc>
+    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
     
-    <lastmod>2018-07-12T14:08:08.605Z</lastmod>
+    <lastmod>2018-07-12T14:10:22.679Z</lastmod>
     
   </url>
   
@@ -58,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
-    
-    <lastmod>2018-07-05T07:53:32.719Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/about/index.html</loc>
     
     <lastmod>2018-07-05T07:53:32.719Z</lastmod>
@@ -72,14 +65,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    
+    <lastmod>2018-07-05T07:53:32.719Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
@@ -191,6 +191,13 @@
   </url>
   
   <url>
+    <loc>https://www.oxysun.cn/categories/index.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
@@ -199,13 +206,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/atom/index.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/categories/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
