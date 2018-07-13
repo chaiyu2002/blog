@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/linux/shell-command-top.html</loc>
+    
+    <lastmod>2018-07-13T14:25:37.415Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
     
     <lastmod>2018-07-12T14:10:22.679Z</lastmod>
@@ -9,14 +16,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
     
     <lastmod>2018-07-12T13:01:38.528Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-12T13:01:38.528Z</lastmod>
     
@@ -72,14 +79,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
     <lastmod>2018-07-05T07:53:32.718Z</lastmod>
     
@@ -170,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
@@ -191,14 +191,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/categories/index.html</loc>
+    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/categories/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
