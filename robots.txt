@@ -1,4 +1,9 @@
 User-agent: *
-Disallow: /tags/
-Disallow: /page/
-Disallow: /categories/
+Allow: /
+Allow: /home/
+Allow: /archives/
+Allow: /about/
+Allow: /tags/
+Allow: /categories/
+Sitemap: https://www.oxysun.cn/sitemap.xml
+Sitemap: https://www.oxysun.cn/baidusitemap.xml
