@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-checkout-1.html</loc>
+    
+    <lastmod>2018-07-17T15:13:16.018Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/css/css-normal-flow.html</loc>
+    
+    <lastmod>2018-07-17T15:10:42.812Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-dababase-create.html</loc>
     
     <lastmod>2018-07-14T09:35:46.928Z</lastmod>
@@ -82,13 +96,6 @@
     <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
     
     <lastmod>2018-07-14T09:34:27.883Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/css/css-normal-flow.html</loc>
-    
-    <lastmod>2018-07-14T09:34:20.718Z</lastmod>
     
   </url>
   
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
