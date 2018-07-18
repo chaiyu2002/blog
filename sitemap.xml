@@ -2,142 +2,149 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-checkout-1.html</loc>
+    <loc>https://www.oxysun.cn/thinking%20in%20programmer%20life/full-stack-programmer.html</loc>
     
-    <lastmod>2018-07-17T15:13:16.018Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/css/css-normal-flow.html</loc>
-    
-    <lastmod>2018-07-17T15:10:42.812Z</lastmod>
+    <lastmod>2018-07-18T15:37:22.561Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-dababase-create.html</loc>
     
-    <lastmod>2018-07-14T09:35:46.928Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.851Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</loc>
     
-    <lastmod>2018-07-14T09:35:41.848Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.851Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</loc>
     
-    <lastmod>2018-07-14T09:35:35.220Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.850Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-create.html</loc>
     
-    <lastmod>2018-07-14T09:35:28.984Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
-    
-    <lastmod>2018-07-14T09:35:22.390Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.849Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
     
-    <lastmod>2018-07-14T09:35:16.618Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.847Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
-    <lastmod>2018-07-14T09:35:10.539Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
-    
-    <lastmod>2018-07-14T09:35:02.656Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/js/js-npm-symbol-caret.html</loc>
-    
-    <lastmod>2018-07-14T09:34:55.780Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
-    
-    <lastmod>2018-07-14T09:34:42.527Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
-    
-    <lastmod>2018-07-14T09:34:35.568Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
-    
-    <lastmod>2018-07-14T09:34:27.883Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
-    
-    <lastmod>2018-07-14T09:30:54.576Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
-    <lastmod>2018-07-14T09:27:01.597Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/shell-command-top.html</loc>
     
-    <lastmod>2018-07-14T09:26:55.214Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.845Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
-    <lastmod>2018-07-14T09:26:49.507Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
-    <lastmod>2018-07-14T09:26:43.932Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
-    <lastmod>2018-07-14T09:26:34.406Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.842Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.842Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/js/js-npm-symbol-caret.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.841Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.840Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.840Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.839Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-checkout-1.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.838Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/css/css-normal-flow.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.837Z</lastmod>
     
   </url>
   
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
@@ -191,6 +198,13 @@
   </url>
   
   <url>
+    <loc>https://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
@@ -199,13 +213,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
