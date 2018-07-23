@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。"><title>Linux下shell命令用法及常见用例：tar | 老兵驿站</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://s13.cnzz.com/z_stat.php?id=1273963895&amp;web_id=1273963895"></script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux下shell命令用法及常见用例：tar</h1><a id="logo" href="/.">老兵驿站</a><p class="description">一个IT老兵的驿站</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="linux"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Linux下shell命令用法及常见用例：tar</h1><div class="post-meta"><a href="/linux/shell-command-tar.html#comments" class="comment-count"></a><p><span class="date">Jul 10, 2018</span><span><a href="/categories/Linux/" class="category">Linux</a><a href="/categories/Linux/Shell/" class="category">Shell</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。</p>
+<a id="more"></a>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>tar [OPTION...] [FILE]...</code></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>Tar（Tape ARchive，磁带归档的缩写，最初设计用于将文件打包到磁带上，现在大都使用它来实现备份某个分区或者某些重要的目录）是类Unix系统中使用最广泛的命令，用于归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩，还能保留其文件权限。换言之，tar命令也可以用于备份：先是归档多个文件和目录到一个单独的tar文件或归档文件，然后在需要之时将tar文件中的文件和目录释放出来。</p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-A或–catenate</td>
+<td style="text-align:left">新增文件到以存在的备份文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-B</td>
+<td style="text-align:left">设置区块大小</td>
+</tr>
+<tr>
+<td style="text-align:left">-c或–create</td>
+<td style="text-align:left">建立新的备份文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-C&lt;目录&gt;</td>
+<td style="text-align:left">这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项</td>
+</tr>
+<tr>
+<td style="text-align:left">-d</td>
+<td style="text-align:left">记录文件的差别</td>
+</tr>
+<tr>
+<td style="text-align:left">-x或–extract或–get</td>
+<td style="text-align:left">从备份文件中还原文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-t或–list</td>
+<td style="text-align:left">列出备份文件的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">-z或–gzip或–ungzip</td>
+<td style="text-align:left">通过gzip指令处理备份文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-Z或–compress或–uncompress</td>
+<td style="text-align:left">通过compress指令处理备份文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-f&lt;备份文件&gt;或–file=&lt;备份文件&gt;</td>
+<td style="text-align:left">指定备份文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-v或–verbose</td>
+<td style="text-align:left">显示指令执行过程</td>
+</tr>
+<tr>
+<td style="text-align:left">-r</td>
+<td style="text-align:left">添加文件到已经压缩的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-u</td>
+<td style="text-align:left">添加改变了和现有的文件到已经存在的压缩文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-j</td>
+<td style="text-align:left">支持bzip2解压文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">显示操作过程</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">文件系统边界设置</td>
+</tr>
+<tr>
+<td style="text-align:left">-k</td>
+<td style="text-align:left">保留原有文件不覆盖</td>
+</tr>
+<tr>
+<td style="text-align:left">-m</td>
+<td style="text-align:left">保留文件不被覆盖</td>
+</tr>
+<tr>
+<td style="text-align:left">-w</td>
+<td style="text-align:left">确认压缩文件的正确性</td>
+</tr>
+<tr>
+<td style="text-align:left">-p或–same-permissions</td>
+<td style="text-align:left">用原来的文件权限还原文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-P或–absolute-names</td>
+<td style="text-align:left">文件名使用绝对名称，不移除文件名称前的“/”号</td>
+</tr>
+<tr>
+<td style="text-align:left">-N</td>
+<td style="text-align:left">&lt;日期格式&gt;或–newer=&lt;日期时间&gt;只将较指定日期更新的文件保存到备份文件里</td>
+</tr>
+<tr>
+<td style="text-align:left">–exclude=&lt;范本样式&gt;</td>
+<td style="text-align:left">排除符合范本样式的文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="什么是“文件压缩”？"><a href="#什么是“文件压缩”？" class="headerlink" title="什么是“文件压缩”？"></a>什么是“文件压缩”？</h2><p>我们知道，在计算机系统中文件的内容是信息，信息实际上就是一个由值0和值1组成的位（又称为比特）序列，8个位被组织成一组，称为字节。一般来说，一个字节的8位是没有被全部利用起来的，这些没有被利用的位占据了一个文件的大部分空间，而“文件压缩”就是利用复杂的计算方式，将这些没有利用的空间腾出来，以让文件占用的空间变小。</p>
+<p>简单来说，「压缩」就是把文件中没有完全填满的空间填满。压缩过的文件不能直接被操作系统所使用，因此，「解压缩」就是指把文件「还原」为未压缩之前的模样。压缩前与压缩后的文件所占用的磁盘空间大小之比就是「压缩比」。</p>
+<!-- more -->
+<h2 id="常见的压缩格式"><a href="#常见的压缩格式" class="headerlink" title="常见的压缩格式"></a>常见的压缩格式</h2><p>Linux 中常见的压缩格式有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*.Z：compress 程序压缩的文件。</span><br><span class="line">*.gz：gzip 程序压缩的文件。</span><br><span class="line">*.bz2：bzip2 程序压缩的文件。</span><br><span class="line">*.tar：tar 程序打包的数据，没有被压缩过。</span><br><span class="line">*.tar.gz（简写为 .tgz）：tar 程序打包的数据，经过 gzip 的压缩。</span><br><span class="line">*.tar.bz2（简写为 .tbz2）：tar 程序打包的数据，经过 bzip2 的压缩。</span><br></pre></td></tr></table></figure>
+<p>上面的压缩格式中，主要是gzip和bzip2两个压缩命令，它们是GNU计划的中的一部分，在此之前是compress命令，但它已经不再流行了。bzip2比gzip的压缩比很好，不过bzip2通常只能针对一个文件来压缩和解压缩。如果是这样的话，压缩整个开发环境目录就太繁琐了。</p>
+<p>因此tar命令就出现了，tar不是一个 “压缩命令”，而是一个“打包命令”。也就是说，tar可以把很多文件「打包」成一个文件，甚至连目录也可以进行打包。一开始tar命令的确是不支持压缩的功能，后来GNU计划为了提供给使用者更方便并且更加强大的压缩与打包功能，就把整个tar与压缩的功能结合在一起了。</p>
+<p>仅仅打包起来的tar文件俗称tarfile文件，经过压缩的tar文件叫做tarball文件。</p>
+<h2 id="全能的-tar-命令"><a href="#全能的-tar-命令" class="headerlink" title="全能的 tar 命令"></a>全能的 tar 命令</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>tar可以将多个目录或文件打成一个大文件，同时支持gzip/bzip2</p>
+<p>归档：tar {-c} [option…] -f destination source<br>追加归档：tar {-r | -u} -f source [option…] destination<br>解压：tar {-t | -x} -f source [option…] -C destination</p>
+<p>最简单的使用 tar 只要记住下面的方式：</p>
+<ul>
+<li>压缩：tar -jcv -f filename.tar.bz2 被压缩的文件或目录名称</li>
+<li>查看文件：tar -jtv -f filename.tar.bz2 </li>
+<li>解压缩：tar -jxv -f filename.tar.gz -C 解压到哪里</li>
+</ul>
+<p>filename.tar.bz2 既然tar不是一个压缩命令，是个打包命令，那么是如何做到打包并压缩的呢？我们先来看一下tar命令的常用参数：</p>
+<h3 id="模式参数"><a href="#模式参数" class="headerlink" title="模式参数"></a>模式参数</h3><ul>
+<li>-c（–create）：创建新的归档文件。</li>
+<li>-r（–append）：与-c一样创建新的归档文件，但这是以追加的模式，只能往未压缩过的归档文件中追加，要求指定-f参数。</li>
+<li>-t：查看归档文件的内容含有哪些文件，可以看到包括文件名在内的详细信息。</li>
+<li>-u：与-r一样，但是只往归档文件添加更新的文件。</li>
+<li>-x：解压缩归档文件。如果一个归档文件里有相同文件名的多个文件，那么会先将每个文件解压，最新的文件将覆盖旧的文件。</li>
+</ul>
+<p>tar分为三种模式，-c，-r，-u三个一类，为归档/压缩模式，在该模式下，tar会递归遍历指定目录下的所有目录和文件，并创建归档文件。-x表示为去归档/解压模式，-t表示为打印列表模式。</p>
+<h3 id="通用参数"><a href="#通用参数" class="headerlink" title="通用参数"></a>通用参数</h3><ul>
+<li>-j：使用bzip2的支持进行压缩和解压缩，文件名最好为*.tar.bz2。</li>
+<li>-z：使用gzip的支持进行压缩和解压缩，文件名最好为*.tar.gz。</li>
+<li>-v：在压缩/解压缩的过程中，将正在处理的文件名显示出来。</li>
+<li>-f：后面接被处理的文件名，最好把-f单独出来写一个参数。</li>
+<li>-C：指定解压的目录。</li>
+<li>-p：保留文件的原始信息，权限等等</li>
+<li>-P：解压时保留绝对路径。</li>
+<li>–exclude=FILE：在打包压缩的时候，不要将FILE打包。</li>
+</ul>
+<h3 id="打包并创建归档文件"><a href="#打包并创建归档文件" class="headerlink" title="打包并创建归档文件"></a><strong>打包并创建归档文件</strong></h3><p>示例：打包一个目录。<br>描述：将/home/test这个目录打包，生成文件名为command-18-06-02.tar的归档文件，保存在当前目录下。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -cv -f command-18-06-02.tar /home/test</span><br><span class="line">/home/test/.bash_logout</span><br><span class="line">/home/test/.bashrc</span><br><span class="line">/home/test/apache-tomcat-9.0.7.tar.gz</span><br><span class="line">/home/test/.bash_profile</span><br><span class="line">/home/test/nginx-1.10.1.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>-c（–create的简写）参数，这表示为指定的文件或者目录创建新的归档文件。使用-f指定读取或者写入的归档文件，可以用-表示标准输入或者标准输出，-f可以与其他参数连起来写，必须保证f参数后面跟的是文件名。但不推荐这样写，因为参数调换顺序是允许的，如果写成-cfv就会导致压缩后的文件名变成了v。</p>
+<p>使用-v表示生成详细的输出，在压缩或者解压的模式中，会列出正在向归档文件读或者写的文件名字。</p>
+<h3 id="创建tar-gz归档文件"><a href="#创建tar-gz归档文件" class="headerlink" title="创建tar.gz归档文件"></a><strong>创建tar.gz归档文件</strong></h3><p>示例：打包并且使用gzip压缩。<br>描述：将/home/test/images目录下的所有文件以及目录中的文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.gz /home/test/images</span><br><span class="line">OR</span><br><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.tgz /home/test/images</span><br><span class="line">/home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">/home/test/images/brooke-lark-275181.jpg</span><br><span class="line">/home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">/home/test/images/artur-rutkowski-97622.jpg</span><br><span class="line">/home/test/images/ben-white-138743.jpg</span><br></pre></td></tr></table></figure>
+<p>-z表示要使用gzip支持来压缩或者解压文件，注意gzip的压缩的文件格式最好写成tar.gz。（注：tar.gz 和 tgz 是同一个意思）</p>
+<h3 id="打包压缩排除某些文件"><a href="#打包压缩排除某些文件" class="headerlink" title="打包压缩排除某些文件"></a><strong>打包压缩排除某些文件</strong></h3><p>示例：打包压缩并排除某些文件。<br>描述：将/home/test/images目录下，排除brooke-lark-275181.jpg和ben-white-138743.jpg之外的所有文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -czv -f MyImages-18-06-02.tar.gz --exclude=./brooke-lark-275181.jpg --exclude=./ben-white-138743.jpg /home/test/images</span><br><span class="line">/home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">/home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">/home/test/images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="解压归档文件（默认）"><a href="#解压归档文件（默认）" class="headerlink" title="解压归档文件（默认）"></a><strong>解压归档文件（默认）</strong></h3><p>示例：解压，默认解压。<br>描述：将名为MyImages-18-06-02.tar的归档文件解压至当前目录下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -xvf MyImages-18-06-02.tar</span><br><span class="line">home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">home/test/images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
+<p>其中，-x参数表示去解压一个归档文件，如果归档文件中有两个相同名字的文件，那么每一个文件都会被解压出来，然后最新的会覆盖旧的文件。注意这里没有指定-j参数，因为tar看到指定了-x参数，就知道这是解压操作，会自动判断该解压包的压缩类型。</p>
+<h3 id="解压归档文件并指定目录"><a href="#解压归档文件并指定目录" class="headerlink" title="解压归档文件并指定目录"></a><strong>解压归档文件并指定目录</strong></h3><p>示例：解压到一个指定目录。<br>描述：将名为MyImages-18-06-02.tar.gz的归档文件解压至一个指定的目录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -xv -f MyImages-18-06-02.tar -C /home/test/public_images</span><br><span class="line">home/test/public_images/alejandro-gonzalez-17189.jpg</span><br><span class="line">home/test/public_images/brenda-godinez-228181.jpg</span><br><span class="line">home/test/public_images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="查看压缩包文件信息"><a href="#查看压缩包文件信息" class="headerlink" title="查看压缩包文件信息"></a><strong>查看压缩包文件信息</strong></h3><p>示例：查看压缩包文件信息。<br>描述：列出MyImages-18-06-02.tar.bz2中的文件信息，-v参数，会生成与ls(1)命令相近的输出。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -tv -f MyImages-18-06-02.tar.gz</span><br><span class="line">OR</span><br><span class="line"><span class="meta">#</span> tar -tv -f MyImages-18-06-02.tar.bz2</span><br><span class="line">-rw-r--r-- root/root   2176861 2018-06-02 21:26 home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">-rw-r--r-- root/root   8452524 2018-06-02 21:26 home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">-rw-r--r-- root/root   1131986 2018-06-02 21:26 home/test/images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="解压单个文件"><a href="#解压单个文件" class="headerlink" title="解压单个文件"></a><strong>解压单个文件</strong></h3><p>示例：解压单个文件。<br>描述：将home/test/.bashrc这一个文件从归档文件中提取出来。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -xv -f command-18-06-02.tar home/test/.bashrc</span><br><span class="line">home/test/.bashrc</span><br></pre></td></tr></table></figure>
+<h3 id="解压多个指定的文件"><a href="#解压多个指定的文件" class="headerlink" title="解压多个指定的文件"></a><strong>解压多个指定的文件</strong></h3><p>示例：解压多个指定的文件。<br>描述：将file1、file2等多个文件从归档文件中提取出来，可以用空格隔开多个文件，也可以用通配符的形式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -zxv -f MyImages-18-06-02.tar.gz "file 1" "file 2"</span><br><span class="line">OR</span><br><span class="line"><span class="meta">#</span> tar -zxv -f MyImages-18-06-02.tar.gz --wildcards '*b*.jpg'</span><br><span class="line">home/test/images/brooke-lark-275181.jpg</span><br><span class="line">home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">home/test/images/ben-white-138743.jpg</span><br><span class="line">home/test/images/aleks-dahlberg-274646.jpg</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/js/js-npm-symbol-tilde.html" class="pre">JS：NPM依赖包版本号波浪字符&quot;~&quot;</a><a href="/css/css-normal-flow.html" class="next">CSS：文档流</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是“文件压缩”？"><span class="toc-text">什么是“文件压缩”？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的压缩格式"><span class="toc-text">常见的压缩格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全能的-tar-命令"><span class="toc-text">全能的 tar 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概要"><span class="toc-text">概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模式参数"><span class="toc-text">模式参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用参数"><span class="toc-text">通用参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包并创建归档文件"><span class="toc-text">打包并创建归档文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建tar-gz归档文件"><span class="toc-text">创建tar.gz归档文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包压缩排除某些文件"><span class="toc-text">打包压缩排除某些文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解压归档文件（默认）"><span class="toc-text">解压归档文件（默认）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解压归档文件并指定目录"><span class="toc-text">解压归档文件并指定目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看压缩包文件信息"><span class="toc-text">查看压缩包文件信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解压单个文件"><span class="toc-text">解压单个文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解压多个指定的文件"><span class="toc-text">解压多个指定的文件</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/js/js-logical-operator.html">JS：逻辑操作符“||”、“&&”和“!”</a></li><li class="post-list-item"><a class="post-list-link" href="/thinking in programmer life/full-stack-programmer.html">程序员晋升之路：生存意识、服务意识--IT老兵的心得</a></li><li class="post-list-item"><a class="post-list-link" href="/git/git-checkout-1.html">Git：checkout的用法（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/shell-command-top.html">Linux下shell命令用法及常见用例：top</a></li><li class="post-list-item"><a class="post-list-link" href="/git/git-git-merge-ff-no-ff.html">Git：Git merge的--ff和--no-ff</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/ubuntu-user-add-delete.html">Ubuntu：新增和删除用户</a></li><li class="post-list-item"><a class="post-list-link" href="/js/js-npm-symbol-caret.html">JS：NPM依赖包版本号脱字符"^"</a></li><li class="post-list-item"><a class="post-list-link" href="/js/js-npm-symbol-tilde.html">JS：NPM依赖包版本号波浪字符"~"</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/shell-command-tar.html">Linux下shell命令用法及常见用例：tar</a></li><li class="post-list-item"><a class="post-list-link" href="/css/css-normal-flow.html">CSS：文档流</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Shell/">Shell</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MongoDB/">MongoDB</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/JS-逻辑操作符/" style="font-size: 15px;">JS,逻辑操作符</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">荒于嬉.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-120983285-1','auto');ga('send','pageview');
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>

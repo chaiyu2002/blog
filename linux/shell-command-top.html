@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。"><title>Linux下shell命令用法及常见用例：top | 老兵驿站</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script src="https://s13.cnzz.com/z_stat.php?id=1273963895&amp;web_id=1273963895"></script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux下shell命令用法及常见用例：top</h1><a id="logo" href="/.">老兵驿站</a><p class="description">一个IT老兵的驿站</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="linux"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Linux下shell命令用法及常见用例：top</h1><div class="post-meta"><a href="/linux/shell-command-top.html#comments" class="comment-count"></a><p><span class="date">Jul 13, 2018</span><span><a href="/categories/Linux/" class="category">Linux</a><a href="/categories/Linux/Shell/" class="category">Shell</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p><code>top</code>命令可以实时动态地查看系统的整体运行情况，是一个综合了多方信息监测系统性能和运行信息的使用工具。<code>top</code>命令提供了互动式的界面，用热键管理。这个命令是一个非常重要和常用的命令，但是同时也有点复杂，参数较多，怎么能够掌握好呢？用了这么多年，也都一直没有用好。老老实实读一遍手册，总体了解一下都有什么才好去做整理，有的时候可能连它都有什么功能都不知道。</p>
+<a id="more"></a>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>top [选项]</code></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p><code>top</code>命令用来显示<code>Linux</code>的处理器活动和内核实时管理的任务。它会显示正在使用的处理器和内存以及运行进程等其他信息。</p>
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>-b：以批处理模式操作。</li>
+<li>-c：显示完整的命令。</li>
+<li>-d：屏幕刷新间隔时间。</li>
+<li>-I：忽略失效过程。</li>
+<li>-s：保密模式。</li>
+<li>-S：累积模式。</li>
+<li>-i&lt;时间&gt;：设置间隔时间。</li>
+<li>-u&lt;用户名&gt;：指定用户名。</li>
+<li>-p&lt;进程号&gt;：指定进程。</li>
+<li>-n&lt;次数&gt;：循环显示的次数。</li>
+</ul>
+<h2 id="top交互命令"><a href="#top交互命令" class="headerlink" title="top交互命令"></a><code>top</code>交互命令</h2><p>在<code>top</code>命令执行过程中可以使用的一些交互命令。这些命令都是单字母的，如果在命令行中使用了-s选项， 其中一些命令可能会被屏蔽。</p>
+<ul>
+<li>h：显示帮助画面，给出一些简短的命令总结说明。</li>
+<li>k：终止一个进程。</li>
+<li>i：忽略闲置和僵死进程，这是一个开关式命令。</li>
+<li>q：退出程序。</li>
+<li>r：重新安排一个进程的优先级别。</li>
+<li>S：切换到累计模式。</li>
+<li>s：改变两次刷新之间的延迟时间（单位为s），如果有小数，就换算成ms。输入0值则系统将不断刷新，默认值是5s。</li>
+<li>f或者F：从当前显示中添加或者删除项目。</li>
+<li>o或者O：改变显示项目的顺序。</li>
+<li>l：切换显示平均负载和启动时间信息。</li>
+<li>m：切换显示内存信息。</li>
+<li>t：切换显示进程和CPU状态信息。</li>
+<li>c：显示进程启动时的完整路径和程序名。</li>
+<li>M：根据驻留内存大小进行排序。</li>
+<li>P：根据CPU使用百分比大小进行排序。</li>
+<li>T：根据时间/累计时间进行排序。</li>
+<li>w：将当前设置写入~/.toprc文件中。</li>
+</ul>
+<h2 id="界面解释"><a href="#界面解释" class="headerlink" title="界面解释"></a>界面解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">top - 21:52:52 up 247 days,  6:23,  2 users,  load average: 0.09, 0.12, 0.13</span><br><span class="line">Tasks: 126 total,   1 running, 125 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu(s):  4.0 us,  2.3 sy,  0.0 ni, 93.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem :  3881808 total,   153396 free,  3577588 used,   150824 buff/cache</span><br><span class="line">KiB Swap:  4063228 total,  1206484 free,  2856744 used.    86344 avail Mem</span><br></pre></td></tr></table></figure>
+<p>统计信息区前五行是系统整体的统计信息。<br><strong>系统运行时间和平均负载</strong><br>第一行是任务队列信息，同uptime命令的执行结果，可以使用l命令切换uptime的显示。其内容如下：</p>
+<ul>
+<li>21:52:52：当前时间。</li>
+<li>up 247 days, 6:23：系统运行时间。</li>
+<li>2 users：当前登录用户数。</li>
+<li>load average: 0.09, 0.12, 0.13：系统负载，即任务队列平均长度。分别为1、5、15min前到现在平均值。</li>
+</ul>
+<p><strong>进程</strong><br>第二行为进程信息。内容如下：</p>
+<ul>
+<li>126 total：进程总数[键入H可查看线程数]。</li>
+<li>1 running：正在运行的进程。</li>
+<li>125 sleeping：睡眠进程。</li>
+<li>0 stopped：停止的进程。</li>
+<li>0 zombie：僵尸进程数。</li>
+</ul>
+<p><strong>CPU状态</strong><br>第三行为CPU状态信息，当有多个CPU时，这些内容可能会超过两行。内容如下：</p>
+<ul>
+<li>us, user：运行(未调整优先级的) 用户进程的CPU百分比。</li>
+<li>sy，system：运行内核进程的CPU百分比。</li>
+<li>ni，niced：运行已调整优先级的用户进程的CPU百分比。</li>
+<li>wa，IO wait：用于等待IO完成的CPU百分比。</li>
+<li>hi：处理硬件中断的CPU百分比。</li>
+<li>si：处理软件中断的CPU百分比。</li>
+<li>st：这个虚拟机被hypervisor偷去的CPU百分比。（译注：如果当前处于一个hypervisor下的vm，实际上hypervisor也是要消耗一部分CPU处理时间的）。</li>
+</ul>
+<p><strong>内存使用</strong><br>倒数第2、3行为内存相关信息，内存显示可以用m命令切换：</p>
+<ul>
+<li>KiB Mem: 3881808 total,   153396 free：分别是物理内存总量、空闲内存总量。</li>
+<li>3577588 used,   150824 buff/cache：使用物理内存总量、用作内核缓存内存量。</li>
+<li>KiB Swap: 4063228 total,  1206484 free：分别是交换分区总量、使用交换分区剩余量。</li>
+<li>2856744 used.    86344 avail Mem：可用来启动应用的内存（有些复杂，以后解释，恶意参考<a href="https://unix.stackexchange.com/questions/390518/what-do-the-buff-cache-and-avail-mem-fields-in-top-mean" target="_blank" rel="noopener">这里</a>）。</li>
+</ul>
+<p><strong>字段/列</strong><br>最后一行则是进程相关的资源占用信息：</p>
+<ul>
+<li>PID：进程的ID，进程的唯一标识符。</li>
+<li>USER：进程所有者的实际用户名。</li>
+<li>PR：进程的优先级别，范围0-39，越小越优先被执行。</li>
+<li>NI：nice值。范围-20-19，负值表示高优先级，正值表示低优先级。在top里，PR-NI=20，默认启动一个进程，nice是0。</li>
+<li>VIRT：进程占用的虚拟内存。</li>
+<li>RES：进程占用的物理内存。</li>
+<li>SHR：进程使用的共享内存。</li>
+<li>S：进程的状态。<ul>
+<li>D：表示不可终端的睡眠状态。</li>
+<li>R：表示正在运行。</li>
+<li>S：表示休眠。</li>
+<li>T：表示作业控制信号下已停止。</li>
+<li>t：表示在调试状态的停止。</li>
+<li>Z：表示僵死状态。</li>
+</ul>
+</li>
+<li>%CPU：自从上一次更新到现在任务所使用的CPU使用率。</li>
+<li>%MEM：进程使用的物理内存和总内存的百分比。</li>
+<li>TIME+：该进程启动后占用的总的CPU时间，即占用CPU使用时间的累加值，精确到百分之一秒。</li>
+<li>COMMAND：进程启动命令名称。</li>
+</ul>
+<h2 id="交互命令实例"><a href="#交互命令实例" class="headerlink" title="交互命令实例"></a>交互命令实例</h2><p><strong>实例：<code>h</code>：帮助</strong><br>描述：在<code>top</code>状态下，按<code>h</code>键或者<code>?</code>键显示交互命令的帮助菜单。<br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Help for Interactive Commands - procps-ng version 3.3.10</span><br><span class="line">Window 1:Def: Cumulative mode Off.  System: Delay 3.0 secs; Secure mode Off.</span><br><span class="line"></span><br><span class="line">  Z,B,E,e   Global: &apos;Z&apos; colors; &apos;B&apos; bold; &apos;E&apos;/&apos;e&apos; summary/task memory scale</span><br><span class="line">  l,t,m     Toggle Summary: &apos;l&apos; load avg; &apos;t&apos; task/cpu stats; &apos;m&apos; memory info</span><br><span class="line">  0,1,2,3,I Toggle: &apos;0&apos; zeros; &apos;1/2/3&apos; cpus or numa node views; &apos;I&apos; Irix mode</span><br><span class="line">  f,F,X     Fields: &apos;f&apos;/&apos;F&apos; add/remove/order/sort; &apos;X&apos; increase fixed-width</span><br><span class="line"></span><br><span class="line">  L,&amp;,&lt;,&gt; . Locate: &apos;L&apos;/&apos;&amp;&apos; find/again; Move sort column: &apos;&lt;&apos;/&apos;&gt;&apos; left/right</span><br><span class="line">  R,H,V,J . Toggle: &apos;R&apos; Sort; &apos;H&apos; Threads; &apos;V&apos; Forest view; &apos;J&apos; Num justify</span><br><span class="line">  c,i,S,j . Toggle: &apos;c&apos; Cmd name/line; &apos;i&apos; Idle; &apos;S&apos; Time; &apos;j&apos; Str justify</span><br><span class="line">  x,y     . Toggle highlights: &apos;x&apos; sort field; &apos;y&apos; running tasks</span><br><span class="line">  z,b     . Toggle: &apos;z&apos; color/mono; &apos;b&apos; bold/reverse (only if &apos;x&apos; or &apos;y&apos;)</span><br><span class="line">  u,U,o,O . Filter by: &apos;u&apos;/&apos;U&apos; effective/any user; &apos;o&apos;/&apos;O&apos; other criteria</span><br><span class="line">  n,#,^O  . Set: &apos;n&apos;/&apos;#&apos; max tasks displayed; Show: Ctrl+&apos;O&apos; other filter(s)</span><br><span class="line">  C,...   . Toggle scroll coordinates msg for: up,down,left,right,home,end</span><br><span class="line"></span><br><span class="line">  k,r       Manipulate tasks: &apos;k&apos; kill; &apos;r&apos; renice</span><br><span class="line">  d or s    Set update interval</span><br><span class="line">  W,Y       Write configuration file &apos;W&apos;; Inspect other output &apos;Y&apos;</span><br><span class="line">  q         Quit</span><br><span class="line">          ( commands shown with &apos;.&apos; require a visible task display window ) </span><br><span class="line">Press &apos;h&apos; or &apos;?&apos; for help with Windows,</span><br><span class="line">Type &apos;q&apos; or &lt;Esc&gt; to continue</span><br></pre></td></tr></table></figure>
+<p><strong>实例：显示各个CPU负载</strong><br>描述：在<code>top</code>状态下，按下“1”，可以显示每个CPU的负载情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">top - 22:30:09 up 247 days,  7:00,  2 users,  load average: 0.16, 0.14, 0.14</span><br><span class="line">Tasks: 126 total,   1 running, 125 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu0  :  0.3 us,  0.3 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu1  :  0.3 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu2  :  0.3 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu3  :  0.3 us,  0.3 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem :  3881808 total,   141164 free,  3578540 used,   162104 buff/cache</span><br><span class="line">KiB Swap:  4063228 total,  1206756 free,  2856472 used.    79768 avail Mem</span><br></pre></td></tr></table></figure>
+<p><strong>实例：手动刷新</strong><br>描述：在<code>top</code>状态下，按空格或者回车进行手动刷新。top命令默认在一个特定间隔（3秒）后刷新显示。</p>
+<p><strong>实例：<code>A</code>：切换交替显示模式</strong></p>
+<p>描述：在<code>top</code>状态下，按<code>A</code>键，可以在全屏和交替模式间切换。在交替模式下会显示4个窗口。</p>
+<ul>
+<li>Def（默认字段组）</li>
+<li>Job（任务字段组）</li>
+<li>Mem（内存字段组）</li>
+<li>Usr（用户字段组）</li>
+</ul>
+<p>这四组字段共有一个独立的可配置的概括区域和它自己的可配置任务区域。4个窗口中只有一个窗口是当前窗口。当前窗口的名称显示在左上方。只有当前窗口才会接受你键盘交互命令。<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-A.png" alt=""><br>可以用<code>a</code>和<code>w</code>在4个窗口间切换，<code>a</code>移到后一个窗口，<code>w</code>移到前一个窗口。用<code>g</code>命令可以输入一个数字来选择当前窗口。<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-switch.png" alt=""></p>
+<p><strong>实例：<code>B</code>：粗体显示</strong><br>描述：在<code>top</code>状态下，按<code>B</code>键，会将一些重要信息会以加粗字体显示。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-B.png" alt=""></p>
+<p><strong>实例：<code>d</code>或<code>s</code>：设置显示的刷新间隔</strong><br>描述：在<code>top</code>状态下，按<code>d</code>键或者<code>s</code>键，设置显示的刷新间隔为1秒。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-d-s.png" alt=""></p>
+<p><strong>实例：<code>f</code>：字段管理</strong><br>描述：在<code>top</code>状态下，按<code>f</code>键进入字段管理界面。d键选择要显示的字段，用*标记的是已选择的。上下光标键在字段内导航，左光标键可以选择字段，右光标键进入排序状态，此时按上下光标键可以进行上下移动，回车确认。s键设置当前排序的字段，q或Esc键退出。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-f.png" alt=""></p>
+<p><strong>实例：<code>R</code>：反向排序</strong><br>描述：在<code>top</code>状态下，按<code>R</code>键切换反向/常规排序。</p>
+<p><strong>实例：<code>c</code>：切换显示命令名称和完整命令行</strong><br>描述：在<code>top</code>状态下，按<code>c</code>键，切换是否显示进程启动时的完整路径和程序名。也可以使用如下命令行。<br>命令：<code>top -c</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-c.png" alt=""></p>
+<p><strong>实例：<code>i</code>：空闲任务</strong><br>描述：在<code>top</code>状态下，按i键，切换显示空闲任务。<br>输出：<br>不显示空闲任务：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-i.png" alt=""></p>
+<p><strong>实例：<code>V</code>：树视图</strong><br>描述：在<code>top</code>状态下，按V键，切换树视图。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-V.png" alt=""></p>
+<p><strong>实例：<code>z</code>：切换彩色显示</strong><br>描述：在<code>top</code>状态下，按<code>z</code>键，切换彩色，即打开或关闭彩色显示。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-z-normal.png" alt=""></p>
+<p><strong>实例：<code>Z</code>：改变配色</strong><br>描述：在<code>top</code>状态下，按<code>Z</code>键，显示一个改变<code>top</code>命令的输出颜色的屏幕。可以为8个任务区域选择8种颜色。<br>输出：<br>设置修改：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-Z.png" alt=""><br>显示效果：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-Z-show.png" alt=""></p>
+<p><strong>实例：按照内存使用大小排序</strong><br>描述：在<code>top</code>状态下，按shift+m，可以按照内存使用大小排序进程。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-M.png" alt=""></p>
+<p><strong>实例：<code>x、y</code>：切换高亮信息</strong><br>描述：在<code>top</code>状态下，按<code>x</code>键将排序字段高亮显示（纵列）；按<code>y</code>键将运行进程高亮显示（横行）。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-x-y.png" alt=""></p>
+<p><strong>实例：<code>u</code>：特定用户的进程</strong><br>描述：在<code>top</code>状态下，按u键将会提示输入用户名，输入首显示特定用户的进程。空白将会显示全部用户。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-u.png" alt=""></p>
+<p><strong>实例：<code>n或#</code>：任务的数量</strong><br>描述：在<code>top</code>状态下，按n键或者<code>#</code>键可以设置最大显示的任务数量。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-n-#.png" alt=""></p>
+<p><strong>实例：<code>k</code>：结束任务</strong><br>描述：在<code>top</code>状态下，按<code>k</code>键输入<code>PID</code>后，发送信号给任务（通常是结束任务）。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-k.png" alt=""></p>
+<p><strong>实例：<code>r</code>：重新设置优先级</strong><br>描述：在<code>top</code>状态下，按<code>r</code>键输入-20~19范围中的数字后，重新设置一个任务的调度优先级（nice值）。<br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-k.png" alt=""></p>
+<h2 id="命令行实例"><a href="#命令行实例" class="headerlink" title="命令行实例"></a>命令行实例</h2><p><strong>实例：<code>-p</code>：监控特定的PID</strong><br>描述：-p选项监控指定的PID。PID的值为0将被作为top命令自身的PID。<br>命令：<code>top -p 0</code></p>
+<p><strong>实例：<code>-u或-U</code>: 用户名或者UID</strong><br>描述：可以用这些选项浏览特定用户的进程。用户名或者UID可以在选项中指定。-p、-u和-U选项是互斥的，同时只可以使用这其中一个选项。试图组合使用这些选项时，会得到一个错误:<br>命令：<code>top -p 1248 -u root</code><br>输出：<br><img src="http://p9xqnn501.bkt.clouddn.com/top/top-U-p-u-error.png" alt=""></p>
+<p><strong>实例：<code>-b</code>：批处理模式</strong><br>描述：-b选项以批处理模式启动top命令，在文件中保存输出时是很有用的。</p>
+<p><strong>实例：<code>-c</code>：命令/程序名 触发:</strong><br>描述：显示进程启动时的完整路径和程序名。</p>
+<p><strong>实例：<code>-d</code>：设置延迟间隔</strong><br>描述：设置top的显示间隔(以秒计)。<br>命令：<code>top -d 1</code></p>
+<p><strong>实例：<code>-i</code>：切换显示空闲进程</strong><br>命令：<code>top -i</code></p>
+<p><strong>实例：<code>-n</code>：特定重复次数后退出</strong><br>描述：top输出保持刷新，直到按q键或者到达指定次数。下面的命令将在10次重复之后自动退出。<br>命令：<code>top -n 10</code></p>
+</div><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/git/git-checkout-1.html" class="pre">Git：checkout的用法（1）</a><a href="/git/git-git-merge-ff-no-ff.html" class="next">Git：Git merge的--ff和--no-ff</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令选项"><span class="toc-text">命令选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#top交互命令"><span class="toc-text">top交互命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#界面解释"><span class="toc-text">界面解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交互命令实例"><span class="toc-text">交互命令实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行实例"><span class="toc-text">命令行实例</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/js/js-logical-operator.html">JS：逻辑操作符“||”、“&&”和“!”</a></li><li class="post-list-item"><a class="post-list-link" href="/thinking in programmer life/full-stack-programmer.html">程序员晋升之路：生存意识、服务意识--IT老兵的心得</a></li><li class="post-list-item"><a class="post-list-link" href="/git/git-checkout-1.html">Git：checkout的用法（1）</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/shell-command-top.html">Linux下shell命令用法及常见用例：top</a></li><li class="post-list-item"><a class="post-list-link" href="/git/git-git-merge-ff-no-ff.html">Git：Git merge的--ff和--no-ff</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/ubuntu-user-add-delete.html">Ubuntu：新增和删除用户</a></li><li class="post-list-item"><a class="post-list-link" href="/js/js-npm-symbol-caret.html">JS：NPM依赖包版本号脱字符"^"</a></li><li class="post-list-item"><a class="post-list-link" href="/js/js-npm-symbol-tilde.html">JS：NPM依赖包版本号波浪字符"~"</a></li><li class="post-list-item"><a class="post-list-link" href="/linux/shell-command-tar.html">Linux下shell命令用法及常见用例：tar</a></li><li class="post-list-item"><a class="post-list-link" href="/css/css-normal-flow.html">CSS：文档流</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Shell/">Shell</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MongoDB/">MongoDB</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/JS-逻辑操作符/" style="font-size: 15px;">JS,逻辑操作符</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">荒于嬉.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-120983285-1','auto');ga('send','pageview');
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>
