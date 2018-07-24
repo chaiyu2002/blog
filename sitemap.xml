@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-revert.html</loc>
+    
+    <lastmod>2018-07-24T14:10:39.911Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
+    
+    <lastmod>2018-07-24T14:10:07.742Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/blockchain/mongodb-collection-aggregation-introduction.html</loc>
     
     <lastmod>2018-07-23T14:38:09.946Z</lastmod>
@@ -107,14 +121,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
@@ -128,14 +142,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
+    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
     
     <lastmod>2018-07-18T11:09:55.842Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
     
     <lastmod>2018-07-18T11:09:55.842Z</lastmod>
     
@@ -150,13 +164,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.840Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
     
     <lastmod>2018-07-18T11:09:55.840Z</lastmod>
     
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     

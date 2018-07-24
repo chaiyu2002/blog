@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-07-23T14:38:09.946Z</updated>
+  <updated>2018-07-24T14:10:39.911Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git：revert的使用</title>
+    <link href="https://www.oxysun.cn/git/git-revert.html"/>
+    <id>https://www.oxysun.cn/git/git-revert.html</id>
+    <published>2018-07-24T14:10:00.000Z</published>
+    <updated>2018-07-24T14:10:39.911Z</updated>
+    
+    <content type="html"><![CDATA[<p>Git：revert的使用。<br><a id="more"></a></p><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git-revert - Revert some existing commits // 撤销一些已经存在的提交</span><br></pre></td></tr></table></figure><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git revert [--[no-]edit] [-n] [-m parent-number] [-s] [-S[&lt;keyid&gt;]] &lt;commit&gt;…​</span><br><span class="line">git revert --continue</span><br><span class="line">git revert --quit</span><br><span class="line">git revert --abort</span><br></pre></td></tr></table></figure><h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><blockquote><p>Given one or more existing commits, revert the changes that the related patches introduce, and record some new commits that record them. This requires your working tree to be clean (no modifications from the HEAD commit).<br>Note: git revert is used to record some new commits to reverse the effect of some earlier commits (often only a faulty one). If you want to throw away all uncommitted changes in your working directory, you should see git-reset[1], particularly the –hard option. If you want to extract specific files as they were in another commit, you should see git-checkout[1], specifically the git checkout <commit> – <filename> syntax. Take care with these alternatives as both will discard uncommitted changes in your working directory.</filename></commit></p></blockquote><p>这个工具的使用场景有一点复杂，所以把原本的介绍贴在这里，下面附上翻译：<br>给定一个或多个现有提交，还原由这些提交引入的更改，并用新的提交去记录。 这需要您的工作树是干净的（没有对于<code>HEAD</code>的修改）。注意：<code>git revert</code>用于记录一些新的提交以还原某些早期提交的效果（通常是一个错误的提交）。 如果你想丢弃工作目录中所有未提交的更改，你应该看到<code>git-reset [1]</code>，特别是–hard选项。 如果你想在另一个提交中提取特定文件，你应该看到<code>git-checkout [1]</code>，特别是<code>git checkout &lt;commit&gt; - &lt;filename&gt;</code>语法。 请注意这些替代方案，因为它们都会丢弃工作目录中未提交的更改。</p><p>意思是，如果你想撤销之前的一个或几个提交带来的修改，那么使用这个工具；如果想放弃工作目录的修改（并没有提交），那么你应该使用<code>git reset</code>；或者你只是想检出一个文件的某一个版本，那么使用<code>git checkout</code>。</p><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>摘录了官网的两个例子：<br><strong>实例：</strong> 撤销HEAD指针之前的第3个提交，并且生成一个新的提交。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert HEAD~3</span><br></pre></td></tr></table></figure><blockquote><p>Revert the changes specified by the fourth last commit in HEAD and create a new commit with the reverted changes.</p></blockquote><p><strong>实例：</strong> 撤销从master之前第5个提交到之前第3个提交的变化（这么看来，前面是开区间，第6个没有被包含；后面是闭区间，包含了第3个）。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert -n master~5..master~2</span><br></pre></td></tr></table></figure><blockquote><p>Revert the changes done by commits from the fifth last commit in master (included) to the third last commit in master (included), but do not create any commit with the reverted changes. The revert only modifies the working tree and the index.</p></blockquote><p><strong>实例：</strong> 撤销某个提交带来的修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert &lt;commit&gt;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Git：revert的使用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://www.oxysun.cn/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链：教程 | 以太坊智能合约编程之菜鸟教程</title>
@@ -156,7 +178,7 @@
     <link href="https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html"/>
     <id>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</id>
     <published>2018-07-12T14:07:00.000Z</published>
-    <updated>2018-07-18T11:09:55.840Z</updated>
+    <updated>2018-07-24T14:10:07.742Z</updated>
     
     <content type="html"><![CDATA[<p>Git：Git merge的–ff和–no-ff。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git merge最容易糊涂的地方就是这个<code>--ff</code>参数和<code>--no-ff</code> 参数，通过本文，把这个整理清楚。</p><p>其实官网讲的非常清楚，不过可能因为是英文的，所以大家阅读起来会有一些障碍。（PS：其实还是应该逐步逐步提高自己阅读英文文档的能力，想达到一个更高的高度，是需要客服自己本身很多的弱点的）</p><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>假设合并前的分支是这样，这个一个非常常见的场景，如果不明白，可以参考另外一篇文章Git Flow工作流：<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-4.png" alt="这里写图片描述"><br>这是一个很常见的用例，功能开发分支是<code>iss53</code>，在开发新功能，<code>master</code>分支是线上分支，出现了问题，开辟了<code>hotfix</code>分支进行修复，修复完成，进行合并，需要把<code>hotfix</code>合并回<code>master</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge hotfix</span><br><span class="line">Updating f42c576..3a0874c</span><br><span class="line">Fast-forward</span><br><span class="line"> index.html | 2 ++</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br></pre></td></tr></table></figure><p>步骤如下：</p><ol><li>切换回master分支。</li><li>将hotfix分支合并会master分支。<br>然后看到了<code>Fast-forward</code> 的字样，这个词组的意思就是快进，播放电影的时候，可以注意一下，快进按钮上面就是这个词组。<br>那么实际变成了什么样呢？<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-5.png" alt="这里写图片描述"><br>仅仅是<code>master</code>指针指向了这个提交<code>C4</code>。这样是一种比较快的合并方式，轻量级，简单。<br>这个时候，我们往往会删掉<code>hotfix</code>分支，因为它的历史作用已经结束，这个时候，我们的<code>iss53</code>这个功能又向前开发，进行了一次提交，到了<code>C5</code>，那么变成了这样：<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-6.png" alt="这里写图片描述"><br>然后，我们要把<code>iss53</code> 这个分支合并回<code>master</code>，就变成了这样：<br><img src="https://git-scm.com/book/en/v2/images/basic-merging-2.png" alt="这里写图片描述"><br>这个时候生成了一个新的<code>commit</code>号，这种提交就不是<code>fast-forward</code>（这个时候也无法生成<code>fast-forward</code>提交，因为要将两个版本的内容进行合并，只有在没有需要合并内容的时候，会有这个<code>fast-forward</code> 方式的提交）。<br>如果我们对第一次合并，使用了<code>--no-ff</code>参数，那么也会产生这样的结果，生成一个新的提交，实际上等于是对<code>C4</code> 进行一次复制，创建一个新的<code>commit</code>，这就是<code>--no-ff</code>的作用。<br><img src="https://i.stack.imgur.com/FMD5h.png" alt="这里写图片描述"></li></ol><p>参考：<a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging，这里讲了原理。" target="_blank" rel="noopener">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging，这里讲了原理。</a><br>参考：<a href="https://git-scm.com/docs/git-merge，这里是参考。" target="_blank" rel="noopener">https://git-scm.com/docs/git-merge，这里是参考。</a></p>]]></content>
     
@@ -196,26 +218,6 @@
   </entry>
   
   <entry>
-    <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
-    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
-    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
-    <published>2018-07-11T15:07:00.000Z</published>
-    <updated>2018-07-18T11:09:55.841Z</updated>
-    
-    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p></blockquote><p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。<br>这里说的改变是说，npm在自动安装时去获取的这个包的版本，如果使用了脱字符或者波浪线等符号，它可以去获取的版本就是在一个范围之内，而不是固定的，这两个符号就是去约束这个范围的。这里还涉及一个版本锁定的概念，涉及yarn的一些理念，回头再讨论。</p><blockquote><p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p></blockquote><p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p><blockquote><ul><li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0（解释：如果是^1.2.3，那么获取包的范围就是版本&gt;=1.2.3，并且&lt;2.0.0。）</li><li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li><li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li><li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li><li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li></ul></blockquote><blockquote><p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p></blockquote><blockquote><ul><li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li><li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li><li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li></ul></blockquote><blockquote><p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p></blockquote><blockquote><ul><li>^1.x := &gt;=1.0.0 &lt;2.0.0</li><li>^0.x := &gt;=0.0.0 &lt;1.0.0</li></ul></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
     <link href="https://www.oxysun.cn/js/js-npm-symbol-tilde.html"/>
     <id>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</id>
@@ -227,6 +229,26 @@
     <summary type="html">
     
       &lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
+    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
+    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
+    <published>2018-07-11T15:07:00.000Z</published>
+    <updated>2018-07-18T11:09:55.841Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p></blockquote><p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。<br>这里说的改变是说，npm在自动安装时去获取的这个包的版本，如果使用了脱字符或者波浪线等符号，它可以去获取的版本就是在一个范围之内，而不是固定的，这两个符号就是去约束这个范围的。这里还涉及一个版本锁定的概念，涉及yarn的一些理念，回头再讨论。</p><blockquote><p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p></blockquote><p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p><blockquote><ul><li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0（解释：如果是^1.2.3，那么获取包的范围就是版本&gt;=1.2.3，并且&lt;2.0.0。）</li><li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li><li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li><li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li><li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li></ul></blockquote><blockquote><p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p></blockquote><blockquote><ul><li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li><li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li><li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li></ul></blockquote><blockquote><p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p></blockquote><blockquote><ul><li>^1.x := &gt;=1.0.0 &lt;2.0.0</li><li>^0.x := &gt;=0.0.0 &lt;1.0.0</li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
     
     </summary>
     
@@ -415,28 +437,6 @@
     <summary type="html">
     
       &lt;p&gt;MongoDB集合的基本操作：查找记录（查）。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MongoDB" scheme="https://www.oxysun.cn/categories/MongoDB/"/>
-    
-    
-      <category term="MongoDB" scheme="https://www.oxysun.cn/tags/MongoDB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MongoDB集合的基本操作：插入记录（增）</title>
-    <link href="https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html"/>
-    <id>https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html</id>
-    <published>2018-07-02T07:46:48.000Z</published>
-    <updated>2018-07-23T13:29:57.438Z</updated>
-    
-    <content type="html"><![CDATA[<p>MongoDB集合的基本操作：插入记录（增）。<br><a id="more"></a></p><h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下，便于快速查找。另外，做一做笔记，对于记忆和理解也是有好处的，同时可以方便一些英语暂时不好的同学用来参考。</p><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3.2版本之后</span><br><span class="line">db.collection.insertOne()</span><br><span class="line">db.collection.insertMany()</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.2版本之前</span><br><span class="line">db.collection.insert()</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">db.collection.insert(</span><br><span class="line">   &lt;document or array of documents&gt;,</span><br><span class="line">   &#123;</span><br><span class="line">     writeConcern: &lt;document&gt;,</span><br><span class="line">     ordered: &lt;boolean&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">db.collection.insertOne(</span><br><span class="line">   &lt;document&gt;,</span><br><span class="line">   &#123;</span><br><span class="line">      writeConcern: &lt;document&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">db.collection.insertMany(</span><br><span class="line">   [ &lt;document 1&gt; , &lt;document 2&gt;, ... ],</span><br><span class="line">   &#123;</span><br><span class="line">      writeConcern: &lt;document&gt;,</span><br><span class="line">      ordered: &lt;boolean&gt;</span><br><span class="line">   &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th style="text-align:center">类型</th><th style="text-align:right">描述 </th></tr></thead><tbody><tr><td> document</td><td style="text-align:center">文档或者数组</td><td style="text-align:right">将要插入集合的文档或者文档数组。</td></tr><tr><td> writeConcern</td><td style="text-align:center">文档</td><td style="text-align:right">可选。待解释和细化。</td></tr><tr><td> ordered</td><td style="text-align:center">布尔型</td><td style="text-align:right">可选。插入数组时是否要按照顺序，默认为true。</td></tr></tbody></table><p><strong>实例</strong>：<br>数据库：my_test，之前文章创建的数据库，创建数据库，<a href="https://blog.csdn.net/chaiyu2002/article/details/80861839" target="_blank" rel="noopener">参看这里</a>。<br>集合：test。<br>插入记录如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>语句：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">db.test.insert(&#123;</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure><p>看到最后这句，表示插入一条记录成功。<br>馈赠一条，为之后的例子做一个铺垫：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">db.test.insert(&#123;</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;3&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure></p><p>查看一下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">&quot;meta&quot; : &#123;</span><br><span class="line">&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">&#125;,</span><br><span class="line">&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">&quot;b&quot; : &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">&quot;meta&quot; : &#123;</span><br><span class="line">&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">&#125;,</span><br><span class="line">&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">&quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们看到了两条记录，查询的语法请参考关于查询的文档。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/tutorial/insert-documents/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/insert-documents/。</a><br><a href="https://docs.mongodb.com/manual/reference/method/db.collection.insert/#db.collection.insert。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.collection.insert/#db.collection.insert。</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MongoDB集合的基本操作：插入记录（增）。&lt;br&gt;
     
     </summary>
     
