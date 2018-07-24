@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-revert.html</loc>
+    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
     
-    <lastmod>2018-07-24T14:10:39.911Z</lastmod>
+    <lastmod>2018-07-24T14:12:15.162Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html</loc>
+    <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
     
-    <lastmod>2018-07-24T14:10:07.742Z</lastmod>
+    <lastmod>2018-07-24T14:12:08.004Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-checkout-1.html</loc>
+    
+    <lastmod>2018-07-24T14:12:00.560Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-revert.html</loc>
+    
+    <lastmod>2018-07-24T14:10:39.911Z</lastmod>
     
   </url>
   
@@ -72,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-dababase-create.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.851Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html</loc>
     
     <lastmod>2018-07-18T11:09:55.851Z</lastmod>
@@ -86,9 +93,9 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-dababase-create.html</loc>
     
-    <lastmod>2018-07-18T11:09:55.847Z</lastmod>
+    <lastmod>2018-07-18T11:09:55.851Z</lastmod>
     
   </url>
   
@@ -100,14 +107,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -121,14 +135,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
@@ -170,20 +184,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.839Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-checkout-1.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.838Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/css/css-normal-flow.html</loc>
     
     <lastmod>2018-07-18T11:09:55.837Z</lastmod>
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.010Z</lastmod>
     
