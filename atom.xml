@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-07-25T15:13:20.452Z</updated>
+  <updated>2018-07-26T15:13:49.679Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux下shell命令用法及常见用例：which</title>
+    <link href="https://www.oxysun.cn/linux/shell-command-which.html"/>
+    <id>https://www.oxysun.cn/linux/shell-command-which.html</id>
+    <published>2018-07-26T15:03:07.000Z</published>
+    <updated>2018-07-26T15:13:49.679Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>which</code>命令用于查找并显示给定命令的绝对路径，环境变量<code>$PATH</code>中保存了查找命令时需要遍历的目录。<code>which</code>指令会在环境变量$PATH设置的目录里查找符合条件的文件。也就是说，使用<code>which</code>命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。</p><a id="more"></a><h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><p>今天有点累，也已经很晚了，总结一个较为简单的命令吧，20英里法则，每天尽量坚持往前走一点。</p><h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p><code>which</code>命令是查找某个命令的完整路径。它是用来在当前登录用户的<code>$PATH</code>环境变量记录的路径中查找可执行文件（即二进制文件）的路径。默认情况下，只返回第一个搜索结果。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WHICH(1)                                                        General Commands Manual                                                       WHICH(1)</span><br><span class="line"></span><br><span class="line">NAME</span><br><span class="line">       which - shows the full path of (shell) commands.</span><br></pre></td></tr></table></figure><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>which [选项] 命令</code></p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p><strong>实例：</strong>查看ls命令的位置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZwz90drrwkerfi7bc8mqiZ ~]# which ls</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">/usr/bin/ls</span><br></pre></td></tr></table></figure><p>第一行输出暂时没有搞明白是哪里来的，第二行就是<code>ls</code>命令的位置了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;which&lt;/code&gt;命令用于查找并显示给定命令的绝对路径，环境变量&lt;code&gt;$PATH&lt;/code&gt;中保存了查找命令时需要遍历的目录。&lt;code&gt;which&lt;/code&gt;指令会在环境变量$PATH设置的目录里查找符合条件的文件。也就是说，使用&lt;code&gt;which&lt;/code&gt;命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://www.oxysun.cn/categories/Linux/"/>
+    
+      <category term="Shell" scheme="https://www.oxysun.cn/categories/Linux/Shell/"/>
+    
+    
+      <category term="Linux" scheme="https://www.oxysun.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Git：修改远程仓库地址</title>
@@ -430,28 +454,6 @@
     
       <category term="MongoDB" scheme="https://www.oxysun.cn/categories/MongoDB/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>MongoDB集合的基本操作：查找记录（查）</title>
-    <link href="https://www.oxysun.cn/mongodb/mongodb-collection-find-1.html"/>
-    <id>https://www.oxysun.cn/mongodb/mongodb-collection-find-1.html</id>
-    <published>2018-07-02T13:03:00.000Z</published>
-    <updated>2018-07-23T14:18:52.063Z</updated>
-    
-    <content type="html"><![CDATA[<p>MongoDB集合的基本操作：查找记录（查）。<br><a id="more"></a></p><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.collection.find(query, projection)</span><br></pre></td></tr></table></figure><p>在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）<br>参数|类型|描述<br>-|-|-<br>query|文档型|可选。使用查询操作符(<a href="https://www.oxysun.cn/mongodb/mongodb-collection-find-projection-operator.html">参考这里</a>)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。<br>projection|文档型|可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。 </p><p>projection参数决定了哪些域需要被返回。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125;</span><br></pre></td></tr></table></figure><p><code>&lt;value&gt;</code>可以是:</p><ul><li>1 或 true 表示要在返回文档中包含这个域。</li><li>0 或 false 表示不包含这个域。</li><li>表达式使用了投影操作符（有待解释）。</li></ul><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>基本的查找参考上面的语法即可，下面也有实例，其实较为难以掌握的是组合查找，例如逻辑关系是<code>AND</code>的，或者是<code>OR</code>的，还有<code>IN</code>的，这几个需要梳理一下。</p><h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p><strong>实例</strong> 查找<a href="https://blog.csdn.net/chaiyu2002/article/details/80862002" target="_blank" rel="noopener">上文</a>test集合中的所有文档。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><code>pretty()</code>是用来让展示更加舒适。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code>的记录，这里要注意<code>“3”</code>和<code>3</code>是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">&quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;),</span><br><span class="line">&quot;meta&quot; : &#123;</span><br><span class="line">&quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">&quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">&#125;,</span><br><span class="line">&quot;a&quot; : &quot;1&quot;,</span><br><span class="line">&quot;b&quot; : &quot;3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>可以看到，这次只查出了一条符合条件的记录。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code>的记录a和b两个域，不要其它域。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()</span><br><span class="line">&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125;</span><br></pre></td></tr></table></figure><p>可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code> 并且<code>a=&quot;4&quot;</code>的记录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &quot;3&quot;, a: &quot;4&quot;&#125;&#125;).pretty()</span><br></pre></td></tr></table></figure></p><p>可以看到，在第一个<code>{}</code> 中逗号分隔开的是<code>AND</code>的查询关系。</p><p><strong>实例</strong> 查找test集合中的<code>b=&quot;3&quot;</code> 或者<code>b=&quot;4&quot;</code>的记录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;b: &#123;$in: [&quot;3&quot;, &quot;4&quot;]&#125;&#125;).pretty()</span><br></pre></td></tr></table></figure></p><p>这个语法的原则是操作符<code>$in</code>在前，作为JSON名值对的名，<code>[&quot;3&quot;, &quot;4&quot;]</code>是它的值，然后整个<code>{$in: [&quot;3&quot;, &quot;4&quot;]}</code>作为b的值，从JSON语法的角度去思考和记忆这个语法，就容易一些了。</p><p><strong>实例</strong> 修改一下上面的例子，查找test集合中的<code>b=&quot;3&quot;</code> 或者<code>a=&quot;4&quot;</code>的记录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;$or: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty()</span><br></pre></td></tr></table></figure></p><p>这个语法和<code>IN</code> 的道理是一样的，其实<code>AND</code>也可以这么用，上面那种是隐式的用法，显式的用法是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.test.find(&#123;$and: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty()</span><br></pre></td></tr></table></figure></p><p>查询操作符还有一些大于、小于等操作，具体参考查询操作符一节。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/reference/method/db.collection.find/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.collection.find/。</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MongoDB集合的基本操作：查找记录（查）。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MongoDB" scheme="https://www.oxysun.cn/categories/MongoDB/"/>
-    
-    
-      <category term="MongoDB" scheme="https://www.oxysun.cn/tags/MongoDB/"/>
     
   </entry>
   

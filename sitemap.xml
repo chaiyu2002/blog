@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/linux/shell-command-which.html</loc>
+    
+    <lastmod>2018-07-26T15:13:49.679Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
     
     <lastmod>2018-07-25T15:13:20.452Z</lastmod>
@@ -107,14 +114,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
     
     <lastmod>2018-07-18T11:09:55.847Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
     
     <lastmod>2018-07-18T11:09:55.847Z</lastmod>
     
@@ -142,14 +149,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
