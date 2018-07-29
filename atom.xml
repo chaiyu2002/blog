@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-07-28T14:00:38.553Z</updated>
+  <updated>2018-07-29T00:33:49.617Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.oxysun.cn/git/git-diff-m-symbol.html"/>
     <id>https://www.oxysun.cn/git/git-diff-m-symbol.html</id>
     <published>2018-07-28T13:53:00.000Z</published>
-    <updated>2018-07-28T14:00:38.553Z</updated>
+    <updated>2018-07-29T00:33:49.617Z</updated>
     
-    <content type="html"><![CDATA[<p>原帖收藏于IT老兵驿站，传递一个IT老兵凋零前的光和氧。</p><p>Git：git diff发现windows下会出现”^M”符号。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在不同操作系统上编译Git仓库的文件，经常在<code>git diff</code> 时发现很多文件的变化是尾部多了一个<code>^M</code> 的符号。这给工作带来很多困扰，研究一下这个问题。</p><h1 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h1><p>翻到这个<a href="https://stackoverflow.com/questions/1889559/git-diff-to-ignore-m" target="_blank" rel="noopener">帖子</a>：</p><blockquote><p><a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="noopener">GitHub</a> suggests that you should make sure to only use \n as a newline character in git-handled repos. There’s an option to auto-convert:</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.autocrlf true</span><br></pre></td></tr></table></figure><p>大体翻译：GitHub建议你应该只用<code>\n</code> 来做为新行的开始，用上面那样的设置就可以做到，那是为什么呢？</p><p>阅读一下这里所介绍的这个帖子。</p><blockquote><p>If you’re using Git to collaborate with others on GitHub, ensure that Git is properly configured to handle line endings.</p></blockquote><blockquote><p>Every time you press return on your keyboard you’re actually inserting an invisible character called a line ending. Historically, different operating systems have handled line endings differently.</p></blockquote><blockquote><p>When you view changes in a file, Git handles line endings in its own way. Since you’re collaborating on projects with Git and GitHub, Git might produce unexpected results if, for example, you’re working on a Windows machine, and your collaborator has made a change in OS X.</p></blockquote><p>这里大概是说每个操作系统有自己的换行符（就是当你按下”回车”后，系统会自动插入一些不可见的符号来表示一行的结束），<code>Linux</code>和<code>Mac</code>都是使用<code>LF</code> ，<code>Windows</code> 则是<code>CRLF</code> ，这样就造成了差异。</p><p>Git会对此进行一些处理，但是做什么处理呢？这里没有说清楚，只是说要用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.autocrlf</span><br></pre></td></tr></table></figure><p>来控制，和上面说的是一样的，但是原理还是没有搞明白。</p><p>只好来看<a href="https://git-scm.com/docs/git-config" target="_blank" rel="noopener">官网</a>。</p><blockquote><p>core.autocrlf<br>Setting this variable to “true” is the same as setting the text attribute to “auto” on all files and core.eol to “crlf”. Set to true if you want to have CRLF line endings in your working directory and the repository has LF line endings. This variable can be set to input, in which case no output conversion is performed.</p></blockquote><p>这个变量设置为<code>true</code> 等同于在所有文件上设置<code>text attribute</code> 为<code>auto</code> 并且把<code>core.eol</code> 设置为<code>crlf</code>。设成<code>true</code> ， 如果你的工作空间用的是<code>CRLF</code> 作为行结束符，同时仓库用的是<code>LF</code> 行结束符。这个变量也可以设置成<code>input</code>，这样在输出时就不做转换了。</p><p>对上面说的<code>core.eol</code> 又不明白了，继续查看：</p><blockquote><p>core.eol<br>Sets the line ending type to use in the working directory for files that have the text property set when core.autocrlf is false. Alternatives are lf, crlf and native, which uses the platform’s native line ending. The default value is native. See gitattributes[5] for more information on end-of-line conversion.</p></blockquote><p>这个变量是用来设置行结束符的，在<code>core.autocrlf</code> 是<code>false</code>的时候。可以设置成<code>lf</code>，<code>crlf</code>和<code>native</code> ， <code>native</code>是说使用当前平台自己的行结束符。</p><p>到这里，大体就明白了，还留有一个问题，就是<code>attribute</code>的问题，留在下一次来研究。</p>]]></content>
+    <content type="html"><![CDATA[<p>原帖收藏于IT老兵驿站，传递一个IT老兵凋零前的光和氧。</p><p>Git：git diff发现windows下会出现”^M”符号。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在不同操作系统上编译Git仓库的文件，经常在<code>git diff</code> 时发现很多文件的变化是尾部多了一个<code>^M</code> 的符号。这给工作带来很多困扰，研究一下这个问题。</p><h1 id="正题"><a href="#正题" class="headerlink" title="正题"></a>正题</h1><p>翻到这个<a href="https://stackoverflow.com/questions/1889559/git-diff-to-ignore-m" target="_blank" rel="noopener">帖子</a>：</p><blockquote><p><a href="https://help.github.com/articles/dealing-with-line-endings/" target="_blank" rel="noopener">GitHub</a> suggests that you should make sure to only use \n as a newline character in git-handled repos. There’s an option to auto-convert:</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.autocrlf true</span><br></pre></td></tr></table></figure><p>大体翻译：GitHub建议你应该只用<code>\n</code> 来做为新行的开始，用上面那样的设置就可以做到自动的转换，这样也就解决了问题，Git不会再报告差异。</p><p>那这是为什么呢？</p><p>阅读一下这里所介绍的这个帖子。</p><blockquote><p>If you’re using Git to collaborate with others on GitHub, ensure that Git is properly configured to handle line endings.</p></blockquote><blockquote><p>Every time you press return on your keyboard you’re actually inserting an invisible character called a line ending. Historically, different operating systems have handled line endings differently.</p></blockquote><blockquote><p>When you view changes in a file, Git handles line endings in its own way. Since you’re collaborating on projects with Git and GitHub, Git might produce unexpected results if, for example, you’re working on a Windows machine, and your collaborator has made a change in OS X.</p></blockquote><p>这里大概是说每个操作系统有自己的换行符（就是当你按下”回车”后，系统会自动插入一些不可见的符号来表示一行的结束），<code>Linux</code>和<code>Mac</code>都是使用<code>LF</code> ，<code>Windows</code> 则是<code>CRLF</code> ，这样就造成了差异。</p><p>Git会对此进行一些处理，但是做什么处理呢？这里没有说清楚，只是说要用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.autocrlf</span><br></pre></td></tr></table></figure><p>来控制，和上面说的是一样的，但是原理还是没有搞明白。</p><p>只好来看<a href="https://git-scm.com/docs/git-config" target="_blank" rel="noopener">官网</a>。</p><blockquote><p>core.autocrlf<br>Setting this variable to “true” is the same as setting the text attribute to “auto” on all files and core.eol to “crlf”. Set to true if you want to have CRLF line endings in your working directory and the repository has LF line endings. This variable can be set to input, in which case no output conversion is performed.</p></blockquote><p>这个变量设置为<code>true</code> 等同于在所有文件上设置<code>text attribute</code> 为<code>auto</code> 并且把<code>core.eol</code> 设置为<code>crlf</code>。设成<code>true</code> ， 如果你的工作空间用的是<code>CRLF</code> 作为行结束符，同时仓库用的是<code>LF</code> 行结束符。这个变量也可以设置成<code>input</code>，这样在输出时就不做转换了。</p><p>对上面说的<code>core.eol</code> 又不明白了，继续查看：</p><blockquote><p>core.eol<br>Sets the line ending type to use in the working directory for files that have the text property set when core.autocrlf is false. Alternatives are lf, crlf and native, which uses the platform’s native line ending. The default value is native. See gitattributes[5] for more information on end-of-line conversion.</p></blockquote><p>这个变量是用来设置行结束符的，在<code>core.autocrlf</code> 是<code>false</code>的时候。可以设置成<code>lf</code>，<code>crlf</code>和<code>native</code> ， <code>native</code>是说使用当前平台自己的行结束符。</p><p>到这里，大体就明白了，还留有一个问题，就是<code>attribute</code>的问题，留在下一次来研究。</p>]]></content>
     
     <summary type="html">
     
@@ -291,26 +291,6 @@
   </entry>
   
   <entry>
-    <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
-    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
-    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
-    <published>2018-07-11T15:07:00.000Z</published>
-    <updated>2018-07-18T11:09:55.841Z</updated>
-    
-    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p></blockquote><p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。<br>这里说的改变是说，npm在自动安装时去获取的这个包的版本，如果使用了脱字符或者波浪线等符号，它可以去获取的版本就是在一个范围之内，而不是固定的，这两个符号就是去约束这个范围的。这里还涉及一个版本锁定的概念，涉及yarn的一些理念，回头再讨论。</p><blockquote><p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p></blockquote><p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p><blockquote><ul><li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0（解释：如果是^1.2.3，那么获取包的范围就是版本&gt;=1.2.3，并且&lt;2.0.0。）</li><li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li><li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li><li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li><li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li></ul></blockquote><blockquote><p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p></blockquote><blockquote><ul><li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li><li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li><li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li></ul></blockquote><blockquote><p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p></blockquote><blockquote><ul><li>^1.x := &gt;=1.0.0 &lt;2.0.0</li><li>^0.x := &gt;=0.0.0 &lt;1.0.0</li></ul></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
     <link href="https://www.oxysun.cn/js/js-npm-symbol-tilde.html"/>
     <id>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</id>
@@ -322,6 +302,26 @@
     <summary type="html">
     
       &lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
+    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
+    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
+    <published>2018-07-11T15:07:00.000Z</published>
+    <updated>2018-07-18T11:09:55.841Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号脱字符”^”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4<br>Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X &gt;=0.1.0, and no updates for versions 0.0.X.<br><br>Many authors treat a 0.x version as if the x were the major “breaking-change” indicator.</p></blockquote><p>大概意思是：允许的改变不能发生在最左侧非零的数字上，NPM采用的是3元组的版本控制，[major，minor，patch]。换句话说，对于版本<code>1.0.0</code>，允许变更的是<code>minor</code>和<code>patch</code>，对于<code>0.X</code>的，<code>patch</code>可以变更，而对于<code>0.0.X</code>，啥都不能变了。<br>这里说的改变是说，npm在自动安装时去获取的这个包的版本，如果使用了脱字符或者波浪线等符号，它可以去获取的版本就是在一个范围之内，而不是固定的，这两个符号就是去约束这个范围的。这里还涉及一个版本锁定的概念，涉及yarn的一些理念，回头再讨论。</p><blockquote><p>Caret ranges are ideal when an author may make breaking changes between 0.2.4 and 0.3.0 releases, which is a common practice. However, it presumes that there will not be breaking changes between 0.2.4 and 0.2.5. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.</p></blockquote><p>“^”这个符号叫做脱字符（caret），这好像是原来打字机的一个功能，现在叫这个名字感觉是有些陌生的。<br>以下是一些例子，感觉也没有太多可讲的。</p><blockquote><ul><li>^1.2.3 := &gt;=1.2.3 &lt;2.0.0（解释：如果是^1.2.3，那么获取包的范围就是版本&gt;=1.2.3，并且&lt;2.0.0。）</li><li>^0.2.3 := &gt;=0.2.3 &lt;0.3.0</li><li>^0.0.3 := &gt;=0.0.3 &lt;0.0.4</li><li>^1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;2.0.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</li><li>^0.0.3-beta := &gt;=0.0.3-beta &lt;0.0.4 Note that prereleases in the 0.0.3 version only will be allowed, if they are greater than or equal to beta. So, 0.0.3-pr.2 would be allowed.</li></ul></blockquote><blockquote><p>When parsing caret ranges, a missing patch value desugars to the number 0, but will allow flexibility within that value, even if the major and minor versions are both 0.</p></blockquote><blockquote><ul><li>^1.2.x := &gt;=1.2.0 &lt;2.0.0</li><li>^0.0.x := &gt;=0.0.0 &lt;0.1.0</li><li>^0.0 := &gt;=0.0.0 &lt;0.1.0</li></ul></blockquote><blockquote><p>A missing minor and patch values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.</p></blockquote><blockquote><ul><li>^1.x := &gt;=1.0.0 &lt;2.0.0</li><li>^0.x := &gt;=0.0.0 &lt;1.0.0</li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
     
     </summary>
     
