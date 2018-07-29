@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-07-29T00:33:49.617Z</updated>
+  <updated>2018-07-29T03:25:24.566Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java：“目标服务器没有返回一个X-Frame-Options头”的解决方案</title>
+    <link href="https://www.oxysun.cn/java/java-springmvc-X-Frame-Options.html"/>
+    <id>https://www.oxysun.cn/java/java-springmvc-X-Frame-Options.html</id>
+    <published>2018-07-29T03:25:00.000Z</published>
+    <updated>2018-07-29T03:25:24.566Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java：“目标服务器没有返回一个X-Frame-Options头”的解决方案。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在涉及网站安全时遇到一个问题，“目标服务器没有返回一个X-Frame-Options头”，找了网上的帖子，说的都不是太清楚，所以研究总结一下，方便后人。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>以下摘录一下对于安全网站这个问题的描述和建议解决方案：</p><blockquote><p>概要<br>目标服务器没有返回一个X-Frame-Options头。<br>攻击者可以使用一个透明的、不可见的iframe，覆盖在目标网页上，然后诱使用户在该网页上进行操作，此时用户将在不知情的情况下点击透明的iframe页面。通过调整iframe页面的位置，可以诱使用户恰好点击iframe页面的一些功能性按钮上，导致被劫持。<br><br><br>解决方案<br>修改web服务器配置，添加X-frame-options响应头。赋值有如下三种：<br>（1）DENY：不能被嵌入到任何iframe或frame中。<br>（2）SAMEORIGIN：页面只能被本站页面嵌入到iframe或者frame中。<br>（3）ALLOW-FROM uri：只能被嵌入到指定域名的框架中。<br>也可在代码中加入，在PHP中加入：<br>header(‘X-Frame-Options: deny’);</p></blockquote><h2 id="具体实例"><a href="#具体实例" class="headerlink" title="具体实例"></a>具体实例</h2><p>但是我们的环境是Java的Springmvc，这个应该怎么解决呢？其实Spring框架中的security本身有对这个问题的解决方案，但是这是之前的Spring框架中的（SSH那会的），现在用了Springmv了，应该怎么去解决这个问题呢？</p><p>参考<a href="https://blog.csdn.net/princeluan/article/details/73268637" target="_blank" rel="noopener">这里</a>，这里介绍说配置项目的web.xml文件如下，即可解决问题：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;httpHeaderSecurity&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.catalina.filters.HttpHeaderSecurityFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;antiClickJackingOption&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;SAMEORIGIN&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    &lt;async-supported&gt;true&lt;/async-supported&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;httpHeaderSecurity&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure><p>但是又引出一个新的问题：</p><blockquote><p>cvc-complex-type.2.4.a: Invalid content was found starting with element ‘async-supported’. One of ‘{“<a href="http://java.sun.com/xml/ns/javaee&quot;:run-as" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee&quot;:run-as</a>, “<a href="http://java.sun.com/xml/ns/javaee&quot;:security-role-ref}&#39;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee&quot;:security-role-ref}&#39;</a> is expected.</p></blockquote><p>继续探索，找到<a href="https://blog.csdn.net/DouBoomFly/article/details/70200740" target="_blank" rel="noopener">这里</a>说的：</p><blockquote><p>xmlns中再加两行：<br><a href="http://www.springmodules.org/schema/cache/springmodules-cache.xsd" target="_blank" rel="noopener">http://www.springmodules.org/schema/cache/springmodules-cache.xsd</a><br><a href="http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd" target="_blank" rel="noopener">http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd</a></p></blockquote><p>问题才真正得到了解决，但是原因是什么呢？</p><p>找到<a href="https://tomcat.apache.org/tomcat-8.0-doc/config/filter.html" target="_blank" rel="noopener"><code>Tomcat</code>官网</a>的讲解：</p><blockquote><p>org.apache.catalina.filters.HttpHeaderSecurityFilter .//过滤器的类名<br>……<br>antiClickJackingOption //参数配置，可以设置成DENY（拒绝），SAMEORIGIN（同源），ALLOW-FROM（允许从哪里来的）<br>What value should be used for the anticlick-jacking header? Must be one of DENY, SAMEORIGIN, ALLOW-FROM (case-insensitive). If not specified, the default value of DENY will be used.</p></blockquote><p>这样，上面配置这个过滤器就搞明白了，那么后面出现的那个问题又是怎么回事呢？</p><p>这里要研究一下这段语句的意思：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app version=&quot;3.0&quot; </span><br><span class="line">    xmlns=&quot;http://java.sun.com/xml/ns/javaee </span><br><span class="line">    http://www.springmodules.org/schema/cache/springmodules-cache.xsd </span><br><span class="line">    http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd&quot;</span><br><span class="line">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">    xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee </span><br><span class="line">    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;&gt;</span><br></pre></td></tr></table></figure></p><p><code>xmlns</code>：<code>xml</code>的<code>namespace</code>，这个是为了解决多个开发者对于xml的命名会产生冲突的问题。<br><code>xmlns:xsi</code>：定义了<code>xml</code>的标准前缀。<br><code>xsi:schemaLocation</code>：<code>xml</code>的<code>schema</code>定义的位置。</p><p>简言之，<code>Java</code>对于<code>xml</code>的名值设置了一套定义规则，发布在上面的地方，我们上面使用的这个元素名<code>async-supported</code> ，在之前的<code>web.xml</code>中所定义的位置是没有找到的，所以要改成可以找到这个元素定义的位置。</p><p>至此，问题基本搞明白了。</p><p>参考<br><a href="https://www.w3schools.com/xml/schema_intro.asp。" target="_blank" rel="noopener">https://www.w3schools.com/xml/schema_intro.asp。</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java：“目标服务器没有返回一个X-Frame-Options头”的解决方案。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="https://www.oxysun.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://www.oxysun.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Git：git diff发现windows下会出现&quot;^M&quot;符号</title>
@@ -291,26 +313,6 @@
   </entry>
   
   <entry>
-    <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
-    <link href="https://www.oxysun.cn/js/js-npm-symbol-tilde.html"/>
-    <id>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</id>
-    <published>2018-07-11T15:07:00.000Z</published>
-    <updated>2018-07-18T11:09:55.842Z</updated>
-    
-    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号波浪字符”~”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Tilde Ranges ~1.2.3 ~1.2 ~1<br>Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.</p></blockquote><p>如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子）</p><blockquote><p>~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0<br>~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)<br>~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)<br>~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0<br>~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)<br>~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)<br>~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>JS：NPM依赖包版本号脱字符&quot;^&quot;</title>
     <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
     <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
@@ -322,6 +324,26 @@
     <summary type="html">
     
       &lt;p&gt;JS：NPM依赖包版本号脱字符”^”。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
+    <link href="https://www.oxysun.cn/js/js-npm-symbol-tilde.html"/>
+    <id>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</id>
+    <published>2018-07-11T15:07:00.000Z</published>
+    <updated>2018-07-18T11:09:55.842Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS：NPM依赖包版本号波浪字符”~”。<br><a id="more"></a></p><p>参考官网：<a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p><blockquote><p>Tilde Ranges ~1.2.3 ~1.2 ~1<br>Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.</p></blockquote><p>如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子）</p><blockquote><p>~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0<br>~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)<br>~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)<br>~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0<br>~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)<br>~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)<br>~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
     
     </summary>
     
@@ -379,7 +401,7 @@
     <link href="https://www.oxysun.cn/java/java-deploy-resource-folder.html"/>
     <id>https://www.oxysun.cn/java/java-deploy-resource-folder.html</id>
     <published>2018-07-07T11:55:00.000Z</published>
-    <updated>2018-07-18T11:09:55.840Z</updated>
+    <updated>2018-07-29T03:24:24.720Z</updated>
     
     <content type="html"><![CDATA[<p>Tomcat上部署应用后，原本目录是否会被移除。<br><a id="more"></a></p><p><strong>实例：</strong><br>一个项目的资源放在了WebContent下面，这样每次打包，都会将这些文件打包进去，这样在打包时，导致打出来的war包有好几百兆，这样上传Git也非常不方便。</p><p>方案1：<br>分析：如果删除掉本地WebContent下的资源文件，再部署到服务器上，war包其实是一个压缩包，加压后覆盖原本目录下的相同内容，因为新上传的war包没有相同的资源文件，这样就不会覆盖原本的资源文件。<br>结果：加压后的项目目录也不存在资源文件了，看来这个部署过程，是会删掉原本的项目目录的。</p><p>方案2：<br>分析：因为webapps是web服务根目录，那么把资源文件从项目目录移到webapps下面，这样应该也可以被访问到。<br>结果：成功，可以被访问到。</p><p>为了验证这个，上网查了很多帖子，众说纷纭，最后还是在<a href="https://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html" target="_blank" rel="noopener">官网</a>找到这么一段话：</p><blockquote><p>The following deployment sequence will occur on Tomcat startup in that case:</p><ol><li>Any Context Descriptors will be deployed first.</li><li>Exploded web applications not referenced by any Context Descriptor will then be deployed. If they have an associated .WAR file in the appBase and it is newer than the exploded web application, the exploded directory will be removed and the webapp will be redeployed from the .WAR</li><li>.WAR files will be deployed</li></ol></blockquote><p>注意这里<code>the exploded directory will be removed and the webapp will be redeployed from the .WAR</code>，原本的解压目录会被移除，应用会被重新从<code>war</code>文件中部署。</p><p>寻根究底，而不人云亦云，这样才是端正的学习的态度。</p>]]></content>
     
@@ -391,6 +413,8 @@
     
       <category term="Java" scheme="https://www.oxysun.cn/categories/Java/"/>
     
+    
+      <category term="Java" scheme="https://www.oxysun.cn/tags/Java/"/>
     
   </entry>
   
@@ -437,26 +461,6 @@
     
     
       <category term="Linux" scheme="https://www.oxysun.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MongoDB：聚合之累加操作符</title>
-    <link href="https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html"/>
-    <id>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</id>
-    <published>2018-07-04T15:29:00.000Z</published>
-    <updated>2018-07-18T11:09:55.847Z</updated>
-    
-    <content type="html"><![CDATA[<p>MongoDB的聚合之累加操作符。<br><a id="more"></a></p><p>官网：<a href="https://docs.mongodb.com/manual/reference/operator/aggregation/group/#considerations。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/aggregation/group/#considerations。</a></p><h1 id="累加操作符"><a href="#累加操作符" class="headerlink" title="累加操作符"></a>累加操作符</h1><p>感觉这个没有太多可说的，简单翻译一下。</p><table><thead><tr><th>名字</th><th>描述</th></tr></thead><tbody><tr><td>$avg</td><td>Returns an average of numerical values. Ignores non-numeric values.（返回平均值）</td></tr><tr><td>$first</td><td>Returns a value from the first document for each group. Order is only defined if the documents are in a defined order.（返回第一个）</td></tr><tr><td>$last</td><td>Returns a value from the last document for each group. Order is only defined if the documents are in a defined order.（返回最后一个）</td></tr><tr><td>$max</td><td>Returns the highest expression value for each group.（返回最大值）</td></tr><tr><td>$min</td><td>Returns the lowest expression value for each group.（返回最小值）</td></tr><tr><td>$push</td><td>Returns an array of expression values for each group.</td></tr><tr><td>$addToSet</td><td>Returns an array of unique expression values for each group. Order of the array elements is undefined.（）</td></tr><tr><td>$stdDevPop</td><td>Returns the population standard deviation of the input values.</td></tr><tr><td>$stdDevSamp</td><td>Returns the sample standard deviation of the input values.</td></tr><tr><td>$sum</td><td>Returns a sum of numerical values. Ignores non-numeric values.（返回总和）</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;MongoDB的聚合之累加操作符。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="MongoDB" scheme="https://www.oxysun.cn/categories/MongoDB/"/>
-    
     
   </entry>
   
