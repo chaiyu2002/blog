@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-08-03T14:01:51.459Z</updated>
+  <updated>2018-08-04T01:07:47.284Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git：git-checkout的用法总结（2）</title>
+    <link href="https://www.oxysun.cn/git/git-checkout-2.html"/>
+    <id>https://www.oxysun.cn/git/git-checkout-2.html</id>
+    <published>2018-08-04T01:00:00.000Z</published>
+    <updated>2018-08-04T01:07:47.284Z</updated>
+    
+    <content type="html"><![CDATA[<p>Git的git-checkout的用法总结。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>结合前一篇文章，再认真总结一下<code>git-checkout</code>的用法，因为可能一次总结到不了位，那么就不怕啰嗦，不怕重复，多总结几次，这样可能会造成每篇文章内容之间的分布不是那么清晰，将来再做更好的整理吧，因为现在这种方式，对于当前的学习是有帮助的，是从浅入深的。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git-checkout - Switch branches or restore working tree files</span><br></pre></td></tr></table></figure><p>从上面可见，git checkout是用来切换分支或者回复工作目录的，看到这里，记住这一点，会有很大帮助。（备注：我发现，有的时候，学习的节奏放慢一些，反而其实是更有效率的，反而是更快的。多思考一些，记的更准确，因慢得快）</p><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout [-q] [-f] [-m] [&lt;branch&gt;]</span><br><span class="line">git checkout [-q] [-f] [-m] --detach [&lt;branch&gt;]</span><br><span class="line">git checkout [-q] [-f] [-m] [--detach] &lt;commit&gt;</span><br><span class="line">git checkout [-q] [-f] [-m] [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</span><br><span class="line">git checkout [-f|--ours|--theirs|-m|--conflict=&lt;style&gt;] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…​</span><br><span class="line">git checkout [&lt;tree-ish&gt;] [--] &lt;pathspec&gt;…​</span><br><span class="line">git checkout (-p|--patch) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…​]</span><br></pre></td></tr></table></figure><h3 id="用法1"><a href="#用法1" class="headerlink" title="用法1"></a>用法1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure><p>用来切换到一个分支上。切换<code>index</code>和工作目录，还有<code>HEAD</code> 指针到这个分支上。本地发生的修改也会被保留。如果本地不存在这个分支而远程存在同名分支的话，则这个命令相当于：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b &lt;branch&gt; --track &lt;remote&gt;/&lt;branch&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b|-B &lt;new_branch&gt; [&lt;start point&gt;]</span><br></pre></td></tr></table></figure><p><code>-b</code>表示创建新分支；如果分支存在的话，不进行任何处理。<br><code>-B</code> 在创建新分支的功能和<code>-b</code> 是一样的；但是，如果分支存在的话，它会重置<code>&lt;start_point&gt;</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Specifying -b causes a new branch to be created as if git-branch[1] were called and then checked out. In this case you can use the --track or --no-track options, which will be passed to git branch. As a convenience, --track without -b implies branch creation; see the description of --track below.</span><br><span class="line"></span><br><span class="line">If -B is given, &lt;new_branch&gt; is created if it doesn’t exist; otherwise, it is reset. This is the transactional equivalent of</span><br><span class="line"></span><br><span class="line">$ git branch -f &lt;branch&gt; [&lt;start point&gt;]</span><br><span class="line">$ git checkout &lt;branch&gt;</span><br><span class="line">that is to say, the branch is not reset/created unless &quot;git checkout&quot; is successful.</span><br></pre></td></tr></table></figure><p>这里涉及到<code>track</code> 和<code>&lt;start point&gt;</code>的概念。<br><code>track</code>表示的是远程仓库与之对应的分支，这个信息被称为<code>upstream</code>，上游，远程仓库的，是上游。本地的，是下游，有一个对应的关系。<code>track</code> 本意是轨迹、跟踪的意思，使用了<code>--track</code>或者<code>--no-track</code> 来设置这个，这个信息会传递给<code>git branch</code>。</p><h3 id="用法2"><a href="#用法2" class="headerlink" title="用法2"></a>用法2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout --detach [&lt;branch&gt;]</span><br><span class="line">git checkout [--detach] &lt;commit&gt;</span><br></pre></td></tr></table></figure><p>切换代码到某一个提交号或者分支上，并且分离了<code>HEAD</code>指针，指向了这个提交。这块有点复杂，还需要理解深度理解一下，这个可能要留到下一篇帖子来完成了，争取每天整理一些（2018-08-03）。</p><p>整理完成，可以参考<a href="https://www.oxysun.cn/git/git-DETACHED-HEAD.html">这里</a>（2018-08-04）。</p><h3 id="用法3"><a href="#用法3" class="headerlink" title="用法3"></a>用法3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout [&lt;tree-ish&gt;] [--] &lt;pathspec&gt;…​</span><br><span class="line">git checkout (-p|--patch) [&lt;tree-ish&gt;] [--] [&lt;pathspec&gt;…​]</span><br></pre></td></tr></table></figure><p>从<code>index</code>或者<code>&lt;tree-ish&gt;</code> 检出代码来替换<code>&lt;pathspec&gt;</code> 处的代码。如果<code>&lt;tree-ish&gt;</code> 被指定了，那么<code>index</code>和工作空间的代码都会被更新。</p><blockquote><p>The index may contain unmerged entries because of a previous failed merge. By default, if you try to check out such an entry from the index, the checkout operation will fail and nothing will be checked out. Using -f will ignore these unmerged entries. The contents from a specific side of the merge can be checked out of the index by using –ours or –theirs. With -m, changes made to the working tree file can be discarded to re-create the original conflicted merge result.</p></blockquote><p><code>index</code>区域可能还有一些没有<code>merge</code>的条目，因为之前有失败的<code>merge</code>。</p><p>后一种用法使用互动的方式来完成这个功能。</p><p>到此，这个命令的用法基本整理完，下一步，要实践一些实例。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Git的git-checkout的用法总结。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://www.oxysun.cn/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
+    
+      <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
+    
+      <category term="checkout" scheme="https://www.oxysun.cn/tags/checkout/"/>
+    
+  </entry>
   
   <entry>
     <title>Git：DETACHED HEAD的概念</title>
@@ -492,31 +518,6 @@
     
     
       <category term="Linux" scheme="https://www.oxysun.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS：NPM依赖包版本号波浪字符&quot;~&quot;</title>
-    <link href="https://www.oxysun.cn/js/js-npm-symbol-caret.html"/>
-    <id>https://www.oxysun.cn/js/js-npm-symbol-caret.html</id>
-    <published>2018-07-11T15:07:00.000Z</published>
-    <updated>2018-07-29T12:12:38.499Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h1><p>原帖完整收藏于<a href="https://www.oxysun.cn/js/js-npm-symbol-tilde.htm">IT老兵驿站</a>，并会不断更新。</p><p>JS：NPM依赖包版本号波浪字符”~”。<br><a id="more"></a></p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>官网摘录如下：</p><blockquote><p>Tilde Ranges ~1.2.3 ~1.2 ~1<br>Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.</p></blockquote><p>简单翻译：如果<code>minor</code>被指定，则允许<code>patch</code>被改变；如果没有，允许<code>minor</code>被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，<code>[major，minor，patch]</code>。（详细知识需要参考<a href="https://www.oxysun.cn/js/js-npm-symbol-caret.html">这里</a>）</p><p><strong>实例：</strong></p><blockquote><p>~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 </p></blockquote><p><code>minor</code>被指定为<code>2</code>，所以能够获取的版本是大于等于<code>1.2.3</code>，小于<code>1.3</code>之间。</p><blockquote><p>~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)</p></blockquote><p><code>minor</code>被指定为<code>2</code>，所以能够获取的版本是大于等于<code>1.2</code>，小于<code>1.3</code>之间。</p><blockquote><p>~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)</p></blockquote><p><code>minor</code>没有被指定，所以能够获取的版本是大于等于<code>1</code>，小于<code>2</code>之间，就是<code>minor</code>可以改变。</p><p>下面留几道思考题：</p><blockquote><p>~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0<br>~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)<br>~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)<br>~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.</p></blockquote><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://github.com/npm/node-semver#functions。" target="_blank" rel="noopener">https://github.com/npm/node-semver#functions。</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;提醒&quot;&gt;&lt;a href=&quot;#提醒&quot; class=&quot;headerlink&quot; title=&quot;提醒&quot;&gt;&lt;/a&gt;提醒&lt;/h1&gt;&lt;p&gt;原帖完整收藏于&lt;a href=&quot;https://www.oxysun.cn/js/js-npm-symbol-tilde.htm&quot;&gt;IT老兵驿站&lt;/a&gt;，并会不断更新。&lt;/p&gt;
-&lt;p&gt;JS：NPM依赖包版本号波浪字符”~”。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://www.oxysun.cn/categories/JavaScript/"/>
-    
-      <category term="NPM" scheme="https://www.oxysun.cn/categories/JavaScript/NPM/"/>
-    
-    
-      <category term="JavaScript" scheme="https://www.oxysun.cn/tags/JavaScript/"/>
     
   </entry>
   
