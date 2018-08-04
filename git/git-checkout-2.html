@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Git的git-checkout的用法总结。">
+<meta name="description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
 <meta name="keywords" content="Git,用法,checkout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：git-checkout的用法总结（2）">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-checkout-2.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Git的git-checkout的用法总结。">
+<meta property="og:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-04T01:07:47.284Z">
+<meta property="og:updated_time" content="2018-08-04T01:11:19.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：git-checkout的用法总结（2）">
-<meta name="twitter:description" content="Git的git-checkout的用法总结。">
+<meta name="twitter:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
 
 
 
@@ -373,7 +373,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-04T09:07:47+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-04T09:11:19+08:00">
                 2018-08-04
               </time>
             
@@ -434,7 +434,7 @@
       
 
       
-        <p>Git的git-checkout的用法总结。<br><a id="more"></a></p>
+        <h2 id="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><a href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。" class="headerlink" title="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"></a>原帖收藏于<a href="https://www.oxysun.cn/git/git-checkout-2.html">IT老兵驿站</a>，传递一个IT老兵在凋零前的光和氧。</h2><p>Git的git-checkout的用法总结。<br><a id="more"></a></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>结合前一篇文章，再认真总结一下<code>git-checkout</code>的用法，因为可能一次总结到不了位，那么就不怕啰嗦，不怕重复，多总结几次，这样可能会造成每篇文章内容之间的分布不是那么清晰，将来再做更好的整理吧，因为现在这种方式，对于当前的学习是有帮助的，是从浅入深的。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git-checkout - Switch branches or restore working tree files</span><br></pre></td></tr></table></figure>
 <p>从上面可见，git checkout是用来切换分支或者回复工作目录的，看到这里，记住这一点，会有很大帮助。（备注：我发现，有的时候，学习的节奏放慢一些，反而其实是更有效率的，反而是更快的。多思考一些，记的更准确，因慢得快）</p>
@@ -638,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">2.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法1"><span class="nav-number">2.2.1.</span> <span class="nav-text">用法1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法2"><span class="nav-number">2.2.2.</span> <span class="nav-text">用法2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法3"><span class="nav-number">2.2.3.</span> <span class="nav-text">用法3</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><span class="nav-number">1.</span> <span class="nav-text">原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number"></span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法1"><span class="nav-number">2.1.</span> <span class="nav-text">用法1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法2"><span class="nav-number">2.2.</span> <span class="nav-text">用法2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法3"><span class="nav-number">2.3.</span> <span class="nav-text">用法3</span></a></li></ol></li></ol></div>
             
 
           </div>
