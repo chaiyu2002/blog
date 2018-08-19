@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MongoDB,创建数据库," />
+  <meta name="keywords" content="MongoDB,database,create,创建数据库," />
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="MongoDB如何创建数据库。">
-<meta name="keywords" content="MongoDB,创建数据库">
+<meta name="keywords" content="MongoDB,database,create,创建数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB：创建数据库">
 <meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-dababase-create.html">
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="MongoDB如何创建数据库。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-18T00:08:05.865Z">
+<meta property="og:updated_time" content="2018-08-19T08:13:26.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB：创建数据库">
 <meta name="twitter:description" content="MongoDB如何创建数据库。">
@@ -373,8 +373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-18T08:08:05+08:00">
-                2018-08-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-19T16:13:26+08:00">
+                2018-08-19
               </time>
             
           </span>
@@ -435,17 +435,21 @@
 
       
         <p>MongoDB如何创建数据库。<br><a id="more"></a></p>
-<p>官网位置：<a href="https://docs.mongodb.com/manual/mongo/。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/mongo/。</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
 <p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
-<p>进入mongo：</p>
+</blockquote>
+<p>这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。</p>
+<p>本篇文章整理一下MongoDB如何创建数据库。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>进入<a href="https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo" target="_blank" rel="noopener">mongo</a> shell（关于mongo shell，需要先安装并且启动好MongoDB）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@iZhp3fz3iqsadyes2s8ayeZ:~# mongo</span><br><span class="line">MongoDB shell version: 2.6.10</span><br><span class="line">connecting to: test</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<p>如果没有mongo这个命令，表示路径没有配置好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure>
-<p>尖括号表示需要你替换的变量，别完全照搬，当年我是犯过这种很<code>猪头</code>的错误的，你不要证明你也<code>猪头</code>了。</p>
+<p>如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。</p>
+<p>使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use &lt;database&gt;</span><br></pre></td></tr></table></figure></p>
+<p>尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。</p>
 <p>如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。</p>
 <p><strong>实例</strong>：创建一个数据库，名字为my_test。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br><span class="line">switched to db my_test</span><br></pre></td></tr></table></figure>
-<p>好，创建成功。</p>
+<p>这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/core/databases-and-collections/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/databases-and-collections/</a></p>
 
       
     </div>
@@ -464,6 +468,10 @@
         <div class="post-tags">
           
             <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+            <a href="/tags/database/" rel="tag"># database</a>
+          
+            <a href="/tags/create/" rel="tag"># create</a>
           
             <a href="/tags/创建数据库/" rel="tag"># 创建数据库</a>
           
@@ -542,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -580,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -610,6 +627,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
