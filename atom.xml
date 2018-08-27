@@ -74,13 +74,13 @@
     <link href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html"/>
     <id>https://www.oxysun.cn/mongodb/mongodb-study-note-2.html</id>
     <published>2018-08-20T02:12:00.000Z</published>
-    <updated>2018-08-25T13:26:58.006Z</updated>
+    <updated>2018-08-27T14:05:25.437Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记。<br><a id="more"></a></p><!--提纲数据库和表的概念。沿着官网的路线，结合自己的学习过程，配合着书籍。中心思想？--><!--讲一下笔记的记录思路，沿着官网的路线，结合自己的学习过程，配合着书籍。--><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在想，这个笔记应该按照什么思路，或者说，原则来记录呢？如果说按照当时学习的路线，那么一定是一条非常弯曲的曲线。还是按照官网的路线，配合着书籍，结合着自己的学习和工作过程来记录吧，这应该是最高效的学习路线—-尽管一开始看上去可能是较为漫长的。</p><!--先跳过地图册，介绍一下数据库和集合--><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>MongoDB推出了一个云服务，叫做Atlas，Atlas和本地安装是两种选择，因为基本用的是本地安装，对这一部分还没有深入研究，所以暂时先跳过。</p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>MongoDB的三个概念：数据库、集合和文档，对应于关系型数据库中的数据库、表和行，这样更容易进行记忆。但是，它们是存在区别的。<br><!--修改创建数据库--></p><ul><li><p>如何创建数据库，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-database-create.html">这里</a>。</p></li><li><p>如何创建集合，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">这里</a>。</p></li><li><p>如何创建（插入）一条文档，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html">这里</a>。</p></li></ul><h2 id="文档验证"><a href="#文档验证" class="headerlink" title="文档验证"></a>文档验证</h2><p>MongoDB的文档是没有<code>predefined shemas</code>的，没有预定义的模式，这和SQL型的数据库不一样，它的每一条文档的结构都是可以不一样的，同时，MongoDB也提供给你一些对文档进行约束的<a href="https://docs.mongodb.com/manual/core/schema-validation/" target="_blank" rel="noopener">功能</a>，帮助你可以去约束文档。</p><p>对于修改文档的结构，这个就更加简单了，你在更新文档的同时就可以去更新文档的结构，就不需要像MySQL那样去使用DDL语言。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重新整理了一下创建数据库、创建集合、创建文档，由这篇文章作为纲领，这样可以提纲挈领，看的比较明白。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记：数据库和集合。<br><a id="more"></a></p><!--提纲数据库和表的概念。沿着官网的路线，结合自己的学习过程，配合着书籍。中心思想？--><!--讲一下笔记的记录思路，沿着官网的路线，结合自己的学习过程，配合着书籍。--><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在想，这个笔记应该按照什么思路，或者说，原则来记录呢？如果说按照当时学习的路线，那么一定是一条非常弯曲的曲线。还是按照官网的路线，配合着书籍，结合着自己的学习和工作过程来记录吧，这应该是最高效的学习路线—-尽管一开始看上去可能是较为漫长的。</p><!--先跳过地图册，介绍一下数据库和集合--><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>MongoDB推出了一个云服务，叫做Atlas，Atlas和本地安装是两种选择，因为基本用的是本地安装，对这一部分还没有深入研究，所以暂时先跳过。</p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>MongoDB的三个概念：数据库、集合和文档，对应于关系型数据库中的数据库、表和行，这样更容易进行记忆。但是，它们是存在区别的。<br><!--修改创建数据库--></p><ul><li><p>如何创建数据库，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-database-create.html">这里</a>。</p></li><li><p>如何创建集合，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">这里</a>。</p></li><li><p>如何创建（插入）一条文档，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html">这里</a>。</p></li></ul><h2 id="文档验证"><a href="#文档验证" class="headerlink" title="文档验证"></a>文档验证</h2><p>MongoDB的文档是没有<code>predefined shemas</code>的，没有预定义的模式，这和SQL型的数据库不一样，它的每一条文档的结构都是可以不一样的，同时，MongoDB也提供给你一些对文档进行约束的<a href="https://docs.mongodb.com/manual/core/schema-validation/" target="_blank" rel="noopener">功能</a>，帮助你可以去约束文档。</p><p>对于修改文档的结构，这个就更加简单了，你在更新文档的同时就可以去更新文档的结构，就不需要像MySQL那样去使用DDL语言。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重新整理了一下创建数据库、创建集合、创建文档，由这篇文章作为纲领，这样可以提纲挈领，看的比较明白。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;完整的MongoDB学习笔记位于IT老兵博客。&quot;&gt;&lt;a href=&quot;#完整的MongoDB学习笔记位于IT老兵博客。&quot; class=&quot;headerlink&quot; title=&quot;完整的MongoDB学习笔记位于IT老兵博客。&quot;&gt;&lt;/a&gt;完整的MongoDB学习笔记位于&lt;a href=&quot;https://www.oxysun.cn/mongodb/mongodb-study-note-2.html&quot;&gt;IT老兵博客&lt;/a&gt;。&lt;/h2&gt;&lt;p&gt;MongoDB学习笔记。&lt;br&gt;
+      &lt;h2 id=&quot;完整的MongoDB学习笔记位于IT老兵博客。&quot;&gt;&lt;a href=&quot;#完整的MongoDB学习笔记位于IT老兵博客。&quot; class=&quot;headerlink&quot; title=&quot;完整的MongoDB学习笔记位于IT老兵博客。&quot;&gt;&lt;/a&gt;完整的MongoDB学习笔记位于&lt;a href=&quot;https://www.oxysun.cn/mongodb/mongodb-study-note-2.html&quot;&gt;IT老兵博客&lt;/a&gt;。&lt;/h2&gt;&lt;p&gt;MongoDB学习笔记：数据库和集合。&lt;br&gt;
     
     </summary>
     
@@ -289,9 +289,9 @@
     
       <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
     
-      <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
-    
       <category term="checkout" scheme="https://www.oxysun.cn/tags/checkout/"/>
+    
+      <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
     
   </entry>
   
@@ -417,9 +417,9 @@
     
       <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
     
-      <category term="git branch" scheme="https://www.oxysun.cn/tags/git-branch/"/>
-    
       <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
+    
+      <category term="git branch" scheme="https://www.oxysun.cn/tags/git-branch/"/>
     
       <category term="分支" scheme="https://www.oxysun.cn/tags/%E5%88%86%E6%94%AF/"/>
     
