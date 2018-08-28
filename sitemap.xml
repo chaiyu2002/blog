@@ -65,6 +65,13 @@
   </url>
   
   <url>
+    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
+    
+    <lastmod>2018-08-18T00:08:05.864Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
     
     <lastmod>2018-08-18T00:08:05.864Z</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/git/git-reflog.html</loc>
-    
-    <lastmod>2018-08-18T00:08:05.864Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
     
     <lastmod>2018-08-18T00:08:05.864Z</lastmod>
     
@@ -268,14 +268,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
     
     <lastmod>2018-07-18T11:09:55.847Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
     
     <lastmod>2018-07-18T11:09:55.847Z</lastmod>
     
@@ -366,14 +366,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/manifest.json</loc>
+    <loc>https://www.oxysun.cn/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/data.json</loc>
+    <loc>https://www.oxysun.cn/manifest.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
@@ -401,14 +401,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
