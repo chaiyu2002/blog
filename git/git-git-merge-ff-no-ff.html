@@ -81,23 +81,23 @@
 
 
 
-<meta name="description" content="Git：Git-merge的–ff和–no-ff。">
+<meta name="description" content="Git用法总结系列收藏于IT老兵驿站。Git：Git-merge的–ff和–no-ff。">
 <meta name="keywords" content="Git,git merge,ff,no-ff,fast forward">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：Git merge的--ff和--no-ff">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Git：Git-merge的–ff和–no-ff。">
+<meta property="og:description" content="Git用法总结系列收藏于IT老兵驿站。Git：Git-merge的–ff和–no-ff。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://git-scm.com/book/en/v2/images/basic-branching-4.png">
 <meta property="og:image" content="https://git-scm.com/book/en/v2/images/basic-branching-5.png">
 <meta property="og:image" content="https://git-scm.com/book/en/v2/images/basic-branching-6.png">
 <meta property="og:image" content="https://git-scm.com/book/en/v2/images/basic-merging-2.png">
 <meta property="og:image" content="https://i.stack.imgur.com/FMD5h.png">
-<meta property="og:updated_time" content="2018-08-02T00:39:42.486Z">
+<meta property="og:updated_time" content="2018-08-28T09:21:56.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：Git merge的--ff和--no-ff">
-<meta name="twitter:description" content="Git：Git-merge的–ff和–no-ff。">
+<meta name="twitter:description" content="Git用法总结系列收藏于IT老兵驿站。Git：Git-merge的–ff和–no-ff。">
 <meta name="twitter:image" content="https://git-scm.com/book/en/v2/images/basic-branching-4.png">
 
 
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T08:39:42+08:00">
-                2018-08-02
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-28T17:21:56+08:00">
+                2018-08-28
               </time>
             
           </span>
@@ -440,7 +440,7 @@
       
 
       
-        <p>Git：Git-merge的–ff和–no-ff。<br><a id="more"></a></p>
+        <h2 id="Git用法总结系列收藏于IT老兵驿站。"><a href="#Git用法总结系列收藏于IT老兵驿站。" class="headerlink" title="Git用法总结系列收藏于IT老兵驿站。"></a>Git用法总结系列收藏于<a href="https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html">IT老兵驿站</a>。</h2><p>Git：Git-merge的–ff和–no-ff。<br><a id="more"></a></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git merge最容易糊涂的地方就是这个<code>--ff</code>参数和<code>--no-ff</code> 参数，通过本文，把这个整理清楚。</p>
 <p>其实官网讲的非常清楚，不过可能因为是英文的，所以大家阅读起来会有一些障碍。（PS：其实还是应该逐步逐步提高自己阅读英文文档的能力，想达到一个更高的高度，是需要客服自己本身很多的弱点的）</p>
 <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>假设合并前的分支是这样，这个一个非常常见的场景，如果不明白，可以参考另外一篇文章Git Flow工作流：<br><img src="https://git-scm.com/book/en/v2/images/basic-branching-4.png" alt="这里写图片描述"><br>这是一个很常见的用例，功能开发分支是<code>iss53</code>，在开发新功能，<code>master</code>分支是线上分支，出现了问题，开辟了<code>hotfix</code>分支进行修复，修复完成，进行合并，需要把<code>hotfix</code>合并回<code>master</code>。</p>
@@ -578,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -640,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git用法总结系列收藏于IT老兵驿站。"><span class="nav-number">1.</span> <span class="nav-text">Git用法总结系列收藏于IT老兵驿站。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number"></span> <span class="nav-text">实例</span></a></div>
             
 
           </div>

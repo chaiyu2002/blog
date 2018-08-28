@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-08-28T03:19:14.478Z</updated>
+  <updated>2018-08-28T09:23:59.159Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git：git-pull的用法总结</title>
+    <link href="https://www.oxysun.cn/git/git-pull-1.html"/>
+    <id>https://www.oxysun.cn/git/git-pull-1.html</id>
+    <published>2018-08-28T09:19:00.000Z</published>
+    <updated>2018-08-28T09:23:59.159Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Git用法总结系列收藏于IT老兵驿站。"><a href="#Git用法总结系列收藏于IT老兵驿站。" class="headerlink" title="Git用法总结系列收藏于IT老兵驿站。"></a>Git用法总结系列收藏于<a href="https://www.oxysun.cn/git/git-pull-1.html">IT老兵驿站</a>。</h2><p>Git：git-pull的用法总结。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章总结一下<code>git-pull</code> 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：</p><ol><li>认真读完官网之后，才会知道它到底有多少内容，这样要比一次一次碎片化地去查要节省很多的时间，不这样读一遍，你怎么能知道<code>git-pull</code>有多少功能呢，如果不知道，回头遇到了需要这个功能的时候，都不知道怎么去查，要了解这个命令的外延。</li><li>当然，很多内容一下子是记不住的。记录适当的，或者说关键性的笔记来辅助记忆，将来可以多次去查看。</li><li>记录学习的心得。</li></ol><p>粗读了一遍<code>git-pull</code>的文档，内容很多，恐怕一篇笔记不足以总结到位，可能要分为多篇笔记来总结。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>git pull的作用是从一个仓库或者本地的分支拉取并且整合代码。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull [&lt;options&gt;] [&lt;repository&gt; [&lt;refspec&gt;…​]]</span><br></pre></td></tr></table></figure><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><code>git pull</code>相当于 <code>git fetch</code> 跟着一个 <code>git merge FETCH_HEAD</code>。<code>&lt;repository&gt;</code>是仓库的名字，<code>&lt;refspec&gt;</code> 是分支的名字。如果都不写，会有一个默认值。</p><p>一个例子：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     A---B---C master on origin</span><br><span class="line">/</span><br><span class="line">D---E---F---G master</span><br><span class="line">^</span><br><span class="line">    origin/master in your repository</span><br></pre></td></tr></table></figure><p>远程的<code>master</code>分支到了<code>C</code>，本地的开发到了<code>G</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> A---B---C origin/master</span><br><span class="line">/         \</span><br><span class="line">D---E---F---G---H master</span><br></pre></td></tr></table></figure><p><code>git pull</code>之后会生成一个新的<code>H</code>，合并两个分支。</p><p>如果发生了冲突，可以使用<code>git reset --merge</code>进行回退。</p><h2 id="options（选项）"><a href="#options（选项）" class="headerlink" title="options（选项）"></a>options（选项）</h2><p>下面摘录几个常用的选项。</p><blockquote><p>–allow-unrelated-histories<br>By default, git merge command refuses to merge histories that do not share a common ancestor. This option can be used to override this safety when merging histories of two projects that started their lives independently. As that is a very rare<br>occasion, no configuration variable to enable this by default exists and will not be added.</p></blockquote><p>允许无关的历史，这个选项，更多是在更改远程仓库的时候用到。</p><blockquote><p>–ff<br>When the merge resolves as a fast-forward, only update the branch pointer, without creating a merge commit. This is the default behavior.<br><br><br>–no-ff<br>Create a merge commit even when the merge resolves as a fast-forward. This is the default behaviour when merging an annotated (and possibly signed) tag that is not stored in its natural place in refs/tags/ hierarchy.<br><br><br>–ff-only<br>Refuse to merge and exit with a non-zero status unless the current HEAD is already up to date or the merge can be resolved as a fast-forward.</p></blockquote><p><code>ff</code>选项，这几个选项是说合并时是否开启<code>fast-forward</code>，快速合并，这个有在<a href="https://www.oxysun.cn/git/git-git-merge-ff-no-ff.html">另外一篇帖子</a>中详细讲解，这里就不赘述了。</p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p><strong>实例：</strong>默认使用方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure><p>按照<code>git branch</code> 设置的默认跟踪的服务器和分支来拉取。</p><p><strong>实例：</strong> 拉取远程服务器<code>origin</code>的<code>master</code>分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>git-pull的用法先总结到这里，还有很多需要细化的地方，一口吃不下，需要一口一口来。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://git-scm.com/docs/git-pull" target="_blank" rel="noopener">https://git-scm.com/docs/git-pull</a><br><a href="https://www.atlassian.com/git/tutorials/syncing/git-pull" target="_blank" rel="noopener">https://www.atlassian.com/git/tutorials/syncing/git-pull</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Git用法总结系列收藏于IT老兵驿站。&quot;&gt;&lt;a href=&quot;#Git用法总结系列收藏于IT老兵驿站。&quot; class=&quot;headerlink&quot; title=&quot;Git用法总结系列收藏于IT老兵驿站。&quot;&gt;&lt;/a&gt;Git用法总结系列收藏于&lt;a href=&quot;https://www.oxysun.cn/git/git-pull-1.html&quot;&gt;IT老兵驿站&lt;/a&gt;。&lt;/h2&gt;&lt;p&gt;Git：git-pull的用法总结。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://www.oxysun.cn/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
+    
+      <category term="git pull" scheme="https://www.oxysun.cn/tags/git-pull/"/>
+    
+  </entry>
   
   <entry>
     <title>MongoDB学习笔记（三）：文档</title>
@@ -506,30 +530,6 @@
       <category term="区块链" scheme="https://www.oxysun.cn/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
       <category term="Base48" scheme="https://www.oxysun.cn/tags/Base48/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux下shell命令用法及常见用例：which</title>
-    <link href="https://www.oxysun.cn/linux/shell-command-which.html"/>
-    <id>https://www.oxysun.cn/linux/shell-command-which.html</id>
-    <published>2018-07-26T15:03:07.000Z</published>
-    <updated>2018-07-26T15:13:49.679Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>which</code>命令用于查找并显示给定命令的绝对路径，环境变量<code>$PATH</code>中保存了查找命令时需要遍历的目录。<code>which</code>指令会在环境变量$PATH设置的目录里查找符合条件的文件。也就是说，使用<code>which</code>命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。</p><a id="more"></a><h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><p>今天有点累，也已经很晚了，总结一个较为简单的命令吧，20英里法则，每天尽量坚持往前走一点。</p><h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p><code>which</code>命令是查找某个命令的完整路径。它是用来在当前登录用户的<code>$PATH</code>环境变量记录的路径中查找可执行文件（即二进制文件）的路径。默认情况下，只返回第一个搜索结果。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WHICH(1)                                                        General Commands Manual                                                       WHICH(1)</span><br><span class="line"></span><br><span class="line">NAME</span><br><span class="line">       which - shows the full path of (shell) commands.</span><br></pre></td></tr></table></figure><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>which [选项] 命令</code></p><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p><strong>实例：</strong>查看ls命令的位置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZwz90drrwkerfi7bc8mqiZ ~]# which ls</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">/usr/bin/ls</span><br></pre></td></tr></table></figure><p>第一行输出暂时没有搞明白是哪里来的，第二行就是<code>ls</code>命令的位置了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;which&lt;/code&gt;命令用于查找并显示给定命令的绝对路径，环境变量&lt;code&gt;$PATH&lt;/code&gt;中保存了查找命令时需要遍历的目录。&lt;code&gt;which&lt;/code&gt;指令会在环境变量$PATH设置的目录里查找符合条件的文件。也就是说，使用&lt;code&gt;which&lt;/code&gt;命令，就可以看到某个系统命令是否存在，以及执行的到底是哪一个位置的命令。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://www.oxysun.cn/categories/Linux/"/>
-    
-      <category term="Shell" scheme="https://www.oxysun.cn/categories/Linux/Shell/"/>
-    
-    
-      <category term="Linux" scheme="https://www.oxysun.cn/tags/Linux/"/>
     
   </entry>
   

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content=",," />
+  <meta name="keywords" content="IT, 老兵, 驿站" />
 
 
 
@@ -81,18 +81,16 @@
 
 
 
-<meta name="description" content="NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目Nginx 的配置文件是学习 Nginx 的必经之路，配置文件的父子级关系是：main context &amp;gt; http &amp;amp; event &amp;gt; server &amp;gt; location。官网的配置文件示例 多项目指向同一个端口这是最常见的需求了，一般用 80 端口映射多个目录，根据不同的项目名字来划分访问的地址。">
-<meta name="keywords" content="Web,Nginx">
+<meta name="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CONFIGURE MULTIPLE VUE PROJECT WITH NGINX">
-<meta property="og:url" content="https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html">
+<meta property="og:title" content="IT老兵驿站">
+<meta property="og:url" content="https://www.oxysun.cn/tags/git-pull/index.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目Nginx 的配置文件是学习 Nginx 的必经之路，配置文件的父子级关系是：main context &amp;gt; http &amp;amp; event &amp;gt; server &amp;gt; location。官网的配置文件示例 多项目指向同一个端口这是最常见的需求了，一般用 80 端口映射多个目录，根据不同的项目名字来划分访问的地址。">
+<meta property="og:description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-16T08:07:35.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CONFIGURE MULTIPLE VUE PROJECT WITH NGINX">
-<meta name="twitter:description" content="NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目Nginx 的配置文件是学习 Nginx 的必经之路，配置文件的父子级关系是：main context &amp;gt; http &amp;amp; event &amp;gt; server &amp;gt; location。官网的配置文件示例 多项目指向同一个端口这是最常见的需求了，一般用 80 端口映射多个目录，根据不同的项目名字来划分访问的地址。">
+<meta name="twitter:title" content="IT老兵驿站">
+<meta name="twitter:description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/tags/git-pull/"/>
 
 
 
 
 
-  <title>CONFIGURE MULTIPLE VUE PROJECT WITH NGINX | IT老兵驿站</title>
+  <title>标签: git pull | IT老兵驿站</title>
   
 
 
@@ -166,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -314,66 +312,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
+  
+  
+  
+  <div class="post-block tag">
 
-	<h1 class="post-title" itemprop="name headline">CONFIGURE MULTIPLE VUE PROJECT WITH NGINX</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-        
-        
-          <h1 id="NGINX-VUE-多个项目映射同一端口-多端口、不同路径指向同一项目"><a href="#NGINX-VUE-多个项目映射同一端口-多端口、不同路径指向同一项目" class="headerlink" title="NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目"></a>NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目</h1><p>Nginx 的配置文件是学习 Nginx 的必经之路，配置文件的父子级关系是：main context > http &amp; event > server > location。<a href="https://www.nginx.com/resources/wiki/start/topics/examples/full/" target="_blank" rel="noopener">官网的配置文件示例</a></p>
-<h2 id="多项目指向同一个端口"><a href="#多项目指向同一个端口" class="headerlink" title="多项目指向同一个端口"></a>多项目指向同一个端口</h2><p>这是最常见的需求了，一般用 80 端口映射多个目录，根据不同的项目名字来划分访问的地址。</p>
-<a id="more"></a>
-<h3 id="VUE-项目配置"><a href="#VUE-项目配置" class="headerlink" title="VUE 项目配置"></a>VUE 项目配置</h3><ol>
-<li>找到并修改 <code>config/index.js</code> 这个文件，在配置的 build 中的 <code>assetsPublicPath</code> 从 <code>/</code> 修改为<code>/&lt;项目名&gt;/</code>。</li>
-</ol>
-<ol start="2">
-<li>找到并修改 <code>src/router.js</code>。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">	    base: "/<span class="tag">&lt;<span class="name">项目名</span>&gt;</span>/",  // 添加这句</span><br><span class="line">    routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h3><ol>
-<li><p>找到并修改 Nginx 的配置文件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name www.iweeek.com;</span><br><span class="line">        root  /usr/local/webserver/nginx/html;</span><br><span class="line">        index index.html;</span><br><span class="line"></span><br><span class="line">        location /<span class="tag">&lt;<span class="name">项目名1</span>&gt;</span>&#123;</span><br><span class="line">                index index.html;</span><br><span class="line">        &#125;</span><br><span class="line">        location /<span class="tag">&lt;<span class="name">项目名2</span>&gt;</span>  &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        access_log on;</span><br><span class="line">        error_log  on;</span><br><span class="line">        include server.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启 Nginx ，使 Nginx 配置生效。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./nginx -s reload</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问一下试试吧。<br> <code>http://www.iweeek.com/项目名1</code><br> <code>http://www.iweeek.com/项目名2</code><br> 这两个访问的效果是一样的。</p>
-</li>
-</ol>
-<h2 id="多端口、不同路径指向同一项目"><a href="#多端口、不同路径指向同一项目" class="headerlink" title="多端口、不同路径指向同一项目"></a>多端口、不同路径指向同一项目</h2><p>这个需求是我在工作上碰到的，之前已经发布了带着端口的链接，上面领导看到了，认为这丫的端口哪能随便暴露出去呢，改！不过想想也是，见过哪个网站域名后面加上端口的？一般都是内部使用带端口，端口又是越用越少的（包括 1023 以内的都是公认端口，在 /etc/services 里面可以看到这种映射关系），既然一个端口能抵多个项目，我何乐而不为呢！<a href="http://www.cnblogs.com/kerrycode/p/5609010.html" target="_blank" rel="noopener">端口的概念</a></p>
-<h3 id="VUE-项目配置-1"><a href="#VUE-项目配置-1" class="headerlink" title="VUE 项目配置"></a>VUE 项目配置</h3><p>这个和多项目指向同一个端口一样，不用动。</p>
-<h3 id="Nginx配置-1"><a href="#Nginx配置-1" class="headerlink" title="Nginx配置"></a>Nginx配置</h3><ol>
-<li><p>找到并修改 Nginx 配置文件。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       81;</span><br><span class="line">        server_name www.iweeek.com;</span><br><span class="line">        root  /usr/local/webserver/nginx/html;</span><br><span class="line">        index index.html;</span><br><span class="line">        location / &#123;</span><br><span class="line">                index /<span class="tag">&lt;<span class="name">项目名</span>&gt;</span>/index.html;</span><br><span class="line">        &#125;</span><br><span class="line">        access_log on;</span><br><span class="line">        error_log  on;</span><br><span class="line">        include server.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问一下吧。</p>
-<p> <code>http://www.iweeek.com/项目名</code><br> <code>http://www.iweeek.com:81/</code><br>这两个访问的效果也是一样滴。</p>
-</li>
-</ol>
-
-        
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>git pull<small>标签</small>
+        </h1>
       </div>
+
       
-      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/git/git-pull-1.html" itemprop="url">
+              
+                <span itemprop="name">Git：git-pull的用法总结</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-08-28T17:19:00+08:00"
+              content="2018-08-28" >
+          08-28
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
-    
-    
-    
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -381,10 +367,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -405,17 +387,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,22 +455,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NGINX-VUE-多个项目映射同一端口-多端口、不同路径指向同一项目"><span class="nav-number">1.</span> <span class="nav-text">NGINX + VUE | 多个项目映射同一端口 | 多端口、不同路径指向同一项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多项目指向同一个端口"><span class="nav-number">1.1.</span> <span class="nav-text">多项目指向同一个端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VUE-项目配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">VUE 项目配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">Nginx配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多端口、不同路径指向同一项目"><span class="nav-number">1.2.</span> <span class="nav-text">多端口、不同路径指向同一项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VUE-项目配置-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">VUE 项目配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx配置-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Nginx配置</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -657,10 +614,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
