@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-08-27T13:03:22.055Z</updated>
+  <updated>2018-08-28T03:19:14.478Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>MongoDB学习笔记：文档</title>
+    <title>MongoDB学习笔记（三）：文档</title>
     <link href="https://www.oxysun.cn/mongodb/mongodb-study-note-3.html"/>
     <id>https://www.oxysun.cn/mongodb/mongodb-study-note-3.html</id>
     <published>2018-08-27T13:02:00.000Z</published>
-    <updated>2018-08-27T13:03:22.055Z</updated>
+    <updated>2018-08-28T03:19:14.478Z</updated>
     
     <content type="html"><![CDATA[<h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-3.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记：文档。<br><a id="more"></a></p><!--提纲文档的概念，这一章节，可能一篇笔记写不完，怎么写。--><!--讲一下笔记的记录思路，沿着官网的路线，结合自己的学习过程，配合着书籍。--><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近有点忙，足有一周没有继续这个系列（而原计划是用一到两个月的时间完成这个系列的笔记的），按照20英里法则，这样的学习效果不好，今天抽空还是写了一篇，很多事，贵在坚持。</p><p>上一篇文章，其实题目起错了，不应该包含文档，因为上一篇文章的内容并没有文档的内容，不过CSDN的MD这种方式，修改题目总是不成功，只好在自己的博客修改，这样两篇文章的题目有些不一致了。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2><p>MongoDB的文档相当于MySQL的行，但是格式都是JSON的，而存储的格式是BSON，是二进制的保存JSON的格式。</p><p>文档的结构是域（field）-值（value）对，类似如下的结构：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   field1: value1,</span><br><span class="line">   field2: value2,</span><br><span class="line">   field3: value3,</span><br><span class="line">   ...</span><br><span class="line">   fieldN: valueN</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>值字段可以包含任意BSON数据类型，或者其他文档，或者数组，文档数组，例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var mydoc = &#123;</span><br><span class="line">               _id: ObjectId(&quot;5099803df3f4948bd2f98391&quot;),</span><br><span class="line">               name: &#123; first: &quot;Alan&quot;, last: &quot;Turing&quot; &#125;,</span><br><span class="line">               birth: new Date(&apos;Jun 23, 1912&apos;),</span><br><span class="line">               death: new Date(&apos;Jun 07, 1954&apos;),</span><br><span class="line">               contribs: [ &quot;Turing machine&quot;, &quot;Turing test&quot;, &quot;Turingery&quot; ],</span><br><span class="line">               views : NumberLong(1250000)</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure><p>域的名字和值各有一些限制，这个一般不会触及，所以暂时忽略—-当然，触及的时候，可以查一下手册。</p><h2 id="点符号"><a href="#点符号" class="headerlink" title="点符号"></a>点符号</h2><h3 id="Array（数组）"><a href="#Array（数组）" class="headerlink" title="Array（数组）"></a>Array（数组）</h3><p>访问数组的方式，是数组名+“.”+索引（索引是从0开始），如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;array&gt;.&lt;index&gt;&quot;</span><br></pre></td></tr></table></figure><p>举个例子（摘自官网）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   ...</span><br><span class="line">   contribs: [ &quot;Turing machine&quot;, &quot;Turing test&quot;, &quot;Turingery&quot; ],</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>想访问数组的第三个元素“Turingery”，就使用“contribs.2”。</p><h3 id="Embedded-Documents（嵌入的文档）"><a href="#Embedded-Documents（嵌入的文档）" class="headerlink" title="Embedded Documents（嵌入的文档）"></a>Embedded Documents（嵌入的文档）</h3><p>想访问嵌入的文档，使用文档名+“.”+“域名”的访问方式，语法如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&lt;embedded document&gt;.&lt;field&gt;&quot;</span><br></pre></td></tr></table></figure><p>举例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   ...</span><br><span class="line">   name: &#123; first: &quot;Alan&quot;, last: &quot;Turing&quot; &#125;,</span><br><span class="line">   contact: &#123; phone: &#123; type: &quot;cell&quot;, number: &quot;111-222-3333&quot; &#125; &#125;,</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>“name.last”表示访问name的last域。<br>“contact.phone.number”表示访问contact的phone域的number域。</p><h2 id="文档的限制"><a href="#文档的限制" class="headerlink" title="文档的限制"></a>文档的限制</h2><h3 id="文档的大小"><a href="#文档的大小" class="headerlink" title="文档的大小"></a>文档的大小</h3><p>最大的BSON文档的大小是16M。</p><h3 id="文档域的顺序"><a href="#文档域的顺序" class="headerlink" title="文档域的顺序"></a>文档域的顺序</h3><p>文档遵循着写的操作顺序</p><blockquote><p>MongoDB preserves the order of the document fields following write<br>operations…</p></blockquote><p>文档保留着写操作的顺序–这句话有点没理解，是按照第一次写入的顺序吗？<br>除了：</p><ul><li><code>_id</code>域永远是第一位的。</li><li>更新有可能会改变顺序。</li></ul><h3 id="id域"><a href="#id域" class="headerlink" title="_id域"></a>_id域</h3><p><code>_id</code>域是主键，如果插入时忽略了，系统会自动加上这个字段。</p><blockquote><p>By default, MongoDB creates a unique index on the _id field during the creation of a collection.<br><br><br>The _id field is always the first field in the documents. If the server receives a document that does not have the _id field first, then the server will move the field to the beginning.<br><br><br>The _id field may contain values of any BSON data type, other than an array.</p></blockquote><ul><li><code>_id</code>是作为唯一索引的。</li><li><code>_id</code>永远是文档的第一个域。</li><li><code>_id</code>可以是任何BSON类型，除了数组。</li></ul><h2 id="文档结构的其他使用"><a href="#文档结构的其他使用" class="headerlink" title="文档结构的其他使用"></a>文档结构的其他使用</h2><p>用于查询过滤器（这篇帖子已经完成），更新规格文档、索引规格文档，这些需要将来细化，这里就不赘述了，官网这里也是给了一个引子，如果不具体看相应的内容，是没有用的。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>足有一周没有继续这个系列了，心里有些慌，今天终于又完成一篇，心里略微踏实了一些—-尽快有些仓促。</p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/core/document/#bson-document-format" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/document/#bson-document-format</a></p>]]></content>
     
@@ -70,11 +70,11 @@
   </entry>
   
   <entry>
-    <title>MongoDB学习笔记：数据库和集合</title>
+    <title>MongoDB学习笔记（二）：数据库和集合</title>
     <link href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html"/>
     <id>https://www.oxysun.cn/mongodb/mongodb-study-note-2.html</id>
     <published>2018-08-20T02:12:00.000Z</published>
-    <updated>2018-08-27T14:05:25.437Z</updated>
+    <updated>2018-08-28T03:19:00.583Z</updated>
     
     <content type="html"><![CDATA[<h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记：数据库和集合。<br><a id="more"></a></p><!--提纲数据库和表的概念。沿着官网的路线，结合自己的学习过程，配合着书籍。中心思想？--><!--讲一下笔记的记录思路，沿着官网的路线，结合自己的学习过程，配合着书籍。--><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在想，这个笔记应该按照什么思路，或者说，原则来记录呢？如果说按照当时学习的路线，那么一定是一条非常弯曲的曲线。还是按照官网的路线，配合着书籍，结合着自己的学习和工作过程来记录吧，这应该是最高效的学习路线—-尽管一开始看上去可能是较为漫长的。</p><!--先跳过地图册，介绍一下数据库和集合--><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>MongoDB推出了一个云服务，叫做Atlas，Atlas和本地安装是两种选择，因为基本用的是本地安装，对这一部分还没有深入研究，所以暂时先跳过。</p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>MongoDB的三个概念：数据库、集合和文档，对应于关系型数据库中的数据库、表和行，这样更容易进行记忆。但是，它们是存在区别的。<br><!--修改创建数据库--></p><ul><li><p>如何创建数据库，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-database-create.html">这里</a>。</p></li><li><p>如何创建集合，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">这里</a>。</p></li><li><p>如何创建（插入）一条文档，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html">这里</a>。</p></li></ul><h2 id="文档验证"><a href="#文档验证" class="headerlink" title="文档验证"></a>文档验证</h2><p>MongoDB的文档是没有<code>predefined shemas</code>的，没有预定义的模式，这和SQL型的数据库不一样，它的每一条文档的结构都是可以不一样的，同时，MongoDB也提供给你一些对文档进行约束的<a href="https://docs.mongodb.com/manual/core/schema-validation/" target="_blank" rel="noopener">功能</a>，帮助你可以去约束文档。</p><p>对于修改文档的结构，这个就更加简单了，你在更新文档的同时就可以去更新文档的结构，就不需要像MySQL那样去使用DDL语言。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重新整理了一下创建数据库、创建集合、创建文档，由这篇文章作为纲领，这样可以提纲挈领，看的比较明白。</p>]]></content>
     
@@ -96,11 +96,11 @@
   </entry>
   
   <entry>
-    <title>MongoDB学习笔记：启程</title>
+    <title>MongoDB学习笔记（一）：启程</title>
     <link href="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html"/>
     <id>https://www.oxysun.cn/mongodb/mongodb-study-note-1.html</id>
     <published>2018-08-18T13:37:00.000Z</published>
-    <updated>2018-08-19T08:26:04.436Z</updated>
+    <updated>2018-08-28T03:18:47.653Z</updated>
     
     <content type="html"><![CDATA[<h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记。<br><a id="more"></a></p><!--提纲第一部分总结一下之前大概的学习情况，三段的学习历程，存在的问题，浪费了好多时间，写作这篇文章的目的。第二部分怎么开始的。选择学习的书籍。记录学习的过程。学习的态度，抨击速成的理念。中心思想？--><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>先介绍一下学习MongoDB的历程。</p><p>对于MongoDB，是从14年听说的，当时大概地看了一下，没有仔细研究，</p><p>说实话，当时心里其实是有点排斥的。因为“浸淫”SQL多年（花了好些年去研究和使用MySQL、Oracle，研究各种范式，做的项目都是基于SQL的），突然出来一种<code>NoSQL</code>和<code>反范式设计</code>的概念，尤其是，突然有一堆刚毕业的，完全不懂范式，没有用范式做过系统的小朋友，跟你说“SQL已经过时”的时候，内心是非常排斥的，“你们连范式都还没有搞明白，都没有做出什么有点规模的系统，居然跟我奢谈说SQL已经过时”。</p><p>此外，还有一个因素，那就是一个老程序员，对于新技术的冲击，本能的有些排斥。新技术似乎会降低我们自身的价值，这个时候，我们就变成了保守派，想捍卫一些东西—-这是不可取的。</p><p>16年，在一家小公司任职，带领着团队研究新技术（小公司往往有机会去研究和使用新技术），大概看了看（看了一本好像是国人写的MongoDB的书），自以为大体是掌握了—-自以为是了。</p><p>18年，开始真正要用MongoDB做一个项目，才发现之前掌握的，完全不到位。这个时候，端正了心态，踏踏实实地开始学习，到现在有了一些小的心得。</p><p>这个时候回想，如果当初不要那么浮光绿影地看书，而是踏踏实实地，结合着书籍，写一些实例应用，可能会掌握得更加清楚。这样，总共加起来，花费的学习时间应该会缩短很多，有的时候，要把有的事情做到位才会有效果，正是“纸上得来终觉浅，绝知此事要躬行”。</p><p>所以，为了总结这一个过程，记录笔记来跟踪整个学习的过程，到现在为止，已经总结了几篇MongoDB的使用方式，感觉还是不足以完整地记录整个学习过程，所以，再用这种方式记录一下，串联起来。</p><p>这个笔记，计划是花一个多月的时间，争取每周输出几篇，每一篇的篇幅不会太长，根据一个统一的原则来进行每篇内容的拆分，最终达到对MongoDB的外围和内延的认识达到一个深度。总共的篇幅，暂时还不确定，达到了最终的目的为止，最后输出一个可以对学习MongoDB很有帮助的系列性的笔记。</p><p>本篇笔记，稍微啰嗦一下，现在可以理解很多书籍的前言了，这个时候总想表达一下写作的目的，中间的经历和艰辛，很多心得和感悟，从这个角度来说，本篇其实就是前言了。</p><h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>“工欲善其事必先利其器”，想学好MongoDB，先得选择好的学习资料。从从业十多年的经验中，我得到一个认知，“因快得慢”。举一个例子，当年快毕业，准备出去面试，需要学习linux的一些基本原理，这个时候，摆在面前的有几种资料，一种是《Linux与unix shell编程指南》，这是当时很经典的书籍，但是篇幅较长；另外一种是，速成的教程（原谅我连名字都不记得了，因为实在是没有太多的价值）。当时我果断的选择了后者，结果因为这种速成的教程往往只是讲了一些最没有价值的东西，就像快餐一样，真正有营养的东西，需要慢慢去吸收和消化。后来，其实又花了很多气力，踏踏实实地重来一遍，这样算来，第一遍花费的时间，一点都没有意义，所以，这就是计算机学习，为什么要去读经典的原理，这才是最节省时间的方式，走得越扎实，其实才是走的最快的方式。</p><p>官网，<a href="https://docs.mongodb.com/，" target="_blank" rel="noopener">https://docs.mongodb.com/，</a> 永远是学习的第一选择，MongoDB的手册官网做的稍微有些复杂，但是它的例子比较丰富，这对于学习起来，帮助很大。不过，官网是英文的，对于很多人来说，是有些困难的（当然，如果想成为一个好的程序员，这个困难是需要客服的）。</p><p>Stack Overflow网站，<a href="https://stackoverflow.com/，" target="_blank" rel="noopener">https://stackoverflow.com/，</a> 寻找某些问题答案最好的网站，从10年开始，我已经把它看做是和官网差不多比重的资料网站了。</p><p>《MongoDB权威指南》，O’REILLY的书一般质量都还不错，当然，在京东上看看评论，找一本其他评价高的书来作为资料都是可以的。</p><p>好了，神器在手，天下我有，准备启程。</p>]]></content>
     
@@ -289,9 +289,9 @@
     
       <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
     
-      <category term="checkout" scheme="https://www.oxysun.cn/tags/checkout/"/>
-    
       <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
+    
+      <category term="checkout" scheme="https://www.oxysun.cn/tags/checkout/"/>
     
   </entry>
   
@@ -417,9 +417,9 @@
     
       <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
     
-      <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
-    
       <category term="git branch" scheme="https://www.oxysun.cn/tags/git-branch/"/>
+    
+      <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
     
       <category term="分支" scheme="https://www.oxysun.cn/tags/%E5%88%86%E6%94%AF/"/>
     
