@@ -2,9 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/js/js-vue-note-instance.html</loc>
+    
+    <lastmod>2018-09-26T02:21:17.403Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/js/js-vue-note-introduction.html</loc>
     
-    <lastmod>2018-09-22T06:09:35.263Z</lastmod>
+    <lastmod>2018-09-26T02:21:00.585Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/python/upgrade-python-under-ubuntu1604.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-2.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.395Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-1.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.394Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.394Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-reflog.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.393Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/blockchain/bitcoin-data-storage.html</loc>
+    
+    <lastmod>2018-09-22T06:15:42.392Z</lastmod>
     
   </url>
   
@@ -47,20 +96,6 @@
     <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-3.html</loc>
     
     <lastmod>2018-08-28T03:19:14.478Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-2.html</loc>
-    
-    <lastmod>2018-08-28T03:19:00.583Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-1.html</loc>
-    
-    <lastmod>2018-08-28T03:18:47.653Z</lastmod>
     
   </url>
   
@@ -115,13 +150,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
-    
-    <lastmod>2018-08-18T00:08:05.864Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-reflog.html</loc>
     
     <lastmod>2018-08-18T00:08:05.864Z</lastmod>
     
@@ -212,14 +240,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
+    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
+    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
@@ -289,21 +317,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.847Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -317,14 +338,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
@@ -415,14 +436,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="IT, 老兵, 驿站" />
+  <meta name="keywords" content="MongoDB,aggregate,聚合," />
 
 
 
@@ -81,20 +81,21 @@
 
 
 
-<meta name="description" content="MongoDB的聚合功能介绍。">
+<meta name="description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB学习笔记：聚合之介绍。">
+<meta name="keywords" content="MongoDB,aggregate,聚合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB：聚合之介绍">
+<meta property="og:title" content="MongoDB学习笔记：聚合之介绍">
 <meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="MongoDB的聚合功能介绍。">
+<meta property="og:description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB学习笔记：聚合之介绍。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://docs.mongodb.com/manual/_images/aggregation-pipeline.bakedsvg.svg">
 <meta property="og:image" content="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg">
 <meta property="og:image" content="https://docs.mongodb.com/manual/_images/distinct.bakedsvg.svg">
-<meta property="og:updated_time" content="2018-07-18T11:09:55.847Z">
+<meta property="og:updated_time" content="2018-09-22T06:15:42.394Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB：聚合之介绍">
-<meta name="twitter:description" content="MongoDB的聚合功能介绍。">
+<meta name="twitter:title" content="MongoDB学习笔记：聚合之介绍">
+<meta name="twitter:description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB学习笔记：聚合之介绍。">
 <meta name="twitter:image" content="https://docs.mongodb.com/manual/_images/aggregation-pipeline.bakedsvg.svg">
 
 
@@ -131,7 +132,7 @@
 
 
 
-  <title>MongoDB：聚合之介绍 | IT老兵驿站</title>
+  <title>MongoDB学习笔记：聚合之介绍 | IT老兵驿站</title>
   
 
 
@@ -348,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MongoDB：聚合之介绍</h1>
+          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记：聚合之介绍</h1>
         
 
         <div class="post-meta">
@@ -376,8 +377,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T19:09:55+08:00">
-                2018-07-18
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-22T14:15:42+08:00">
+                2018-09-22
               </time>
             
           </span>
@@ -437,18 +438,19 @@
       
 
       
-        <p>MongoDB的聚合功能介绍。<br><a id="more"></a></p>
-<p>官网：<a href="https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operations。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operations。</a></p>
-<p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
-<p>聚合函数是对记录集（data records）进行操作，是把多条记录集合（group）在一起，进行处理，与此相对应的是sql的group by等操作，这是数据处理的一个方面。</p>
+        <p>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-introduction.html">IT老兵博客</a>。</p>
+<p>MongoDB学习笔记：聚合之介绍。<br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。</p>
+<p>本文第一版是2018年7月4完成，8月30日感觉这篇文章的结构和后来写的结构不太统一，思路也不统一，所以对其进行一定的修改。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>聚合函数是对记录集（data records）进行操作，是把多条记录集合（group）在一起，进行一些统一的操作，返回一个结果，与此相对应的是sql的group by等操作，这是数据处理所涉及的一个方面，对很多具有一定相同属性的数据整体进行处理。</p>
 <p>MongoDB提供三种聚合方法：</p>
 <ol>
 <li>聚合管道。</li>
 <li>map-reduce函数。</li>
 <li>单一功能的聚合方法。</li>
 </ol>
-<h1 id="聚合管道"><a href="#聚合管道" class="headerlink" title="聚合管道"></a>聚合管道</h1><p>接触过<code>linux shell</code>的人应该对管道不会陌生，管道就是对输入的数据进行一系列的处理、转换，变成新的数据。</p>
-<p>这里的聚合管道是对记录集进行多阶段的转换，产出新聚合结果，例如：<br><img src="https://docs.mongodb.com/manual/_images/aggregation-pipeline.bakedsvg.svg" alt="这里写图片描述"></p>
+<h2 id="聚合管道"><a href="#聚合管道" class="headerlink" title="聚合管道"></a>聚合管道</h2><p>接触过<code>linux shell</code>的人应该对管道不会陌生，管道就是对输入的数据进行一系列的处理、转换，变成新的数据。</p>
+<p>这里的聚合管道是对记录集进行多阶段（multi-stage）的转换，转换文档为一个新的聚合结果，例如：<br><img src="https://docs.mongodb.com/manual/_images/aggregation-pipeline.bakedsvg.svg" alt="这里写图片描述"></p>
 <p>解释一下：</p>
 <ol>
 <li>数据集合：<code>orders</code>，共有4条记录，这里省略了<code>_id</code> 这个域。</li>
@@ -456,10 +458,12 @@
 <li>分析：<br><code>{$match: {status: &quot;A&quot;}}</code>，第一个阶段，匹配阶段，查找所有<code>status=&quot;A&quot;</code> 的记录。<br><code>{$group: {_id: &quot;$cust_id&quot;, total: {$sum: &quot;$amount&quot;}}}</code>，第二个阶段，分组计算，根据<code>cust_id</code>进行分组，对每个组的<code>amount</code>进行求和。这里涉及<code>$group</code> 的语法，如下：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; $group: &#123; _id: &lt;expression&gt;, &lt;field1&gt;: &#123; &lt;accumulator1&gt; : &lt;expression1&gt; &#125;, ... &#125; &#125;</span><br></pre></td></tr></table></figure>
-<p>其中，_id是强制的，后面是可选的。<br><code>&lt;accumulator1&gt;</code>是累加操作符，参考<a href="/mongodb/mongodb-collection-aggregator-accumulate-operator.html">这里</a>，例如这里的<code>$sum</code>，注意，这里必须要加<code>$</code>。<br><code>&lt;expression1&gt;</code>是表达式，<a href="https://docs.mongodb.com/manual/meta/aggregation-quick-reference/#aggregation-expressions" target="_blank" rel="noopener">有待补充</a>， <code>&quot;$amount&quot;</code> , 表示是去取上一个结果中的<code>amount</code> 这个域，对其进行累加，并把结果存入新的域<code>total</code>中。</p>
+<p>其中，_id是强制的，后面是可选的。<br><code>&lt;accumulator1&gt;</code>是累加操作符，参考<a href="https://blog.csdn.net/chaiyu2002/article/details/80914028" target="_blank" rel="noopener">这里</a>，例如这里的<code>$sum</code>，注意，这里必须要加<code>$</code>。<br><code>&lt;expression1&gt;</code>是表达式，<a href="https://docs.mongodb.com/manual/meta/aggregation-quick-reference/#aggregation-expressions" target="_blank" rel="noopener">有待补充</a>， <code>&quot;$amount&quot;</code> , 表示是去取上一个结果中的<code>amount</code> 这个域，对其进行累加，并把结果存入新的域<code>total</code>中。</p>
 <p>这个例子看明白了，聚合就基本明白了。</p>
-<h1 id="Map-Reduce"><a href="#Map-Reduce" class="headerlink" title="Map-Reduce"></a>Map-Reduce</h1><p>map-reduce操作分为两个阶段：map阶段，处理每一条记录，产出一个或多个对象；reduce阶段，合并map阶段的输出。作为可选，map-reduce可以有一个最终阶段来对结果进行最终的操作。map-reduce也可以进行查询、排序和限制输出结果。<br><img src="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg" alt="这里写图片描述"></p>
-<h1 id="单一功能的聚合方法"><a href="#单一功能的聚合方法" class="headerlink" title="单一功能的聚合方法"></a>单一功能的聚合方法</h1><p>MongoDB也提供<code>db.collection.count()</code>（求和）和<code>db.collection.distinct()</code>（去重）函数。<br><img src="https://docs.mongodb.com/manual/_images/distinct.bakedsvg.svg" alt="这里写图片描述"></p>
+<p>#Map-Reduce<br>map-reduce操作分为两个阶段：map阶段，处理每一条记录，产出一个或多个对象；reduce阶段，合并map阶段的输出。作为可选，map-reduce可以有一个最终阶段来对结果进行最终的操作。map-reduce也可以进行查询、排序和限制输出结果。<br><img src="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg" alt="这里写图片描述"><br>关于这个例子，还有一些没有看懂，需要等待下一步来补充。</p>
+<p>#单一功能的聚合方法<br>MongoDB也提供<code>db.collection.count()</code>（求和）和<code>db.collection.distinct()</code>（去重）函数。<br><img src="https://docs.mongodb.com/manual/_images/distinct.bakedsvg.svg" alt="这里写图片描述"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>关于聚合，总体的概念总结到这里，下一步，需要细化了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operations" target="_blank" rel="noopener">https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operations</a></p>
 
       
     </div>
@@ -474,6 +478,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+            <a href="/tags/aggregate/" rel="tag"># aggregate</a>
+          
+            <a href="/tags/聚合/" rel="tag"># 聚合</a>
+          
+        </div>
       
 
       
@@ -573,7 +587,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +598,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -595,7 +609,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -635,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#聚合管道"><span class="nav-number">1.</span> <span class="nav-text">聚合管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map-Reduce"><span class="nav-number">2.</span> <span class="nav-text">Map-Reduce</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一功能的聚合方法"><span class="nav-number">3.</span> <span class="nav-text">单一功能的聚合方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合管道"><span class="nav-number">2.2.</span> <span class="nav-text">聚合管道</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
