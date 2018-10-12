@@ -68,12 +68,10 @@
 
 
 
-  <meta name="keywords" content="IT, 老兵, 驿站" />
+  <meta name="keywords" content="JS,Vue,模板语法," />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="IT老兵驿站" type="application/atom+xml" />
@@ -83,17 +81,18 @@
 
 
 
-<meta name="description" content="2018-07-01IT业的一员老兵，做过嵌入式、流媒体编解码、高并发VOD点播、支付系统，基本都是为了谋生而努力工作着。 小时候，在看《Top Gun》的时候，发现这些飞行员最后比较好的归宿都是去当教官，心里不是太理解。现在我慢慢明白了，也许我的职场做不出什么大的成绩了，那么把这些年工作的心得、一些有用的体验分享出来，让这份薪火能够传递下去，也是一件好事。 2018-07-05最近发现，网站一直">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://www.oxysun.cn/about/index.html">
+<meta name="description" content="Vue：学习笔记（三）-模板语法（1）。">
+<meta name="keywords" content="JS,Vue,模板语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue：学习笔记（三）-模板语法（1）">
+<meta property="og:url" content="https://www.oxysun.cn/js/js-vue-note-syntax-1.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="2018-07-01IT业的一员老兵，做过嵌入式、流媒体编解码、高并发VOD点播、支付系统，基本都是为了谋生而努力工作着。 小时候，在看《Top Gun》的时候，发现这些飞行员最后比较好的归宿都是去当教官，心里不是太理解。现在我慢慢明白了，也许我的职场做不出什么大的成绩了，那么把这些年工作的心得、一些有用的体验分享出来，让这份薪火能够传递下去，也是一件好事。 2018-07-05最近发现，网站一直">
+<meta property="og:description" content="Vue：学习笔记（三）-模板语法（1）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-05T07:53:32.719Z">
+<meta property="og:updated_time" content="2018-10-12T14:02:15.031Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="2018-07-01IT业的一员老兵，做过嵌入式、流媒体编解码、高并发VOD点播、支付系统，基本都是为了谋生而努力工作着。 小时候，在看《Top Gun》的时候，发现这些飞行员最后比较好的归宿都是去当教官，心里不是太理解。现在我慢慢明白了，也许我的职场做不出什么大的成绩了，那么把这些年工作的心得、一些有用的体验分享出来，让这份薪火能够传递下去，也是一件好事。 2018-07-05最近发现，网站一直">
+<meta name="twitter:title" content="Vue：学习笔记（三）-模板语法（1）">
+<meta name="twitter:description" content="Vue：学习笔记（三）-模板语法（1）。">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/about/"/>
+  <link rel="canonical" href="https://www.oxysun.cn/js/js-vue-note-syntax-1.html"/>
 
 
 
 
 
-  <title>about | IT老兵驿站</title>
+  <title>Vue：学习笔记（三）-模板语法（1） | IT老兵驿站</title>
   
 
 
@@ -317,36 +316,212 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/js/js-vue-note-syntax-1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h1 id="2018-07-01"><a href="#2018-07-01" class="headerlink" title="2018-07-01"></a>2018-07-01</h1><p>IT业的一员老兵，做过嵌入式、流媒体编解码、高并发VOD点播、支付系统，基本都是为了谋生而努力工作着。</p>
-<p>小时候，在看《Top Gun》的时候，发现这些飞行员最后比较好的归宿都是去当教官，心里不是太理解。现在我慢慢明白了，也许我的职场做不出什么大的成绩了，那么把这些年工作的心得、一些有用的体验分享出来，让这份薪火能够传递下去，也是一件好事。</p>
-<h1 id="2018-07-05"><a href="#2018-07-05" class="headerlink" title="2018-07-05"></a>2018-07-05</h1><p>最近发现，网站一直不能被百度收录，思考原因，可能是和之前参与编写的同学自己的网站内容重复了，他参与编写了部分章节，然后发表在自己的博客上了，可能是因为这个百度不予收录，那么可能需要对之前的章节进行一些修改和完善，刚好现在感觉当时写的还是有些问题的。</p>
-
+          <h1 class="post-title" itemprop="name headline">Vue：学习笔记（三）-模板语法（1）</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T10:11:00+08:00">
+                2018-10-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-12T22:02:15+08:00">
+                2018-10-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>Vue：学习笔记（三）-模板语法（1）。<br><a id="more"></a></p>
+<h1 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h1><p>原帖完整收藏于<a href="https://www.oxysun.cn/js/js-vue-note-syntax-1.htm">IT老兵驿站</a>，并会不断更新。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>忙了三周，又度过一个丰富的十一，现在腾出手来，继续我的学习和总结。最近找到了Vue的<a href="https://cn.vuejs.org/v2/guide/components.html" target="_blank" rel="noopener">中文网站</a>，但是我不想放弃对英文网站的学习，那样可以更准确地理解原意，可以提高自己的英文水平，所以基于英文网站，对照着中文，这样来学习—-人还是应该有些追求。我发现一个问题，有的章节内容多，有的章节内容少，内容多的，可能一天总结不完，那就可能需要拆成几篇连续的笔记来记录了。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><blockquote>
+<p>Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.<br><br><br>Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.<br><br><br>If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also directly write render functions instead of templates, with optional JSX support.</p>
+</blockquote>
+<p>我对这里的理解是，模板是一种工具，它不需要你去查找元素，进行赋值等处理（传统的方式），而是进行了单向或者双向的绑定，这样你直接操作这个变量，就是在操作DOM中的那个元素（虚拟DOM树的概念），另外，模板会在合适的时候，进行渲染，这样减少因为频繁的渲染页面的抖动。</p>
+<h2 id="插值（Interpolations）"><a href="#插值（Interpolations）" class="headerlink" title="插值（Interpolations）"></a>插值（Interpolations）</h2><p>最早接触这个概念是在对AngularJS的学习中，应该是AngularJS最早引入了这个概念。</p>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><figure class="highlight plain"><figcaption><span>&#123;&#123; msg &#125;&#125;</span>```</figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">双大括号的语法，里面是插值的变量名，变量发生改变，这里也会同时发生改变。</span><br><span class="line"></span><br><span class="line">`&lt;span v-once&gt;这个将不会改变: &#123;&#123; msg &#125;&#125;&lt;/span&gt;`</span><br><span class="line">使用 `v-once` 指令，执行一次性地插值。</span><br><span class="line"></span><br><span class="line">### 原始HTML</span><br></pre></td></tr></table></figure>
+<p></p><p>Using mustaches: </p><p></p>
+<p></p><p>Using v-html directive: <span v-html="rawHtml"></span></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">双大括号里面包含的内容，会以纯文本的形式显示出来，不会交由浏览器去解释。</span><br><span class="line">而想要浏览器去解释这些内容，则需要使用`v-html`，例如上例。</span><br><span class="line">`rawHtml`的内容其实是```&lt;span style=&quot;color: red&quot;&gt;This should be red.&lt;/span&gt;```，则上例的实际显示如下（这个例子原帖讲的有一点不清楚）：</span><br><span class="line"></span><br><span class="line">&lt;p&gt;Using mustaches: &amp;lt;span style=&quot;color: red&quot;&amp;gt;This should be red.&amp;lt;/span&amp;gt;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">Using v-html directive: &lt;span&gt;&lt;font color=&quot;red&quot;&gt;This should be red.&lt;/font&gt;&lt;/span&gt;（这里应该是红色，为了让这里显示红色，我还研究了一下MD语法，参考[这里](https://blog.csdn.net/liuhw4598/article/details/78279737)）</span><br><span class="line"></span><br><span class="line">不过一般不建议这么用，因为这样就太容易给[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting)（跨站攻击，互联网最常见的一种攻击形式，将来有机会也会总结一下）攻击创造机会。</span><br><span class="line"></span><br><span class="line">### 特性（attribute）</span><br><span class="line">这一节其实应该叫属性，不过可能是为了和property区别，这里刻意翻译成了特性，其实是指HTML里面元素的属性，关于HTML元素的名、值、属性的关系可以参考早年写的一篇[帖子](https://blog.csdn.net/chaiyu2002/article/details/5967186)，那篇讲的是XML，HTML其实一种特殊化的XML，原理是一样的。因为习惯了，以下我还是称呼这个为属性。</span><br><span class="line"></span><br><span class="line">属性没法使用Mustache语法，所以就需要有新的指令（directive），指令也应该是AngularJS引入的一个概念，其实是可以被Vue解释的一些固定的字符串，可以接收参数，具有一定的功能。</span><br></pre></td></tr></table></figure><p></p>
+<p><div v-bind:id="dynamicId"></div><br><code>`</code><br>这样<code>id</code>属性就和<code>dynamicId</code>绑定起来了。</p>
+<p>不过，对于<code>disabled</code>属性，有点区别，只有当它为true的时候才会被渲染。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>读了原帖大概两遍，阅读、理解加上写笔记，一共花费了大概三个小时，感觉再写下去，耐心就会降低，质量就会降低，会有一些应付的情绪，只好先告一段落，这个部分的内容分为两篇文章了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://vuejs.org/v2/guide/syntax.html" target="_blank" rel="noopener">https://vuejs.org/v2/guide/syntax.html</a><br><a href="https://cn.vuejs.org/v2/guide/components.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/components.html</a><br><a href="https://blog.csdn.net/liuhw4598/article/details/78279737" target="_blank" rel="noopener">https://blog.csdn.net/liuhw4598/article/details/78279737</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag"># JS</a>
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+            <a href="/tags/模板语法/" rel="tag"># 模板语法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/js/js-this.html" rel="next" title="JS：对“this”的学习">
+                <i class="fa fa-chevron-left"></i> JS：对“this”的学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -466,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2018-07-01"><span class="nav-number">1.</span> <span class="nav-text">2018-07-01</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2018-07-05"><span class="nav-number">2.</span> <span class="nav-text">2018-07-05</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#提醒"><span class="nav-number">1.</span> <span class="nav-text">提醒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板语法"><span class="nav-number">3.1.</span> <span class="nav-text">模板语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插值（Interpolations）"><span class="nav-number">3.2.</span> <span class="nav-text">插值（Interpolations）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本"><span class="nav-number">3.2.1.</span> <span class="nav-text">文本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Vue：学习笔记（三）-模板语法（1）]]></title>
+    <url>%2Fjs%2Fjs-vue-note-syntax-1.html</url>
+    <content type="text"><![CDATA[Vue：学习笔记（三）-模板语法（1）。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言忙了三周，又度过一个丰富的十一，现在腾出手来，继续我的学习和总结。最近找到了Vue的中文网站，但是我不想放弃对英文网站的学习，那样可以更准确地理解原意，可以提高自己的英文水平，所以基于英文网站，对照着中文，这样来学习—-人还是应该有些追求。我发现一个问题，有的章节内容多，有的章节内容少，内容多的，可能一天总结不完，那就可能需要拆成几篇连续的笔记来记录了。 正文模板语法 Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also directly write render functions instead of templates, with optional JSX support. 我对这里的理解是，模板是一种工具，它不需要你去查找元素，进行赋值等处理（传统的方式），而是进行了单向或者双向的绑定，这样你直接操作这个变量，就是在操作DOM中的那个元素（虚拟DOM树的概念），另外，模板会在合适的时候，进行渲染，这样减少因为频繁的渲染页面的抖动。 插值（Interpolations）最早接触这个概念是在对AngularJS的学习中，应该是AngularJS最早引入了这个概念。 文本&#123;&#123; msg &#125;&#125;```123456双大括号的语法，里面是插值的变量名，变量发生改变，这里也会同时发生改变。`&lt;span v-once&gt;这个将不会改变: &#123;&#123; msg &#125;&#125;&lt;/span&gt;`使用 `v-once` 指令，执行一次性地插值。### 原始HTML Using mustaches: Using v-html directive: 1234567891011121314双大括号里面包含的内容，会以纯文本的形式显示出来，不会交由浏览器去解释。而想要浏览器去解释这些内容，则需要使用`v-html`，例如上例。`rawHtml`的内容其实是```&lt;span style=&quot;color: red&quot;&gt;This should be red.&lt;/span&gt;```，则上例的实际显示如下（这个例子原帖讲的有一点不清楚）：&lt;p&gt;Using mustaches: &amp;lt;span style=&quot;color: red&quot;&amp;gt;This should be red.&amp;lt;/span&amp;gt;&lt;/p&gt;Using v-html directive: &lt;span&gt;&lt;font color=&quot;red&quot;&gt;This should be red.&lt;/font&gt;&lt;/span&gt;（这里应该是红色，为了让这里显示红色，我还研究了一下MD语法，参考[这里](https://blog.csdn.net/liuhw4598/article/details/78279737)）不过一般不建议这么用，因为这样就太容易给[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting)（跨站攻击，互联网最常见的一种攻击形式，将来有机会也会总结一下）攻击创造机会。### 特性（attribute）这一节其实应该叫属性，不过可能是为了和property区别，这里刻意翻译成了特性，其实是指HTML里面元素的属性，关于HTML元素的名、值、属性的关系可以参考早年写的一篇[帖子](https://blog.csdn.net/chaiyu2002/article/details/5967186)，那篇讲的是XML，HTML其实一种特殊化的XML，原理是一样的。因为习惯了，以下我还是称呼这个为属性。属性没法使用Mustache语法，所以就需要有新的指令（directive），指令也应该是AngularJS引入的一个概念，其实是可以被Vue解释的一些固定的字符串，可以接收参数，具有一定的功能。 `这样id属性就和dynamicId绑定起来了。 不过，对于disabled属性，有点区别，只有当它为true的时候才会被渲染。 总结读了原帖大概两遍，阅读、理解加上写笔记，一共花费了大概三个小时，感觉再写下去，耐心就会降低，质量就会降低，会有一些应付的情绪，只好先告一段落，这个部分的内容分为两篇文章了。 参考https://vuejs.org/v2/guide/syntax.htmlhttps://cn.vuejs.org/v2/guide/components.htmlhttps://blog.csdn.net/liuhw4598/article/details/78279737]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+        <tag>Vue</tag>
+        <tag>模板语法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JS：对“this”的学习]]></title>
     <url>%2Fjs%2Fjs-this.html</url>
     <content type="text"><![CDATA[JS：对“this”的学习。 前言更多笔记，请参看IT老兵驿站。 有半个多月没有更新博客了，这半个多月一直在加班，实在没有精力更新，现在到了调整期，可以将前一段时间的工作进行一下整理。 之前对JS的this的理解一直有点模糊，这次总结一下，因为在工作中总遇到this的问题，如果一直这么模模糊糊，将会在以后的工作中带来麻烦，而对于这种躲不开的麻烦，早解决肯定要比晚解决好。 这篇帖子是针对参考中的w3schools的一篇帖子进行学习、翻译和理解，但我感觉w3schools这篇帖子层次有点不是太清楚。 正文this是什么例子：12345678var person = &#123; firstName: &quot;John&quot;, lastName : &quot;Doe&quot;, id : 5566, fullName : function() &#123; return this.firstName + &quot; &quot; + this.lastName; &#125;&#125;; 这里的this指代的是什么呢？ What is “this”?In a function definition, this refers to the “owner” of the function.In the example above, this refers to the person object.The person object “owns” the fullName method. 在函数定义中，this指代函数的“拥有者”，例如上面例子中，this就代表person这个对象。 默认绑定 Default BindingWhen used alone, this refers to the Global object.In a browser the Global object is [object Window]: 默认的绑定，单独使用时，this就指代全局对象。个人理解，这一条和上一条不矛盾，this还是指代拥有这个变量或者函数的对象，这个时候是全局变量拥有这个变量，所以就指向了全局变量。 In strict mode, this will be undefined, because strict mode does not allow default binding: 但是在严格模式下，this将会是undefined，因为严格模式不允许默认绑定。 明确绑定 Explicit Function BindingThe call() and apply() methods are predefined JavaScript methods.They can both be used to call an object method with another object as argument. 明确的函数绑定，call()和apply()是JS预定义的方法，他们可以被用于使用另外一个对象作为参数，调用这个对象的方法。 12345678910var person1 = &#123; fullName: function() &#123; return this.firstName + &quot; &quot; + this.lastName; &#125;&#125;var person2 = &#123; firstName:&quot;John&quot;, lastName: &quot;Doe&quot;,&#125;person1.fullName.call(person2); // Will return &quot;John Doe&quot; 看上面这个例子，this指向了person2，最终输出的是person2的属性。 总结这样一梳理，感觉对于this的理解就清晰了。 参考https://www.w3schools.com/js/js_this.asp]]></content>
@@ -637,20 +651,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
-    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
-    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>database</tag>
-        <tag>create</tag>
-        <tag>创建数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
@@ -662,6 +662,20 @@
         <tag>collection</tag>
         <tag>数据集合</tag>
         <tag>创建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>database</tag>
+        <tag>create</tag>
+        <tag>创建数据库</tag>
       </tags>
   </entry>
 </search>
