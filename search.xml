@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Vue：学习笔记（三）-模板语法（1）]]></title>
-    <url>%2Fjs%2Fjs-vue-note-syntax-1.html</url>
-    <content type="text"><![CDATA[Vue：学习笔记（三）-模板语法（1）。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言忙了三周，又度过一个丰富的十一，现在腾出手来，继续我的学习和总结。最近找到了Vue的中文网站，但是我不想放弃对英文网站的学习，那样可以更准确地理解原意，可以提高自己的英文水平，所以基于英文网站，对照着中文，这样来学习—-人还是应该有些追求。我发现一个问题，有的章节内容多，有的章节内容少，内容多的，可能一天总结不完，那就可能需要拆成几篇连续的笔记来记录了。 正文模板语法 Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also directly write render functions instead of templates, with optional JSX support. 我对这里的理解是，模板是一种工具，它不需要你去查找元素，进行赋值等处理（传统的方式），而是进行了单向或者双向的绑定，这样你直接操作这个变量，就是在操作DOM中的那个元素（虚拟DOM树的概念），另外，模板会在合适的时候，进行渲染，这样减少因为频繁的渲染页面的抖动。 插值（Interpolations）最早接触这个概念是在对AngularJS的学习中，应该是AngularJS最早引入了这个概念。 文本&#123;&#123; msg &#125;&#125;```123456双大括号的语法，里面是插值的变量名，变量发生改变，这里也会同时发生改变。`&lt;span v-once&gt;这个将不会改变: &#123;&#123; msg &#125;&#125;&lt;/span&gt;`使用 `v-once` 指令，执行一次性地插值。### 原始HTML Using mustaches: Using v-html directive: 1234567891011121314双大括号里面包含的内容，会以纯文本的形式显示出来，不会交由浏览器去解释。而想要浏览器去解释这些内容，则需要使用`v-html`，例如上例。`rawHtml`的内容其实是```&lt;span style=&quot;color: red&quot;&gt;This should be red.&lt;/span&gt;```，则上例的实际显示如下（这个例子原帖讲的有一点不清楚）：&lt;p&gt;Using mustaches: &amp;lt;span style=&quot;color: red&quot;&amp;gt;This should be red.&amp;lt;/span&amp;gt;&lt;/p&gt;Using v-html directive: &lt;span&gt;&lt;font color=&quot;red&quot;&gt;This should be red.&lt;/font&gt;&lt;/span&gt;（这里应该是红色，为了让这里显示红色，我还研究了一下MD语法，参考[这里](https://blog.csdn.net/liuhw4598/article/details/78279737)）不过一般不建议这么用，因为这样就太容易给[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting)（跨站攻击，互联网最常见的一种攻击形式，将来有机会也会总结一下）攻击创造机会。### 特性（attribute）这一节其实应该叫属性，不过可能是为了和property区别，这里刻意翻译成了特性，其实是指HTML里面元素的属性，关于HTML元素的名、值、属性的关系可以参考早年写的一篇[帖子](https://blog.csdn.net/chaiyu2002/article/details/5967186)，那篇讲的是XML，HTML其实一种特殊化的XML，原理是一样的。因为习惯了，以下我还是称呼这个为属性。属性没法使用Mustache语法，所以就需要有新的指令（directive），指令也应该是AngularJS引入的一个概念，其实是可以被Vue解释的一些固定的字符串，可以接收参数，具有一定的功能。 `这样id属性就和dynamicId绑定起来了。 不过，对于disabled属性，有点区别，只有当它为true的时候才会被渲染。 总结读了原帖大概两遍，阅读、理解加上写笔记，一共花费了大概三个小时，感觉再写下去，耐心就会降低，质量就会降低，会有一些应付的情绪，只好先告一段落，这个部分的内容分为两篇文章了。 参考https://vuejs.org/v2/guide/syntax.htmlhttps://cn.vuejs.org/v2/guide/components.htmlhttps://blog.csdn.net/liuhw4598/article/details/78279737]]></content>
+    <title><![CDATA[Vue：学习笔记（四）-计算属性和侦听器]]></title>
+    <url>%2Fjs%2Fjs-vue-note-computed.html</url>
+    <content type="text"><![CDATA[Vue：学习笔记（四）-计算属性和侦听器。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言参考官网的这里和中文版，总体学习一下计算属性，感觉这一章节总体是比较简单的，做一下笔记来进行总结。思路是，原文写的很清楚的，只做简单的概括；对原文存在疑问的地方，摘抄原文，列举问题，总结概括。 正文计算属性摘录原则： 所以，对于任何复杂逻辑，你都应当使用计算属性。 基础例子1234&lt;div id=&quot;example&quot;&gt; &lt;p&gt;Original message: &quot;&#123;&#123; message &#125;&#125;&quot;&lt;/p&gt; &lt;p&gt;Computed reversed message: &quot;&#123;&#123; reversedMessage &#125;&#125;&quot;&lt;/p&gt;&lt;/div&gt; 12345678910111213var vm = new Vue(&#123; el: &apos;#example&apos;, data: &#123; message: &apos;Hello&apos; &#125;, computed: &#123; // 计算属性的 getter reversedMessage: function () &#123; // `this` 指向 vm 实例 return this.message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125; &#125;&#125;) 这里的reversedMessage实际上是和message绑定在一起了，message发生变化，则reversedMessage也发生变化。 那这里，存在一个疑问了，计算属性是不是也可以不和基本属性（例如message）发生绑定关系呢？ 计算属性缓存 vs 方法这一段刚好解决了上面提出的这个问题，看来不断地提一提问题，对于理解是很有帮助的，“学而不思则罔”。 我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是计算属性是基于它们的依赖进行缓存的。只在相关依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。 这段话很好地解释了什么时候要使用计算属性，为了提高效率，很合理地去利用架构提供的缓存的功能。 计算属性 vs 侦听属性 当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 watch——特别是如果你之前使用过 AngularJS。然而，通常更好的做法是使用计算属性而不是命令式的 watch 回调。 去年学习AngularJS，使用watch函数进行监控，后来在网站上看到很多对于这个watch方式的诟病，说这样会发生抖动，会导致DOM树不断被渲染，这个还需要再深度研究一下。 计算属性的 setter12345678910111213141516// ...computed: &#123; fullName: &#123; // getter get: function () &#123; return this.firstName + &apos; &apos; + this.lastName &#125;, // setter set: function (newValue) &#123; var names = newValue.split(&apos; &apos;) this.firstName = names[0] this.lastName = names[names.length - 1] &#125; &#125;&#125;// ... 侦听器1234567&lt;div id=&quot;watch-example&quot;&gt; &lt;p&gt; Ask a yes/no question: &lt;input v-model=&quot;question&quot;&gt; &lt;/p&gt; &lt;p&gt;&#123;&#123; answer &#125;&#125;&lt;/p&gt;&lt;/div&gt; 123456789101112131415161718192021222324252627282930313233343536373839404142434445&lt;!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 --&gt;&lt;!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 --&gt;&lt;script src=&quot;https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js&quot;&gt;&lt;/script&gt;&lt;script&gt;var watchExampleVM = new Vue(&#123; el: &apos;#watch-example&apos;, data: &#123; question: &apos;&apos;, answer: &apos;I cannot give you an answer until you ask a question!&apos; &#125;, watch: &#123; // 如果 `question` 发生改变，这个函数就会运行 question: function (newQuestion, oldQuestion) &#123; this.answer = &apos;Waiting for you to stop typing...&apos; this.debouncedGetAnswer() &#125; &#125;, created: function () &#123; // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。 // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率 // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于 // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识， // 请参考：https://lodash.com/docs#debounce this.debouncedGetAnswer = _.debounce(this.getAnswer, 500) &#125;, methods: &#123; getAnswer: function () &#123; if (this.question.indexOf(&apos;?&apos;) === -1) &#123; this.answer = &apos;Questions usually contain a question mark. ;-)&apos; return &#125; this.answer = &apos;Thinking...&apos; var vm = this axios.get(&apos;https://yesno.wtf/api&apos;) .then(function (response) &#123; vm.answer = _.capitalize(response.data.answer) &#125;) .catch(function (error) &#123; vm.answer = &apos;Error! Could not reach the API. &apos; + error &#125;) &#125; &#125;&#125;)&lt;/script&gt; 对于这个例子，我是这么理解的，要监控中间的变化（例如一段文字输入的中间过程），这个时候使用侦听器就是合理的。 这里还涉及了一个知识点 _.debounce(func, [wait=0], [options={}])Creates a debounced function that delays invoking func until after wait milliseconds have elapsed since the last time the debounced function was invoked. 这个方法是对函数进行延时调用，避免函数被调用过于频繁，在上面的例子中，就是避免因为用户输入很快，而反复被调用，所以中间等待500毫秒。 总结阅读了两遍，总结了一遍，大体把这个章节搞明白了，大概耗时三个小时。 参考https://cn.vuejs.org/v2/guide/computed.html]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+        <tag>Vue</tag>
+        <tag>计算属性</tag>
+        <tag>computed</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vue：学习笔记（三）-模板语法]]></title>
+    <url>%2Fjs%2Fjs-vue-note-syntax.html</url>
+    <content type="text"><![CDATA[Vue：学习笔记（三）-模板语法。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言忙了三周，又度过一个丰富的十一，现在腾出手来，继续我的学习和总结。最近找到了Vue的中文网站，但是我不想放弃对英文网站的学习，那样可以更准确地理解原意，可以提高自己的英文水平，所以基于英文网站，对照着中文，这样来学习—-人还是应该有些追求。我发现一个问题，有的章节内容多，有的章节内容少，内容多的，可能一天总结不完，那就可能需要拆成几篇连续的笔记来记录了。 正文模板语法 Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance’s data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also directly write render functions instead of templates, with optional JSX support. 我对这里的理解是，模板是一种工具，它不需要你去查找元素，进行赋值等处理（传统的方式），而是进行了单向或者双向的绑定，这样你直接操作这个变量，就是在操作DOM中的那个元素（虚拟DOM树的概念），另外，模板会在合适的时候，进行渲染，这样减少因为频繁的渲染页面的抖动。 插值（Interpolations）最早接触这个概念是在对AngularJS的学习中，应该是AngularJS最早引入了这个概念。 文本&#123;&#123; msg &#125;&#125;```123456双大括号的语法，里面是插值的变量名，变量发生改变，这里也会同时发生改变。`&lt;span v-once&gt;这个将不会改变: &#123;&#123; msg &#125;&#125;&lt;/span&gt;`使用 `v-once` 指令，执行一次性地插值。### 原始HTML Using mustaches: Using v-html directive: 1234567891011121314双大括号里面包含的内容，会以纯文本的形式显示出来，不会交由浏览器去解释。而想要浏览器去解释这些内容，则需要使用`v-html`，例如上例。`rawHtml`的内容其实是```&lt;span style=&quot;color: red&quot;&gt;This should be red.&lt;/span&gt;```，则上例的实际显示如下（这个例子原帖讲的有一点不清楚）：&lt;p&gt;Using mustaches: &amp;lt;span style=&quot;color: red&quot;&amp;gt;This should be red.&amp;lt;/span&amp;gt;&lt;/p&gt;Using v-html directive: &lt;span&gt;&lt;font color=&quot;red&quot;&gt;This should be red.&lt;/font&gt;&lt;/span&gt;（这里应该是红色，为了让这里显示红色，我还研究了一下MD语法，参考[这里](https://blog.csdn.net/liuhw4598/article/details/78279737)）不过一般不建议这么用，因为这样就太容易给[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting)（跨站攻击，互联网最常见的一种攻击形式，将来有机会也会总结一下）攻击创造机会。### 特性（attribute）这一节其实应该叫属性，不过可能是为了和property区别，这里刻意翻译成了特性，其实是指HTML里面元素的属性，关于HTML元素的名、值、属性的关系可以参考早年写的一篇[帖子](https://blog.csdn.net/chaiyu2002/article/details/5967186)，那篇讲的是XML，HTML其实一种特殊化的XML，原理是一样的。因为习惯了，以下我还是称呼这个为属性。属性没法使用Mustache语法，所以就需要有新的指令（directive），指令也应该是AngularJS引入的一个概念，其实是可以被Vue解释的一些固定的字符串，可以接收参数，具有一定的功能。 12345678910111213141516171819202122232425262728这样`id`属性就和`dynamicId`绑定起来了。不过，对于`disabled`属性，有点区别，只有当它为true的时候才会被渲染。### 使用 JavaScript 表达式Vue支持单个表达式的绑定，如下：&gt;&#123;&#123; number + 1 &#125;&#125;&#123;&#123; ok ? &apos;YES&apos; : &apos;NO&apos; &#125;&#125;&#123;&#123; message.split(&apos;&apos;).reverse().join(&apos;&apos;) &#125;&#125;但是不支持：&gt;&#123;&#123; var a = 1 &#125;&#125;&#123;&#123; if (ok) &#123; return message &#125; &#125;&#125;有几点很关键：&gt;这些表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析。有个限制就是，每个绑定都只能包含单个表达式，所以下面的例子都不会生效。&gt;模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 Math 和 Date 。你不应该在模板表达式中试图访问用户定义的全局变量。## 指令&gt;指令 (Directives) 是带有 v- 前缀的特殊特性。指令特性的值预期是单个 JavaScript 表达式 (v-for 是例外情况，稍后我们再讨论)。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。指令可以理解成为一些已经有固化逻辑的函数，它把DOM树和用户的变量关联起来。### 参数```&lt;a v-bind:href=&quot;url&quot;&gt;...&lt;/a&gt; v-on:click123上面这两个指令是带有参数的，分别是href和click。```&lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt; 上面这个指令是不带参数的。 修饰符 修饰符 (Modifiers) 是以半角句号 . 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()：v-on:submit.prevent12345这个地方有点含糊，这里涉及到了Web API里面的event，这个地方的意思应该是对于submit事件，绑定onSubmit这个方法，并且调用event.preventDefault()，组织默认的行为发生。### 缩写`v-bind`的缩写： … …12`v-on`的缩写： … …` 总结 读了原帖大概两遍，阅读、理解加上写笔记，一共花费了大概三个小时，感觉再写下去，耐心就会降低，质量就会降低，会有一些应付的情绪，只好先告一段落，这个部分的内容分为两篇文章了。 今天感觉，剩余的内容也不是很多了，还是合为一篇笔记比较合理，便于将来复习。 参考https://vuejs.org/v2/guide/syntax.htmlhttps://cn.vuejs.org/v2/guide/components.htmlhttps://blog.csdn.net/liuhw4598/article/details/78279737https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmithttps://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault]]></content>
       <categories>
         <category>JavaScript</category>
         <category>Vue</category>
@@ -417,7 +432,7 @@
   </entry>
   <entry>
     <title><![CDATA[程序员晋升之路：生存意识、服务意识--IT老兵的心得]]></title>
-    <url>%2Fthinking%20in%20programmer%20life%2Ffull-stack-programmer.html</url>
+    <url>%2Fthinking_in_programmer_life%2Ffull-stack-programmer.html</url>
     <content type="text"><![CDATA[前言 这篇文章原载于新浪博客，写于2017-06-0623:15:33，现在因为建立了自己的博客，所以迁过来，也转载在CSDN上，同时又加上“时过境迁”，又会有一些新的思考，所以修改一下，修改的地方以备注的形式展示出来，可以看出一些心态的不同来。 有一个程序员，学过前端、学过iOS，或者这么说，他喜欢研究技术，而且能把所研究的技术都搞得明明白白，但是他做项目，从来不排期，不汇报，也从来不怎么理会产品设计，结果他什么好的产品都做不出来。 这些是在厦门遇到了一个程序员所发出的感想，到了今时今日，据我了解，他还是什么都没有做出来。 做不出好的产品来，是一个好的程序员吗？ 技术都会过时的，最新的技术也不见得是最好的技术，那么技术人员的使命是什么呢？ 掌握了那么复杂的C++就算是好的程序员了吗？ 实际上，很多年了，C++程序员都缺乏用武之地了—-直到今天的区块链的火热，才又唤起市场对C++程序员的需求。 或者说，现在所鼓吹的全栈，你成为全栈了，就是好的程序员了吗？ 我觉得都不是。 你用你的能力，掌握了技术，能够很好服务于你的公司，服务于社会，这才是好的程序员。 技术是为人类服务的，脱离了服务，再尖端的技术又有什么用呢？脱离了服务，掌握了再尖端的技术的程序员，又有什么用呢？ 要使用你的技术，去提供服务，换取你的合理报酬，这就是生存意识。 掌握社会服务所需要的，或者是将要需要的技术，去提供服务，换取更好的报酬，这就是生存意识。 固守于一门很复杂的语言，为自己掌握了它而别人没有掌握而沾沾自喜，却不思考这门语言对于提供服务的价值和意义，这就已经完全走偏了，惑于技巧的层面，而忽略了根本的初衷，我们不是为了学技术而学技术的，技术也从来不是为了让你学而产生的。如果一门技术，已经不能很好地服务于社会，那怕它再难，学习起来再有挑战性，对你来说只能是满足征服的快乐，而不是满足你谋生、立业的人生目标。 放下心中自己围起来的那道技术的篱笆，不拘一格地去掌握那些需要你掌握的技术，做出好的产品来提供你的服务。 不要太在意这个技术是你新学的，也许掌握的还没有那么扎实，也许写出来的代码还没有那么漂亮，这些都会慢慢变好的，因为你写的代码，做出的产品有人在使用，这就要比那些写的很漂亮，但是没人用，只能束之高阁的代码要强太多了。代码不被使用，再漂亮，也缺乏生命力。 代码也是有生命的，这是我的感觉，所以，我们需要好好去维护她，不断去调整，让她更好地提供服务。]]></content>
       <categories>
         <category>程序人生</category>
@@ -477,20 +492,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -501,6 +502,20 @@
         <tag>JavaScript</tag>
         <tag>波浪字符</tag>
         <tag>依赖包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
@@ -651,20 +666,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
-    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>collection</tag>
-        <tag>数据集合</tag>
-        <tag>创建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
     <url>%2Fmongodb%2Fmongodb-database-create.html</url>
     <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
@@ -676,6 +677,20 @@
         <tag>database</tag>
         <tag>create</tag>
         <tag>创建数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
+    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>collection</tag>
+        <tag>数据集合</tag>
+        <tag>创建</tag>
       </tags>
   </entry>
 </search>
