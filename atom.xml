@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oxysun.cn/"/>
-  <updated>2018-10-16T08:20:22.587Z</updated>
+  <updated>2018-10-21T13:44:39.553Z</updated>
   <id>https://www.oxysun.cn/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>十月份计划</title>
+    <link href="https://www.oxysun.cn/scheme/2018-10.html"/>
+    <id>https://www.oxysun.cn/scheme/2018-10.html</id>
+    <published>2018-10-21T13:21:00.000Z</published>
+    <updated>2018-10-21T13:44:39.553Z</updated>
+    
+    <content type="html"><![CDATA[<p>十月份计划。<br><a id="more"></a></p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>写博客，缺乏了一些计划，感觉有些零零散散，应该梳理一下计划。每次有文章的更新，就在当月计划的这篇文章里面记录一下，这样可以记录下自己的足迹。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>十月份还剩十天，因为最近的工作要用到Vue，所以计划本月整理Vue的笔记，对照官网，再完成几篇对Vue的学习。以现在的进度，可能两三天才能整理一篇，尽管如此，不想光追求速度，还是需要保证质量，“君子勿速成”，速生的东西往往速死，着急赶出来的东西，往往缺乏价值，饭一口一口吃，事情一件一件办。</p><p>今年还剩两个多月，计划把MongoDB的笔记再丰富一些，把基本的使用都总结清楚，整理成一个系列；其余的，现在也说不定，就边走边看吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;十月份计划。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="计划" scheme="https://www.oxysun.cn/categories/%E8%AE%A1%E5%88%92/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue：学习笔记（四）-计算属性和侦听器</title>
@@ -513,30 +533,6 @@
       <category term="用法" scheme="https://www.oxysun.cn/tags/%E7%94%A8%E6%B3%95/"/>
     
       <category term="checkout" scheme="https://www.oxysun.cn/tags/checkout/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git：DETACHED HEAD的概念</title>
-    <link href="https://www.oxysun.cn/git/git-DETACHED-HEAD.html"/>
-    <id>https://www.oxysun.cn/git/git-DETACHED-HEAD.html</id>
-    <published>2018-08-03T13:58:00.000Z</published>
-    <updated>2018-08-03T14:01:51.459Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><a href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。" class="headerlink" title="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"></a>原帖收藏于<a href="https://www.oxysun.cn/git/git-DETACHED-HEAD.html">IT老兵驿站</a>，传递一个IT老兵在凋零前的光和氧。</h2><p>Git：DETACHED HEAD的概念。<br><a id="more"></a></p><p>原帖收藏于IT老兵驿站，传递一个IT老兵凋零前的光和氧。</p><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<code>git</code>使用的时候，经常会碰到<code>DETACHED HEAD</code>，在此总结一下。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote><p>HEAD normally refers to a named branch (e.g. master). Meanwhile, each branch refers to a specific commit. Let’s look at a repo with three commits, one of them tagged, and with branch master checked out:</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   HEAD (refers to branch &apos;master&apos;)</span><br><span class="line">    |</span><br><span class="line">    v</span><br><span class="line">a---b---c  branch &apos;master&apos; (refers to commit &apos;c&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>上面是一个常见的例子，三个提交，<code>HEAD</code>指针指向<code>c</code>，往往是这个分支上最后的提交。然后又进行了一次修改和提交，生成了<code>d</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ edit; git add; git commit</span><br><span class="line"></span><br><span class="line">       HEAD (refers to branch &apos;master&apos;)</span><br><span class="line">    |</span><br><span class="line">    v</span><br><span class="line">a---b---c---d  branch &apos;master&apos; (refers to commit &apos;d&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>这个时候我们需要重新检出<code>v2.0</code>版本（这种可能性是很大，经常容易出现的），如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout v2.0  # or</span><br><span class="line">$ git checkout master^^</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   HEAD (refers to commit &apos;b&apos;)</span><br><span class="line">    |</span><br><span class="line">    v</span><br><span class="line">a---b---c---d  branch &apos;master&apos; (refers to commit &apos;d&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>这个时候<code>HEAD</code>指针就指向了<code>b</code>，这就是<code>detached HEAD</code>状态，这意味着<code>HEAD</code>指向了某一个提交了，而不再指向当前分支的最后一个提交了。</p><p>然后我们又进行了一次提交，就会变成这样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ edit; git add; git commit</span><br><span class="line"></span><br><span class="line">     HEAD (refers to commit &apos;e&apos;)</span><br><span class="line">      |</span><br><span class="line">      v</span><br><span class="line">      e</span><br><span class="line">     /</span><br><span class="line">a---b---c---d  branch &apos;master&apos; (refers to commit &apos;d&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>one more time，再来一次：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ edit; git add; git commit</span><br></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> HEAD (refers to commit &apos;f&apos;)</span><br><span class="line">  |</span><br><span class="line">  v</span><br><span class="line">      e---f</span><br><span class="line">     /</span><br><span class="line">a---b---c---d  branch &apos;master&apos; (refers to commit &apos;d&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>我们可以做任何正常的<code>git</code>操作，如果你想回到<code>master</code>分支，那么。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line">       HEAD (refers to branch &apos;master&apos;)</span><br><span class="line">      e---f     |</span><br><span class="line">     /          v</span><br><span class="line">a---b---c---d  branch &apos;master&apos; (refers to commit &apos;d&apos;)</span><br><span class="line">    ^</span><br><span class="line">    |</span><br><span class="line">  tag &apos;v2.0&apos; (refers to commit &apos;b&apos;)</span><br></pre></td></tr></table></figure><p>这个时候要意识到没有指针指向<code>f</code>提交，最后<code>e</code>和<code>f</code> 都会被常规的Git垃圾回收所删除掉，除非我们创建一个指针，例如:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b foo   (1)</span><br><span class="line">$ git branch foo        (2)</span><br><span class="line">$ git tag foo           (3)</span><br></pre></td></tr></table></figure><ol><li>创建了一个新的分支指向<code>f</code>，并且更新了<code>HEAD</code>指针，这样<code>HEAD</code>指针就不再是<code>detached</code>状态了</li><li>简单创建了一个新的分支指向<code>f</code>，这个时候<code>HEAD</code>指针仍然是<code>detached</code>状态。<br>3.创建了一个新<code>tag</code>，指向<code>f</code>，这个时候<code>HEAD</code>指针仍然是<code>detached</code>状态。</li></ol><p>If we have moved away from commit f, then we must first recover its object name (typically by using git reflog), and then we can create a reference to it. For example, to see the last two commits to which HEAD referred, we can use either of these commands:</p><p>如果<code>f</code>已经被移除了，我们首先需要恢复它的对象名，使用<code>git reflog</code>，然后我们创建一个指针指向它。例如，想看到<code>HEAD</code>之前的最后两个提交，我们可以使用下面的命令（二选一）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog -2 HEAD # or</span><br><span class="line">$ git log -g -2 HEAD</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇总结基本上还是以翻译为主，留了一个问题，就是<code>reflog</code>。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。&quot;&gt;&lt;a href=&quot;#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。&quot; class=&quot;headerlink&quot; title=&quot;原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。&quot;&gt;&lt;/a&gt;原帖收藏于&lt;a href=&quot;https://www.oxysun.cn/git/git-DETACHED-HEAD.html&quot;&gt;IT老兵驿站&lt;/a&gt;，传递一个IT老兵在凋零前的光和氧。&lt;/h2&gt;&lt;p&gt;Git：DETACHED HEAD的概念。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="https://www.oxysun.cn/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="https://www.oxysun.cn/tags/Git/"/>
-    
-      <category term="DETACHED HEAD" scheme="https://www.oxysun.cn/tags/DETACHED-HEAD/"/>
     
   </entry>
   
