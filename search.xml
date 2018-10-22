@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Vue：学习笔记（五）-Class 与 Style 绑定]]></title>
+    <url>%2Fjs%2Fjs-vue-note-css-style-binding.html</url>
+    <content type="text"><![CDATA[Vue：学习笔记（五）-Class 与 Style 绑定。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言本篇继续对Vue的【Class 与 Style 绑定】篇进行总结学习。 正文 操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是属性，所以我们可以用 v-bind 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 v-bind 用于 class 和 style 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。 绑定 HTML Class对象语法 我们可以传给 v-bind:class 一个对象，以动态地切换 class：&lt;div v-bind:class=&quot;{ active: isActive }&quot;&gt;&lt;/div&gt; 所谓对象语法，就是样式这里使用一个对象（大括号括起来的是对象，JavaScript的对象写法，这里是一个匿名对象），前缀是class，这个对象的域是在data对象中。1234data: &#123; isActive: true, hasError: false&#125; 还可以这么写：&lt;div v-bind:class=&quot;classObject&quot;&gt;&lt;/div&gt; 123456data: &#123; classObject: &#123; active: true, &apos;text-danger&apos;: false &#125;&#125; 这里是一个具名对象。 这个对象也可以是一个计算属性。 数组语法数组的原理是一样的，语法类似下面：&lt;div v-bind:class=&quot;[activeClass, errorClass]&quot;&gt;&lt;/div&gt; 以数组的形式嵌入，定义在：1234data: &#123; activeClass: &apos;active&apos;, errorClass: &apos;text-danger&apos;&#125; data对象的两个域。 用在组件上还没有看到组件一节，先略过。 绑定内联样式对象语法 v-bind:style 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS 属性名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用单引号括起来) 来命名： 这里使用的还是对象，不过前缀变成了style。 12345&lt;div v-bind:style=&quot;&#123; color: activeColor, fontSize: fontSize + &apos;px&apos; &#125;&quot;&gt;&lt;/div&gt;data: &#123; activeColor: &apos;red&apos;, fontSize: 30&#125; 这个是匿名对象的例子，感觉语法和class一样，可能只是优先级不一样。 具名对象：1234567&lt;div v-bind:style=&quot;styleObject&quot;&gt;&lt;/div&gt;data: &#123; styleObject: &#123; color: &apos;red&apos;, fontSize: &apos;13px&apos; &#125;&#125; 数组语法类似上面。 自动添加前缀这里涉及浏览器前缀的一些知识，参考这里。 摘抄一段： 浏览器厂商们有时会给一些在试验阶段和非标准阶段的css属性或JavaScript API添加前缀, 这样开发者就可以在使用这些试验阶段的代码时能够确保不会被其他标准代码所依赖而导致破坏标准WEB代码的问题。开发人员应该等到浏览器行为被标准化之后再取消前缀。 例如经常看到的： -webkit- (谷歌, Safari, 新版Opera浏览器等)-moz- (火狐浏览器)-o- (旧版Opera浏览器等)-ms- (IE浏览器 和 Edge浏览器) 多重值摘抄记录： 从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：&lt;div :style=&quot;{ display: [&#39;-webkit-box&#39;, &#39;-ms-flexbox&#39;, &#39;flex&#39;] }&quot;&gt;&lt;/div&gt;这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。 总结这篇内容主要涉及了在Vue中怎么设置CSS，这里涉及了CSS的class和style，这里需要总结一下。 设置CSS一共有三种方式： 内联 - 使用HTML元素的style属性，例如： &lt;h1 style=&quot;color:blue;&quot;&gt;This is a Blue Heading&lt;/h1&gt; 内部 - 使用&lt;head&gt;区域的&lt;style&gt;元素，例如： 123456789&lt;html&gt;&lt;head&gt;&lt;style&gt;body &#123;background-color: powderblue;&#125;h1 &#123;color: blue;&#125;p &#123;color: red;&#125;&lt;/style&gt;&lt;/head&gt;&lt;body&gt; 外部 - 使用外部的CSS文件 123456789101112&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt; &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;This is a heading&lt;/h1&gt;&lt;p&gt;This is a paragraph.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; 还有一个优先级的关系，可以参考这里。 参考https://cn.vuejs.org/v2/guide/class-and-style.htmlhttps://developer.mozilla.org/zh-CN/docs/Glossary/Vendor_Prefixhttps://www.w3schools.com/html/html_css.asp]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>JS</tag>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+        <tag>Style</tag>
+        <tag>绑定</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[十月份计划]]></title>
     <url>%2Fscheme%2F2018-10.html</url>
     <content type="text"><![CDATA[十月份计划。 前言写博客，缺乏了一些计划，感觉有些零零散散，应该梳理一下计划。每次有文章的更新，就在当月计划的这篇文章里面记录一下，这样可以记录下自己的足迹。 正文十月份还剩十天，因为最近的工作要用到Vue，所以计划本月整理Vue的笔记，对照官网，再完成几篇对Vue的学习。以现在的进度，可能两三天才能整理一篇，尽管如此，不想光追求速度，还是需要保证质量，“君子勿速成”，速生的东西往往速死，着急赶出来的东西，往往缺乏价值，饭一口一口吃，事情一件一件办。 今年还剩两个多月，计划把MongoDB的笔记再丰富一些，把基本的使用都总结清楚，整理成一个系列；其余的，现在也说不定，就边走边看吧。]]></content>
@@ -500,20 +516,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -524,6 +526,20 @@
         <tag>JavaScript</tag>
         <tag>波浪字符</tag>
         <tag>依赖包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
@@ -674,20 +690,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
-    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>collection</tag>
-        <tag>数据集合</tag>
-        <tag>创建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
     <url>%2Fmongodb%2Fmongodb-database-create.html</url>
     <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
@@ -699,6 +701,20 @@
         <tag>database</tag>
         <tag>create</tag>
         <tag>创建数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
+    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>collection</tag>
+        <tag>数据集合</tag>
+        <tag>创建</tag>
       </tags>
   </entry>
 </search>
