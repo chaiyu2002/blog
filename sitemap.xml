@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/js/js-vue-note-components.html</loc>
+    
+    <lastmod>2018-10-25T10:12:33.255Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/js/js-vue-note-css-style-binding.html</loc>
     
     <lastmod>2018-10-22T08:43:59.927Z</lastmod>
@@ -198,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/ethereum-programming-introduction.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/ethereum-rationale-introduction.html</loc>
     
     <lastmod>2018-08-18T00:08:05.863Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/ethereum-rationale-introduction.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/ethereum-programming-introduction.html</loc>
     
     <lastmod>2018-08-18T00:08:05.863Z</lastmod>
     
@@ -282,14 +289,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
+    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
+    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -380,14 +387,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
