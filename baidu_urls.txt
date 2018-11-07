@@ -1,3 +1,3 @@
+https://www.oxysun.cn/git/git-merge-exist-conflict.html
 https://www.oxysun.cn/js/js-vue-note-components.html
 https://www.oxysun.cn/js/js-vue-note-css-style-binding.html
-https://www.oxysun.cn/scheme/2018-10.html
