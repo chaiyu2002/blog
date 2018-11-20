@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MySQL：DDL的一些整理]]></title>
+    <url>%2Fmysql%2Fmysql-ddl-handy-book.html</url>
+    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MySQL：DDL的一些整理。 前言对于MYSQL对于表结构的修改，一直存在一些函数的地方，这里，参考一篇外贴，做一下好好的整理。 正文 MySQL ALTER TABLE: ALTER vs CHANGE vs MODIFY COLUMNWhenever I have to change a column in MySQL (which isn’t that often), I always forget the difference between ALTER COLUMN, CHANGE COLUMN, and MODIFY COLUMN. Here’s a handy reference. 这哥们也遇到了对于alter，change和modify的困扰，所以做了一个整理。 ALTER COLUMNUsed to set or remove the default value for a column. Example:ALTER TABLE MyTable ALTER COLUMN foo SET DEFAULT ‘bar’;ALTER TABLE MyTable ALTER COLUMN foo DROP DEFAULT; alter 常常用来设置或者移除一列的默认值。 CHANGE COLUMNUsed to rename a column, change its datatype, or move it within the schema. Example:ALTER TABLE MyTable CHANGE COLUMN foo bar VARCHAR(32) NOT NULL FIRST;ALTER TABLE MyTable CHANGE COLUMN foo bar VARCHAR(32) NOT NULL AFTER baz; change用来重命名一列，修改数据类型，或者在模式中移动它。 MODIFY COLUMNUsed to do everything CHANGE COLUMN can, but without renaming the column. Example:ALTER TABLE MyTable MODIFY COLUMN foo VARCHAR(32) NOT NULL AFTER baz;The official documentation for ALTER TABLE (for MySQL 5.1) is here. modify除了不能重命名一个列，可以做change的所有工作。 官网的摘录： CHANGE:Can rename a column and change its definition, or both.Has more capability than MODIFY, but at the expense of convenience for some operations. CHANGE requires naming the column twice if not renaming it.With FIRST or AFTER, can reorder columns.MODIFY:Can change a column definition but not its name.More convenient than CHANGE to change a column definition without renaming it.With FIRST or AFTER, can reorder columns.ALTER: Used only to change a column default value. 参考https://hoelz.ro/ref/mysql-alter-table-alter-change-modify-columnhttps://dev.mysql.com/doc/refman/5.7/en/alter-table.html]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>modify</tag>
+        <tag>change</tag>
+        <tag>alter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java：Shiro+SpringMVC的集成实践]]></title>
     <url>%2Fjava%2Fjava-shiro-note-2.html</url>
     <content type="text"><![CDATA[原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。Java：Shiro+SpringMVC的集成实践。 前言个人感觉，Shiro的官网有一个问题，讲的不够清楚，尽管看上去好像讲的挺明白，但是我总是感觉很多地方不够清楚，事实上，在阅读了很多帖子之后，发现很多人都对这一点存在疑问，那就不是我一个人的问题了。 Shiro的官网缺乏完整的例子，而且我所处理的项目是Spring的项目，如何清楚地集成在一起，似乎还没有看到，很多地方都需要摸索，看了张开涛的博客，下面一样有很多人存有疑问。 之前研究这个，花了几天的时间研究理论，感觉自己已经明白了（这个感觉在另外一篇帖子《Java：Shiro的架构学习笔记》里面有提到），实际上是，纸上得来终觉浅，绝知此事要躬行。 这篇文章结合着自己的例子，把所理解到的东西做一个总结，以备日后查看，也给需要的朋友们一个参考。 正文项目用的是XML配置，至于注解如何配置，暂时还没有时间去研究。 项目中定义一个spring-shiro.xml文件，配置在classpath里面，可以被系统读取到，这块涉及Spring读取配置文件的功能，官网是写在了applicationContext.xml文件里面，然后在web.xml里面定义filter，现在做项目，似乎已经很少用到这个web.xml文件，基本都是定义在spring-mvc.xml这个文件里面，这里给shiro单独定义了一个配置文件，原理是一样的。 先定义filter： &lt;bean id=&quot;shiroFilter&quot; class=&quot;org.apache.shiro.spring.web.ShiroFilterFactoryBean&quot;&gt; &lt;property name=&quot;securityManager&quot; ref=&quot;securityManager&quot;/&gt; &lt;/bean&gt; 这个将会构造一个shiroFilter，参数是securityManager。 定义securityManager： &lt;bean id=&quot;securityManager&quot; class=&quot;org.apache.shiro.web.mgt.DefaultWebSecurityManager&quot;&gt; &lt;property name=&quot;realm&quot; ref=&quot;tokenRealm&quot; /&gt; &lt;property name=&quot;cacheManager&quot; ref=&quot;cacheManager&quot;&gt;&lt;/property&gt; &lt;property name=&quot;sessionManager&quot; ref=&quot;sessionManager&quot; /&gt; &lt;property name=&quot;subjectFactory&quot; ref=&quot;subjectFactory&quot;/&gt; &lt;property name=&quot;subjectDAO.sessionStorageEvaluator.sessionStorageEnabled&quot; value=&quot;true&quot;/&gt; &lt;!-- By default the servlet container sessions will be used. Uncomment this line to use shiro&apos;s native sessions (see the JavaDoc for more): --&gt; &lt;property name=&quot;sessionMode&quot; value=&quot;http&quot;/&gt; &lt;/bean&gt; 这里构造了securityManager，并且传递了6个参数给它，每个参数可以是自己写的继承类，也可以是默认的类，这里涉及一些业务隐私的问题，不能都贴出来了。 第一个tokenRealm是用于进行认证的组件。 &lt;bean id=&quot;tokenRealm&quot; class=&quot;xx.xx.xx.TokenRealm&quot;&gt; &lt;property name=&quot;credentialsMatcher&quot; ref=&quot;credentialsMatcher&quot;/&gt; &lt;/bean&gt; 参数是自定义的一个凭证匹配器。这里需要覆写两个方法：protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException 返回认证信息。和protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) 返回授权信息。这个地方之前一直没有搞明白，是最让我困惑的地方，doGetAuthenticationInfo的第一个参数就是login方法送过来的token，一般这个token带有username和password，这里根据这个用户名去把数据库把用户的密码取出来，然后构造一个SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());返回，然后会交由匹配器去匹配，匹配器主要匹配第二个参数（原型是：SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)），即凭证是否相等。 而自定义的匹配器大体是下面这样，覆写匹配的函数（增加了缓存来保存尝试次数）：123456789101112131415161718192021222324252627282930313233@Override public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) &#123; String username = (String) token.getPrincipal(); AtomicInteger retryCount = loginRetryCache.get(username); System.out.println(&quot;重试次数：&quot; + retryCount); if (retryCount != null &amp;&amp; retryCount.intValue() &gt;= maxRetryCount) &#123; throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;); &#125; boolean matches = super.doCredentialsMatch(token, info); if (matches) &#123; //clear retry data System.out.println(&quot;清除重试次数缓存&quot;); if (retryCount != null) &#123; loginRetryCache.remove(username); &#125; return true; &#125; else &#123; if (null == retryCount) &#123; retryCount = new AtomicInteger(1); loginRetryCache.put(username, retryCount); System.out.println(&quot;插入缓存，失败次数：&quot; + retryCount); &#125; else if (retryCount.incrementAndGet() &gt;= maxRetryCount) &#123; log.warn(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;); throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;); &#125; retryCount = loginRetryCache.get(username); System.out.println(&quot;认证失败，失败次数：&quot; + retryCount); return false; &#125; &#125; 在login完成后，Shiro其实会返回给客户端一个JSESSIONID，并且会在缓存中保存关于这个会话的一些信息，这些会话信息会被定期清理（由调度任务15分钟或者是下一次访问时判断是否过期）或者是由logout方法主动注销掉。 总结初步总结了一下Shiro的用法，实践了一天，总结了一天，终于感觉搞明白了，使用Shiro的难度主要在于牵扯的类比较多，而且文档说的不是太清楚，需要自己反复地实践。这也可能说明它设计得很灵活，一般设计得很灵活的东西，都是不容易掌握，但是，一旦掌握了，就非常得方便。这篇帖子还会不断更新，直到把这个地方的概念全部梳理清楚。 参考https://shiro.apache.org/10-minute-tutorial.htmlhttps://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.htmlhttps://shiro.apache.org/architecture.html]]></content>
@@ -592,9 +606,9 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>依赖包</tag>
-        <tag>波浪字符</tag>
         <tag>JavaScript</tag>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
       </tags>
   </entry>
   <entry>
@@ -605,10 +619,10 @@
         <category>JavaScript</category>
       </categories>
       <tags>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
         <tag>Javascript</tag>
         <tag>NPM</tag>
-        <tag>依赖包</tag>
-        <tag>波浪字符</tag>
       </tags>
   </entry>
   <entry>
@@ -759,20 +773,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
-    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
-    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>database</tag>
-        <tag>create</tag>
-        <tag>创建数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
@@ -784,6 +784,20 @@
         <tag>collection</tag>
         <tag>数据集合</tag>
         <tag>创建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>database</tag>
+        <tag>create</tag>
+        <tag>创建数据库</tag>
       </tags>
   </entry>
 </search>
