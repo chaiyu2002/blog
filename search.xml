@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[席慕蓉《一棵开花的树》读后杂感]]></title>
+    <url>%2Fessay%2Fnote-ximurong-tree.html</url>
+    <content type="text"><![CDATA[席慕蓉《一棵开花的树》读后杂感。 一棵开花的树如何让你遇见我在我最美丽的时刻 为这我已在佛前求了五百年求佛让我们结一段尘缘佛於是把我化做一棵树长在你必经的路旁 阳光下慎重地开满了花朵朵都是我前世的盼望 当你走近请你细听那颤抖的叶是我等待的热情 而当你终於无视地走过在你身後落了一地的朋友啊那不是花瓣那是我凋零的心 读完这篇散文，感觉眼眶都湿了，这样是什么样的语言功底，居然能够沁入你的身体，让你无比感动，眼眶发湿，引起了内心的共鸣。 今天周五，稍微有些懈怠，百无聊赖，已经有些厌倦无限的下拉《今日头条》来打发时间，突然想看看小说，看看这些文字的东西，看了一篇金庸的《倚天屠龙记》，看了一篇李敖的《传统下的独白》，然后看到这篇席慕蓉先生的散文，看完后，心潮澎湃，好像已经很久没有体会到这种通过阅读而获得的感动了，感觉被麻木、僵硬、厚重的神经包裹下的那很久没有被触达的敏感的灵魂，深深地被打动，又开始去思考人生、爱情和婚姻。 尽管一直在记录笔记，已经记录了十余年了，但是只到此刻，开始反省，似乎我更多记录的，是技术的学习和整理，是产品的分析，都是一些说明性的问题，已经很久没有用语言去表达心中的感受，表达这种激动的感觉，似乎这种能力已经快退化了，总感觉言不达意，怎么都不能把心中的那份感觉表达出来。 和爱人的相识，已经过去了二十余年，现在的她已经有了白头发，有了雀斑，有了一些鱼尾纹。 而与她初始的时候，也正是在她最美丽的时候，那时的她，就像一个含苞待放的花朵，就像娇艳欲滴的苹果–我已经不能很好地表达我的感情–让我看到了她最美丽的样子，这原来是她前世在佛前求了五百年换来的，想到这里，就觉得感动。 周星驰对柴静说，他这辈子应该没有啥机会去结婚了，很多人留言，他还不算老，怎么这么说呢。 我在想，也许是他发现，他终于知道谁是他心中最爱的人，但是，这辈子可能都不能和他在一起了，我原来以为是朱茵，但现在感觉，可能不是。 看徐峥的《催眠大师》，徐峥对莫文蔚说，“无论你多么爱你的男朋友，但是你要知道，你再也不可能见到他了”，仔细思考这句话，这会是一种怎么样的痛苦啊，我小时候，假期会去姥姥家、奶奶家过，等到开学的时候要回自己家，那个时候我会哭的稀里哗啦，因为一下子就见不到宠爱我的老人们了，但那仅仅是暂时的，再过一个假期，就又能见到了，或者说，我知道，她们在另外一个城市生活，我想见她们，是有机会见到的。但是，有的人，你再也没法见到他了，无论你付出怎么样的努力，你都无法突破生与死的这个界限，你最多只能在梦中去和他们相见，这是一种把心放在绞肉机里面，而且你还能真切体会到感受的一种痛苦。 真爱、尘缘、轮回、生与死，我可能永远也参不透，那就好好珍惜吧。]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>席慕蓉</tag>
+        <tag>一棵开花的树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Vue：学习笔记（七）-自定义指令]]></title>
     <url>%2Fjs%2Fjs-vue-note-directive.html</url>
     <content type="text"><![CDATA[Vue：学习笔记（七）-自定义指令。 提醒原帖完整收藏于IT老兵驿站，并会不断更新。 前言前面总结到了组件，对混入也进行了研究，不过感觉没有啥需要总结的，就先总结指令吧，参考这里，记录笔记。 正文简介 全局注册12345678// 注册一个全局自定义指令 `v-focus`Vue.directive(&apos;focus&apos;, &#123; // 当被绑定的元素插入到 DOM 中时…… inserted: function (el) &#123; // 聚焦元素 el.focus() &#125;&#125;) 这里这个focus方法不太熟，查一下手册，原来是用来获取焦点的方法。 局部注册。12345678directives: &#123; focus: &#123; // 指令的定义 inserted: function (el) &#123; el.focus() &#125; &#125;&#125; 钩子函数在某个生命周期被回调，就像Vue自己的生命周期，Android的生命周期，暴露一些接口给用户。 函数简写在很多时候，你可能想在 bind 和 update 时触发相同行为，而不关心其它的钩子。比如这样写:123Vue.directive(&apos;color-swatch&apos;, function (el, binding) &#123; el.style.backgroundColor = binding.value&#125;) 这段没有看懂–明白了，上面这段是最简单的一个自定义指令的写法。 对象字面量这个字面量又不懂了，还需要参考手册。 字面量：These are fixed values, not variables, that you literally provide in your script.。这个是翻译过来的意思：字面量是由语法表达式定义的常量；或，通过由一定字词组成的语词表达式定义的常量。 初步理解，字面量是一个常量，符合了一定的语法，符合了数组的语法，就是数组字面量，符合了对象的语法，就是对象字面量，大体理解成这样，看了手册半天，感觉还是没有完全理解。 总结对于字面量的概念，还需要继续研究，反复理解，将来再补充。对于指令的理解，感觉大体都明白了。 参考https://cn.vuejs.org/v2/guide/custom-directive.htmlhttps://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus]]></content>
@@ -626,20 +638,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -647,9 +645,23 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
         <tag>依赖包</tag>
+        <tag>波浪字符</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
+        <tag>依赖包</tag>
+        <tag>波浪字符</tag>
       </tags>
   </entry>
   <entry>
