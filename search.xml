@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[RAC学习笔记之一：KVC（一）]]></title>
+    <url>%2Fios%2Fios-oc-kvc-1.html</url>
+    <content type="text"><![CDATA[RAC学习笔记之一：KVC（一） 原帖收藏于IT老兵博客。 前言学习RAC，需要先去了解KVC和KVO，这里对KVC进行一下总结。 正文KVC参考苹果官网的介绍 You typically use accessor methods to gain access to an object’s properties. A get accessor (or getter) returns the value of a property. A set accessor (or setter) sets the value of a property. In Objective-C, you can also directly access a property’s underlying instance variable. Accessing an object property in any of these ways is straightforward, but requires calling on a property-specific method or variable name. As the list of properties grows or changes, so also must the code which accesses these properties. In contrast, a key-value coding compliant object provides a simple messaging interface that is consistent across all of its properties.Key-value coding is a fundamental concept that underlies many other Cocoa technologies, such as key-value observing, Cocoa bindings, Core Data, and AppleScript-ability. Key-value coding can also help to simplify your code in some cases. 一言以蔽之，这一段的意思是编写传统的获取和设置属性的方法（getter和setter）会随着属性值的增加而变得越来越枯燥，所以OC提供了一种直接根据属性名设置值的方法，这种方法就叫做KVC，Key-value coding。 下面摘录一段李刚的《疯狂iOS》，这段例子讲的很清楚，所以摘录在下面： 5.5.1 简单的 KVC最基本的 KVC 由 NSKeyValueCoding 协议提供支持，最基本的操作属性的两个方法如下。setValue：属性值 forKey：属性名：为指定属性设置值。valueForKey：属性名：获取指定属性的值。例如，如下程序定义了 FKUser 类的接口部分。程序清单: codes/05/5.5/FKUser. H1234567#import &lt;Foundation/ Foundation. H&gt;@interface FKUser: NSobject//使用@property 定义 3 个 property@property (nonatomic, copy) NSString* name;@property (nonatomic, copy) NSString* pass;@property (nonatomic, copy) NSDate* birth;@end 上面程序定义了 FKUser 类使用@property 定义 3 个 property，接下来应该为该类定义实现部分，实现部分使用@synthesize 为这 3 个 property 合成 setter 和 getter 方法。类实现部分代码非常简单，故此处不再给出。下面使用 KVC 来设置 FKUser 对象的属性，以及访问 FKUser 对象的属性。程序代码如下:123456789101112131415161718程序清单: codes/05/5.5/FKUserTest.m#import &quot;FKUser. H&quot;int main (int argc，char★argv [])&#123; @autoreleasepool &#123; //创建 FKUser 对象 FKUser* user = [[FKUser alloc] init]; // 使用 KVC 方式为 name 属性设置属性值 [user setValue: @“孙悟空”forKey: @&quot;name&quot;]; //使用 KVC 方式为 pass 属性设置属性值 [user setValue: @&quot;1455&quot; forKey: @&quot;pass&quot;]; //使用 KVC 方式为 birth 属性设置属性值 [user setValue: [[NSDate alloc] init] forKey: @&quot;birth&quot;]; //使用KVC 获取 FKUser 对象的属性 NSLog (@&quot;user 的 name 为：%@“，【user valueForKey: @&quot;name&quot;]); NSLog (@&quot;user 的 pass 为：%@“，【user valueForKey: @&quot;pass&quot;]); NSLog (@&quot;user 的 birth 为：%@”，【user valueForKey: @&quot;birth&quot;]); 上面程序中前 3 行粗体字代码使用 KVC 方式为属性设置属性值，后 3 行粗体字代码使用 KVC 模式获取指定属性的值。编译、运行上面的程序，看到如下输出：123user 的 name 为：孙悟空user 的 pass 为：1455user 的 birth 为：2013-04-08 16:55:49 +0000 在 KVC 编程方式中，无论调用 setValue: forKey 方法，还是调用 valueForKey：方法，都是通过 NSString 对象来指定被操作属性的，其中 forKey：标签用于传入属性名。对于 setValue：属性值 forKey@”name“；代码，底层的执行机制如下。 (1) 程序优先考虑调用“setName：属性值；”代码通过 setter 方法完成设置。 (2) 如果该类没有 setName：方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际上就是对 name 成员变量赋值。 (3) 如果该类既没有 setName：方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为 name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是对 name 成员变量赋值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 setValue: forUndefinedKey：方法。默认的 setValue: forUndefinedKey：方法实现就是引发一个异常，这个异常将会| 导致程序因为异常结束。对于“valueforKey@”name”；，”代码，底层的执行机制如下。 (1) 程序优先考虑调用“name；”代码来获取该 getter 方法的返回值。 (2) 如果该类没有 name 方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC代码底层实际就是返回_ name 成员变量的值。 (3) 如果该类既没有 name 方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是返回 name 成员变量的值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 valueforUndefinedKey：方法。 总结KVC的内容有点多，一章总结不完，这篇文章基本都是摘录了，因为李刚的文章写得相当清楚，那就通过摘录来加深印象。 参考https://developer.apple.com/documentation/foundation/object_runtime/nskeyvaluecoding?language=objchttps://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.htmlhttps://www.objc.io/issues/7-foundation/key-value-coding-and-observing/]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>OC</tag>
+        <tag>ReactiveObjC</tag>
+        <tag>ReactiveCocoa</tag>
+        <tag>KVC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java：URL rewrite]]></title>
     <url>%2Fjava%2Furl-rewrite.html</url>
     <content type="text"><![CDATA[原帖收藏于IT老兵博客。 前言在工作中不断遇到url rewrite这个概念，这个概念和redirect到底有什么区别，什么时候适用，需要总结一下。 正文介绍很神奇的是，通过google查这个关键字，维基百科的解释，更多偏向于path info的概念，而不是我所理解的那个概念。 最早接触url rewrite是在配置apache服务器的时候，参考这里，可以对request的url进行重写，把实际需要的内容返回给客户端，并且把客户端的url改变。 以下是一些摘录： SummaryThe mod_rewrite module uses a rule-based rewriting engine, based on a PCRE regular-expression parser, to rewrite requested URLs on the fly. By default, mod_rewrite maps a URL to a filesystem path. However, it can also be used to redirect one URL to another URL, or to invoke an internal proxy fetch.mod_rewrite provides a flexible and powerful way to manipulate URLs using an unlimited number of rules. Each rule can have an unlimited number of attached rule conditions, to allow you to rewrite URL based on server variables, environment variables, HTTP headers, or time stamps.mod_rewrite operates on the full URL path, including the path-info section. A rewrite rule can be invoked in httpd.conf or in .htaccess. The path generated by a rewrite rule can include a query string, or can lead to internal sub-processing, external request redirection, or internal proxy throughput. 这里还有一些对于rewrite的作用介绍： 1，首先是满足观感的要求。对于追求完美主义的网站设计师，就算是网页的地址也希望看起来尽量简洁明快。形如http://www.123.com/news/index.asp?id=123的网页地址，自然是毫无美感可言，而用UrlRewrite技术，你可以轻松把它显示为 http://www.123.com/news/123.html。2，其次可以隐藏网站所用的编程语言，还可以提高网站的可移植性。 当网站每个页面都挂着鲜明的.asp/.aspx/.php这种开发语言的标记，别人一眼即可看出你的网站是用什么语言做的。而且在改变网站的语言的时候，你需要改动大量的链接。而且，当一个页面修改了扩展名，它的pagerank也会随之消失，从头开始。我们可以用UrlRewrite技术隐藏我们的实现细节，这样修改移植都很方便，而且完全不损失pagerank。提高安全性，可以有效的避免一些参数名、ID等完全暴露在用户面前，如果用户随便乱输的话，不符合规则的话直接会返回个404或错误页面，这比直接返回500或一大堆服务器错误信息要好的多3，最后也是最重要的作用，是有利于搜索引擎更好地抓取你网站的内容。理论上，搜索引擎更喜欢静态页面形式的网页，搜索引擎对静态页面的评分一般要高于动态页面。所以，UrlRewrite可以让我们网站的网页更容易被搜索引擎所收录。 效率参考这里，主要的一点，url rewrite比redirect更有效率，因为它没有让客户端进行二次请求，而是直接返回了需要的内容，这一点其实有一点像java的forward。 支持Apache是支持rewrite的，Nginx参考的是apache，所以也是支持的，而java的服务器一直对此没有很好的支持，可能也是源自上面的原因，这里介绍了一个包，来使java的web server可以支持这个rewrite功能。 参考http://httpd.apache.org/docs/current/mod/mod_rewrite.htmlhttps://visualstudiomagazine.com/blogs/tool-tracker/2018/06/url-rewriting.aspxhttp://tuckey.org/urlrewrite/]]></content>
@@ -416,8 +430,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>checkout</tag>
         <tag>用法</tag>
+        <tag>checkout</tag>
       </tags>
   </entry>
   <entry>
@@ -480,8 +494,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>git branch</tag>
+        <tag>用法</tag>
         <tag>分支</tag>
       </tags>
   </entry>
@@ -618,8 +632,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>checkout</tag>
         <tag>用法</tag>
+        <tag>checkout</tag>
       </tags>
   </entry>
   <entry>
