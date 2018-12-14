@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。">
-<meta name="keywords" content="MongoDB,collection,数据集合,创建">
+  <meta name="description" content="Java：synchronized关键字">
+<meta name="keywords" content="Java,synchronized">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB学习笔记：创建数据集合">
-<meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">
+<meta property="og:title" content="Java：synchronized关键字">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-synchronized-note.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。">
+<meta property="og:description" content="Java：synchronized关键字">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-19T14:22:03.304Z">
+<meta property="og:updated_time" content="2018-12-14T10:34:05.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB学习笔记：创建数据集合">
-<meta name="twitter:description" content="完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。">
+<meta name="twitter:title" content="Java：synchronized关键字">
+<meta name="twitter:description" content="Java：synchronized关键字">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-synchronized-note.html"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>MongoDB学习笔记：创建数据集合 | IT老兵驿站</title>
+  <title>Java：synchronized关键字 | IT老兵驿站</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-synchronized-note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="荒于嬉">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记：创建数据集合
+          <h1 class="post-title" itemprop="name headline">Java：synchronized关键字
               
             
           </h1>
@@ -386,24 +386,12 @@
                 
               
 
-              <time title="创建时间：2018-06-30 15:53:48" itemprop="dateCreated datePublished" datetime="2018-06-30T15:53:48+08:00">2018-06-30</time>
+              <time title="创建时间：2018-12-14 18:31:00 / 修改时间：18:34:05" itemprop="dateCreated datePublished" datetime="2018-12-14T18:31:00+08:00">2018-12-14</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-19 22:22:03" itemprop="dateModified" datetime="2018-08-19T22:22:03+08:00">2018-08-19</time>
               
             
           </span>
@@ -420,7 +408,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -462,38 +450,46 @@
       
 
       
-        <p>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-collection-create.html">IT老兵博客</a>。</p>
-<p>MongoDB如何创建数据集合（collection）。<br><a id="more"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章整理一下MongoDB如何创建数据集合。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。</p>
-<p>关于快速创建一个集合，需要参考<a href="http://localhost:4000/mongodb/mongodb-collection-insert-1.html" target="_blank" rel="noopener">插入</a>这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。</p>
-<p>再举个例子，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.test.insert(&#123;</span><br><span class="line">    &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;),</span><br><span class="line">    &quot;meta&quot; : &#123;</span><br><span class="line">        &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;),</span><br><span class="line">        &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;a&quot; : &quot;1&quot;,</span><br><span class="line">    &quot;b&quot; : &quot;1&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)</span><br></pre></td></tr></table></figure>
-<p>这样即会创建集合test，又会给这个集合插入一条记录。</p>
-<p>如果非要规矩地创建（其实是可以设置一些选项），那么：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;,</span><br><span class="line">                              autoIndexId: &lt;boolean&gt;,</span><br><span class="line">                              size: &lt;number&gt;,</span><br><span class="line">                              max: &lt;number&gt;,</span><br><span class="line">                              storageEngine: &lt;document&gt;,</span><br><span class="line">                              validator: &lt;document&gt;,</span><br><span class="line">                              validationLevel: &lt;string&gt;,</span><br><span class="line">                              validationAction: &lt;string&gt;,</span><br><span class="line">                              indexOptionDefaults: &lt;document&gt;,</span><br><span class="line">                              viewOn: &lt;string&gt;,</span><br><span class="line">                              pipeline: &lt;pipeline&gt;,</span><br><span class="line">                              collation: &lt;document&gt;,</span><br><span class="line">                              writeConcern: &lt;document&gt;&#125; )</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>字符串</td>
-<td>要创建的集合的名称。</td>
-</tr>
-<tr>
-<td>options</td>
-<td>文档</td>
-<td>可选。一大堆选项，暂时没用到，将来再补充了。</td>
-</tr>
-</tbody>
-</table>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。</a></p>
+        <p>Java：synchronized关键字<br><a id="more"></a></p>
+<p>原帖收藏于<a href="https://www.oxysun.cn/java/java-synchronized-note.html">IT老兵博客</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里翻译一篇对Java的synchronized关键字的讲解文章，这个关键字用于解决Java世界里面竞争条件时的访问冲突问题。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>Java synchronized块将方法或代码块标记为已同步。 Java synchronized块可用于避免竞争条件。</p>
+<h2 id="Java同步关键字"><a href="#Java同步关键字" class="headerlink" title="Java同步关键字"></a>Java同步关键字</h2><p>Java中的同步块使用synchronized关键字标记。Java中的同步块在某个对象上同步。在同一对象上的所有同步块在同一时刻只能被一个线程执行。尝试进入同步块的所有其他线程将被阻塞，直到同步块内的线程退出块。</p>
+<p>synchronized关键字可用于标记四种不同类型的块：</p>
+<ol>
+<li>实例方法</li>
+<li>静态方法</li>
+<li>实例方法中的代码块</li>
+<li>静态方法中的代码块</li>
+</ol>
+<p>这些块在不同对象上同步，您需要哪种类型的同步块取决于具体情况。</p>
+<h2 id="同步实例方法"><a href="#同步实例方法" class="headerlink" title="同步实例方法"></a>同步实例方法</h2><p>这是一个同步的实例方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public synchronized void add（int value）&#123;</span><br><span class="line">    this.count + = value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>请注意在方法声明中使用synchronized关键字，这告诉Java该方法是同步的。</p>
+<p>Java中的同步实例方法在拥有该方法的实例（对象）上同步。因此，每个实例的同步方法在不同的对象上同步：拥有它的实例。在一个同步实例方法中，只有一个线程可以执行。如果存在多个实例，则一次只能有一个线程可以在每个实例的同步实例方法内执行。每个实例一个线程。</p>
+<h2 id="同步静态方法"><a href="#同步静态方法" class="headerlink" title="同步静态方法"></a>同步静态方法</h2><p>静态方法被标记为synchronized，就像使用synchronized关键字的实例方法一样。这是一个Java synchronized静态方法示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static synchronized void add（int value）&#123;</span><br><span class="line">    count + = value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此处，synchronized关键字告诉Java该方法已同步。</p>
+<p>同步静态方法在同步静态方法所属的类的类对象上同步。由于每个类在Java VM中只存在一个类对象，因此在同一个类中的静态同步方法中只能执行一个线程。</p>
+<p>如果静态同步方法位于不同的类中，则一个线程可以在每个类的静态同步方法内执行。每个类一个线程，无论它调用哪个静态同步方法。</p>
+<h2 id="实例方法中的同步块"><a href="#实例方法中的同步块" class="headerlink" title="实例方法中的同步块"></a>实例方法中的同步块</h2><p>您不需要同步整个方法，有时只需要同步方法的一部分。方法中的Java同步块使这成为可能。</p>
+<p>以下是非同步Java方法中的同步Java代码块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void add（int value）&#123;</span><br><span class="line">  synchronized（this）&#123;</span><br><span class="line">     this.count + = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此示例使用Java synchronized块构造将代码块标记为已同步。此代码现在将像执行同步方法一样执行。</p>
+<p>请注意Java synchronized块构造如何在括号中获取对象。在示例中使用“this”，这是调用add方法的实例。由synchronized构造在括号中获取的对象称为监视器对象。据说代码在监视器对象上同步。同步实例方法使用它所属的对象作为监视对象。</p>
+<p>只有一个线程可以在同一监视器对象上同步的Java代码块内执行。</p>
+<p>以下两个示例在调用它们的实例上同步。因此，它们在同步方面是等效的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line">  public synchronized void log1（String msg1，String msg2）&#123;</span><br><span class="line">     log.writeln（MSG1）;</span><br><span class="line">     log.writeln（MSG2）;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  public void log2（String msg1，String msg2）&#123;</span><br><span class="line">     synchronized（this）&#123;</span><br><span class="line">        log.writeln（MSG1）;</span><br><span class="line">        log.writeln（MSG2）;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因此，在该示例中，只有单个线程可以在两个同步块中的任一个内执行。</p>
+<p>如果第二个同步块在与此不同的对象上同步，则一次一个线程就能够在每个方法内执行。</p>
+<h2 id="静态方法中的同步块"><a href="#静态方法中的同步块" class="headerlink" title="静态方法中的同步块"></a>静态方法中的同步块</h2><p>以下是与静态方法相同的两个示例。这些方法在方法所属的类的类对象上同步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyClass &#123;</span><br><span class="line"></span><br><span class="line">  public static synchronized void log1（String msg1，String msg2）&#123;</span><br><span class="line">     log.writeln（MSG1）;</span><br><span class="line">     log.writeln（MSG2）;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  public static void log2（String msg1，String msg2）&#123;</span><br><span class="line">     synchronized（MyClass.class）&#123;</span><br><span class="line">        log.writeln（MSG1）;</span><br><span class="line">        log.writeln（MSG2）;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>只有一个线程可以同时在这两个方法中的任何一个内执行。</p>
+<p>如果第二个同步块在与MyClass.class不同的对象上同步，那么一个线程可以同时在每个方法内执行。</p>
+<h2 id="Java同步例子"><a href="#Java同步例子" class="headerlink" title="Java同步例子"></a>Java同步例子</h2><p>下面是一个示例，它启动2个线程并让它们在同一个Counter实例上调用add方法。 一次只有一个线程能够在同一个实例上调用add方法，因为该方法在它所属的实例上是同步的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Counter &#123;</span><br><span class="line">   </span><br><span class="line">   long count = 0;</span><br><span class="line">  </span><br><span class="line">   public synchronized void add(long value) &#123;</span><br><span class="line">     this.count += value;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class CounterThread extends Thread &#123;</span><br><span class="line"></span><br><span class="line">   protected Counter counter = null;</span><br><span class="line"></span><br><span class="line">   public CounterThread(Counter counter) &#123;</span><br><span class="line">      this.counter = counter;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void run() &#123;</span><br><span class="line">       for (int i = 0;  i &lt; 10;  i++) &#123;</span><br><span class="line">         counter.add(i);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Example &#123;</span><br><span class="line"></span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    Counter counter = new Counter();</span><br><span class="line">    Thread  threadA = new CounterThread(counter);</span><br><span class="line">    Thread  threadB = new CounterThread(counter);</span><br><span class="line"></span><br><span class="line">    threadA.start();</span><br><span class="line">    threadB.start(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建了两个线程。 相同的Counter实例在其构造函数中传递给它们。 Counter.add()方法在实例上同步，因为add方法是一个实例方法，并标记为synchronized。 因此，只有一个线程可以一次调用add()方法。 另一个线程将等到第一个线程离开add()方法，然后才能执行方法本身。</p>
+<p>如果两个线程引用了两个单独的Counter实例，那么同时调用add()方法就没有问题。 调用将是对不同的对象，因此调用的方法也将在不同的对象（拥有该方法的对象）上同步。 因此呼叫不会阻止。 这是如何看起来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Example &#123;</span><br><span class="line"></span><br><span class="line">  public static void main(String[] args) &#123;</span><br><span class="line">    Counter counterA = new Counter();</span><br><span class="line">    Counter counterB = new Counter();</span><br><span class="line">    Thread  threadA = new CounterThread(counterA);</span><br><span class="line">    Thread  threadB = new CounterThread(counterB);</span><br><span class="line"></span><br><span class="line">    threadA.start();</span><br><span class="line">    threadB.start(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意两个线程threadA和threadB如何不再引用相同的计数器实例。 counterA和counterB的add方法在它们的两个拥有实例上同步。 因此，在counterA上调用add()将不会阻止对counterB的add()调用。</p>
+<h2 id="Java并发实用程序"><a href="#Java并发实用程序" class="headerlink" title="Java并发实用程序"></a>Java并发实用程序</h2><p>同步机制是Java的第一种机制，用于同步对多个线程共享的对象的访问。但同步机制并不是很先进。 这就是为什么Java 5获得了一整套<a href="http://tutorials.jenkov.com/java-util-concurrent/index.html" target="_blank" rel="noopener">concurrency utility classes</a>来帮助开发人员实现比同步所获得的更细粒度的并发控制。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章对synchronized关键字进行了详细的讲解，个人感觉讲解的不错，翻译出来，做个记录。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://tutorials.jenkov.com/java-concurrency/synchronized.html" target="_blank" rel="noopener">http://tutorials.jenkov.com/java-concurrency/synchronized.html</a></p>
 
       
     </div>
@@ -518,13 +514,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/collection/" rel="tag"># collection</a>
-          
-            <a href="/tags/数据集合/" rel="tag"># 数据集合</a>
-          
-            <a href="/tags/创建/" rel="tag"># 创建</a>
+            <a href="/tags/synchronized/" rel="tag"># synchronized</a>
           
         </div>
       
@@ -537,15 +529,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/wechat/nat-penetration-ngrok.html" rel="next" title="微信开发：NAT穿透">
+                <i class="fa fa-chevron-left"></i> 微信开发：NAT穿透
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mongodb/mongodb-database-create.html" rel="prev" title="MongoDB学习笔记：创建数据库">
-                MongoDB学习笔记：创建数据库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -929,7 +921,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java同步关键字"><span class="nav-number">2.1.</span> <span class="nav-text">Java同步关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步实例方法"><span class="nav-number">2.2.</span> <span class="nav-text">同步实例方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步静态方法"><span class="nav-number">2.3.</span> <span class="nav-text">同步静态方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例方法中的同步块"><span class="nav-number">2.4.</span> <span class="nav-text">实例方法中的同步块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法中的同步块"><span class="nav-number">2.5.</span> <span class="nav-text">静态方法中的同步块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java同步例子"><span class="nav-number">2.6.</span> <span class="nav-text">Java同步例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java并发实用程序"><span class="nav-number">2.7.</span> <span class="nav-text">Java并发实用程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
