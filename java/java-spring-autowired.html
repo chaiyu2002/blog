@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Java：学习@Autowired。">
+<meta name="keywords" content="Java,Autowired">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java：学习@Autowired">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-spring-autowired.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Java：学习@Autowired。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-26T08:42:13.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java：学习@Autowired">
+<meta name="twitter:description" content="Java：学习@Autowired。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-spring-autowired.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java：学习@Autowired | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-spring-autowired.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java：学习@Autowired
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-26 16:41:00 / 修改时间：16:42:13" itemprop="dateCreated datePublished" datetime="2018-12-26T16:41:00+08:00">2018-12-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+Java：学习@Autowired。
+<a id="more"></a>
+
+<div class="htmledit_views" id="content_views">
+  <p>原贴收藏在<a href="http://www.oxysun.cn" rel="nofollow">IT老兵驿站</a>。</p>
+
+<h1>前言</h1>
+
+<p>使用SpringMVC，现在不可避免要接触注解，会遇到@Autowired，查询了google，找到这篇文章，摘录下来，做一些笔记。为什么这样呢？因为至少来说，以当前的理解，自己来写，不太可能超越这篇文章，我也不想像很多人那样搞所谓“二次原创”，其实不还是抄袭，只是针对了判定抄袭的规则来做文章，不耍这样的小聪明，没有意义。</p>
+
+<h1>正文</h1>
+
+<h2 id="overview">1. Overview</h2>
+
+<p>Starting with Spring 2.5, the framework introduced a new style of Dependency Injection driven by <em>@Autowired</em> Annotations. This annotation allows Spring to resolve and inject collaborating beans into your bean.</p>
+
+<p>In this tutorial, we will look at how to enable autowiring<em>, </em>various<em> </em>ways to wire in beans<em>, </em>making beans optional, resolving bean conflicts using <em>@Qualifier</em> annotation along with potential exception scenarios.</p>
+
+<p>Spring2.5之后，可以使用<em>@Autowired</em> 注解来实现DI。这个词本身的英文意思就是自动装配。</p>
+
+<h2 id="enabling">2. Enabling <em>@Autowired</em> Annotations</h2>
+
+<p>If you are using Java based configuration in your application you can enable annotation-driven injection by using <em>AnnotationConfigApplicationContext </em>to load your spring configuration as below:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+</td>
+<td>
+<p><code>@Configuration</code></p>
+
+<p><code>@ComponentScan</code><code>(</code><code>"com.baeldung.autowire.sample"</code><code>)</code></p>
+
+<p><code>public</code> <code>class</code> <code>AppConfig {}</code></p>
+</td>
+</tr></tbody></table><p>As an alternative, in Spring XML, it can be enabled by declaring it in Spring XML files like so: <em>&lt;context:annotation-config/&gt;</em></p>
+
+<p>想使用注解，现需要配置Spring可以支持注解，有两种方式，一个是在代码中，一个是在XML中，这个涉及到另外一些知识点，作者这里是假设读者是知道这些的。</p>
+
+<h2 id="using">3. Using <em>@Autowired</em></h2>
+
+<p>Once annotation injection is enabled, autowiring can be used on properties, setters, and constructors.</p>
+
+<p>可以用在属性、setter方法和构造器上。</p>
+
+<h3><strong>3.1. <em>@Autowired</em> on Properties</strong></h3>
+
+<p>The annotation can be used directly on properties, therefore eliminating the need for getters and setters:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+</td>
+<td>
+<p><code>@Component</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
+
+<p><code>public</code> <code>class</code> <code>FooFormatter {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>public</code> <code>String format() {</code></p>
+
+<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+</td>
+<td>
+<p><code>@Component</code></p>
+
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
+
+<p> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>In the above example, Spring looks for and injects <em>fooFormatter</em> when <em>FooService</em> is created.</p>
+
+<h3><strong>3.2. <em>@Autowired</em> on Setters</strong></h3>
+
+<p>The<em> @Autowired</em> annotation can be used on setter methods. In the below example, when the annotation is used on the setter method, the setter method is called with the instance of <em>FooFormatter </em>when <em>FooService</em>is created:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+
+<p>9</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>public</code> <code>void</code> <code>setFooFormatter(FooFormatter fooFormatter) {</code></p>
+
+<p><code>            </code><code>this</code><code>.fooFormatter = fooFormatter;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><h3><strong>3.3. <em>@Autowired</em> on Constructors</strong></h3>
+
+<p>The<em> @Autowired</em> annotation can also be used on constructors. In the below example, when the annotation is used on a constructor, an instance of <em>FooFormatter</em> is injected as an argument to the constructor when <em>FooService</em> is created:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+
+<p>9</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>public</code> <code>FooService(FooFormatter fooFormatter) {</code></p>
+
+<p><code>        </code><code>this</code><code>.fooFormatter = fooFormatter;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><h2 id="dependencies">4. @Autowired and Optional Dependencies</h2>
+
+<p>Spring expects <em>@Autowired</em> dependencies to be available when the dependent bean is being constructed. If the framework cannot resolve a bean for wiring, it will throw the below-quoted exception and prevent the Spring container from launching successfully:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+</td>
+<td>
+<p><code>Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: </code></p>
+
+<p><code>No qualifying bean of type [com.autowire.sample.FooDAO] found </code><code>for</code> <code>dependency: </code></p>
+
+<p><code>expected at least </code><code>1</code> <code>bean which qualifies as autowire candidate </code><code>for</code> <code>this</code> <code>dependency. </code></p>
+
+<p><code>Dependency annotations: </code></p>
+
+<p><code>{</code><code>@org</code><code>.springframework.beans.factory.annotation.Autowired(required=</code><code>true</code><code>)}</code></p>
+</td>
+</tr></tbody></table><p>To avoid this from happening, a bean can optional be specified as below:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>@Autowired</code><code>(required = </code><code>false</code><code>)</code></p>
+
+<p><code>    </code><code>private</code> <code>FooDAO dataAccessor; </code></p>
+
+<p><code>    </code> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>如果没有找到响应的bean，又不想系统停止加载，参考上面。</p>
+
+<h2 id="disambiguation">5. Autowire Disambiguation</h2>
+
+<p>By default, Spring resolves <em>@Autowired</em> entries by type. If more than one beans of the same type are available in the container, the framework will throw a fatal exception indicating that more than one bean is available for autowiring.</p>
+
+<h3><strong>5.1. Autowiring by <em>@Qualifier</em></strong></h3>
+
+<p>The <em>@Qualifier</em> annotation can be used to hint at and narrow down the required bean:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+</td>
+<td>
+<p><code>@Component</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
+
+<p><code>public</code> <code>class</code> <code>FooFormatter </code><code>implements</code> <code>Formatter {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>public</code> <code>String format() {</code></p>
+
+<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+</td>
+<td>
+<p><code>@Component</code><code>(</code><code>"barFormatter"</code><code>)</code></p>
+
+<p><code>public</code> <code>class</code> <code>BarFormatter </code><code>implements</code> <code>Formatter {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>public</code> <code>String format() {</code></p>
+
+<p><code>        </code><code>return</code> <code>"bar"</code><code>;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
+
+<p> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>Since there are two concrete implementations of <em>Formatter</em> available for the Spring container to inject, Spring will throw a <em>NoUniqueBeanDefinitionException </em>exception when constructing the <em>FooService</em>:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p><code>Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: </code></p>
+
+<p><code>No qualifying bean of type [com.autowire.sample.Formatter] is defined: </code></p>
+
+<p><code>expected single matching bean but found </code><code>2</code><code>: barFormatter,fooFormatter</code></p>
+</td>
+</tr></tbody></table><p>This can be avoided by narrowing the implementation using a <em>@Qualifier</em> annotation:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>@Qualifier</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
+
+<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
+
+<p> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>By specifying the <em>@Qualifier </em>with the name of the specific implementation, in this case as <em>fooFormatter</em>, we can avoid ambiguity when Spring finds multiple beans of the same type.</p>
+
+<p>Please note that the value of the <em>@Qualifier </em>annotation matches with the name declared in the <em>@Component </em>annotation of our <em>FooFormatter</em> implementation.</p>
+
+<h3><strong>5.2. Autowiring by Custom Qualifier</strong></h3>
+
+<p>Spring allows us to create our own <em>@Qualifier</em> annotation. To create a custom Qualifier, define an annotation and provide the <em>@Qualifier </em>annotation within the definition as below:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+
+<p>9</p>
+</td>
+<td>
+<p><code>@Qualifier</code></p>
+
+<p><code>@Target</code><code>({</code></p>
+
+<p><code>  </code><code>ElementType.FIELD, ElementType.METHOD, ElementType.TYPE, ElementType.PARAMETER})</code></p>
+
+<p><code>@Retention</code><code>(RetentionPolicy.RUNTIME)</code></p>
+
+<p><code>public</code> <code>@interface</code> <code>FormatterType {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>String value();</code></p>
+
+<p> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>Once defined, the <em>FormatterType</em> can be used within various implementations to specify custom value:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+</td>
+<td>
+<p><code>@FormatterType</code><code>(</code><code>"Foo"</code><code>)</code></p>
+
+<p><code>@Component</code></p>
+
+<p><code>public</code> <code>class</code> <code>FooFormatter </code><code>implements</code> <code>Formatter {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>public</code> <code>String format() {</code></p>
+
+<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+</td>
+<td>
+<p><code>@FormatterType</code><code>(</code><code>"Bar"</code><code>)</code></p>
+
+<p><code>@Component</code></p>
+
+<p><code>public</code> <code>class</code> <code>BarFormatter </code><code>implements</code> <code>Formatter {</code></p>
+
+<p> </p>
+
+<p><code>    </code><code>public</code> <code>String format() {</code></p>
+
+<p><code>        </code><code>return</code> <code>"bar"</code><code>;</code></p>
+
+<p><code>    </code><code>}</code></p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>Once the implementations are annotated, the custom Qualifier annotation can be used as below:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+
+<p>7</p>
+
+<p>8</p>
+</td>
+<td>
+<p><code>@Component</code></p>
+
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>@FormatterType</code><code>(</code><code>"Foo"</code><code>)</code></p>
+
+<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>The value specified in the <em>@Target</em> annotation restrict where the qualifier can be used to mark injection points.</p>
+
+<p>In the above code snippet, the qualifier can be used to disambiguate the point where Spring can inject the bean into a field, a method, a type, and a parameter.</p>
+
+<h3><strong>5.3. Autowiring by Name</strong></h3>
+
+<p>As a fallback Spring uses the bean name as a default qualifier value.</p>
+
+<p>So by defining the bean property name, in this case as <em>fooFormatter,</em> Spring matches that to the <em>FooFormatter</em> implementation and injects that specific implementation when <em>FooService</em> is constructed:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+<p>1</p>
+
+<p>2</p>
+
+<p>3</p>
+
+<p>4</p>
+
+<p>5</p>
+
+<p>6</p>
+</td>
+<td>
+<p><code>public</code> <code>class</code> <code>FooService {</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>    </code><code>@Autowired</code></p>
+
+<p><code>    </code><code>private</code> <code>Formatter fooFormatter;</code></p>
+
+<p><code>    </code> </p>
+
+<p><code>}</code></p>
+</td>
+</tr></tbody></table><p>多个备选的bean，怎么做选择。</p>
+
+<h2 id="conclusion">6. Conclusion</h2>
+
+<p>Although both <em>@Qualifier</em> and bean name fallback match can be used to narrow down to a specific bean, autowiring is really all about injection by type and this is how best to use this container feature.</p>
+
+<p>The source code of this tutorial can be found in <a href="https://github.com/eugenp/tutorials/tree/master/spring-all" rel="noopener" target="_blank">the GitHub project</a> – this is an Eclipse based project, so it should be easy to import and run as it is.</p>
+
+<h1>总结</h1>
+
+<p>老外的文章讲的真清楚，他们会对读者负责，很认真地把所有问题讲清楚，不像很多国人，哪怕是很多好像挺有名的教授出的书，都是“言简意赅”，看着好费劲，给人一种高高在上的感觉。当年读清华严蔚敏出的《数据结构》，读着就非常费劲，后来看大师出的《算法导论》，反而容易理解，中国人怎么总就是这么高傲呢。</p>
+
+<h1>参考</h1>
+
+<p><a href="https://www.baeldung.com/spring-autowire" rel="noopener" target="_blank">https://www.baeldung.com/spring-autowire</a></p>            </div>
+  
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Autowired/" rel="tag"># Autowired</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/java/java-synchronized-note.html" rel="next" title="Java：synchronized关键字">
+                <i class="fa fa-chevron-left"></i> Java：synchronized关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">73</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">2.1.</span> <span class="nav-text">1. Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#enabling"><span class="nav-number">2.2.</span> <span class="nav-text">2. Enabling @Autowired Annotations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using"><span class="nav-number">2.3.</span> <span class="nav-text">3. Using @Autowired</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1. @Autowired on Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2. @Autowired on Setters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3. @Autowired on Constructors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies"><span class="nav-number">2.4.</span> <span class="nav-text">4. @Autowired and Optional Dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disambiguation"><span class="nav-number">2.5.</span> <span class="nav-text">5. Autowire Disambiguation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.1.</span> <span class="nav-text">5.1. Autowiring by @Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.2.</span> <span class="nav-text">5.2. Autowiring by Custom Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.3.</span> <span class="nav-text">5.3. Autowiring by Name</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">2.6.</span> <span class="nav-text">6. Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
