@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CSS的font和font-size。">
+<meta name="keywords" content="CSS,font,font-size">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS的font和font-size">
+<meta property="og:url" content="https://www.oxysun.cn/css/css-font-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="CSS的font和font-size。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-05T02:55:14.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS的font和font-size">
+<meta name="twitter:description" content="CSS的font和font-size。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/css/css-font-note.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSS的font和font-size | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/css/css-font-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS的font和font-size
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-05 10:52:00 / 修改时间：10:55:14" itemprop="dateCreated datePublished" datetime="2019-01-05T10:52:00+08:00">2019-01-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+CSS的font和font-size。
+<a id="more"></a>
+
+<div class="htmledit_views" id="content_views">
+    <h1>前言</h1>
+
+<p>今天遇到一个问题，没有搞明白font和font-size的关系，研究了<a href="https://www.w3schools.com/css/css_font.asp" rel="noopener" target="_blank">https://www.w3schools.com/css/css_font.asp</a>这个帖子，终于搞明白，不过搞不懂为什么，这个网站为什么也需要翻墙，所以就诞生了中文的<a href="http://www.w3school.com.cn/" rel="noopener" target="_blank">http://www.w3school.com.cn/</a>这样的网站。但是“取法乎上，才能得其中”，想得到最好的学习效果，还是应该去看原版的东西。</p>
+
+<h1>正文</h1>
+
+<p>先来破题，一言以蔽之，font相当于多个font相关属性的组合属性。</p>
+
+<p>这篇笔记会把部分重要的原文摘录在下面，底下配上一定的翻译和笔记，这篇文章感觉英文相对都比较简单，没有太多需要翻译的地方。原文中有去往在线操练场的链接，也都是不翻墙而不能用。</p>
+
+<p>The CSS font properties define the font family, boldness, size, and the style of a text.</p>
+
+<p>CSS的font属性定义了font family、boldness,、size和一个文本的style。这是CSS的四个属性。</p>
+
+<h2>CSS Font Families</h2>
+
+<h2>CSS字体家族</h2>
+
+<p>In CSS, there are two types of font family names:</p>
+
+<ul><li><strong>generic family</strong> - a group of font families with a similar look (like "Serif" or "Monospace")</li>
+<li><strong>font family</strong> - a specific font family (like "Times New Roman" or "Arial")</li>
+</ul><table><tbody><tr><th>Generic family</th>
+<th>Font family</th>
+<th>Description</th>
+</tr><tr><td>Serif</td>
+<td>Times New Roman<br>
+Georgia</td>
+<td>Serif fonts have small lines at the ends on some characters</td>
+</tr><tr><td>Sans-serif</td>
+<td>Arial<br>
+Verdana</td>
+<td>"Sans" means without - these fonts do not have the lines at the ends of characters</td>
+</tr><tr><td>Monospace</td>
+<td>Courier New<br>
+Lucida Console</td>
+<td>All monospace characters have the same width</td>
+</tr></tbody></table><p><strong>Note:</strong> On computer screens, sans-serif fonts are considered easier to read than serif fonts.</p>
+
+<hr><h2>Font Family</h2>
+
+<p>The font family of a text is set with the <code>font-family</code> property.</p>
+
+<p>The <code>font-family</code> property should hold several font names as a "fallback" system. If the browser does not support the first font, it tries the next font, and so on.</p>
+
+<p>font-family属性准备了一些字体作为“后备”系统。如果浏览器不支持前面的字体，它就尝试下一个，以此类推。</p>
+
+<p>Start with the font you want, and end with a generic family, to let the browser pick a similar font in the generic family, if no other fonts are available.</p>
+
+<p>用你想要的字体开始，用一个普通的generic family（字体家族）结束，如果没有其它字体可用，让浏览器从generic family选择一个相似的字体。</p>
+
+<p><strong>Note</strong>: If the name of a font family is more than one word, it must be in quotation marks, like: "Times New Roman".</p>
+
+<p>More than one font family is specified in a comma-separated list:</p>
+
+<h3>Example</h3>
+
+<p>p {<br>
+font-family: "Times New Roman", Times, serif;<br>
+}</p>
+
+<h2>Font Style</h2>
+
+<h2>字体样式</h2>
+
+<p>The <code>font-style</code> property is mostly used to specify italic text.</p>
+
+<p>字体样式属性更多用来指定italic（斜体）文本。</p>
+
+<p>This property has three values:</p>
+
+<ul><li>normal - The text is shown normally</li>
+<li>italic - The text is shown in italics</li>
+<li>oblique - The text is "leaning" (oblique is very similar to italic, but less supported) 这个属性和italic有些像，不过缺乏一些浏览器的支持</li>
+</ul><h3>Example</h3>
+
+<p>p.normal {<br>
+font-style: normal;<br>
+}<br><br>
+p.italic {<br>
+font-style: italic;<br>
+}<br><br>
+p.oblique {<br>
+font-style: oblique;<br>
+}</p>
+
+<h2>Font Size</h2>
+
+<h2>字体大小</h2>
+
+<p>The <code>font-size</code> property sets the size of the text.</p>
+
+<p><code>font-size属性设置文本的大小。</code></p>
+
+<p>Being able to manage the text size is important in web design. However, you should not use font size adjustments to make paragraphs look like headings, or headings look like paragraphs.</p>
+
+<p>在web设计中能够管理文本的大小是很重要的。然而，你不应该使用这个属性去修改标题，让它像段落，反之亦然。</p>
+
+<p>Always use the proper HTML tags, like &lt;h1&gt; - &lt;h6&gt; for headings and &lt;p&gt; for paragraphs.</p>
+
+<p>能使用HTML标签的地方，尽量去使用，例如&lt;h1&gt; - &lt;h6&gt;，去用作标题，和&lt;p&gt;用作段落。</p>
+
+<p>The font-size value can be an absolute, or relative size.</p>
+
+<p>字体大小可以是一个绝对大小，或者是一个相对大小。</p>
+
+<p>Absolute size:</p>
+
+<ul><li>Sets the text to a specified size</li>
+<li>Does not allow a user to change the text size in all browsers (bad for accessibility reasons)</li>
+<li>Absolute size is useful when the physical size of the output is known</li>
+</ul><p>Relative size:</p>
+
+<ul><li>Sets the size relative to surrounding elements</li>
+<li>Allows a user to change the text size in browsers</li>
+</ul><p><strong>Note:</strong> If you do not specify a font size, the default size for normal text, like paragraphs, is 16px (16px=1em).</p>
+
+<hr><h2>Set Font Size With Pixels</h2>
+
+<h2>用pixels来设置字体大小</h2>
+
+<p>Setting the text size with pixels gives you full control over the text size:</p>
+
+<h3>Example</h3>
+
+<p>h1 {<br>
+font-size: 40px;<br>
+}<br><br>
+h2 {<br>
+font-size: 30px;<br>
+}<br><br>
+p {<br>
+font-size: 14px;<br>
+}</p>
+
+<p><strong>Tip:</strong> If you use pixels, you can still use the zoom tool to resize the entire page.</p>
+
+<hr><h2>Set Font Size With Em</h2>
+
+<h2>用Em设置字体大小</h2>
+
+<p>To allow users to resize the text (in the browser menu), many developers use em instead of pixels.</p>
+
+<p>The em size unit is recommended by the W3C.</p>
+
+<p>em字体单位被W3C所推荐。</p>
+
+<p>1em is equal to the current font size. The default text size in browsers is 16px. So, the default size of 1em is 16px.</p>
+
+<p>1em相当于当前的字体大小，例如当前浏览器的字体大小是16px，那么1em的默认大小就是16px。</p>
+
+<p>The size can be calculated from pixels to em using this formula: <em>pixels</em>/16=<em>em</em></p>
+
+<p>pixel和em的换算公式：pixels/16=em</p>
+
+<h3>Example</h3>
+
+<p>h1 {<br>
+font-size: 2.5em; /* 40px/16=2.5em */<br>
+}<br><br>
+h2 {<br>
+font-size: 1.875em; /* 30px/16=1.875em */<br>
+}<br><br>
+p {<br>
+font-size: 0.875em; /* 14px/16=0.875em */<br>
+}</p>
+
+<p>In the example above, the text size in em is the same as the previous example in pixels. However, with the em size, it is possible to adjust the text size in all browsers.</p>
+
+<p>Unfortunately, there is still a problem with older versions of IE. The text becomes larger than it should when made larger, and smaller than it should when made smaller.</p>
+
+<hr><h2>Use a Combination of Percent and Em</h2>
+
+<p>组合使用百分比和Em</p>
+
+<p>The solution that works in all browsers, is to set a default font-size in percent for the &lt;body&gt; element:</p>
+
+<h3>Example</h3>
+
+<p>body {<br>
+font-size: 100%;<br>
+}<br><br>
+h1 {<br>
+font-size: 2.5em;<br>
+}<br><br>
+h2 {<br>
+font-size: 1.875em;<br>
+}<br><br>
+p {<br>
+font-size: 0.875em;<br>
+}</p>
+
+<p>Our code now works great! It shows the same text size in all browsers, and allows all browsers to zoom or resize the text!</p>
+
+<hr><h2>Font Weight</h2>
+
+<h2>字体权重（姑且把weight翻译成权重）</h2>
+
+<p>The <code>font-weight</code> property specifies the weight of a font:</p>
+
+<h3>Example</h3>
+
+<p>p.normal {<br>
+font-weight: normal;<br>
+}<br><br>
+p.thick {<br>
+font-weight: bold;<br>
+}</p>
+
+<hr><h2>Responsive Font Size</h2>
+
+<h2>响应式字体大小</h2>
+
+<p>The text size can be set with a <code>vw</code> unit, which means the "viewport width".</p>
+
+<p>使用vm单位当做字体大小的单位，vm意味着“viewport width”，视点宽度。</p>
+
+<p>That way the text size will follow the size of the browser window:</p>
+
+<h1>Hello World</h1>
+
+<p>Resize the browser window to see how the font size scales.</p>
+
+<h3>Example</h3>
+
+<p>&lt;h1 style="<strong>font-size:10vw</strong>"&gt;Hello World&lt;/h1&gt;</p>
+
+<p>Viewport is the browser window size. 1vw = 1% of viewport width. If the viewport is 50cm wide, 1vw is 0.5cm.</p>
+
+<p>Viewport是浏览器窗体大小，1vw=1%的viewport的宽度，如果viewport是50cm宽，那么1vw是0.5cm宽。</p>
+
+<hr><h2>Font Variant</h2>
+
+<h2>字体变种</h2>
+
+<p>The <code>font-variant</code> property specifies whether or not a text should be displayed in a small-caps font.</p>
+
+<p><code>font-variant这个属性指定了一个文本是否会用</code>small-caps字体所显示。</p>
+
+<p>In a small-caps font, all lowercase letters are converted to uppercase letters. However, the converted uppercase letters appears in a smaller font size than the original uppercase letters in the text.</p>
+
+<p>在small-caps字体中，所有小写字母会被转换成大写字母。然后，转换后的大写字母用一种比正常的大写字母小的字体来显示。这个最好要实践一下才能理解。</p>
+
+<h3>Example</h3>
+
+<p>p.normal {<br>
+font-variant: normal;<br>
+}<br><br>
+p.small {<br>
+font-variant: small-caps;<br>
+}</p>
+
+<h1>总结</h1>
+
+<p>研究了font，搞明白了一直没有搞明白的这些关系。现在感觉学的都有些碎片化，欠缺的是如何去设计CSS呢？要找一篇对于这个的介绍来学习学习。</p>
+
+<h1>参考</h1>
+
+<p><a href="https://www.w3schools.com/css/css_font.asp" rel="noopener" target="_blank">https://www.w3schools.com/css/css_font.asp</a></p>            </div>
+    
+
+
+
+
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/tags/font/" rel="tag"># font</a>
+          
+            <a href="/tags/font-size/" rel="tag"># font-size</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/java/java-spring-autowired.html" rel="next" title="Java：学习@Autowired">
+                <i class="fa fa-chevron-left"></i> Java：学习@Autowired
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">108</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">CSS Font Families</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">CSS字体家族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.</span> <span class="nav-text">Font Family</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.4.</span> <span class="nav-text">Font Style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.</span> <span class="nav-text">字体样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.6.</span> <span class="nav-text">Font Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.7.</span> <span class="nav-text">字体大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.8.</span> <span class="nav-text">Set Font Size With Pixels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.9.</span> <span class="nav-text">用pixels来设置字体大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.9.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.10.</span> <span class="nav-text">Set Font Size With Em</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.11.</span> <span class="nav-text">用Em设置字体大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.11.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.12.</span> <span class="nav-text">Use a Combination of Percent and Em</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.12.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.13.</span> <span class="nav-text">Font Weight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.14.</span> <span class="nav-text">字体权重（姑且把weight翻译成权重）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.14.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.15.</span> <span class="nav-text">Responsive Font Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.16.</span> <span class="nav-text">响应式字体大小</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Hello World</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.1.</span> <span class="nav-text">Font Variant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.</span> <span class="nav-text">字体变种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.2.1.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
