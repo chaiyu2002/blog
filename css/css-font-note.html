@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="CSS的font和font-size。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-05T02:55:14.864Z">
+<meta property="og:updated_time" content="2019-01-05T04:59:18.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS的font和font-size">
 <meta name="twitter:description" content="CSS的font和font-size。">
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-01-05 10:52:00 / 修改时间：10:55:14" itemprop="dateCreated datePublished" datetime="2019-01-05T10:52:00+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-05 10:52:00 / 修改时间：12:59:18" itemprop="dateCreated datePublished" datetime="2019-01-05T10:52:00+08:00">2019-01-05</time>
             
 
             
@@ -454,8 +454,11 @@
 CSS的font和font-size。
 <a id="more"></a>
 
-<div class="htmledit_views" id="content_views">
-    <h1>前言</h1>
+<article class="baidu_pl">
+    <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post">
+                                        <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/template/css/ck_htmledit_views-5edb848729.css">
+                    <div class="htmledit_views" id="content_views">
+            <h1>前言</h1>
 
 <p>今天遇到一个问题，没有搞明白font和font-size的关系，研究了<a href="https://www.w3schools.com/css/css_font.asp" rel="noopener" target="_blank">https://www.w3schools.com/css/css_font.asp</a>这个帖子，终于搞明白，不过搞不懂为什么，这个网站为什么也需要翻墙，所以就诞生了中文的<a href="http://www.w3school.com.cn/" rel="noopener" target="_blank">http://www.w3school.com.cn/</a>这样的网站。但是“取法乎上，才能得其中”，想得到最好的学习效果，还是应该去看原版的东西。</p>
 
@@ -478,21 +481,21 @@ CSS的font和font-size。
 <ul><li><strong>generic family</strong> - a group of font families with a similar look (like "Serif" or "Monospace")</li>
 <li><strong>font family</strong> - a specific font family (like "Times New Roman" or "Arial")</li>
 </ul><table><tbody><tr><th>Generic family</th>
-<th>Font family</th>
-<th>Description</th>
-</tr><tr><td>Serif</td>
-<td>Times New Roman<br>
-Georgia</td>
-<td>Serif fonts have small lines at the ends on some characters</td>
-</tr><tr><td>Sans-serif</td>
-<td>Arial<br>
-Verdana</td>
-<td>"Sans" means without - these fonts do not have the lines at the ends of characters</td>
-</tr><tr><td>Monospace</td>
-<td>Courier New<br>
-Lucida Console</td>
-<td>All monospace characters have the same width</td>
-</tr></tbody></table><p><strong>Note:</strong> On computer screens, sans-serif fonts are considered easier to read than serif fonts.</p>
+        <th>Font family</th>
+        <th>Description</th>
+    </tr><tr><td>Serif</td>
+        <td>Times New Roman<br>
+        Georgia</td>
+        <td>Serif fonts have small lines at the ends on some characters</td>
+    </tr><tr><td>Sans-serif</td>
+        <td>Arial<br>
+        Verdana</td>
+        <td>"Sans" means without - these fonts do not have the lines at the ends of characters</td>
+    </tr><tr><td>Monospace</td>
+        <td>Courier New<br>
+        Lucida Console</td>
+        <td>All monospace characters have the same width</td>
+    </tr></tbody></table><p><strong>Note:</strong> On computer screens, sans-serif fonts are considered easier to read than serif fonts.</p>
 
 <hr><h2>Font Family</h2>
 
@@ -512,11 +515,14 @@ Lucida Console</td>
 
 <h3>Example</h3>
 
-<p>p {<br>
-font-family: "Times New Roman", Times, serif;<br>
-}</p>
+<pre class="has">
+<code class="language-css">p {
+font-family: "Times New Roman", Times, serif;
+}</code></pre>
 
-<h2>Font Style</h2>
+<p>For commonly used font combinations, look at our <a href="https://www.w3schools.com/cssref/css_websafe_fonts.asp" rel="noopener" target="_blank">Web Safe Font Combinations</a>.</p>
+
+<hr><h2>Font Style</h2>
 
 <h2>字体样式</h2>
 
@@ -531,17 +537,20 @@ font-family: "Times New Roman", Times, serif;<br>
 <li>oblique - The text is "leaning" (oblique is very similar to italic, but less supported) 这个属性和italic有些像，不过缺乏一些浏览器的支持</li>
 </ul><h3>Example</h3>
 
-<p>p.normal {<br>
-font-style: normal;<br>
-}<br><br>
-p.italic {<br>
-font-style: italic;<br>
-}<br><br>
-p.oblique {<br>
-font-style: oblique;<br>
-}</p>
+<pre class="has">
+<code class="language-css">p.normal {
+font-style: normal;
+}
 
-<h2>Font Size</h2>
+p.italic {
+font-style: italic;
+}
+
+p.oblique {
+font-style: oblique;
+}</code></pre>
+
+<hr><h2>Font Size</h2>
 
 <h2>字体大小</h2>
 
@@ -580,15 +589,18 @@ font-style: oblique;<br>
 
 <h3>Example</h3>
 
-<p>h1 {<br>
-font-size: 40px;<br>
-}<br><br>
-h2 {<br>
-font-size: 30px;<br>
-}<br><br>
-p {<br>
-font-size: 14px;<br>
-}</p>
+<pre class="has">
+<code class="language-css">h1 {
+font-size: 40px;
+}
+
+h2 {
+font-size: 30px;
+}
+
+p {
+font-size: 14px;
+}</code></pre>
 
 <p><strong>Tip:</strong> If you use pixels, you can still use the zoom tool to resize the entire page.</p>
 
@@ -612,15 +624,18 @@ font-size: 14px;<br>
 
 <h3>Example</h3>
 
-<p>h1 {<br>
-font-size: 2.5em; /* 40px/16=2.5em */<br>
-}<br><br>
-h2 {<br>
-font-size: 1.875em; /* 30px/16=1.875em */<br>
-}<br><br>
-p {<br>
-font-size: 0.875em; /* 14px/16=0.875em */<br>
-}</p>
+<pre class="has">
+<code class="language-css">h1 {
+font-size: 2.5em; /* 40px/16=2.5em */
+}
+
+h2 {
+font-size: 1.875em; /* 30px/16=1.875em */
+}
+
+p {
+font-size: 0.875em; /* 14px/16=0.875em */
+}</code></pre>
 
 <p>In the example above, the text size in em is the same as the previous example in pixels. However, with the em size, it is possible to adjust the text size in all browsers.</p>
 
@@ -634,18 +649,22 @@ font-size: 0.875em; /* 14px/16=0.875em */<br>
 
 <h3>Example</h3>
 
-<p>body {<br>
-font-size: 100%;<br>
-}<br><br>
-h1 {<br>
-font-size: 2.5em;<br>
-}<br><br>
-h2 {<br>
-font-size: 1.875em;<br>
-}<br><br>
-p {<br>
-font-size: 0.875em;<br>
-}</p>
+<pre class="has">
+<code>body {
+font-size: 100%;
+}
+
+h1 {
+font-size: 2.5em;
+}
+
+h2 {
+font-size: 1.875em;
+}
+
+p {
+font-size: 0.875em;
+}</code></pre>
 
 <p>Our code now works great! It shows the same text size in all browsers, and allows all browsers to zoom or resize the text!</p>
 
@@ -657,12 +676,16 @@ font-size: 0.875em;<br>
 
 <h3>Example</h3>
 
-<p>p.normal {<br>
-font-weight: normal;<br>
-}<br><br>
-p.thick {<br>
-font-weight: bold;<br>
-}</p>
+<pre class="has">
+<code class="language-css">p.normal {
+font-weight: normal;
+}
+
+p.thick {
+font-weight: bold;
+}
+
+</code></pre>
 
 <hr><h2>Responsive Font Size</h2>
 
@@ -700,12 +723,14 @@ font-weight: bold;<br>
 
 <h3>Example</h3>
 
-<p>p.normal {<br>
-font-variant: normal;<br>
-}<br><br>
-p.small {<br>
-font-variant: small-caps;<br>
-}</p>
+<pre class="has">
+<code class="language-css">p.normal {
+font-variant: normal;
+}
+
+p.small {
+font-variant: small-caps;
+}</code></pre>
 
 <h1>总结</h1>
 
@@ -714,9 +739,8 @@ font-variant: small-caps;<br>
 <h1>参考</h1>
 
 <p><a href="https://www.w3schools.com/css/css_font.asp" rel="noopener" target="_blank">https://www.w3schools.com/css/css_font.asp</a></p>            </div>
-    
-
-
+            </div>
+</article>
 
 
 
