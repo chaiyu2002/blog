@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Kafka的学习笔记–介绍（总体概念）。">
+<meta name="keywords" content="Kafka,介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka的学习笔记--介绍（总体概念）">
+<meta property="og:url" content="https://www.oxysun.cn/Kafka/kafka-introduction-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Kafka的学习笔记–介绍（总体概念）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190116175218757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190116175242226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190116180038622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-01-20T11:57:11.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kafka的学习笔记--介绍（总体概念）">
+<meta name="twitter:description" content="Kafka的学习笔记–介绍（总体概念）。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190116175218757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/Kafka/kafka-introduction-note.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kafka的学习笔记--介绍（总体概念） | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/Kafka/kafka-introduction-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kafka的学习笔记--介绍（总体概念）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-20 19:54:00 / 修改时间：19:57:11" itemprop="dateCreated datePublished" datetime="2019-01-20T19:54:00+08:00">2019-01-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Kafka的学习笔记–介绍（总体概念）。<br><a id="more"></a></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目要用到Kafka，要研究一下这个，先得总体对它有个了解，而个人经验，想要获得总体了解，最好的办法就是阅读维基百科，或者阅读官网的介绍，这次我来阅读官网的介绍。</p>
+<p>我觉得，反复研读，充分理解这个介绍，可以提纲挈领，之后再配合对各个模块具体的研究，可以很快理解和掌握。</p>
+<p>下面摘抄了正文，配合上总结的一定的段落大意，便于快速抓住要旨。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="Apache-Kafka®-is-a-distributed-streaming-platform-What-exactly-does-that-mean"><a href="#Apache-Kafka®-is-a-distributed-streaming-platform-What-exactly-does-that-mean" class="headerlink" title="Apache Kafka® is a distributed streaming platform. What exactly does that mean?"></a>Apache Kafka® is a distributed streaming platform. What exactly does that mean?</h3><p>kafka是一个分布式的流化平台。怎么理解这个意思呢？</p>
+<blockquote>
+<p>A streaming platform has three key capabilities:</p>
+<ul>
+<li>Publish and subscribe to streams of records, similar to a -message queue or enterprise messaging system.</li>
+<li>Store streams of records in a fault-tolerant durable way.</li>
+<li>Process streams of records as they occur.</li>
+</ul>
+</blockquote>
+<p>一个流化平台需要有三个关键的能力：</p>
+<ul>
+<li>对记录流的发布和订阅，类似一个消息队列或者企业级消息系统。<ul>
+<li>采用一种持久容错的方式来存储记录流。</li>
+<li>当记录流产生的时候处理它。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Kafka is generally used for two broad classes of applications:</p>
+<ul>
+<li>Building real-time streaming data pipelines that reliably get data between systems or applications</li>
+<li>Building real-time streaming applications that transform or react to the streams of data</li>
+</ul>
+</blockquote>
+<p>Kafka通常被用于两种广泛的应用类型：</p>
+<ul>
+<li>建立实时流化数据管道，在系统或者应用程序中可靠地获取数据</li>
+<li>建立实时流化应用程序，对流化数据来转换或者响应</li>
+</ul>
+<blockquote>
+<p>To understand how Kafka does these things, let’s dive in and explore Kafka’s capabilities from the bottom up.<br><br><br>First a few concepts:<br><br><br>Kafka is run as a cluster on one or more servers that can span multiple datacenters.<br><br><br>The Kafka cluster stores streams of records in categories called topics.<br><br><br>Each record consists of a key, a value, and a timestamp.</p>
+</blockquote>
+<p>一些新的概念：<br>Kafaka作为一个集群来运行，在一台或者多台服务器上，可以跨越多个数据中心。（后面这句怎么理解？）<br>Kafka集群存储着流化记录在被称为topics的分类中。<br>每一个记录包含着一个key，一个value，和一个timestamp。</p>
+<blockquote>
+<p>Kafka has four core APIs:<br><br><br>The Producer API allows an application to publish a stream of records to one or more Kafka topics.<br><br><br>The Consumer API allows an application to subscribe to one or more topics and process the stream of records produced to them.<br><br><br>The Streams API allows an application to act as a stream processor, consuming an input stream from one or more topics and producing an output stream to one or more output topics, effectively transforming the input streams to output streams.<br><br><br>The Connector API allows building and running reusable producers or consumers that connect Kafka topics to existing applications or data systems. For example, a connector to a relational database might capture every change to a table.</p>
+</blockquote>
+<p>4个核心API：</p>
+<p>Producer API允许一个应用程序去发布一个记录流到一个或多个Kafka topics中。<br>Consumer API允许一个应用程序去订阅一个或多个topics，并且处理产生给它们（前面的topics）的记录流。<br>Streams API 允许一个应用程序去扮演一个stream processor（流化处理器），从一个或多个topics中消费一个输入流，并且产生一个输出流到一个或多个输出的topics中，有效转换输入流到输出流。<br>Connector API允许建造和运行一个可重用的生产者或者消费者来连接Kafka topics到一个existing的应用程序或者数据系统。例如，一个连接器到一个关系型数据库可以捕获对一个表的每一次变化。</p>
+<blockquote>
+<p>In Kafka the communication between the clients and the servers is done with a simple, high-performance, language agnostic TCP protocol. This protocol is versioned and maintains backwards compatibility with older version. We provide a Java client for Kafka, but clients are available in many languages.</p>
+</blockquote>
+<p>Kafka协议是用TCP协议构建，与语言无关，版本化的，兼容过去老的版本。</p>
+<blockquote>
+<h2 id="Topics-and-Logs"><a href="#Topics-and-Logs" class="headerlink" title="Topics and Logs"></a>Topics and Logs</h2><p>Let’s first dive into the core abstraction Kafka provides for a stream of records—the topic.<br>A topic is a category or feed name to which records are published. Topics in Kafka are always multi-subscriber; that is, a topic can have zero, one, or many consumers that subscribe to the data written to it.</p>
+</blockquote>
+<p>一个topic是一个类别或者feed name（不知道怎么解释，应该是类似RSS的概念，一个可以被订阅的东西的名字），用来发布记录的。Topics通常是多订户的，就是说，一个topic可以有零个，一个，或者很多消费者来订阅写在它里面的数据的。</p>
+<blockquote>
+<p>For each topic, the Kafka cluster maintains a partitioned log that looks like this:<br><img src="https://img-blog.csdnimg.cn/20190116175218757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70"><br>Each partition is an ordered, immutable sequence of records that is continually appended to—a structured commit log. The records in the partitions are each assigned a sequential id number called the offset that uniquely identifies each record within the partition.</p>
+</blockquote>
+<p>每一个partition是一个顺序的，不可变顺序的记录，可以被连续追加的结构化的commit log（提交日志？）。每条在partition中的记录被分配一个sequential id number， 被称为offset，是在partition中的每条记录唯一的标识符。<br>这里留有了几个问题，如何划分partition，如何对partition进行读写？consumer是针对partition来消费的？<br>partition是由Kafka来划分的，它来使用Round-Robin（单循环的方式）来进行写。</p>
+<blockquote>
+<p>The Kafka cluster durably persists all published records—whether or not they have been consumed—using a configurable retention period. For example, if the retention policy is set to two days, then for the two days after a record is published, it is available for consumption, after which it will be discarded to free up space. Kafka’s performance is effectively constant with respect to data size so storing data for a long time is not a problem.<br><img src="https://img-blog.csdnimg.cn/20190116175242226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" width="75%"></p>
+</blockquote>
+<p>无论记录是否被消费，Kafka集群都会持久地保持着所有发布的记录，这是采用一个可配置的保持周期来配置的。</p>
+<blockquote>
+<p>In fact, the only metadata retained on a per-consumer basis is the offset or position of that consumer in the log. This offset is controlled by the consumer: normally a consumer will advance its offset linearly as it reads records, but, in fact, since the position is controlled by the consumer it can consume records in any order it likes. For example a consumer can reset to an older offset to reprocess data from the past or skip ahead to the most recent record and start consuming from “now”.</p>
+</blockquote>
+<p>这段比较关键，事实上，唯一保留在每一个消费者端的元数据就是这个offset，偏移量，这个偏移量是用户端的，即每个用户读到哪里了，而不是保存在服务端。</p>
+<blockquote>
+<p>This combination of features means that Kafka consumers are very cheap—they can come and go without much impact on the cluster or on other consumers. For example, you can use our command line tools to “tail” the contents of any topic without changing what is consumed by any existing consumers.</p>
+</blockquote>
+<p>consumer是非常便宜的–这里的意思是consumer可以很容易的加入或者离开，并没有对其他consumer产生太多的影响。</p>
+<blockquote>
+<p>The partitions in the log serve several purposes. First, they allow the log to scale beyond a size that will fit on a single server. Each individual partition must fit on the servers that host it, but a topic may have many partitions so it can handle an arbitrary amount of data. Second they act as the unit of parallelism—more on that in a bit.</p>
+</blockquote>
+<p>partitons有很多用途。可以使日志分布在多台服务器上，这样一个topic可以处理更多的数据–这里的意思是一个topic可以通过partition放在多台server上，从而实现topic数据的横向扩展？<br>那每个partition又被ZooKeeper进行备份，那这里是一个多对多的关系了。<br>其次，它们扮演者并行单位的角色–在某种程度上，更多要依靠这一点。</p>
+<blockquote>
+<h2 id="Distribution"><a href="#Distribution" class="headerlink" title="Distribution"></a>Distribution</h2><p>The partitions of the log are distributed over the servers in the Kafka cluster with each server handling data and requests for a share of the partitions. Each partition is replicated across a configurable number of servers for fault tolerance.<br><br><br>Each partition has one server which acts as the “leader” and zero or more servers which act as “followers”. The leader handles all read and write requests for the partition while the followers passively replicate the leader. If the leader fails, one of the followers will automatically become the new leader. Each server acts as a leader for some of its partitions and a follower for others so load is well balanced within the cluster.</p>
+</blockquote>
+<p>这段讲了sever和partition的关系，这里说partitions of the log，（日志的partition，这是说Kafka其实是基于日志的？是的，commit log）每一个server处理着数据和请求。每一个partition会在一个可配置数目的server中间被复制。（那么一个partition会被分在多个server上吗？不会，每个partition在每个server上是完整的）server在交替扮演者leader（领导者）和follower（跟随者）的角色。leader为partition处理所有读写请求，followers被动地复制leader。</p>
+<p>这里存在了几个问题：</p>
+<ol>
+<li>这里的server和cluster是不是指的是一回事？应该是一个cluster包含多个server。</li>
+<li>这里partition的一致性维护其实是由ZooKeeper提供的吗？ISR的持久性是通过ZooKeeper维护的，但是算法又没有使用ZAB算法。</li>
+</ol>
+<blockquote>
+<h2 id="Geo-Replication"><a href="#Geo-Replication" class="headerlink" title="Geo-Replication"></a>Geo-Replication</h2><p>Kafka MirrorMaker provides geo-replication support for your clusters. With MirrorMaker, messages are replicated across multiple datacenters or cloud regions. You can use this in active/passive scenarios for backup and recovery; or in active/active scenarios to place data closer to your users, or support data locality requirements.<br><br></p>
+<h2 id="Producers"><a href="#Producers" class="headerlink" title="Producers"></a>Producers</h2><p>Producers publish data to the topics of their choice. The producer is responsible for choosing which record to assign to which partition within the topic. This can be done in a round-robin fashion simply to balance load or it can be done according to some semantic partition function (say based on some key in the record). More on the use of partitioning in a second!</p>
+</blockquote>
+<p>Producers负责在topic中选择哪一条记录分配给哪一个partition。这可以采用round-robin（循环）方式或者其它方式。</p>
+<blockquote>
+<p>Consumers<br>Consumers label themselves with a consumer group name, and each record published to a topic is delivered to one consumer instance within each subscribing consumer group. Consumer instances can be in separate processes or on separate machines.</p>
+</blockquote>
+<p>Consumers用一个consumer group的名字来表示自己，每一条发布到一个topic的记录被传递到（不是拖的方式吗？这里这么说感觉像是推的方式了）每一个订阅的consumer group的一个consumer实例。Consumer instances可以在单独的进程或者单独的机器上。</p>
+<p>这里consumer instance和consumer group都分别指代什么呢？一个group中会有多个instance。consumer group对应着partition。</p>
+<blockquote>
+<p>If all the consumer instances have the same consumer group, then the records will effectively be load balanced over the consumer instances.<br><br><br>If all the consumer instances have different consumer groups, then each record will be broadcast to all the consumer processes.<br><img src="https://img-blog.csdnimg.cn/20190116180038622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>上面两句有些含糊，consumer instance和consumer group的关系，和consumer processes的关系。</p>
+<blockquote>
+<p>A two server Kafka cluster hosting four partitions (P0-P3) with two consumer groups. Consumer group A has two consumer instances and group B has four.<br><br><br>More commonly, however, we have found that topics have a small number of consumer groups, one for each “logical subscriber”. Each group is composed of many consumer instances for scalability and fault tolerance. This is nothing more than publish-subscribe semantics where the subscriber is a cluster of consumers instead of a single process.</p>
+</blockquote>
+<p>然而，更为通用的是，我们已经发现topics有很小数目的consumer groups，每一个是“logical subscriber”，逻辑上的订阅者。每一个组由很多consumer instances组成，为了可扩展性和容错。除了订阅者是一个consumer的cluster代替了一个单独的进程之外，这和publish-subscribe语法没有任何区别。</p>
+<blockquote>
+<p>The way consumption is implemented in Kafka is by dividing up the partitions in the log over the consumer instances so that each instance is the exclusive consumer of a “fair share” of partitions at any point in time. This process of maintaining membership in the group is handled by the Kafka protocol dynamically. If new instances join the group they will take over some partitions from other members of the group; if an instance dies, its partitions will be distributed to the remaining instances.</p>
+</blockquote>
+<p>Kafka所实现的消费，是把log中的partition分散到consumer instance上去，以便每一个instance在任何一个时间点上都是一个排他的，对于partition的“fair share”（公平共享）的consumer。维持这个group内关系的过程是由Kafka协议动态控制。如果一些新的instance加入了group，它们就会从group其它成员那里接管一些partitions；如果一个instance挂掉，它的partitions就会分配给剩余的instance。</p>
+<p>（这说明一个实例对应着一个partition。）</p>
+<p>参考<a href="https://dzone.com/articles/dont-use-apache-kafka-consumer-groups-the-wrong-wa" target="_blank" rel="noopener">这里</a>：</p>
+<blockquote>
+<p>Having consumers as part of the same consumer group means providing the “competing consumers” pattern with whom the messages from topic partitions are spread across the members of the group. Each consumer receives messages from one or more partitions (“automatically” assigned to it) and the same messages won’t be received by the other consumers (assigned to different partitions). In this way, we can scale the number of the consumers up to the number of the partitions (having one consumer reading only one partition); in this case, a new consumer joining the group will be in an idle state without being assigned to any partition.<br><br><br>Having consumers as part of different consumer groups means providing the “publish/subscribe” pattern where the messages from topic partitions are sent to all the consumers across the different groups. It means that inside the same consumer group, we’ll have the rules explained above, but across different groups, the consumers will receive the same messages. It’s useful when the messages inside a topic are of interest for different applications that will process them in different ways. We want all the interested applications to receive all the same messages from the topic.</p>
+</blockquote>
+<p>一个group内的consumer互相是竞争的，一个消息被一个consumer消费了，group内的别的consumer就不会再收到这个消息了。而consumer在不同的group中，则每个group都会收到这个消息，但是在一个group内，还是同样的原则。这样说来，group对应着topic。</p>
+<blockquote>
+<p>Kafka only provides a total order over records within a partition, not between different partitions in a topic. Per-partition ordering combined with the ability to partition data by key is sufficient for most applications. However, if you require a total order over records this can be achieved with a topic that has only one partition, though this will mean only one consumer process per consumer group.</p>
+</blockquote>
+<p>Kafka仅在partition中对记录提供总的顺序，而不是在一个topic下不同的partition之间。对于大多数应用程序而言，按分区排序与按键分区数据的能力相结合就足够了。然后，如果你需要对记录进行总排序，那只能是一个topic只有一个partition，这意味着一个consumer group只有一个consumer进程。</p>
+<blockquote>
+<h2 id="Multi-tenancy"><a href="#Multi-tenancy" class="headerlink" title="Multi-tenancy"></a>Multi-tenancy</h2><p>You can deploy Kafka as a multi-tenant solution. Multi-tenancy is enabled by configuring which topics can produce or consume data. There is also operations support for quotas. Administrators can define and enforce quotas on requests to control the broker resources that are used by clients. For more information, see the security documentation.</p>
+</blockquote>
+<p>多租期，这段还有待理解。</p>
+<blockquote>
+<h2 id="Guarantees"><a href="#Guarantees" class="headerlink" title="Guarantees"></a>Guarantees</h2><p>At a high-level Kafka gives the following guarantees:<br><br><br>Messages sent by a producer to a particular topic partition will be appended in the order they are sent. That is, if a record M1 is sent by the same producer as a record M2, and M1 is sent first, then M1 will have a lower offset than M2 and appear earlier in the log.<br><br><br>A consumer instance sees records in the order they are stored in the log.<br><br><br>For a topic with replication factor N, we will tolerate up to N-1 server failures without losing any records committed to the log.<br>More details on these guarantees are given in the design section of the documentation.</p>
+</blockquote>
+<p>保证，消息是具有先后性的，最小服务数量，后者没有看懂。</p>
+<blockquote>
+<h2 id="Kafka-as-a-Messaging-System"><a href="#Kafka-as-a-Messaging-System" class="headerlink" title="Kafka as a Messaging System"></a>Kafka as a Messaging System</h2><p>How does Kafka’s notion of streams compare to a traditional enterprise messaging system?<br><br><br>Messaging traditionally has two models: queuing and publish-subscribe. In a queue, a pool of consumers may read from a server and each record goes to one of them; in publish-subscribe the record is broadcast to all consumers. Each of these two models has a strength and a weakness. The strength of queuing is that it allows you to divide up the processing of data over multiple consumer instances, which lets you scale your processing. Unfortunately, queues aren’t multi-subscriber—once one process reads the data it’s gone. Publish-subscribe allows you broadcast data to multiple processes, but has no way of scaling processing since every message goes to every subscriber.</p>
+</blockquote>
+<p>传统的消息系统有两种模型：队列和发布者-订阅者，前者消息是一对一的，后者消息是一对多的，二者互有优劣。</p>
+<blockquote>
+<p>The consumer group concept in Kafka generalizes these two concepts. As with a queue the consumer group allows you to divide up processing over a collection of processes (the members of the consumer group). As with publish-subscribe, Kafka allows you to broadcast messages to multiple consumer groups.<br><br><br>The advantage of Kafka’s model is that every topic has both these properties—it can scale processing and is also multi-subscriber—there is no need to choose one or the other.<br>Kafka has stronger ordering guarantees than a traditional messaging system, too.<br><br><br>A traditional queue retains records in-order on the server, and if multiple consumers consume from the queue then the server hands out records in the order they are stored. However, although the server hands out records in order, the records are delivered asynchronously to consumers, so they may arrive out of order on different consumers. This effectively means the ordering of the records is lost in the presence of parallel consumption. Messaging systems often work around this by having a notion of “exclusive consumer” that allows only one process to consume from a queue, but of course this means that there is no parallelism in processing.<br><br><br>Kafka does it better. By having a notion of parallelism—the partition—within the topics, Kafka is able to provide both ordering guarantees and load balancing over a pool of consumer processes. This is achieved by assigning the partitions in the topic to the consumers in the consumer group so that each partition is consumed by exactly one consumer in the group. By doing this we ensure that the consumer is the only reader of that partition and consumes the data in order. Since there are many partitions this still balances the load over many consumer instances. Note however that there cannot be more consumer instances in a consumer group than partitions.</p>
+</blockquote>
+<p>Kafka采取了两家之长，一个消息可以支持多订户，使用了partition，增加了并发。</p>
+<blockquote>
+<h2 id="Kafka-as-a-Storage-System"><a href="#Kafka-as-a-Storage-System" class="headerlink" title="Kafka as a Storage System"></a>Kafka as a Storage System</h2><p>Any message queue that allows publishing messages decoupled from consuming them is effectively acting as a storage system for the in-flight messages. What is different about Kafka is that it is a very good storage system.<br><br><br>Data written to Kafka is written to disk and replicated for fault-tolerance. Kafka allows producers to wait on acknowledgement so that a write isn’t considered complete until it is fully replicated and guaranteed to persist even if the server written to fails.</p>
+</blockquote>
+<p>这段比较重要，Kafka允许生产者等待确认，以便在完全复制之前写入不被认为是完整的，并且即使写入的服务器失败也保证持久性–这可能是通过复制到了别的服务器上来实现的。</p>
+<blockquote>
+<p>The disk structures Kafka uses scale well—Kafka will perform the same whether you have 50 KB or 50 TB of persistent data on the server.<br><br><br>As a result of taking storage seriously and allowing the clients to control their read position, you can think of Kafka as a kind of special purpose distributed filesystem dedicated to high-performance, low-latency commit log storage, replication, and propagation.<br><br><br>For details about the Kafka’s commit log storage and replication design, please read this page.</p>
+</blockquote>
+<blockquote>
+<h2 id="Kafka-for-Stream-Processing"><a href="#Kafka-for-Stream-Processing" class="headerlink" title="Kafka for Stream Processing"></a>Kafka for Stream Processing</h2><p>It isn’t enough to just read, write, and store streams of data, the purpose is to enable real-time processing of streams.<br><br><br>In Kafka a stream processor is anything that takes continual streams of data from input topics, performs some processing on this input, and produces continual streams of data to output topics.<br><br><br>For example, a retail application might take in input streams of sales and shipments, and output a stream of reorders and price adjustments computed off this data.<br><br><br>It is possible to do simple processing directly using the producer and consumer APIs. However for more complex transformations Kafka provides a fully integrated Streams API. This allows building applications that do non-trivial processing that compute aggregations off of streams or join streams together.<br><br><br>This facility helps solve the hard problems this type of application faces: handling out-of-order data, reprocessing input as code changes, performing stateful computations, etc.<br><br><br>The streams API builds on the core primitives Kafka provides: it uses the producer and consumer APIs for input, uses Kafka for stateful storage, and uses the same group mechanism for fault tolerance among the stream processor instances.<br><br></p>
+</blockquote>
+<p>流化处理，把输入流进行处理，转成想要的输出流，这块需要实践一下，才好理解。</p>
+<blockquote>
+<h2 id="Putting-the-Pieces-Together"><a href="#Putting-the-Pieces-Together" class="headerlink" title="Putting the Pieces Together"></a>Putting the Pieces Together</h2><p>This combination of messaging, storage, and stream processing may seem unusual but it is essential to Kafka’s role as a streaming platform.<br><br><br>A distributed file system like HDFS allows storing static files for batch processing. Effectively a system like this allows storing and processing historical data from the past.<br><br><br>A traditional enterprise messaging system allows processing future messages that will arrive after you subscribe. Applications built in this way process future data as it arrives.<br><br><br>Kafka combines both of these capabilities, and the combination is critical both for Kafka usage as a platform for streaming applications as well as for streaming data pipelines.<br><br><br>By combining storage and low-latency subscriptions, streaming applications can treat both past and future data the same way. That is a single application can process historical, stored data but rather than ending when it reaches the last record it can keep processing as future data arrives. This is a generalized notion of stream processing that subsumes batch processing as well as message-driven applications.<br><br><br>Likewise for streaming data pipelines the combination of subscription to real-time events make it possible to use Kafka for very low-latency pipelines; but the ability to store data reliably make it possible to use it for critical data where the delivery of data must be guaranteed or for integration with offline systems that load data only periodically or may go down for extended periods of time for maintenance. The stream processing facilities make it possible to transform data as it arrives.<br><br><br>For more information on the guarantees, APIs, and capabilities Kafka provides see the rest of the documentation.</p>
+</blockquote>
+<p>总结一下，夸一夸Kafka，就不赘述了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过阅读这一篇文档，对Kafka有了一个总体的印象。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://kafka.apache.org/intro" target="_blank" rel="noopener">http://kafka.apache.org/intro</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+          
+            <a href="/tags/介绍/" rel="tag"># 介绍</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mongodb/mongodb-java-driver.html" rel="next" title="Java访问MongoDB：安装驱动">
+                <i class="fa fa-chevron-left"></i> Java访问MongoDB：安装驱动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">1.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-Kafka®-is-a-distributed-streaming-platform-What-exactly-does-that-mean"><span class="nav-number">3.1.1.</span> <span class="nav-text">Apache Kafka® is a distributed streaming platform. What exactly does that mean?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Topics-and-Logs"><span class="nav-number">3.2.</span> <span class="nav-text">Topics and Logs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distribution"><span class="nav-number">3.3.</span> <span class="nav-text">Distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Geo-Replication"><span class="nav-number">3.4.</span> <span class="nav-text">Geo-Replication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Producers"><span class="nav-number">3.5.</span> <span class="nav-text">Producers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-tenancy"><span class="nav-number">3.6.</span> <span class="nav-text">Multi-tenancy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guarantees"><span class="nav-number">3.7.</span> <span class="nav-text">Guarantees</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-as-a-Messaging-System"><span class="nav-number">3.8.</span> <span class="nav-text">Kafka as a Messaging System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-as-a-Storage-System"><span class="nav-number">3.9.</span> <span class="nav-text">Kafka as a Storage System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-for-Stream-Processing"><span class="nav-number">3.10.</span> <span class="nav-text">Kafka for Stream Processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Putting-the-Pieces-Together"><span class="nav-number">3.11.</span> <span class="nav-text">Putting the Pieces Together</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
