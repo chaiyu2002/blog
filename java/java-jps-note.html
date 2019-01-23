@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="Java：Java的进程查看工具jps学习笔记。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-23T02:25:21.696Z">
+<meta property="og:updated_time" content="2019-01-23T02:53:17.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java的进程查看工具jps学习笔记">
 <meta name="twitter:description" content="Java：Java的进程查看工具jps学习笔记。">
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-01-23 10:20:00 / 修改时间：10:25:21" itemprop="dateCreated datePublished" datetime="2019-01-23T10:20:00+08:00">2019-01-23</time>
+              <time title="创建时间：2019-01-23 10:20:00 / 修改时间：10:53:17" itemprop="dateCreated datePublished" datetime="2019-01-23T10:20:00+08:00">2019-01-23</time>
             
 
             
@@ -470,15 +470,19 @@
 <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#hostidentifier" target="_blank" rel="noopener"><code>hostid</code></a></p>
 <p>The <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#hostidentifier" target="_blank" rel="noopener">host identifier</a> of the host for which the process report should be generated. The <em>hostid</em> may include optional components that indicate the communications protocol, port number, and other implementation specific data.</p>
 <p>这两个参数下面有详细的介绍，在这个地方，我第一遍也没有看懂。</p>
-<h2 id="DESCRIPTION"><a href="#DESCRIPTION" class="headerlink" title="DESCRIPTION"></a>DESCRIPTION</h2><p>The <strong>jps</strong> tool lists the instrumented HotSpot Java Virtual Machines (JVMs) on the target system. The tool is limited to reporting information on JVMs for which it has the access permissions.<br>这句话，谷歌是这样翻译的：<strong> jps </strong>工具列出了目标系统上的已检测HotSpot Java虚拟机（JVM）。这里我对instrumented这个词在这里怎么理解有些疑惑，已经装配的？</p>
-<p>If <strong>jps</strong> is run without specifying a <em>hostid</em>, it will look for instrumented JVMs on the local host. If started with a <em>hostid</em>, it will look for JVMs on the indicated host, using the specified protocol and port. A <strong>jstatd</strong> process is assumed to be running on the target host.<br>如果指定了<em>hostid</em>，它将会在指明的host上寻找JVM，使用指定的协议和端口。一个<strong>jstatd</strong> 被假定运行在目标host之上–这个是前提。</p>
-<p>The <strong>jps</strong> command will report the local VM identifier, or <em>lvmid</em>, for each instrumented JVM found on the target system. The <strong>lvmid</strong> is typically, but not necessarily, the operating system’s process identifier for the JVM process. With no options, <strong>jps</strong> will list each Java application’s <em>lvmid</em> followed by the short form of the application’s class name or jar file name. The short form of the class name or JAR file name omits the class’s package information or the JAR files path information.<br><em>lvmid</em>是操作系统上的JVM进程标识符。如果不输入别的options，<strong>jps</strong>只会列出这个<em>lvmid</em>和一个Java应用程序的类名或者jar文件名的简短的形式（short form）。</p>
-<p>The <strong>jps</strong> command uses the <strong>java</strong> launcher to find the class name and arguments passed to the <code>main</code> method. If the target JVM is started with a custom launcher, the class name (or JAR file name) and the arguments to the <code>main</code> method will not be available. In this case, the <strong>jps</strong> command will output the string <em>Unknown</em> for the class name or JAR file name and for the arguments to the main method.<br><strong>jps</strong>命令会使用<strong>java</strong> launcher（启动器，怎么理解？）去寻找传递给main方法的类名和参数。如果目标JVM是使用自定义的launcher，那么就得不到。那样的话，会输出一个<em>Unknown</em> 。</p>
+<h2 id="DESCRIPTION"><a href="#DESCRIPTION" class="headerlink" title="DESCRIPTION"></a>DESCRIPTION</h2><p>The <strong>jps</strong> tool lists the instrumented HotSpot Java Virtual Machines (JVMs) on the target system. The tool is limited to reporting information on JVMs for which it has the access permissions.</p>
+<p>这句话，谷歌是这样翻译的：<strong> jps </strong>工具列出了目标系统上的已检测HotSpot Java虚拟机（JVM）。这里我对instrumented这个词在这里怎么理解有些疑惑，已经装配的？</p>
+<p>If <strong>jps</strong> is run without specifying a <em>hostid</em>, it will look for instrumented JVMs on the local host. If started with a <em>hostid</em>, it will look for JVMs on the indicated host, using the specified protocol and port. A <strong>jstatd</strong> process is assumed to be running on the target host.</p>
+<p>如果指定了<em>hostid</em>，它将会在指明的host上寻找JVM，使用指定的协议和端口。一个<strong>jstatd</strong> 被假定运行在目标host之上–这个是前提。</p>
+<p>The <strong>jps</strong> command will report the local VM identifier, or <em>lvmid</em>, for each instrumented JVM found on the target system. The <strong>lvmid</strong> is typically, but not necessarily, the operating system’s process identifier for the JVM process. With no options, <strong>jps</strong> will list each Java application’s <em>lvmid</em> followed by the short form of the application’s class name or jar file name. The short form of the class name or JAR file name omits the class’s package information or the JAR files path information.</p>
+<p><em>lvmid</em>是操作系统上的JVM进程标识符。如果不输入别的options，<strong>jps</strong>只会列出这个<em>lvmid</em>和一个Java应用程序的类名或者jar文件名的简短的形式（short form）。</p>
+<p>The <strong>jps</strong> command uses the <strong>java</strong> launcher to find the class name and arguments passed to the <code>main</code> method. If the target JVM is started with a custom launcher, the class name (or JAR file name) and the arguments to the <code>main</code> method will not be available. In this case, the <strong>jps</strong> command will output the string <em>Unknown</em> for the class name or JAR file name and for the arguments to the main method.</p>
+<p><strong>jps</strong>命令会使用<strong>java</strong> launcher（启动器，怎么理解？）去寻找传递给main方法的类名和参数。如果目标JVM是使用自定义的launcher，那么就得不到。那样的话，会输出一个<em>Unknown</em> 。</p>
 <p>The list of JVMs produced by the <strong>jps</strong> command may be limited by the permissions granted to the principal running the command. The command will only list the JVMs for which the principle has access rights as determined by operating system specific access control mechanisms.</p>
 <p><strong>NOTE:</strong> This utility is unsupported and may not be available in future versions of the JDK. It is not currently available on Windows 98 and Windows ME platforms.</p>
 <h2 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h2><p>The <strong>jps</strong> command supports a number of options that modify the output of the command. These options are subject to change or removal in the future.</p>
 <p><strong>-q</strong><br>Suppress the output of the class name, JAR file name, and arguments passed to the <code>main</code> method, producing only a list of local VM identifiers.<br>抑制类名，JAR文件名和传递给<code>main</code>方法的参数。</p>
-<p><strong>-m</strong><br>Output the arguments passed to the main method. The output may be null for embedded JVMs.<br>输出传递给main方法的参数–感觉这篇文当格式不统一，一会main加标记，一会不加，一会儿JAR大写，一会又是jar。</p>
+<p><strong>-m</strong><br>Output the arguments passed to the main method. The output may be null for embedded JVMs.<br>输出传递给main方法的参数。</p>
 <p><strong>-l</strong><br>Output the full package name for the application’s main class or the full path name to the application’s JAR file.</p>
 <p><strong>-v</strong><br>Output the arguments passed to the JVM.</p>
 <p><strong>-V</strong><br>Output the arguments passed to the JVM through the flags file (the .hotspotrc file or the file specified by the -XX:Flags=&lt;<em>filename</em>&gt; argument).</p>
