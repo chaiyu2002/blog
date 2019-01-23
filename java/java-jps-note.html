@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Java：学习Java的POJO和Beans。">
+<meta name="keywords" content="Java,jps,进程,工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java的进程查看工具jps学习笔记">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-jps-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Java：学习Java的POJO和Beans。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-23T02:21:56.218Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java的进程查看工具jps学习笔记">
+<meta name="twitter:description" content="Java：学习Java的POJO和Beans。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-jps-note.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java的进程查看工具jps学习笔记 | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-jps-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java的进程查看工具jps学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-23 10:20:00 / 修改时间：10:21:56" itemprop="dateCreated datePublished" datetime="2019-01-23T10:20:00+08:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java：学习Java的POJO和Beans。<br><a id="more"></a></p>
+<h1 id="收藏"><a href="#收藏" class="headerlink" title="收藏"></a>收藏</h1><p>原帖位于<a href="https://www.oxysun.cn/">IT老兵博客</a>，沉淀着一个IT老兵对于这个行业的认知。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>研究Java已经有两年多，居然不知道还有一个命令叫JPS，可以查看Java的进程，真是惭愧，从官网找到讲解，开始研究。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="jps-Java-Virtual-Machine-Process-Status-Tool"><a href="#jps-Java-Virtual-Machine-Process-Status-Tool" class="headerlink" title="jps - Java Virtual Machine Process Status Tool"></a>jps - Java Virtual Machine Process Status Tool</h2><p>jps -  Java虚拟机进程状态工具</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#synopsis" target="_blank" rel="noopener">Synopsis</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#parameters" target="_blank" rel="noopener">Parameters</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#description" target="_blank" rel="noopener">Description</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#options" target="_blank" rel="noopener">Options</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#hostidentifier" target="_blank" rel="noopener">Host Identifier</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#output-format" target="_blank" rel="noopener">Output Format</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#examples" target="_blank" rel="noopener">Examples</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#seealso" target="_blank" rel="noopener">See Also</a></li>
+</ul>
+<h2 id="SYNOPSIS"><a href="#SYNOPSIS" class="headerlink" title="SYNOPSIS"></a>SYNOPSIS</h2><pre><code>**jps** [ *options* ] [ *hostid* ]
+</code></pre><h2 id="PARAMETERS"><a href="#PARAMETERS" class="headerlink" title="PARAMETERS"></a>PARAMETERS</h2><p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#options" target="_blank" rel="noopener"><code>options</code></a></p>
+<p>Command-line options.</p>
+<p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#hostidentifier" target="_blank" rel="noopener"><code>hostid</code></a></p>
+<p>The <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html#hostidentifier" target="_blank" rel="noopener">host identifier</a> of the host for which the process report should be generated. The <em>hostid</em> may include optional components that indicate the communications protocol, port number, and other implementation specific data.</p>
+<p>这两个参数下面有详细的介绍，在这个地方，我第一遍也没有看懂。</p>
+<h2 id="DESCRIPTION"><a href="#DESCRIPTION" class="headerlink" title="DESCRIPTION"></a>DESCRIPTION</h2><p>The <strong>jps</strong> tool lists the instrumented HotSpot Java Virtual Machines (JVMs) on the target system. The tool is limited to reporting information on JVMs for which it has the access permissions.<br>这句话，谷歌是这样翻译的：<strong> jps </strong>工具列出了目标系统上的已检测HotSpot Java虚拟机（JVM）。这里我对instrumented这个词在这里怎么理解有些疑惑，已经装配的？</p>
+<p>If <strong>jps</strong> is run without specifying a <em>hostid</em>, it will look for instrumented JVMs on the local host. If started with a <em>hostid</em>, it will look for JVMs on the indicated host, using the specified protocol and port. A <strong>jstatd</strong> process is assumed to be running on the target host.<br>如果指定了<em>hostid</em>，它将会在指明的host上寻找JVM，使用指定的协议和端口。一个<strong>jstatd</strong> 被假定运行在目标host之上–这个是前提。</p>
+<p>The <strong>jps</strong> command will report the local VM identifier, or <em>lvmid</em>, for each instrumented JVM found on the target system. The <strong>lvmid</strong> is typically, but not necessarily, the operating system’s process identifier for the JVM process. With no options, <strong>jps</strong> will list each Java application’s <em>lvmid</em> followed by the short form of the application’s class name or jar file name. The short form of the class name or JAR file name omits the class’s package information or the JAR files path information.<br><em>lvmid</em>是操作系统上的JVM进程标识符。如果不输入别的options，<strong>jps</strong>只会列出这个<em>lvmid</em>和一个Java应用程序的类名或者jar文件名的简短的形式（short form）。</p>
+<p>The <strong>jps</strong> command uses the <strong>java</strong> launcher to find the class name and arguments passed to the <code>main</code> method. If the target JVM is started with a custom launcher, the class name (or JAR file name) and the arguments to the <code>main</code> method will not be available. In this case, the <strong>jps</strong> command will output the string <em>Unknown</em> for the class name or JAR file name and for the arguments to the main method.<br><strong>jps</strong>命令会使用<strong>java</strong> launcher（启动器，怎么理解？）去寻找传递给main方法的类名和参数。如果目标JVM是使用自定义的launcher，那么就得不到。那样的话，会输出一个<em>Unknown</em> 。</p>
+<p>The list of JVMs produced by the <strong>jps</strong> command may be limited by the permissions granted to the principal running the command. The command will only list the JVMs for which the principle has access rights as determined by operating system specific access control mechanisms.</p>
+<p><strong>NOTE:</strong> This utility is unsupported and may not be available in future versions of the JDK. It is not currently available on Windows 98 and Windows ME platforms.</p>
+<h2 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h2><p>The <strong>jps</strong> command supports a number of options that modify the output of the command. These options are subject to change or removal in the future.</p>
+<p><strong>-q</strong><br>Suppress the output of the class name, JAR file name, and arguments passed to the <code>main</code> method, producing only a list of local VM identifiers.<br>抑制类名，JAR文件名和传递给<code>main</code>方法的参数。</p>
+<p><strong>-m</strong><br>Output the arguments passed to the main method. The output may be null for embedded JVMs.<br>输出传递给main方法的参数–感觉这篇文当格式不统一，一会main加标记，一会不加，一会儿JAR大写，一会又是jar。</p>
+<p><strong>-l</strong><br>Output the full package name for the application’s main class or the full path name to the application’s JAR file.</p>
+<p><strong>-v</strong><br>Output the arguments passed to the JVM.</p>
+<p><strong>-V</strong><br>Output the arguments passed to the JVM through the flags file (the .hotspotrc file or the file specified by the -XX:Flags=&lt;<em>filename</em>&gt; argument).</p>
+<p><strong>-J option</strong><br>Pass <em>option</em> to the <strong>java</strong> launcher called by <strong>jps</strong>. For example, <strong>-J-Xms48m</strong> sets the startup memory to 48 megabytes. It is a common convention for <strong>-J</strong> to pass options to the underlying VM executing applications written in Java.</p>
+<h3 id="HOST-IDENTIFIER"><a href="#HOST-IDENTIFIER" class="headerlink" title="HOST IDENTIFIER"></a>HOST IDENTIFIER</h3><p>The host identifier, or <em>hostid</em> is a string that indicates the target system. The syntax of the <em>hostid</em> string largely corresponds to the syntax of a URI:</p>
+<pre><code>[*protocol*:][[//]*hostname*][:*port*][/*servername*]
+</code></pre><p><em><a href=""><code>protocol</code></a></em><br>The communications protocol. If the <em>protocol</em> is omitted and a <em>hostname</em> is not specified, the default protocol is a platform specific, optimized, local protocol. If the <em>protocol</em> is omitted and a <em>hostname</em> is specified, then the default protocol is <strong>rmi</strong>.</p>
+<p><em><a href=""><code>hostname</code></a></em><br>A hostname or IP address indicating the target host. If <em>hostname</em> is omitted, then the target host is the local host.</p>
+<p><em><a href=""><code>port</code></a></em><br>The default port for communicating with the remote server. If the <em>hostname</em> is omitted or the <em>protocol</em> specifies an optimized, local protocol, then <em>port</em> is ignored. Otherwise, treatment of the <em>port</em> parameter is implementation specific. For the default <strong>rmi</strong> protocol the <em>port</em> indicates the port number for the rmiregistry on the remote host. If <em>port</em> is omitted, and <em>protocol</em> indicates <strong>rmi</strong>, then the default rmiregistry port (1099) is used.</p>
+<p><em><code>servername</code></em><br>The treatment of this parameter depends on the implementation. For the optimized, local protocol, this field is ignored. For the <strong>rmi</strong> protocol, this parameter is a string representing the name of the RMI remote object on the remote host. See the <strong>-n</strong> option for the <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstatd.html" target="_blank" rel="noopener"><strong>jstatd</strong></a> command.</p>
+<h2 id="OUTPUT-FORMAT"><a href="#OUTPUT-FORMAT" class="headerlink" title="OUTPUT FORMAT"></a>OUTPUT FORMAT</h2><p>The output of the <strong>jps</strong> command follows the following pattern:</p>
+<pre><code>*lvmid* [ [ *classname* | *JARfilename* | &quot;Unknown&quot;] [ *arg** ] [ *jvmarg** ] ]
+</code></pre><p>Where all output tokens are separated by white space. An <em>arg</em> that includes embedded white space will introduce ambiguity when attempting to map arguments to their actual positional parameters.  </p>
+<p><strong>NOTE</strong>: You are advised not to write scripts to parse <strong>jps</strong> output since the format may change in future releases. If you choose to write scripts that parse <strong>jps</strong> output, expect to modify them for future releases of this tool.</p>
+<h2 id="EXAMPLES"><a href="#EXAMPLES" class="headerlink" title="EXAMPLES"></a>EXAMPLES</h2><p>This section provides examples of the <strong>jps</strong> command.</p>
+<p>Listing the instrumented JVMs on the local host:</p>
+<pre><code>**jps**
+18027 Java2Demo.JAR
+18032 jps
+18005 jstat
+</code></pre><p>Listing the instrumented JVMs on a remote host:</p>
+<p>This example assumes that the <strong>jstat</strong> server and either the its internal RMI registry or a separate external <strong>rmiregistry</strong> process are running on the remote host on the default port (port 1099). It also assumes that the local host has appropriate permissions to access the remote host. This example also includes the <em>-l</em> option to output the long form of the class names or JAR file names.</p>
+<pre><code>**jps -l remote.domain**
+3002 /opt/jdk1.7.0/demo/jfc/Java2D/Java2Demo.JAR
+2857 sun.tools.jstatd.jstatd
+</code></pre><p>Listing the instrumented JVMs on a remote host with a non-default port for the RMI registry</p>
+<p>This example assumes that the <strong>jstatd</strong> server, with an internal RMI registry bound to port 2002, is running on the remote host. This example also uses the <em>-m</em> option to include the arguments passed to the <em>main</em> method of each of the listed Java applications.</p>
+<pre><code>**jps -m remote.domain:2002**
+3002 /opt/jdk1.7.0/demo/jfc/Java2D/Java2Demo.JAR
+3102 sun.tools.jstatd.jstatd -p 2002
+</code></pre><h2 id="SEE-ALSO"><a href="#SEE-ALSO" class="headerlink" title="SEE ALSO"></a>SEE ALSO</h2><ul>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/index.html#java" target="_blank" rel="noopener">java</a> - the Java Application Launcher</li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html" target="_blank" rel="noopener">jstat</a> - the Java virtual machine Statistics Monitoring Tool</li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jstatd.html" target="_blank" rel="noopener">jstatd</a> - the jstat daemon</li>
+<li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/index.html#rmiregistry" target="_blank" rel="noopener">rmiregistry</a> - the Java Remote Object Registry  </li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>“眼过千遍，不如手写一遍”。花费几十分钟，记录一下，顿时感觉基本都搞明白了。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/jps/" rel="tag"># jps</a>
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+            <a href="/tags/工具/" rel="tag"># 工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/java/java-pojo-bean-note.html" rel="next" title="Java的POJO和Beans">
+                <i class="fa fa-chevron-left"></i> Java的POJO和Beans
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#收藏"><span class="nav-number">1.</span> <span class="nav-text">收藏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jps-Java-Virtual-Machine-Process-Status-Tool"><span class="nav-number">3.1.</span> <span class="nav-text">jps - Java Virtual Machine Process Status Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SYNOPSIS"><span class="nav-number">3.2.</span> <span class="nav-text">SYNOPSIS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PARAMETERS"><span class="nav-number">3.3.</span> <span class="nav-text">PARAMETERS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DESCRIPTION"><span class="nav-number">3.4.</span> <span class="nav-text">DESCRIPTION</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OPTIONS"><span class="nav-number">3.5.</span> <span class="nav-text">OPTIONS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HOST-IDENTIFIER"><span class="nav-number">3.5.1.</span> <span class="nav-text">HOST IDENTIFIER</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OUTPUT-FORMAT"><span class="nav-number">3.6.</span> <span class="nav-text">OUTPUT FORMAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXAMPLES"><span class="nav-number">3.7.</span> <span class="nav-text">EXAMPLES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEE-ALSO"><span class="nav-number">3.8.</span> <span class="nav-text">SEE ALSO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
