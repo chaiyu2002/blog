@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="理解一下@RestControlle的作用。">
+<meta name="keywords" content="Java,RestControlle,annotation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解一下@RestControlle的作用">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-spring-restcontroller-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="理解一下@RestControlle的作用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-14T13:33:16.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解一下@RestControlle的作用">
+<meta name="twitter:description" content="理解一下@RestControlle的作用。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-spring-restcontroller-note.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>理解一下@RestControlle的作用 | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-spring-restcontroller-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理解一下@RestControlle的作用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-14 09:28:00 / 修改时间：21:33:16" itemprop="dateCreated datePublished" datetime="2019-02-14T09:28:00+08:00">2019-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+理解一下@RestControlle的作用。
+<a id="more"></a>
+<h1>原文</h1>
+
+<p>文章收藏于<a href="https://www.oxysun.cn/" rel="nofollow">IT老兵博客</a>。</p>
+
+<h1>正文</h1>
+
+<p>理解一下@RestControlle的作用。</p>
+
+<blockquote>
+<p>This code uses Spring 4’s new <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html" rel="noopener" target="_blank"><code>@RestController</code></a> annotation, which marks the class as a controller where every method returns a domain object instead of a view. It’s shorthand for <code>@Controller</code> and <code>@ResponseBody</code> rolled together.</p>
+</blockquote>
+
+<p><code>上文摘自<a href="https://spring.io/guides/gs/rest-service/" rel="noopener" target="_blank">官网</a>。</code></p>
+
+<p><code>由上面可见，<a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html" rel="noopener" target="_blank">@RestController</a>=@Controller+@ResponseBody，下一步，理解@Controller。</code></p>
+
+<blockquote>
+<p>Classic controllers can be annotated with the <em>@Controller</em> annotation. This is simply a specialization of the <em>@Component</em> class and allows implementation classes to be autodetected through the classpath scanning.</p>
+
+<p><em>@Controller</em> is typically used in combination with a <em>@RequestMapping</em> annotation used on request handling methods.</p>
+</blockquote>
+
+<p>摘自<a href="https://www.baeldung.com/spring-controller-vs-restcontroller" rel="noopener" target="_blank">这里</a>，可以看出以下几点：</p>
+
+<ol><li><em>@Controller</em> 是一种特殊化的<em>@Component</em> 类。</li>
+<li><em>@Controller </em>习惯于和@RequestMapping绑定来使用，后者是用来指定路由映射的。</li>
+</ol><p>下一步，理解<code>@ResponseBody。</code></p>
+
+<blockquote>
+<p>The request handling method is annotated with <em>@ResponseBody</em>. This annotation enables automatic serialization of the return object into the <em>HttpResponse</em>.</p>
+</blockquote>
+
+<p>摘自同样的地方，这里可以看出：</p>
+
+<ol><li><em>@ResponseBody </em>是用来把返回对象自动序列化成<em>HttpResponse</em>的。</li>
+</ol><p>再参考<a href="https://www.baeldung.com/spring-request-response-body" rel="noopener" target="_blank">这里</a>：</p>
+
+<blockquote>
+<h2 id="requestbody"><strong>3. <em>@ResponseBody</em></strong></h2>
+
+<p>The <em>@ResponseBody</em> annotation tells a controller that the object returned is automatically serialized into JSON and passed back into the <em>HttpResponse</em> object.</p>
+
+<p>Suppose we have a custom <em>Response</em> object:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+
+    <p>2</p>
+
+    <p>3</p>
+
+    <p>4</p>
+
+    <p>5</p>
+    </td>
+    <td>
+    <p><code>public</code> <code>class</code> <code>ResponseTransfer {</code></p>
+
+    <p><code>    </code><code>private</code> <code>String text; </code></p>
+
+    <p><code>    </code> </p>
+
+    <p><code>    </code><code>// standard getters/setters</code></p>
+
+    <p><code>}</code></p>
+    </td>
+  </tr></tbody></table><p>Next, the associated controller can be implemented:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+
+    <p>2</p>
+
+    <p>3</p>
+
+    <p>4</p>
+
+    <p>5</p>
+
+    <p>6</p>
+
+    <p>7</p>
+
+    <p>8</p>
+
+    <p>9</p>
+
+    <p>10</p>
+
+    <p>11</p>
+
+    <p>12</p>
+
+    <p>13</p>
+
+    <p>14</p>
+    </td>
+    <td>
+    <p><code>@Controller</code></p>
+
+    <p><code>@RequestMapping</code><code>(</code><code>"/post"</code><code>)</code></p>
+
+    <p><code>public</code> <code>class</code> <code>ExamplePostController {</code></p>
+
+    <p> </p>
+
+    <p><code>    </code><code>@Autowired</code></p>
+
+    <p><code>    </code><code>ExampleService exampleService;</code></p>
+
+    <p> </p>
+
+    <p><code>    </code><code>@PostMapping</code><code>(</code><code>"/response"</code><code>)</code></p>
+
+    <p><code>    </code><code>@ResponseBody</code></p>
+
+    <p><code>    </code><code>public</code> <code>ResponseTransfer postResponseController(</code></p>
+
+    <p><code>      </code><code>@RequestBody</code> <code>LoginForm loginForm) {</code></p>
+
+    <p><code>        </code><code>return</code> <code>new</code> <code>ResponseTransfer(</code><code>"Thanks For Posting!!!"</code><code>);</code></p>
+
+    <p><code>     </code><code>}</code></p>
+
+    <p><code>}</code></p>
+    </td>
+  </tr></tbody></table><p>In the developer console of our browser or using a tool like Postman, we can see the following response:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+    </td>
+    <td>
+    <p><code>{"text":"Thanks For Posting!!!"}</code></p>
+    </td>
+  </tr></tbody></table><p><strong>Remember, we don’t need to annotate the<em> @RestController-</em>annotated controllers with the <em>@ResponseBody</em> annotation</strong> since it’s done by default here.</p>
+</blockquote>
+
+<p>从上面可以看出：</p>
+
+<ol><li><em>@ResponseBody</em>告诉控制器返回对象会被自动序列化成JSON，并且传回<em>HttpResponse</em>这个对象。</li>
+</ol><p>再补充一下<strong><em>@RequestBody</em></strong>：</p>
+
+<blockquote>
+<p>Simply put, the<em> @RequestBody</em> annotation maps the <em>HttpRequest</em> body to a transfer or domain object, enabling automatic deserialization of the inbound <em>HttpRequest</em> body onto a Java object.</p>
+
+<p>First, let’s have a look at a Spring controller method:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+
+    <p>2</p>
+
+    <p>3</p>
+
+    <p>4</p>
+
+    <p>5</p>
+
+    <p>6</p>
+
+    <p>7</p>
+    </td>
+    <td>
+    <p><code>@PostMapping</code><code>(</code><code>"/request"</code><code>)</code></p>
+
+    <p><code>public</code> <code>ResponseEntity postController(</code></p>
+
+    <p><code>  </code><code>@RequestBody</code> <code>LoginForm loginForm) {</code></p>
+
+    <p><code> </code> </p>
+
+    <p><code>    </code><code>exampleService.fakeAuthenticate(loginForm);</code></p>
+
+    <p><code>    </code><code>return</code> <code>ResponseEntity.ok(HttpStatus.OK);</code></p>
+
+    <p><code>}</code></p>
+    </td>
+  </tr></tbody></table><p>Spring automatically deserializes the JSON into a Java type assuming an appropriate one is specified. By default, the type we annotate with the <em>@RequestBody</em> annotation must correspond to the JSON sent from our client-side controller:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+
+    <p>2</p>
+
+    <p>3</p>
+
+    <p>4</p>
+
+    <p>5</p>
+    </td>
+    <td>
+    <p><code>public</code> <code>class</code> <code>LoginForm {</code></p>
+
+    <p><code>    </code><code>private</code> <code>String username;</code></p>
+
+    <p><code>    </code><code>private</code> <code>String password;</code></p>
+
+    <p><code>    </code><code>// ...</code></p>
+
+    <p><code>}</code></p>
+    </td>
+  </tr></tbody></table><p>Here, the object we use to represent the <em>HttpRequest</em> body maps to our <em>LoginForm</em> object.</p>
+
+<p>Let’s test this using CURL:</p>
+
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+    <p>1</p>
+
+    <p>2</p>
+
+    <p>3</p>
+
+    <p>4</p>
+
+    <p>5</p>
+    </td>
+    <td>
+    <p><code>curl -i \</code></p>
+
+    <p><code>-H </code><code>"Accept: application/json"</code> <code>\</code></p>
+
+    <p><code>-H </code><code>"Content-Type:application/json"</code> <code>\</code></p>
+
+    <p><code>-X POST --data </code></p>
+
+    <p><code>  </code><code>'{"username": "johnny", "password": "password"}'</code> <code>"<a href="https://localhost:8080/.../request" rel="noopener" target="_blank">https://localhost:8080/.../request</a>"</code></p>
+    </td>
+  </tr></tbody></table><p>This is all that is needed for a Spring REST API and an Angular client using the @<em>RequestBody</em> annotation!</p>
+</blockquote>
+
+<p><em>@RequestBody</em>把<em>HttpRequest</em> body映射成一个 transfer or domain object（DTO或者DO），把一个入境（inbound）的<em>HttpRequest</em>的body反序列化成一个Java对象。</p>
+
+<h1>参考</h1>
+
+<p><a href="https://spring.io/guides/gs/rest-service/" rel="noopener" target="_blank">https://spring.io/guides/gs/rest-service/</a></p>
+
+<p><a href="https://www.baeldung.com/spring-controller-vs-restcontroller" rel="noopener" target="_blank">https://www.baeldung.com/spring-controller-vs-restcontroller</a></p>
+
+<p><a href="https://www.baeldung.com/spring-request-response-body" rel="noopener" target="_blank">https://www.baeldung.com/spring-request-response-body</a></p>            
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/RestControlle/" rel="tag"># RestControlle</a>
+          
+            <a href="/tags/annotation/" rel="tag"># annotation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/java/java-jps-note.html" rel="next" title="Java的进程查看工具jps学习笔记">
+                <i class="fa fa-chevron-left"></i> Java的进程查看工具jps学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">79</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">117</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">原文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#requestbody"><span class="nav-number">2.1.</span> <span class="nav-text">3. @ResponseBody</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
