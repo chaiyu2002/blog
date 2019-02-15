@@ -1,3 +1,3 @@
+https://www.oxysun.cn/java/java-spring-configuration-bean.html
 https://www.oxysun.cn/java/java-spring-restcontroller-note.html
 https://www.oxysun.cn/java/java-jps-note.html
-https://www.oxysun.cn/java/java-pojo-bean-note.html
