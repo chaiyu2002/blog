@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-branch.html</loc>
+    
+    <lastmod>2019-03-06T03:36:22.640Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-DETACHED-HEAD.html</loc>
     
     <lastmod>2019-02-20T08:55:01.799Z</lastmod>
@@ -443,14 +450,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
+    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
+    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
@@ -467,13 +474,6 @@
     <loc>https://www.oxysun.cn/git/git-diff-m-symbol.html</loc>
     
     <lastmod>2018-08-02T00:39:42.485Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-branch.html</loc>
-    
-    <lastmod>2018-08-02T00:39:42.484Z</lastmod>
     
   </url>
   
@@ -520,14 +520,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -541,14 +541,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
@@ -604,7 +604,7 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
@@ -618,7 +618,7 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
+    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
