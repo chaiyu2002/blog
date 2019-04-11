@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-reflog.html</loc>
+    
+    <lastmod>2019-04-11T02:44:46.018Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
+    
+    <lastmod>2019-04-11T02:40:19.064Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-index.html</loc>
     
     <lastmod>2019-04-11T01:38:06.561Z</lastmod>
@@ -275,13 +289,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-reflog.html</loc>
-    
-    <lastmod>2018-09-26T02:55:24.396Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/python/upgrade-python-under-ubuntu1604.html</loc>
     
     <lastmod>2018-09-22T06:15:42.396Z</lastmod>
@@ -401,14 +408,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/bitcoin-difficulty.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/block-chain-ethereum-contract-program.html</loc>
     
     <lastmod>2018-08-18T00:08:05.862Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/block-chain-ethereum-contract-program.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/bitcoin-difficulty.html</loc>
     
     <lastmod>2018-08-18T00:08:05.862Z</lastmod>
     
@@ -458,13 +465,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
-    
-    <lastmod>2018-08-02T00:39:42.487Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-reset.html</loc>
     
     <lastmod>2018-08-02T00:39:42.487Z</lastmod>
     
@@ -527,14 +527,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -548,14 +548,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
@@ -611,14 +611,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
+    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
