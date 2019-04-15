@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="概要Java的值传递。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-13T06:49:26.283Z">
+<meta property="og:updated_time" content="2019-04-15T08:16:04.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java的值传递">
 <meta name="twitter:description" content="概要Java的值传递。">
@@ -386,12 +386,24 @@
                 
               
 
-              <time title="创建时间：2019-04-13 14:47:00 / 修改时间：14:49:26" itemprop="dateCreated datePublished" datetime="2019-04-13T14:47:00+08:00">2019-04-13</time>
+              <time title="创建时间：2019-04-13 14:47:00" itemprop="dateCreated datePublished" datetime="2019-04-13T14:47:00+08:00">2019-04-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-15 16:16:04" itemprop="dateModified" datetime="2019-04-15T16:16:04+08:00">2019-04-15</time>
               
             
           </span>
@@ -453,7 +465,18 @@
         <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Java的值传递。<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/java/url-rewrite.html">IT老兵博客</a>。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>复习《C++ Primer》第三版第89页，复习了一遍C++的引用。</p>
-<p>再来理解Java的引用，在《Java编程思想》的第二章，有涉及到这个地方的知识，这里说Java对于对象的传递是通过引用。</p>
+<p>找到了以前总结的笔记：</p>
+<pre><code>C++的引用是怎么样的？
+“引用是C++的一个特征,它就像能自动被编译器逆向引用的常量型指针一样。 ”
+
+“使用引用时有一定的规则:
+1) 当引用被创建时,它必须被初始化。(指针则可以在任何时候被初始化。)
+2) 一旦一个引用被初始化为指向一个对象,它就不能被改变为对另一个对象的引用。(指
+针则可以在任何时候指向另一个对象。)
+3) 不可能有NULL引用。必须确保引用是和一块合法的存储单元关连。”
+
+--《C++编程思想》
+</code></pre><p>再来理解Java的引用，在《Java编程思想》的第二章，有涉及到这个地方的知识，这里说Java对于对象的传递是通过引用。</p>
 <p><a href="https://stackoverflow.com/questions/4712798/how-to-use-references-in-java，" target="_blank" rel="noopener">https://stackoverflow.com/questions/4712798/how-to-use-references-in-java，</a> 这里讲了原始类型和对象的传递方式。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实Java都是通过值传递，对于原始的类型，是值传递；对于对象，是把引用的值通过值传递传给新的变量，这个变量里面保存的是原来引用所指向的对象的地址，这个时候修改了这个值，对原本的引用不会产生影响。</p>
 
