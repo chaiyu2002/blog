@@ -108,20 +108,20 @@
 
 
 
-  <meta name="description" content="Git的工作流程Git Flow介绍。">
+  <meta name="description" content="概要Git：工作流程Git Flow。">
 <meta name="keywords" content="Git,Git Flow,工作流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：工作流程Git Flow">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-git-flow.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Git的工作流程Git Flow介绍。">
+<meta property="og:description" content="概要Git：工作流程Git Flow。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://nvie.com/img/main-branches@2x.png">
 <meta property="og:image" content="https://nvie.com/img/merge-without-ff@2x.png">
-<meta property="og:updated_time" content="2018-08-02T00:39:42.486Z">
+<meta property="og:updated_time" content="2019-04-16T08:03:29.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：工作流程Git Flow">
-<meta name="twitter:description" content="Git的工作流程Git Flow介绍。">
+<meta name="twitter:description" content="概要Git：工作流程Git Flow。">
 <meta name="twitter:image" content="https://nvie.com/img/main-branches@2x.png">
 
 
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-02 08:39:42" itemprop="dateModified" datetime="2018-08-02T08:39:42+08:00">2018-08-02</time>
+                <time title="修改时间：2019-04-16 16:03:29" itemprop="dateModified" datetime="2019-04-16T16:03:29+08:00">2019-04-16</time>
               
             
           </span>
@@ -465,7 +465,8 @@
       
 
       
-        <p>Git的工作流程Git Flow介绍。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：工作流程Git Flow。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参考：<a href="https://nvie.com/posts/a-successful-git-branching-model/，" target="_blank" rel="noopener">https://nvie.com/posts/a-successful-git-branching-model/，</a> 这篇帖子是10年发表的，而我大概是08、09年接触的Git，当时因为刚刚花了好大气力研究明白SVN的流程，所以对Git很排斥，这也是我工作中一直以来的一个问题，因为在一项老技术上花了太多气力，而导致对新技术的出现本能地产生很大的排斥。如果当时仔细去研究一下Git，应该会发现Git不是来革我们这些SVN拥趸的命，而是提供完善和丰富了SVN的功能。</p>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>从CVS到SVN，再从SVN到Git。<br>从中心化到去中心化的中心化（Decentralized but centralized），这句话挺有挺有深意。</p>
 <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="长期分支"><a href="#长期分支" class="headerlink" title="长期分支"></a>长期分支</h2><p>项目存在两个长期分支：</p>
@@ -629,7 +630,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">83</span>
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -949,7 +950,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">125</span>
+                      
+                    
+                    <span class="site-state-item-count">126</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -985,7 +988,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支"><span class="nav-number">3.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#长期分支"><span class="nav-number">3.1.</span> <span class="nav-text">长期分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持分支"><span class="nav-number">3.2.</span> <span class="nav-text">支持分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能分支"><span class="nav-number">3.2.1.</span> <span class="nav-text">功能分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布分支"><span class="nav-number">3.2.2.</span> <span class="nav-text">发布分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热修复分支"><span class="nav-number">3.2.3.</span> <span class="nav-text">热修复分支</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">4.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支"><span class="nav-number">5.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#长期分支"><span class="nav-number">5.1.</span> <span class="nav-text">长期分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持分支"><span class="nav-number">5.2.</span> <span class="nav-text">支持分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能分支"><span class="nav-number">5.2.1.</span> <span class="nav-text">功能分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布分支"><span class="nav-number">5.2.2.</span> <span class="nav-text">发布分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热修复分支"><span class="nav-number">5.2.3.</span> <span class="nav-text">热修复分支</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
