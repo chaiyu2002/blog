@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/java/java-spring-autowired.html</loc>
+    
+    <lastmod>2019-04-24T11:58:33.377Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/Kafka/kafka-storage-principle.html</loc>
     
     <lastmod>2019-04-18T09:40:04.394Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>https://www.oxysun.cn/java/java-synchronized-note.html</loc>
     
     <lastmod>2018-12-27T02:17:49.382Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/java/java-spring-autowired.html</loc>
-    
-    <lastmod>2018-12-26T08:42:13.198Z</lastmod>
     
   </url>
   
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2018-07-18T11:09:55.844Z</lastmod>
     

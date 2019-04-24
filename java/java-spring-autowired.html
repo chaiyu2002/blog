@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="Java：学习@Autowired。">
+  <meta name="description" content="概要本文记录一下对于Java的@Autowired注解的学习。">
 <meta name="keywords" content="Java,Autowired">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：学习@Autowired">
 <meta property="og:url" content="https://www.oxysun.cn/java/java-spring-autowired.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Java：学习@Autowired。">
+<meta property="og:description" content="概要本文记录一下对于Java的@Autowired注解的学习。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-26T08:42:13.198Z">
+<meta property="og:updated_time" content="2019-04-24T11:58:33.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：学习@Autowired">
-<meta name="twitter:description" content="Java：学习@Autowired。">
+<meta name="twitter:description" content="概要本文记录一下对于Java的@Autowired注解的学习。">
 
 
 
@@ -386,12 +386,24 @@
                 
               
 
-              <time title="创建时间：2018-12-26 16:41:00 / 修改时间：16:42:13" itemprop="dateCreated datePublished" datetime="2018-12-26T16:41:00+08:00">2018-12-26</time>
+              <time title="创建时间：2018-12-26 16:41:00" itemprop="dateCreated datePublished" datetime="2018-12-26T16:41:00+08:00">2018-12-26</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-24 19:58:33" itemprop="dateModified" datetime="2019-04-24T19:58:33+08:00">2019-04-24</time>
               
             
           </span>
@@ -450,600 +462,200 @@
       
 
       
-        
-Java：学习@Autowired。
-<a id="more"></a>
-
-<div class="htmledit_views" id="content_views">
-  <p>原贴收藏在<a href="http://www.oxysun.cn" rel="nofollow">IT老兵驿站</a>。</p>
-
-<h1>前言</h1>
-
-<p>使用SpringMVC，现在不可避免要接触注解，会遇到@Autowired，查询了google，找到这篇文章，摘录下来，做一些笔记。为什么这样呢？因为至少来说，以当前的理解，自己来写，不太可能超越这篇文章，我也不想像很多人那样搞所谓“二次原创”，其实不还是抄袭，只是针对了判定抄袭的规则来做文章，不耍这样的小聪明，没有意义。</p>
-
-<h1>正文</h1>
-
-<h2 id="overview">1. Overview</h2>
-
-<p>Starting with Spring 2.5, the framework introduced a new style of Dependency Injection driven by <em>@Autowired</em> Annotations. This annotation allows Spring to resolve and inject collaborating beans into your bean.</p>
-
-<p>In this tutorial, we will look at how to enable autowiring<em>, </em>various<em> </em>ways to wire in beans<em>, </em>making beans optional, resolving bean conflicts using <em>@Qualifier</em> annotation along with potential exception scenarios.</p>
-
-<p>Spring2.5之后，可以使用<em>@Autowired</em> 注解来实现DI。这个词本身的英文意思就是自动装配。</p>
-
-<h2 id="enabling">2. Enabling <em>@Autowired</em> Annotations</h2>
-
-<p>If you are using Java based configuration in your application you can enable annotation-driven injection by using <em>AnnotationConfigApplicationContext </em>to load your spring configuration as below:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-</td>
-<td>
-<p><code>@Configuration</code></p>
-
-<p><code>@ComponentScan</code><code>(</code><code>"com.baeldung.autowire.sample"</code><code>)</code></p>
-
-<p><code>public</code> <code>class</code> <code>AppConfig {}</code></p>
-</td>
-</tr></tbody></table><p>As an alternative, in Spring XML, it can be enabled by declaring it in Spring XML files like so: <em>&lt;context:annotation-config/&gt;</em></p>
-
-<p>想使用注解，现需要配置Spring可以支持注解，有两种方式，一个是在代码中，一个是在XML中，这个涉及到另外一些知识点，作者这里是假设读者是知道这些的。</p>
-
-<h2 id="using">3. Using <em>@Autowired</em></h2>
-
-<p>Once annotation injection is enabled, autowiring can be used on properties, setters, and constructors.</p>
-
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>本文记录一下对于Java的@Autowired注解的学习。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原贴收藏在<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用SpringMVC，现在不可避免要接触注解，会遇到@Autowired，查询了google，找到这篇文章，摘录下来，做一些笔记。为什么这样呢？因为至少来说，以当前的理解，自己来写，不太可能超越这篇文章，我也不想像很多人那样搞所谓“二次原创”，其实不还是抄袭，只是针对了判定抄袭的规则来做文章，不耍这样的小聪明，没有意义。</p>
+<p>本篇选取主要的部分翻译一下，具体的过程可以参考代码，本文的英文难度不高，可以尝试着读一读。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<ol>
+<li>Overview<br>Starting with Spring 2.5, the framework introduced a new style of Dependency Injection driven by @Autowired Annotations. This annotation allows Spring to resolve and inject collaborating beans into your bean.<br><br><br>In this tutorial, we will look at how to enable autowiring, various ways to wire in beans, making beans optional, resolving bean conflicts using @Qualifier annotation along with potential exception scenarios.</li>
+</ol>
+</blockquote>
+<p>Spring2.5之后，可以使用@Autowired 注解来实现DI（依赖注入），这个词本身的英文意思就是自动装配。</p>
+<blockquote>
+<ol start="2">
+<li>Enabling @Autowired Annotations<br>If you are using Java based configuration in your application you can enable annotation-driven injection by using AnnotationConfigApplicationContext to load your spring configuration as below:</li>
+</ol>
+</blockquote>
+<pre><code>@Configuration    
+@ComponentScan(&quot;com.baeldung.autowire.sample&quot;)
+public class AppConfig {}
+</code></pre><blockquote>
+<p>As an alternative, in Spring XML, it can be enabled by declaring it in<br>Spring XML files like so: <a href="context:annotation-config/" target="_blank" rel="noopener">context:annotation-config/</a></p>
+</blockquote>
+<p>想使用注解，现需要配置Spring可以支持注解，有两种方式，一个是在代码中，一个是在XML中，这个涉及到另外一些知识点，作者这里是假设读者是知道这些的，不明白的话，需要去查一查。</p>
+<blockquote>
+<ol start="3">
+<li>Using @Autowired Once annotation injection is enabled, autowiring can be used on properties, setters, and constructors.</li>
+</ol>
+</blockquote>
 <p>可以用在属性、setter方法和构造器上。</p>
+<blockquote>
+<p>3.1. @Autowired on Properties The annotation can be used directly on properties, therefore eliminating the need for getters and setters:</p>
+</blockquote>
+<pre><code>@Component(&quot;fooFormatter&quot;)
+public class FooFormatter {
+    public String format() {
+        return &quot;foo&quot;;
+    }
+}
+
+@Component
+public class FooService {
+
+    @Autowired
+    private FooFormatter fooFormatter;
+}
+</code></pre><blockquote>
+<p>In the above example, Spring looks for and injects fooFormatter when FooService is created.</p>
+</blockquote>
+<p>上面的例子介绍了@Autowired如何用在属性上。</p>
+<blockquote>
+<p>3.2. @Autowired on Setters<br>The @Autowired annotation can be used on setter methods. In the below example, when the annotation is used on the setter method, the setter method is called with the instance of FooFormatter when FooServiceis created:</p>
+</blockquote>
+<pre><code>public class FooService {
+
+    private FooFormatter fooFormatter;
+
+    @Autowired
+    public void setFooFormatter(FooFormatter fooFormatter) {
+            this.fooFormatter = fooFormatter;
+    }
+}
+</code></pre><p>上面讲了如何用在方法上。</p>
+<blockquote>
+<p>3.3. @Autowired on Constructors<br>The @Autowired annotation can also be used on constructors. In the below example, when the annotation is used on a constructor, an instance of FooFormatter is injected as an argument to the constructor when FooService is created:</p>
+</blockquote>
+<pre><code>public class FooService {
+
+    private FooFormatter fooFormatter;
+
+    @Autowired
+    public FooService(FooFormatter fooFormatter) {
+        this.fooFormatter = fooFormatter;
+    }
+}
+</code></pre><p>如何用在构造器方法上。</p>
+<blockquote>
+<ol start="4">
+<li>@Autowired and Optional Dependencies<br>Spring expects @Autowired dependencies to be available when the dependent bean is being constructed. If the framework cannot resolve a bean for wiring, it will throw the below-quoted exception and prevent the Spring container from launching successfully:</li>
+</ol>
+</blockquote>
+<pre><code>Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException:
+No qualifying bean of type [com.autowire.sample.FooDAO] found for dependency:
+expected at least 1 bean which qualifies as autowire candidate for this dependency.
+</code></pre><blockquote>
+<p>Dependency annotations:<br><a href="mailto:{@org.springframework.beans.factory.annotation.Autowired" target="_blank" rel="noopener">{@org.springframework.beans.factory.annotation.Autowired</a>(required=true)}<br>To avoid this from happening, a bean can optional be specified as below:</p>
+</blockquote>
+<pre><code>public class FooService {
+    @Autowired(required = false)
+    private FooDAO dataAccessor;
+}
+</code></pre><p>如果没有找到响应的bean，又不想系统停止加载，参考上面的写法。</p>
+<blockquote>
+<ol start="5">
+<li>Autowire Disambiguation<br>By default, Spring resolves @Autowired entries by type. If more than one beans of the same type are available in the container, the framework will throw a fatal exception indicating that more than one bean is available for autowiring.</li>
+</ol>
+</blockquote>
+<p> @Autowired是根据类型来进行装备的。但是会存在同一类型内有多个备选bean，这个时候，框架会抛出一个致命错误—-这种问题倒是暂时还没有遇到过，下面讲述了三种解决方案。</p>
+<blockquote>
+<p>5.1. Autowiring by @Qualifier<br>The @Qualifier annotation can be used to hint at and narrow down the required bean:</p>
+</blockquote>
+<pre><code>@Component(&quot;fooFormatter&quot;)
+public class FooFormatter implements Formatter {
+    public String format() {
+        return &quot;foo&quot;;
+    }
+}
+
+@Component(&quot;barFormatter&quot;)
+public class BarFormatter implements Formatter {
+    public String format() {
+        return &quot;bar&quot;;
+    }
+}
+
+public class FooService {
+
+    @Autowired
+    private Formatter formatter;
+}
+</code></pre><blockquote>
+<p>Since there are two concrete implementations of Formatter available for the Spring container to inject, Spring will throw a NoUniqueBeanDefinitionException exception when constructing the FooService:</p>
+</blockquote>
+<pre><code>Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException:
+No qualifying bean of type [com.autowire.sample.Formatter] is defined:
+expected single matching bean but found 2: barFormatter,fooFormatter
+</code></pre><p>This can be avoided by narrowing the implementation using a @Qualifier annotation:</p>
+<pre><code>public class FooService {
+
+    @Autowired
+    @Qualifier(&quot;fooFormatter&quot;)
+    private Formatter formatter;
+}
+</code></pre><blockquote>
+<p>By specifying the @Qualifier with the name of the specific implementation, in this case as fooFormatter, we can avoid ambiguity when Spring finds multiple beans of the same type.<br><br><br>Please note that the value of the @Qualifier annotation matches with the name declared in the @Component annotation of our FooFormatter implementation.</p>
+</blockquote>
+<p>使用@Qualifier 注解来标识谁是合格的。</p>
+<blockquote>
+<p>5.2. Autowiring by Custom Qualifier<br>Spring allows us to create our own @Qualifier annotation. To create a custom Qualifier, define an annotation and provide the @Qualifier annotation within the definition as below:</p>
+</blockquote>
+<pre><code>@Qualifier
+@Target({ElementType.FIELD, ElementType.METHOD,ElementType.TYPE, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface FormatterType {
+    String value();
+}
+</code></pre><blockquote>
+<p>Once defined, the FormatterType can be used within various implementations to specify custom value:</p>
+</blockquote>
+<pre><code>@FormatterType(&quot;Foo&quot;)
+@Component
+public class FooFormatter implements Formatter {
+
+    public String format() {
+        return &quot;foo&quot;;
+    }
+}
+
+@FormatterType(&quot;Bar&quot;)
+@Component
+public class BarFormatter implements Formatter {
+    public String format() {
+        return &quot;bar&quot;;
+    }
+}
+</code></pre><blockquote>
+<p>Once the implementations are annotated, the custom Qualifier annotation can be used as below:</p>
+</blockquote>
+<pre><code>@Component
+public class FooService {
+
+    @Autowired
+    @FormatterType(&quot;Foo&quot;)
+    private Formatter formatter;
+}
+</code></pre><blockquote>
+<p>The value specified in the @Target annotation restrict where the qualifier can be used to mark injection points.<br><br><br>In the above code snippet, the qualifier can be used to disambiguate the point where Spring can inject the bean into a field, a method, a type, and a parameter.</p>
+</blockquote>
+<blockquote>
+<p>5.3. Autowiring by Name<br>As a fallback Spring uses the bean name as a default qualifier value.<br><br><br>So by defining the bean property name, in this case as fooFormatter, Spring matches that to the FooFormatter implementation and injects that specific implementation when FooService is constructed:</p>
+</blockquote>
+<pre><code>public class FooService {
+
+    @Autowired
+    private Formatter fooFormatter;
+}
+</code></pre><p>使用名字来自动装配。</p>
+<blockquote>
+<ol start="6">
+<li>Conclusion<br>Although both @Qualifier and bean name fallback match can be used to narrow down to a specific bean, autowiring is really all about injection by type and this is how best to use this container feature.<br><br><br>The source code of this tutorial can be found in the GitHub project – this is an Eclipse based project, so it should be easy to import and run as it is.</li>
+</ol>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>老外的文章讲的真清楚，他们会对读者负责，很认真地把所有问题讲清楚，不像很多国人，哪怕是很多好像挺有名的教授出的书，都是“言简意赅”，看着好费劲，给人一种高高在上的感觉。当年读清华严蔚敏出的《数据结构》，读着就非常费劲，后来看大师出的《算法导论》，反而容易理解，中国人怎么总就是这么高傲呢。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.baeldung.com/spring-autowire" target="_blank" rel="noopener">https://www.baeldung.com/spring-autowire</a></p>
+<p><a href="https://stackoverflow.com/questions/1018797/can-you-use-autowired-with-static-fields" target="_blank" rel="noopener">https://stackoverflow.com/questions/1018797/can-you-use-autowired-with-static-fields</a> 介绍了静态域能不能自动装配</p>
 
-<h3><strong>3.1. <em>@Autowired</em> on Properties</strong></h3>
-
-<p>The annotation can be used directly on properties, therefore eliminating the need for getters and setters:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-</td>
-<td>
-<p><code>@Component</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
-
-<p><code>public</code> <code>class</code> <code>FooFormatter {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>public</code> <code>String format() {</code></p>
-
-<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-</td>
-<td>
-<p><code>@Component</code></p>
-
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
-
-<p> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>In the above example, Spring looks for and injects <em>fooFormatter</em> when <em>FooService</em> is created.</p>
-
-<h3><strong>3.2. <em>@Autowired</em> on Setters</strong></h3>
-
-<p>The<em> @Autowired</em> annotation can be used on setter methods. In the below example, when the annotation is used on the setter method, the setter method is called with the instance of <em>FooFormatter </em>when <em>FooService</em>is created:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-
-<p>9</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>public</code> <code>void</code> <code>setFooFormatter(FooFormatter fooFormatter) {</code></p>
-
-<p><code>            </code><code>this</code><code>.fooFormatter = fooFormatter;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><h3><strong>3.3. <em>@Autowired</em> on Constructors</strong></h3>
-
-<p>The<em> @Autowired</em> annotation can also be used on constructors. In the below example, when the annotation is used on a constructor, an instance of <em>FooFormatter</em> is injected as an argument to the constructor when <em>FooService</em> is created:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-
-<p>9</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>private</code> <code>FooFormatter fooFormatter;</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>public</code> <code>FooService(FooFormatter fooFormatter) {</code></p>
-
-<p><code>        </code><code>this</code><code>.fooFormatter = fooFormatter;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><h2 id="dependencies">4. @Autowired and Optional Dependencies</h2>
-
-<p>Spring expects <em>@Autowired</em> dependencies to be available when the dependent bean is being constructed. If the framework cannot resolve a bean for wiring, it will throw the below-quoted exception and prevent the Spring container from launching successfully:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-</td>
-<td>
-<p><code>Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: </code></p>
-
-<p><code>No qualifying bean of type [com.autowire.sample.FooDAO] found </code><code>for</code> <code>dependency: </code></p>
-
-<p><code>expected at least </code><code>1</code> <code>bean which qualifies as autowire candidate </code><code>for</code> <code>this</code> <code>dependency. </code></p>
-
-<p><code>Dependency annotations: </code></p>
-
-<p><code>{</code><code>@org</code><code>.springframework.beans.factory.annotation.Autowired(required=</code><code>true</code><code>)}</code></p>
-</td>
-</tr></tbody></table><p>To avoid this from happening, a bean can optional be specified as below:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>@Autowired</code><code>(required = </code><code>false</code><code>)</code></p>
-
-<p><code>    </code><code>private</code> <code>FooDAO dataAccessor; </code></p>
-
-<p><code>    </code> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>如果没有找到响应的bean，又不想系统停止加载，参考上面。</p>
-
-<h2 id="disambiguation">5. Autowire Disambiguation</h2>
-
-<p>By default, Spring resolves <em>@Autowired</em> entries by type. If more than one beans of the same type are available in the container, the framework will throw a fatal exception indicating that more than one bean is available for autowiring.</p>
-
-<h3><strong>5.1. Autowiring by <em>@Qualifier</em></strong></h3>
-
-<p>The <em>@Qualifier</em> annotation can be used to hint at and narrow down the required bean:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-</td>
-<td>
-<p><code>@Component</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
-
-<p><code>public</code> <code>class</code> <code>FooFormatter </code><code>implements</code> <code>Formatter {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>public</code> <code>String format() {</code></p>
-
-<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-</td>
-<td>
-<p><code>@Component</code><code>(</code><code>"barFormatter"</code><code>)</code></p>
-
-<p><code>public</code> <code>class</code> <code>BarFormatter </code><code>implements</code> <code>Formatter {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>public</code> <code>String format() {</code></p>
-
-<p><code>        </code><code>return</code> <code>"bar"</code><code>;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
-
-<p> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>Since there are two concrete implementations of <em>Formatter</em> available for the Spring container to inject, Spring will throw a <em>NoUniqueBeanDefinitionException </em>exception when constructing the <em>FooService</em>:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p><code>Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: </code></p>
-
-<p><code>No qualifying bean of type [com.autowire.sample.Formatter] is defined: </code></p>
-
-<p><code>expected single matching bean but found </code><code>2</code><code>: barFormatter,fooFormatter</code></p>
-</td>
-</tr></tbody></table><p>This can be avoided by narrowing the implementation using a <em>@Qualifier</em> annotation:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>@Qualifier</code><code>(</code><code>"fooFormatter"</code><code>)</code></p>
-
-<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
-
-<p> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>By specifying the <em>@Qualifier </em>with the name of the specific implementation, in this case as <em>fooFormatter</em>, we can avoid ambiguity when Spring finds multiple beans of the same type.</p>
-
-<p>Please note that the value of the <em>@Qualifier </em>annotation matches with the name declared in the <em>@Component </em>annotation of our <em>FooFormatter</em> implementation.</p>
-
-<h3><strong>5.2. Autowiring by Custom Qualifier</strong></h3>
-
-<p>Spring allows us to create our own <em>@Qualifier</em> annotation. To create a custom Qualifier, define an annotation and provide the <em>@Qualifier </em>annotation within the definition as below:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-
-<p>9</p>
-</td>
-<td>
-<p><code>@Qualifier</code></p>
-
-<p><code>@Target</code><code>({</code></p>
-
-<p><code>  </code><code>ElementType.FIELD, ElementType.METHOD, ElementType.TYPE, ElementType.PARAMETER})</code></p>
-
-<p><code>@Retention</code><code>(RetentionPolicy.RUNTIME)</code></p>
-
-<p><code>public</code> <code>@interface</code> <code>FormatterType {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>String value();</code></p>
-
-<p> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>Once defined, the <em>FormatterType</em> can be used within various implementations to specify custom value:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-</td>
-<td>
-<p><code>@FormatterType</code><code>(</code><code>"Foo"</code><code>)</code></p>
-
-<p><code>@Component</code></p>
-
-<p><code>public</code> <code>class</code> <code>FooFormatter </code><code>implements</code> <code>Formatter {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>public</code> <code>String format() {</code></p>
-
-<p><code>        </code><code>return</code> <code>"foo"</code><code>;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-</td>
-<td>
-<p><code>@FormatterType</code><code>(</code><code>"Bar"</code><code>)</code></p>
-
-<p><code>@Component</code></p>
-
-<p><code>public</code> <code>class</code> <code>BarFormatter </code><code>implements</code> <code>Formatter {</code></p>
-
-<p> </p>
-
-<p><code>    </code><code>public</code> <code>String format() {</code></p>
-
-<p><code>        </code><code>return</code> <code>"bar"</code><code>;</code></p>
-
-<p><code>    </code><code>}</code></p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>Once the implementations are annotated, the custom Qualifier annotation can be used as below:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-
-<p>7</p>
-
-<p>8</p>
-</td>
-<td>
-<p><code>@Component</code></p>
-
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>@FormatterType</code><code>(</code><code>"Foo"</code><code>)</code></p>
-
-<p><code>    </code><code>private</code> <code>Formatter formatter;</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>The value specified in the <em>@Target</em> annotation restrict where the qualifier can be used to mark injection points.</p>
-
-<p>In the above code snippet, the qualifier can be used to disambiguate the point where Spring can inject the bean into a field, a method, a type, and a parameter.</p>
-
-<h3><strong>5.3. Autowiring by Name</strong></h3>
-
-<p>As a fallback Spring uses the bean name as a default qualifier value.</p>
-
-<p>So by defining the bean property name, in this case as <em>fooFormatter,</em> Spring matches that to the <em>FooFormatter</em> implementation and injects that specific implementation when <em>FooService</em> is constructed:</p>
-
-<table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
-<p>1</p>
-
-<p>2</p>
-
-<p>3</p>
-
-<p>4</p>
-
-<p>5</p>
-
-<p>6</p>
-</td>
-<td>
-<p><code>public</code> <code>class</code> <code>FooService {</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>    </code><code>@Autowired</code></p>
-
-<p><code>    </code><code>private</code> <code>Formatter fooFormatter;</code></p>
-
-<p><code>    </code> </p>
-
-<p><code>}</code></p>
-</td>
-</tr></tbody></table><p>多个备选的bean，怎么做选择。</p>
-
-<h2 id="conclusion">6. Conclusion</h2>
-
-<p>Although both <em>@Qualifier</em> and bean name fallback match can be used to narrow down to a specific bean, autowiring is really all about injection by type and this is how best to use this container feature.</p>
-
-<p>The source code of this tutorial can be found in <a href="https://github.com/eugenp/tutorials/tree/master/spring-all" rel="noopener" target="_blank">the GitHub project</a> – this is an Eclipse based project, so it should be easy to import and run as it is.</p>
-
-<h1>总结</h1>
-
-<p>老外的文章讲的真清楚，他们会对读者负责，很认真地把所有问题讲清楚，不像很多国人，哪怕是很多好像挺有名的教授出的书，都是“言简意赅”，看着好费劲，给人一种高高在上的感觉。当年读清华严蔚敏出的《数据结构》，读着就非常费劲，后来看大师出的《算法导论》，反而容易理解，中国人怎么总就是这么高傲呢。</p>
-
-<h1>参考</h1>
-
-<p><a href="https://www.baeldung.com/spring-autowire" rel="noopener" target="_blank">https://www.baeldung.com/spring-autowire</a></p>            </div>
-  
       
     </div>
 
@@ -1524,7 +1136,7 @@ Java：学习@Autowired。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">2.1.</span> <span class="nav-text">1. Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#enabling"><span class="nav-number">2.2.</span> <span class="nav-text">2. Enabling @Autowired Annotations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using"><span class="nav-number">2.3.</span> <span class="nav-text">3. Using @Autowired</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1. @Autowired on Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2. @Autowired on Setters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3. @Autowired on Constructors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies"><span class="nav-number">2.4.</span> <span class="nav-text">4. @Autowired and Optional Dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disambiguation"><span class="nav-number">2.5.</span> <span class="nav-text">5. Autowire Disambiguation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.1.</span> <span class="nav-text">5.1. Autowiring by @Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.2.</span> <span class="nav-text">5.2. Autowiring by Custom Qualifier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.5.3.</span> <span class="nav-text">5.3. Autowiring by Name</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">2.6.</span> <span class="nav-text">6. Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
