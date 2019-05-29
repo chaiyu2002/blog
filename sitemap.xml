@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-git-merge-true-merge.html</loc>
+    
+    <lastmod>2019-05-29T10:05:32.802Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/java/java-jps-note.html</loc>
     
     <lastmod>2019-05-29T09:33:39.497Z</lastmod>
@@ -243,13 +250,6 @@
     <loc>https://www.oxysun.cn/thinking_in_programmer_life/full-stack-programmer.html</loc>
     
     <lastmod>2018-11-08T02:25:09.930Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-git-merge-true-merge.html</loc>
-    
-    <lastmod>2018-11-08T02:20:48.192Z</lastmod>
     
   </url>
   
@@ -646,13 +646,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/manifest.json</loc>
-    
-    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
@@ -660,9 +653,9 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>https://www.oxysun.cn/manifest.json</loc>
     
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
     
   </url>
   
@@ -675,6 +668,13 @@
   
   <url>
     <loc>https://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     

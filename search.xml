@@ -47,8 +47,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>工作流</tag>
         <tag>GitLab Workflow</tag>
+        <tag>工作流</tag>
       </tags>
   </entry>
   <entry>
@@ -280,8 +280,8 @@
         <category>CSS</category>
       </categories>
       <tags>
-        <tag>SASS</tag>
         <tag>CSS</tag>
+        <tag>SASS</tag>
       </tags>
   </entry>
   <entry>
@@ -340,7 +340,7 @@
   <entry>
     <title><![CDATA[Git：真实merge]]></title>
     <url>%2Fgit%2Fgit-git-merge-true-merge.html</url>
-    <content type="text"><![CDATA[原帖收藏于IT老兵驿站。Git：真实merge。 前言这里准备碎片化地去解读和理解Git的一些功能。关于git-merge的总结一直没有做，但是几乎每天都会遇到git-merge，而且会遇到很多随着merge而产生的问题，所以只好碎片化地去做一做整理。 正文git-merge有两种merge方式，ff方式和true merge方式，关于ff的方式，另外一篇文章有讲过，这里不再赘述，这里整理一下true merge，真实merge。 介绍先摘录一段： TRUE MERGEExcept in a fast-forward merge (see above), the branches to be merged must be tied together by a merge commit that has both of them as its parents.A merged version reconciling the changes from all branches to be merged is committed, and your HEAD, index, and working tree are updated to it. It is possible to have modifications in the working tree as long as they do not overlap; the update will preserve them.When it is not obvious how to reconcile the changes, the following happens:The HEAD pointer stays the same.The MERGE_HEAD ref is set to point to the other branch head.Paths that merged cleanly are updated both in the index file and in your working tree.For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from HEAD, and stage 3 from MERGE_HEAD (you can inspect the stages with git ls-files -u). The working tree files contain the result of the “merge” program; i.e. 3-way merge results with familiar conflict markers &lt;&lt;&lt; === &gt;&gt;&gt;.No other changes are made. In particular, the local modifications you had before you started merge will stay the same and the index entries for them stay as they were, i.e. matching HEAD.If you tried a merge which resulted in complex conflicts and want to start over, you can recover with git merge –abort. 这里是三个版本的关系，公共祖先的版本、HEAD（本地仓库的版本）、MERGE_HEAD（另外一个分支想要merge过来的版本），所以叫3-way merge，三路合并。 关于HEAD、index、worktree、local repository、remote repository的关系，请参考这里，这个挺重要，随后要整理一下。 合并策略： MERGE STRATEGIESThe merge mechanism (git merge and git pull commands) allows the backend merge strategies to be chosen with -s option. Some strategies can also take their own options, which can be passed by giving -X arguments to git merge and/or git pull.resolveThis can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.recursiveThis can only resolve two heads using a 3-way merge algorithm. When there is more than one common ancestor that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mismerges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames, but currently cannot make use of detected copies. This is the default merge strategy when pulling or merging one branch.The recursive strategy can take the following options:oursThis option forces conflicting hunks to be auto-resolved cleanly by favoring our version. Changes from the other tree that do not conflict with our side are reflected to the merge result. For a binary file, the entire contents are taken from our side.This should not be confused with the ours merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring our history contains all that happened in it.theirsThis is the opposite of ours; note that, unlike ours, there is no theirs merge strategy to confuse this merge option with.…… 使用-X&lt;option&gt;参数，可以指定合并策略，上面摘录了两种，一种是resolve，一种是recursive，第一种策略看上去似乎是可以自动解决冲突，第二种是Git默认的merge策略，会产生一些少量的冲突，而不会进行错误的合并，它还有几个选项，就是合并时，只选择本地的（ours），或者只选择别人的（theirs）。 参考https://git-scm.com/docs/git-mergehttps://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git]]></content>
+    <content type="text"><![CDATA[概要Git：真实merge。 博客原帖收藏于IT老兵驿站。 前言这里准备碎片化地去解读和理解Git的一些功能。关于git-merge的总结一直没有做，但是几乎每天都会遇到git-merge，而且会遇到很多随着merge而产生的问题，所以只好碎片化地去做一做整理。 正文git-merge有两种merge方式，ff方式和true merge方式，关于ff的方式，另外一篇文章有讲过，这里不再赘述，这里整理一下true merge，真实merge。 介绍先摘录一段： TRUE MERGEExcept in a fast-forward merge (see above), the branches to be merged must be tied together by a merge commit that has both of them as its parents.真实merge是真的去merge一下，而不是像ff那样，只是把一个commit放过来。A merged version reconciling the changes from all branches to be merged is committed, and your HEAD, index, and working tree are updated to it. It is possible to have modifications in the working tree as long as they do not overlap; the update will preserve them.一个merge的版本调节了所有要被merge的分支的改变，并且会被提交，这样你的HEAD、index、working tree都会被更新。When it is not obvious how to reconcile the changes, the following happens:The HEAD pointer stays the same.The MERGE_HEAD ref is set to point to the other branch head.Paths that merged cleanly are updated both in the index file and in your working tree.For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from HEAD, and stage 3 from MERGE_HEAD (you can inspect the stages with git ls-files -u). The working tree files contain the result of the “merge” program; i.e. 3-way merge results with familiar conflict markers &lt;&lt;&lt; === &gt;&gt;&gt;.3路merge，公共祖先、HEAD、MERGE_HEAD来merge。No other changes are made. In particular, the local modifications you had before you started merge will stay the same and the index entries for them stay as they were, i.e. matching HEAD.If you tried a merge which resulted in complex conflicts and want to start over, you can recover with git merge –abort. 这里是三个版本的关系，公共祖先的版本、HEAD（本地仓库的版本）、MERGE_HEAD（另外一个分支想要merge过来的版本），所以叫3-way merge，三路合并。 关于HEAD、index、worktree、local repository、remote repository的关系，请参考这里，这个挺重要，随后要整理一下。 合并策略： MERGE STRATEGIESThe merge mechanism (git merge and git pull commands) allows the backend merge strategies to be chosen with -s option. Some strategies can also take their own options, which can be passed by giving -X arguments to git merge and/or git pull.git merge和git pull 命令使用的merge机制允许通过-s选项后面的merge策略被选择。resolveThis can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.recursiveThis can only resolve two heads using a 3-way merge algorithm. When there is more than one common ancestor that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mismerges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames, but currently cannot make use of detected copies. This is the default merge strategy when pulling or merging one branch.The recursive strategy can take the following options:oursThis option forces conflicting hunks to be auto-resolved cleanly by favoring our version. Changes from the other tree that do not conflict with our side are reflected to the merge result. For a binary file, the entire contents are taken from our side.This should not be confused with the ours merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring our history contains all that happened in it.theirsThis is the opposite of ours; note that, unlike ours, there is no theirs merge strategy to confuse this merge option with.…… 使用-X&lt;option&gt;参数，可以指定合并策略，上面摘录了两种，一种是resolve，一种是recursive，第一种策略看上去似乎是可以自动解决冲突，第二种是Git默认的merge策略，会产生一些少量的冲突，而不会进行错误的合并，它还有几个选项，就是合并时，只选择本地的（ours），或者只选择别人的（theirs）。 参考https://git-scm.com/docs/git-mergehttps://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git]]></content>
       <categories>
         <category>Git</category>
       </categories>
@@ -495,9 +495,9 @@
         <category>Python</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Ubuntu16.04</tag>
         <tag>升级</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -661,8 +661,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -725,8 +725,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>git branch</tag>
         <tag>用法</tag>
+        <tag>git branch</tag>
         <tag>分支</tag>
       </tags>
   </entry>
@@ -863,8 +863,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -980,8 +980,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>Git Flow</tag>
         <tag>工作流</tag>
+        <tag>Git Flow</tag>
       </tags>
   </entry>
   <entry>
@@ -1018,6 +1018,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MongoDB：查询和投影操作符]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-find-projection-operator.html</url>
+    <content type="text"><![CDATA[MongoDB查询和投影操作符。 官网：https://docs.mongodb.com/manual/reference/operator/query/。 这一章节都是很简单的英语，就做一个很简单的备注，如果连这个英语都看不懂，那就需要提高了，程序员看不懂基本的英语是很难提高的。这一章节还需要完善一些样例，这个有待补充。 查询选择器比较 名字 描述 $eq Matches values that are equal to a specified value.（判断相等） $gt Matches values that are greater than a specified value.（判断大于） $gte Matches values that are greater than or equal to a specified value.（判断大于等于） $in Matches any of the values specified in an array.（判断在其中） $lt Matches values that are less than a specified value.（判断小于） $lte Matches values that are less than or equal to a specified value.（判断小于等于） $ne Matches all values that are not equal to a specified value.（判断所有值都不等于指定值） $nin Matches none of the values specified in an array.（判断不在其中） 逻辑 名字 描述 $and Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.（与） $not Inverts the effect of a query expression and returns documents that do not match the query expression.（非） $nor Joins query clauses with a logical NOR returns all documents that fail to match both clauses.（异或） $or Joins query clauses with a logical OR returns all documents that match the conditions of either clause.（或） 元素 名字 描述 $exists Matches documents that have the specified field. $type Selects documents if a field is of the specified type. 评估 名字 描述 $expr Allows use of aggregation expressions within the query language. $jsonSchema Validate documents against the given JSON Schema. $mod Performs a modulo operation on the value of a field and selects documents with a specified result. $regex Selects documents where values match a specified regular expression. $text Performs text search. $where Matches documents that satisfy a JavaScript expression. 地理空间 名字 描述 $geoIntersects Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects. $geoWithin Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin. $near Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near. $nearSphere Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere. 数组 名字 描述 $all Matches arrays that contain all elements specified in the query. $elemMatch Selects documents if element in the array field matches all the specified $elemMatch conditions. $size Selects documents if the array field is a specified size. 位操作 名字 描述 $bitsAllClear Matches numeric or binary values in which a set of bit positions all have a value of 0. $bitsAllSet Matches numeric or binary values in which a set of bit positions all have a value of 1. $bitsAnyClear Matches numeric or binary values in which any bit from a set of bit positions has a value of 0. $bitsAnySet Matches numeric or binary values in which any bit from a set of bit positions has a value of 1. 注释 名字 描述 $comment Adds a comment to a query predicate. 投影操作 名字 描述 $ Projects the first element in an array that matches the query condition. $elemMatch Projects the first element in an array that matches the specified $elemMatch condition. $meta Projects the document’s score assigned during $text operation. $slice Limits the number of elements projected from an array. Supports skip and limit slices.]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[MongoDB集合的基本操作：查找记录（查）]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-find-1.html</url>
     <content type="text"><![CDATA[MongoDB集合的基本操作：查找记录（查）。 语法1db.collection.find(query, projection) 在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）参数|类型|描述-|-|-query|文档型|可选。使用查询操作符(参考这里)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。projection|文档型|可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。 projection参数决定了哪些域需要被返回。 1&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125; &lt;value&gt;可以是: 1 或 true 表示要在返回文档中包含这个域。 0 或 false 表示不包含这个域。 表达式使用了投影操作符（有待解释）。 分析基本的查找参考上面的语法即可，下面也有实例，其实较为难以掌握的是组合查找，例如逻辑关系是AND的，或者是OR的，还有IN的，这几个需要梳理一下。 实例实例 查找上文test集合中的所有文档。12345678910111213141516171819&gt; db.test.find().pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;&#125;&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;&#125; pretty()是用来让展示更加舒适。 实例 查找test集合中的b=&quot;3&quot;的记录，这里要注意“3”和3是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。12345678910&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;&#125; 可以看到，这次只查出了一条符合条件的记录。 实例 查找test集合中的b=&quot;3&quot;的记录a和b两个域，不要其它域。 12&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125; 可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。 实例 查找test集合中的b=&quot;3&quot; 并且a=&quot;4&quot;的记录。1&gt; db.test.find(&#123;b: &quot;3&quot;, a: &quot;4&quot;&#125;&#125;).pretty() 可以看到，在第一个{} 中逗号分隔开的是AND的查询关系。 实例 查找test集合中的b=&quot;3&quot; 或者b=&quot;4&quot;的记录。1&gt; db.test.find(&#123;b: &#123;$in: [&quot;3&quot;, &quot;4&quot;]&#125;&#125;).pretty() 这个语法的原则是操作符$in在前，作为JSON名值对的名，[&quot;3&quot;, &quot;4&quot;]是它的值，然后整个{$in: [&quot;3&quot;, &quot;4&quot;]}作为b的值，从JSON语法的角度去思考和记忆这个语法，就容易一些了。 实例 修改一下上面的例子，查找test集合中的b=&quot;3&quot; 或者a=&quot;4&quot;的记录。1&gt; db.test.find(&#123;$or: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty() 这个语法和IN 的道理是一样的，其实AND也可以这么用，上面那种是隐式的用法，显式的用法是这样：1&gt; db.test.find(&#123;$and: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty() 查询操作符还有一些大于、小于等操作，具体参考查询操作符一节。 参考https://docs.mongodb.com/manual/reference/method/db.collection.find/。]]></content>
@@ -1027,14 +1035,6 @@
       <tags>
         <tag>MongoDB</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[MongoDB：查询和投影操作符]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-find-projection-operator.html</url>
-    <content type="text"><![CDATA[MongoDB查询和投影操作符。 官网：https://docs.mongodb.com/manual/reference/operator/query/。 这一章节都是很简单的英语，就做一个很简单的备注，如果连这个英语都看不懂，那就需要提高了，程序员看不懂基本的英语是很难提高的。这一章节还需要完善一些样例，这个有待补充。 查询选择器比较 名字 描述 $eq Matches values that are equal to a specified value.（判断相等） $gt Matches values that are greater than a specified value.（判断大于） $gte Matches values that are greater than or equal to a specified value.（判断大于等于） $in Matches any of the values specified in an array.（判断在其中） $lt Matches values that are less than a specified value.（判断小于） $lte Matches values that are less than or equal to a specified value.（判断小于等于） $ne Matches all values that are not equal to a specified value.（判断所有值都不等于指定值） $nin Matches none of the values specified in an array.（判断不在其中） 逻辑 名字 描述 $and Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.（与） $not Inverts the effect of a query expression and returns documents that do not match the query expression.（非） $nor Joins query clauses with a logical NOR returns all documents that fail to match both clauses.（异或） $or Joins query clauses with a logical OR returns all documents that match the conditions of either clause.（或） 元素 名字 描述 $exists Matches documents that have the specified field. $type Selects documents if a field is of the specified type. 评估 名字 描述 $expr Allows use of aggregation expressions within the query language. $jsonSchema Validate documents against the given JSON Schema. $mod Performs a modulo operation on the value of a field and selects documents with a specified result. $regex Selects documents where values match a specified regular expression. $text Performs text search. $where Matches documents that satisfy a JavaScript expression. 地理空间 名字 描述 $geoIntersects Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects. $geoWithin Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin. $near Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near. $nearSphere Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere. 数组 名字 描述 $all Matches arrays that contain all elements specified in the query. $elemMatch Selects documents if element in the array field matches all the specified $elemMatch conditions. $size Selects documents if the array field is a specified size. 位操作 名字 描述 $bitsAllClear Matches numeric or binary values in which a set of bit positions all have a value of 0. $bitsAllSet Matches numeric or binary values in which a set of bit positions all have a value of 1. $bitsAnyClear Matches numeric or binary values in which any bit from a set of bit positions has a value of 0. $bitsAnySet Matches numeric or binary values in which any bit from a set of bit positions has a value of 1. 注释 名字 描述 $comment Adds a comment to a query predicate. 投影操作 名字 描述 $ Projects the first element in an array that matches the query condition. $elemMatch Projects the first element in an array that matches the specified $elemMatch condition. $meta Projects the document’s score assigned during $text operation. $slice Limits the number of elements projected from an array. Supports skip and limit slices.]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[MongoDB学习笔记：插入记录（增）]]></title>
@@ -1086,20 +1086,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
-    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
-    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>database</tag>
-        <tag>create</tag>
-        <tag>创建数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
@@ -1111,6 +1097,20 @@
         <tag>collection</tag>
         <tag>数据集合</tag>
         <tag>创建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>database</tag>
+        <tag>create</tag>
+        <tag>创建数据库</tag>
       </tags>
   </entry>
 </search>
