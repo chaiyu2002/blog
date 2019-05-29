@@ -343,6 +343,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-array-and-container-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/java/java-array-and-container-note.html" itemprop="url">
+                  本文记录一下Java的数组和容器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-29 17:32:00 / 修改时间：17:33:21" itemprop="dateCreated datePublished" datetime="2019-05-29T17:32:00+08:00">2019-05-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖位于<a href="https://www.oxysun.cn/">IT老兵博客</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录一下对Java的数组和容器的学习。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>参考《Java编程思想（第4版）》来进行学习。<br>章节 $5.8<br>int [] a1;<br>int a1[];<br>这个是数组变量的定义，但是并没有分配空间。</p>
+<p>初始化的方式是：<br>int [] a1 = { 1, 2, 3, 4, 5 }; // 这样是直接初始化，应该是在栈中<br>int [] a1 = new int[10]; // 这样初始化，就在堆中了</p>
+<p>数组是一等公民，是语言的基本单位。</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>章节 $11 $11.1<br>List、Set、Queue、Map，这些都属于容器类，这些都是以类的形态存在的，是语言的二等公民。<br>原则上，能用容器就尽量使用容器，因为容器会提供更多的功能，例如空间的自动增长。</p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList是一个很常用的容器，继承于List。<br>参考<a href="https://www.geeksforgeeks.org/arraylist-in-java/" target="_blank" rel="noopener">这里</a>，ArrayList就类似于C++的vector。</p>
+<p>ArrayList的构建，是需要使用实例化泛型来约束的。</p>
+<p>章节 $11.2<br>容器分为了Collection和Map两个大类。<br>Collection代表独立元素的序列。<br>Map代表“键值对”对象。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.geeksforgeeks.org/arraylist-in-java/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/arraylist-in-java/</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/design-pattern/delegate-and-proxy.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1560,12 +1727,24 @@
                 
               
 
-              <time title="创建时间：2019-02-15 17:00:00 / 修改时间：16:59:07" itemprop="dateCreated datePublished" datetime="2019-02-15T17:00:00+08:00">2019-02-15</time>
+              <time title="创建时间：2019-02-15 17:00:00" itemprop="dateCreated datePublished" datetime="2019-02-15T17:00:00+08:00">2019-02-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-23 12:05:02" itemprop="dateModified" datetime="2019-05-23T12:05:02+08:00">2019-05-23</time>
               
             
           </span>
@@ -1617,7 +1796,7 @@
 
       
         
-          <p>Spring的@configuration和@Bean。<br>
+          <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Spring的@configuration和@Bean。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/java/java-spring-configuration-bean.html#more" rel="contents">
@@ -1884,12 +2063,24 @@
                 
               
 
-              <time title="创建时间：2019-01-23 10:20:00 / 修改时间：10:53:17" itemprop="dateCreated datePublished" datetime="2019-01-23T10:20:00+08:00">2019-01-23</time>
+              <time title="创建时间：2019-01-23 10:20:00" itemprop="dateCreated datePublished" datetime="2019-01-23T10:20:00+08:00">2019-01-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-29 17:33:39" itemprop="dateModified" datetime="2019-05-29T17:33:39+08:00">2019-05-29</time>
               
             
           </span>
@@ -3492,180 +3683,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/url-rewrite.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="荒于嬉">
-      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IT老兵驿站">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/java/url-rewrite.html" itemprop="url">
-                  Java：URL rewrite
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-03 15:40:00" itemprop="dateCreated datePublished" datetime="2018-12-03T15:40:00+08:00">2018-12-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-15 19:09:42" itemprop="dateModified" datetime="2019-01-15T19:09:42+08:00">2019-01-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Java：URL rewrite<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/java/url-rewrite.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3713,7 +3730,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4045,7 +4062,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">130</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="Spring的@configuration和@Bean。">
+  <meta name="description" content="概要Spring的@configuration和@Bean。">
 <meta name="keywords" content="Java,Spring,SprintMVC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring的@configuration和@Bean">
 <meta property="og:url" content="https://www.oxysun.cn/java/java-spring-configuration-bean.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Spring的@configuration和@Bean。">
+<meta property="og:description" content="概要Spring的@configuration和@Bean。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-15T08:59:07.261Z">
+<meta property="og:updated_time" content="2019-05-23T04:05:02.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring的@configuration和@Bean">
-<meta name="twitter:description" content="Spring的@configuration和@Bean。">
+<meta name="twitter:description" content="概要Spring的@configuration和@Bean。">
 
 
 
@@ -386,12 +386,24 @@
                 
               
 
-              <time title="创建时间：2019-02-15 17:00:00 / 修改时间：16:59:07" itemprop="dateCreated datePublished" datetime="2019-02-15T17:00:00+08:00">2019-02-15</time>
+              <time title="创建时间：2019-02-15 17:00:00" itemprop="dateCreated datePublished" datetime="2019-02-15T17:00:00+08:00">2019-02-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-23 12:05:02" itemprop="dateModified" datetime="2019-05-23T12:05:02+08:00">2019-05-23</time>
               
             
           </span>
@@ -450,13 +462,18 @@
       
 
       
-        <p>Spring的@configuration和@Bean。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Spring的@configuration和@Bean。<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖位于<a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>总结整理一下spring的@configuration和@Bean。</p>
+<p>参考<a href="https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm" target="_blank" rel="noopener">这里</a>，这个网站有不少挺好的对于技术的解释性文章。</p>
 <blockquote>
-<p>Annotating a class with the @Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions. The @Bean annotation tells Spring that a method annotated with @Bean will return an object that should be registered as a bean in the Spring application context. </p>
+<p>Annotating a class with the @Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions. </p>
 </blockquote>
-<p>@Configuration意味着一个类可以被Spring IoC container作为一个bean的定义。<br>@Bean意味着被它注解的方法将会返回一个对象，可以被作为bean注册。</p>
+<p>@Configuration意味着这个被注解的类可以被Spring IoC container（Spring IoC 容器）作为一个bean定义的来源，就是在启动时，让容器去扫描这里，加载底下的对象。</p>
+<blockquote>
+<p>The @Bean annotation tells Spring that a method annotated with @Bean will return an object that should be registered as a bean in the Spring application context. </p>
+</blockquote>
+<p>@Bean意味着被它注解的方法将会返回一个对象，可以被作为bean注册在Spring application的context中。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm" target="_blank" rel="noopener">https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm</a></p>
 
       
@@ -581,7 +598,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">86</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -913,7 +930,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">130</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -949,7 +970,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">1.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
