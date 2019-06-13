@@ -108,23 +108,25 @@
 
 
 
-  <meta name="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="IT老兵驿站">
-<meta property="og:url" content="https://www.oxysun.cn/tags/参数/index.html">
+  <meta name="description" content="概要设计模式：委托和代理">
+<meta name="keywords" content="设计模式,委托,代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式：委托和代理">
+<meta property="og:url" content="https://www.oxysun.cn/design-pattern/chain-of-responsibility.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+<meta property="og:description" content="概要设计模式：委托和代理">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-13T02:00:32.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IT老兵驿站">
-<meta name="twitter:description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+<meta name="twitter:title" content="设计模式：委托和代理">
+<meta name="twitter:description" content="概要设计模式：委托和代理">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/tags/参数/"/>
+  <link rel="canonical" href="https://www.oxysun.cn/design-pattern/chain-of-responsibility.html"/>
 
 
 
@@ -134,7 +136,7 @@
   };
 </script>
 
-  <title>标签: 参数 | IT老兵驿站</title>
+  <title>设计模式：委托和代理 | IT老兵驿站</title>
   
 
 
@@ -200,7 +202,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,7 +259,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -302,34 +304,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -354,58 +328,225 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>参数<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/design-pattern/chain-of-responsibility.html">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/python/python-args-kwargs.html" itemprop="url">
-              
-                <span itemprop="name">Python函数的参数</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">设计模式：委托和代理
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-04-15T17:24:00+08:00"
-              content="2019-04-15" >
-          04-15
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-09 15:21:00" itemprop="dateCreated datePublished" datetime="2019-05-09T15:21:00+08:00">2019-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-13 10:00:32" itemprop="dateModified" datetime="2019-06-13T10:00:32+08:00">2019-06-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>设计模式：委托和代理<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在iOS开发中，会遇到委托这种设计模式，而之前阅读四人帮的《设计模式》，只提到有代理（proxy），感觉上这两者非常接近，非常像，是不是就是一回事呢？</p>
+<p>参考<a href="https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate" target="_blank" rel="noopener">这里</a>，感觉说的又不是一回事。</p>
+<p>直接面对客户的是代理，它并不见得真的具有需要执行的功能，它来受理客户的委托，当真有委托到来了，它在委托给具体执行的人去执行。</p>
+<p>我觉得这么解释了，就和现实生活结合在一起了，代理是负责受理这个事情的机构，他不见得自己能处理这个事情。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate" target="_blank" rel="noopener">https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate</a></p>
 
       
     </div>
 
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+            <a href="/tags/委托/" rel="tag"># 委托</a>
+          
+            <a href="/tags/代理/" rel="tag"># 代理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/design-pattern/delegate-and-proxy.html" rel="next" title="设计模式：委托和代理">
+                <i class="fa fa-chevron-left"></i> 设计模式：委托和代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/java/java-array-and-container-note.html" rel="prev" title="Java的数组和容器（1）">
+                Java的数组和容器（1） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -426,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -805,6 +955,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -958,6 +1124,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 

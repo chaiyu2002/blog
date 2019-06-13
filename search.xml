@@ -15,6 +15,19 @@
   </entry>
   <entry>
     <title><![CDATA[设计模式：委托和代理]]></title>
+    <url>%2Fdesign-pattern%2Fchain-of-responsibility.html</url>
+    <content type="text"><![CDATA[概要设计模式：委托和代理 博客原帖收藏于IT老兵博客。 正文在iOS开发中，会遇到委托这种设计模式，而之前阅读四人帮的《设计模式》，只提到有代理（proxy），感觉上这两者非常接近，非常像，是不是就是一回事呢？ 参考这里，感觉说的又不是一回事。 直接面对客户的是代理，它并不见得真的具有需要执行的功能，它来受理客户的委托，当真有委托到来了，它在委托给具体执行的人去执行。 我觉得这么解释了，就和现实生活结合在一起了，代理是负责受理这个事情的机构，他不见得自己能处理这个事情。 参考https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate]]></content>
+      <categories>
+        <category>Design Pattern</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+        <tag>委托</tag>
+        <tag>代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[设计模式：委托和代理]]></title>
     <url>%2Fdesign-pattern%2Fdelegate-and-proxy.html</url>
     <content type="text"><![CDATA[概要设计模式：委托和代理 博客原帖收藏于IT老兵博客。 正文在iOS开发中，会遇到委托这种设计模式，而之前阅读四人帮的《设计模式》，只提到有代理（proxy），感觉上这两者非常接近，非常像，是不是就是一回事呢？ 参考这里，感觉说的又不是一回事。 直接面对客户的是代理，它并不见得真的具有需要执行的功能，它来受理客户的委托，当真有委托到来了，它在委托给具体执行的人去执行。 我觉得这么解释了，就和现实生活结合在一起了，代理是负责受理这个事情的机构，他不见得自己能处理这个事情。 参考https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate]]></content>
       <categories>
@@ -47,8 +60,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>GitLab Workflow</tag>
         <tag>工作流</tag>
+        <tag>GitLab Workflow</tag>
       </tags>
   </entry>
   <entry>
@@ -495,9 +508,9 @@
         <category>Python</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Ubuntu16.04</tag>
         <tag>升级</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -908,20 +921,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -932,6 +931,20 @@
         <tag>JavaScript</tag>
         <tag>波浪字符</tag>
         <tag>依赖包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
@@ -980,8 +993,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>工作流</tag>
         <tag>Git Flow</tag>
+        <tag>工作流</tag>
       </tags>
   </entry>
   <entry>
