@@ -108,18 +108,20 @@
 
 
 
-  <meta name="description" content="概要设计模式：委托和代理">
-<meta name="keywords" content="设计模式,委托,代理">
+  <meta name="description" content="概要设计模式：职责链模式">
+<meta name="keywords" content="设计模式,职责链模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式：委托和代理">
+<meta property="og:title" content="设计模式：职责链模式">
 <meta property="og:url" content="https://www.oxysun.cn/design-pattern/chain-of-responsibility.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要设计模式：委托和代理">
+<meta property="og:description" content="概要设计模式：职责链模式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-13T02:00:32.504Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019061309513047.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-06-14T02:53:56.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式：委托和代理">
-<meta name="twitter:description" content="概要设计模式：委托和代理">
+<meta name="twitter:title" content="设计模式：职责链模式">
+<meta name="twitter:description" content="概要设计模式：职责链模式">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019061309513047.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>设计模式：委托和代理 | IT老兵驿站</title>
+  <title>设计模式：职责链模式 | IT老兵驿站</title>
   
 
 
@@ -361,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式：委托和代理
+          <h1 class="post-title" itemprop="name headline">设计模式：职责链模式
               
             
           </h1>
@@ -386,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2019-05-09 15:21:00" itemprop="dateCreated datePublished" datetime="2019-05-09T15:21:00+08:00">2019-05-09</time>
+              <time title="创建时间：2019-06-13 15:21:00" itemprop="dateCreated datePublished" datetime="2019-06-13T15:21:00+08:00">2019-06-13</time>
             
 
             
@@ -403,7 +405,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-13 10:00:32" itemprop="dateModified" datetime="2019-06-13T10:00:32+08:00">2019-06-13</time>
+                <time title="修改时间：2019-06-14 10:53:56" itemprop="dateModified" datetime="2019-06-14T10:53:56+08:00">2019-06-14</time>
               
             
           </span>
@@ -462,13 +464,14 @@
       
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>设计模式：委托和代理<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>设计模式：职责链模式<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在iOS开发中，会遇到委托这种设计模式，而之前阅读四人帮的《设计模式》，只提到有代理（proxy），感觉上这两者非常接近，非常像，是不是就是一回事呢？</p>
-<p>参考<a href="https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate" target="_blank" rel="noopener">这里</a>，感觉说的又不是一回事。</p>
-<p>直接面对客户的是代理，它并不见得真的具有需要执行的功能，它来受理客户的委托，当真有委托到来了，它在委托给具体执行的人去执行。</p>
-<p>我觉得这么解释了，就和现实生活结合在一起了，代理是负责受理这个事情的机构，他不见得自己能处理这个事情。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate" target="_blank" rel="noopener">https://coderanch.com/t/637844/engineering/Difference-Proxy-Delegate</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>职责链，chain of responsibility。<br>这篇笔记第一版记录于2015年，那个时候在研究安卓代码的时候，安卓对于事件的传递使用到了职责链。<br>现在研究到了Spring的filter chain。<br>上面两个都是职责链和外观两种设计模式结合在一起使用。<br>这篇笔记主要是结合四人帮的《设计模式》来学习，这本书写的有点深奥了，难懂，需要慢慢来消化。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>1.意图<br>使多个对象都有机会处理请求，从而避免请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。<br>处理对象需要连成一个链，不确定由谁来处理，不处理需要往下传，处理了也可以继续往下传（安卓的事件传递是处理了就不传了）。<br>请求需要被传递，这个请求可能是原封不动地被传递，也有可能略作修改地去传递，所以，这里处理对象的接口最好也是一致的，继承自一个公共的父类（这个时候可能虚基类就比较合理了）。<br>3.适用性<br>在以下条件下使用Responsibisibility链：<br>• 有多个的对象可以处理一个请求，哪个对象处理该请求运行时刻自动确定。<br> • 你想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。<br>• 可处理一个请求的对象集合应被动态指定。<br><img src="https://img-blog.csdnimg.cn/2019061309513047.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>可处理一个请求的对象集合应被动态指定。</p>
+<p>以上摘录自《设计模式》，奇怪的是《PHP设计模式介绍》这本书没有讲职责链，这个是不是和PHP本身面向对象的能力不足有关呢？这个问题留待以后去验证。<br>我的理解：<br>1.这个请求要可以被传递，那么这些对象最好是有相同的可以接收这样规格请求的接口，例如安卓的事件传递（安卓的事件传递就是一个职责链，哪一层的view消耗了该事件，就返回true，然后这个返回值就向回传递。在职责链前面往往会使用外观模式，对于外部用户，他并不知道后面的职责链，这个是有外观实现者来处理的）。如果接口不一致的话，恐怕就会有些问题，应该每个对象都可以单独接收这个请求，只是要处于某种特定的情况下。<br>2.消耗了请求，请求就不再继续向下传递，而是往回返回了；但其实，个人感觉，没有消耗请求的对象也可以针对请求有所响应。<br>3.每个对象都可以响应请求，也就是请求需要满足一定的条件，所以，对象的顺序是要合理安排的。<br>上面引用的这段，是15年的笔记，记录了当时研究安卓代码时，对这个职责链的理解。</p>
+<p>《设计模式》里面这个样例有些绕，需要整理一下思路。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.csdn.net/zhang_xinxiu/article/details/9963305，" target="_blank" rel="noopener">http://blog.csdn.net/zhang_xinxiu/article/details/9963305，</a> 职责链模式，这篇文章写的很好。<br><a href="http://blog.csdn.net/hguisu/article/details/7533759，" target="_blank" rel="noopener">http://blog.csdn.net/hguisu/article/details/7533759，</a> 外观模式，这篇文章写的也很好。</p>
 
       
     </div>
@@ -495,9 +498,7 @@
           
             <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
-            <a href="/tags/委托/" rel="tag"># 委托</a>
-          
-            <a href="/tags/代理/" rel="tag"># 代理</a>
+            <a href="/tags/职责链模式/" rel="tag"># 职责链模式</a>
           
         </div>
       
@@ -510,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/design-pattern/delegate-and-proxy.html" rel="next" title="设计模式：委托和代理">
-                <i class="fa fa-chevron-left"></i> 设计模式：委托和代理
+              <a href="/java/java-array-and-container-note.html" rel="next" title="Java的数组和容器（1）">
+                <i class="fa fa-chevron-left"></i> Java的数组和容器（1）
               </a>
             
           </div>
@@ -519,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/java/java-array-and-container-note.html" rel="prev" title="Java的数组和容器（1）">
-                Java的数组和容器（1） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -928,7 +925,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">132</span>
+                      
+                    
+                    <span class="site-state-item-count">133</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -964,7 +963,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
