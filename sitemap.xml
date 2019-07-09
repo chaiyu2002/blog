@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/git/git-gitlab-flow.html</loc>
+    
+    <lastmod>2019-07-09T04:28:18.842Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/design-pattern/chain-of-responsibility.html</loc>
     
     <lastmod>2019-06-14T02:53:56.243Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://www.oxysun.cn/git/git-git-flow.html</loc>
     
     <lastmod>2019-04-16T08:03:29.270Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/git/git-gitlab-flow.html</loc>
-    
-    <lastmod>2019-04-16T08:01:51.466Z</lastmod>
     
   </url>
   
@@ -457,13 +457,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/ethereum-programming-introduction.html</loc>
-    
-    <lastmod>2018-08-18T00:08:05.863Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/blockchain/ethereum-rationale-introduction.html</loc>
     
     <lastmod>2018-08-18T00:08:05.863Z</lastmod>
@@ -471,14 +464,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/block-chain-ethereum-contract-program.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/ethereum-programming-introduction.html</loc>
+    
+    <lastmod>2018-08-18T00:08:05.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/blockchain/bitcoin-difficulty.html</loc>
     
     <lastmod>2018-08-18T00:08:05.862Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/bitcoin-difficulty.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/block-chain-ethereum-contract-program.html</loc>
     
     <lastmod>2018-08-18T00:08:05.862Z</lastmod>
     
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-touch.html</loc>
+    <loc>https://www.oxysun.cn/linux/ubuntu-user-add-delete.html</loc>
     
     <lastmod>2018-07-18T11:09:55.846Z</lastmod>
     
@@ -653,6 +653,13 @@
   </url>
   
   <url>
+    <loc>https://www.oxysun.cn/photos/data.json</loc>
+    
+    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/manifest.json</loc>
     
     <lastmod>2018-06-16T08:07:36.007Z</lastmod>
@@ -660,9 +667,9 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/data.json</loc>
+    <loc>https://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
-    <lastmod>2018-06-16T08:07:36.007Z</lastmod>
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
   </url>
   
@@ -675,13 +682,6 @@
   
   <url>
     <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
     
