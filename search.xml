@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mac系统查看端口占用的进程]]></title>
+    <url>%2Flinux%2Fmac-find-port-occupy-process.html</url>
+    <content type="text"><![CDATA[概要Mac系统查看端口占用的进程 博客原帖收藏于IT老兵博客 前言在Linux下，查看占用端口的进程可以使用netstat -antpl | grep port，但是在Mac下，这个netstat的功能缩水了（很多命令在Mac下都缩水了），所以怎么查看占用端口的进程呢？ 正文搜索了一遍，感觉可以使用lsof -i tcp:{port} 这个命令来实现，{port} 表示端口号。 1234-i [i] selects the listing of files any of whose Internet address matches the address specified in i. If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files. 查看一下参考中的手册，-i 的参数是用于检索Internet相关的信息，例如地址、协议等，上面那个用法就是检索tcp协议，端口号为指定端口号的句柄。 参考http://man7.org/linux/man-pages/man8/lsof.8.html]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>进程</tag>
+        <tag>mac</tag>
+        <tag>端口占用</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式：职责链模式]]></title>
     <url>%2Fdesign-pattern%2Fchain-of-responsibility.html</url>
     <content type="text"><![CDATA[概要设计模式：职责链模式 博客原帖收藏于IT老兵博客。 前言职责链，chain of responsibility。这篇笔记第一版记录于2015年，那个时候在研究安卓代码的时候，安卓对于事件的传递使用到了职责链。现在研究到了Spring的filter chain。上面两个都是职责链和外观两种设计模式结合在一起使用。这篇笔记主要是结合四人帮的《设计模式》来学习，这本书写的有点深奥了，难懂，需要慢慢来消化。 正文1.意图使多个对象都有机会处理请求，从而避免请求的发送者和接受者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。处理对象需要连成一个链，不确定由谁来处理，不处理需要往下传，处理了也可以继续往下传（安卓的事件传递是处理了就不传了）。请求需要被传递，这个请求可能是原封不动地被传递，也有可能略作修改地去传递，所以，这里处理对象的接口最好也是一致的，继承自一个公共的父类（这个时候可能虚基类就比较合理了）。3.适用性在以下条件下使用Responsibisibility链：• 有多个的对象可以处理一个请求，哪个对象处理该请求运行时刻自动确定。 • 你想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。• 可处理一个请求的对象集合应被动态指定。 可处理一个请求的对象集合应被动态指定。 以上摘录自《设计模式》，奇怪的是《PHP设计模式介绍》这本书没有讲职责链，这个是不是和PHP本身面向对象的能力不足有关呢？这个问题留待以后去验证。我的理解：1.这个请求要可以被传递，那么这些对象最好是有相同的可以接收这样规格请求的接口，例如安卓的事件传递（安卓的事件传递就是一个职责链，哪一层的view消耗了该事件，就返回true，然后这个返回值就向回传递。在职责链前面往往会使用外观模式，对于外部用户，他并不知道后面的职责链，这个是有外观实现者来处理的）。如果接口不一致的话，恐怕就会有些问题，应该每个对象都可以单独接收这个请求，只是要处于某种特定的情况下。2.消耗了请求，请求就不再继续向下传递，而是往回返回了；但其实，个人感觉，没有消耗请求的对象也可以针对请求有所响应。3.每个对象都可以响应请求，也就是请求需要满足一定的条件，所以，对象的顺序是要合理安排的。上面引用的这段，是15年的笔记，记录了当时研究安卓代码时，对这个职责链的理解。 《设计模式》里面这个样例有些绕，需要整理一下思路。 参考http://blog.csdn.net/zhang_xinxiu/article/details/9963305， 职责链模式，这篇文章写的很好。http://blog.csdn.net/hguisu/article/details/7533759， 外观模式，这篇文章写的也很好。]]></content>
@@ -673,8 +686,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -737,8 +750,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>git branch</tag>
         <tag>用法</tag>
+        <tag>git branch</tag>
         <tag>分支</tag>
       </tags>
   </entry>
@@ -875,8 +888,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
