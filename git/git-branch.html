@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="博客博客地址：IT老兵驿站。 Git：git-branch的用法总结。">
+  <meta name="description" content="概要Git：git-branch的用法总结">
 <meta name="keywords" content="Git,git branch,用法,分支">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：git-branch的用法总结">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-branch.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="博客博客地址：IT老兵驿站。 Git：git-branch的用法总结。">
+<meta property="og:description" content="概要Git：git-branch的用法总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-06T03:36:22.640Z">
+<meta property="og:updated_time" content="2019-07-11T02:42:58.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：git-branch的用法总结">
-<meta name="twitter:description" content="博客博客地址：IT老兵驿站。 Git：git-branch的用法总结。">
+<meta name="twitter:description" content="概要Git：git-branch的用法总结">
 
 
 
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-06 11:36:22" itemprop="dateModified" datetime="2019-03-06T11:36:22+08:00">2019-03-06</time>
+                <time title="修改时间：2019-07-11 10:42:58" itemprop="dateModified" datetime="2019-07-11T10:42:58+08:00">2019-07-11</time>
               
             
           </span>
@@ -462,10 +462,11 @@
       
 
       
-        <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
-<p>Git：git-branch的用法总结。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：git-branch的用法总结<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵博客</a></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>git-branch的用法。这个命令使用频度很高，还有一些没有搞明白，在这里总结梳理一下。</p>
 <p>PS：之前的文章题目命名都用空格，以前一直不理解git的官网为什么多加一个“-”，现在明白了，为了用作文章名和题目比较方便，解了一个惑。</p>
+<p>感觉之前的内容总结得还不是很到位，每次在这个地方遇到问题时，还是应该进来再看看，再看看官网，参考参考别的帖子，看看哪里没有整理总结明白，再补充补充。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git branch [--color[=&lt;when&gt;] | --no-color] [-r | -a] [--list] [-v [--abbrev=&lt;length&gt; | --no-abbrev]]</span><br><span class="line">	[--column[=&lt;options&gt;] | --no-column] [--sort=&lt;key&gt;]</span><br><span class="line">	[(--merged | --no-merged) [&lt;commit&gt;]]</span><br><span class="line">	[--contains [&lt;commit]] [--no-contains [&lt;commit&gt;]]</span><br><span class="line">	[--points-at &lt;object&gt;] [--format=&lt;format&gt;] [&lt;pattern&gt;…​] // 列出分支（这个用法有点复杂）</span><br><span class="line">	</span><br><span class="line">git branch [--track | --no-track] [-l] [-f] &lt;branchname&gt; [&lt;start-point&gt;] // 设置分支本地和远程的关系（上流）</span><br><span class="line">git branch (--set-upstream-to=&lt;upstream&gt; | -u &lt;upstream&gt;) [&lt;branchname&gt;] // 设置分支上流</span><br><span class="line">git branch --unset-upstream [&lt;branchname&gt;] // 取消分支上流的设置</span><br><span class="line">git branch (-m | -M) [&lt;oldbranch&gt;] &lt;newbranch&gt; // 重命名分支</span><br><span class="line">git branch (-c | -C) [&lt;oldbranch&gt;] &lt;newbranch&gt; // 拷贝分支</span><br><span class="line">git branch (-d | -D) [-r] &lt;branchname&gt;…​ // 删除分支</span><br><span class="line">git branch --edit-description [&lt;branchname&gt;] //修改分支描述</span><br></pre></td></tr></table></figure>
 <p><code>git branch</code>有以上这么多种用法，原本我看了几遍，也感觉云山雾绕，需要在上面加了一些备注。</p>
 <h2 id="常用实例"><a href="#常用实例" class="headerlink" title="常用实例"></a>常用实例</h2><p><strong>实例：</strong> 展示分支<br>最简单的形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch</span><br><span class="line">* master</span><br></pre></td></tr></table></figure></p>
@@ -479,8 +480,9 @@
 <p><strong>实例：</strong> 查看远程分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -r</span><br><span class="line">  origin/HEAD -&gt; origin/master</span><br><span class="line">  origin/dev</span><br><span class="line">  origin/f_1123</span><br><span class="line">  origin/f_1268</span><br><span class="line">  origin/f_1316</span><br><span class="line">  origin/f_1317</span><br><span class="line">  origin/f_1346</span><br><span class="line">  origin/f_1347</span><br><span class="line">  origin/f_1490</span><br><span class="line">  origin/f_english</span><br><span class="line">  origin/master</span><br></pre></td></tr></table></figure>
 <p>比上面那个指令少了一项<code>master</code>。<br><code>-r</code>的意思是<code>remote</code>，显示远程的分支情况。</p>
-<p><strong>实例：</strong> 修改分支名<br>把<code>master</code>分支名称修改成<code>dev</code>，这里仅仅是举一个例子，正常工作中一般是不应该发生这样的修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master dev</span><br></pre></td></tr></table></figure></p>
-<p><strong>实例：</strong> 删除分支<br>删除dev分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure></p>
+<p><strong>实例：</strong> 修改分支名<br>把<code>master</code>分支名称修改成<code>dev</code>，这里仅仅是举一个例子，正常工作中一般是不应该发生这样的修改，这里只是修改了本地的分支名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master dev</span><br></pre></td></tr></table></figure></p>
+<p><strong>实例：</strong> 删除分支<br>删除dev分支，-d是删除，-D是强制删除，这里只是删除本地的分支，并不是删除远程的分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure></p>
+<p>删除远程分支的命令如下，需要push到远程，这里涉及到了git-push这个指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push &lt;remote_name&gt; --delete &lt;branch_name&gt;</span><br><span class="line">$ git push &lt;remote_name&gt; :&lt;branch_name&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>实例：</strong> 仅显示分支列表，区别于-v参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chaiyudeMacBook-Pro:wzu_sports_android_full chaiyu$ git branch --list</span><br><span class="line">  hotfix</span><br><span class="line">  master</span><br><span class="line">* t_1546</span><br></pre></td></tr></table></figure></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://git-scm.com/docs/git-branch。" target="_blank" rel="noopener">https://git-scm.com/docs/git-branch。</a></p>
 
@@ -982,7 +984,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">1.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">3.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用实例"><span class="nav-number">3.2.</span> <span class="nav-text">常用实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">4.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用实例"><span class="nav-number">4.2.</span> <span class="nav-text">常用实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
