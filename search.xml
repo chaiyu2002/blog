@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[iOS 设计主题（迟来的总结）]]></title>
+    <url>%2Fios%2Fios-themes.html</url>
+    <content type="text"><![CDATA[摘要iOS 设计主题（迟来的总结） 博客原帖收藏于IT老兵博客。 前言尽管之前写过iOS的程序，但是没有像当年（注1）学习安卓那样，去学习一下iOS的设计理念，等了这么久，今天在这里补充一下对设计理念的学习。 这篇文章感觉比较重要，我尽量逐字翻译一下，感觉这样学习得就会更加深刻一些。 注1： 这里是指2013年，记得那会学习安卓的设计理念，有一句话让我印象很深，让便捷流于手纸，而安卓是偷师于苹果的设计，这里更需要好好研究一下苹果的设计了。 正文iOS Design ThemesAs an app designer, you have the opportunity to deliver an extraordinary product that rises to the top of the App Store charts. To do so, you’ll need to meet high expectations for quality and functionality. 作为一个 app 的设计者，你是拥有机会去交付一个非常特别的产品，可以跃升到 App Store 图表的顶部的（这里应该是指 App Store 的排行吧）。为了做到这个，你需要去满足对于质量和功能性的很高的期望。 Three primary themes differentiate iOS from other platforms: iOS相较于其他平台的三个主要的不同的主题： Clarity. Throughout the system, text is legible at every size, icons are precise and lucid, adornments are subtle and appropriate, and a sharpened focus on functionality motivates the design. Negative space, color, fonts, graphics, and interface elements subtly highlight important content and convey interactivity. 清晰。遍历整个系统，text 在每一个尺寸上是清晰的，icons 是精确和清晰的，adornments 是微妙和合适的，一个轮廓很清晰在功能上的聚焦激励着设计。负空间（怎么理解？），颜色，字体，图形，和界面元素微妙地使重要内容高亮并且传递着互动性。这里的几个单词需要单独学习一下：legiblelucid Deference. Fluid motion and a crisp, beautiful interface help people understand and interact with content while never competing with it. Content typically fills the entire screen, while translucency and blurring often hint at more. Minimal use of bezels, gradients, and drop shadows keep the interface light and airy, while ensuring that content is paramount. 顺从。流动性的动作和一个美观的界面会帮助人们理解并且和内容进行互动，而永远不用和它竞争（这里怎么理解？就是这个设计让用户很排斥？）。内容很典型地填充了整个屏幕，而半透明和模糊经常给予更多的提示。最小程度地使用 bezels（怎么理解？），gradients， 丢弃掉 shadows 来让界面变得 light 和 airy，保证内容是最重要的。deference Depth. Distinct visual layers and realistic motion convey hierarchy, impart vitality, and facilitate understanding. Touch and discoverability heighten delight and enable access to functionality and additional content without losing context. Transitions provide a sense of depth as you navigate through content. 深度。明确的可视化的层级和现实化的动作传递着层级，给予活力，和便于理解。触摸和可发现性提高了乐趣，使得可以对于功能的和额外的内容进行访问，而不丢失上下文。过渡提供了深度的感觉，当你在内容间浏览的时候。 总结总体感觉，这篇文章全文翻译起来有些难度，还有一些术语没有搞清楚，还需要继续补充。 参考https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>iOS</tag>
+        <tag>主题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mac系统查看端口占用的进程]]></title>
     <url>%2Flinux%2Fmac-find-port-occupy-process.html</url>
     <content type="text"><![CDATA[概要Mac系统查看端口占用的进程 博客原帖收藏于IT老兵博客 前言在Linux下，查看占用端口的进程可以使用netstat -antpl | grep port，但是在Mac下，这个netstat的功能缩水了（很多命令在Mac下都缩水了），所以怎么查看占用端口的进程呢？ 正文搜索了一遍，感觉可以使用lsof -i tcp:{port} 这个命令来实现，{port} 表示端口号。 1234-i [i] selects the listing of files any of whose Internet address matches the address specified in i. If no address is specified, this option selects the listing of all Internet and x.25 (HP-UX) network files. 查看一下参考中的手册，-i 的参数是用于检索Internet相关的信息，例如地址、协议等，上面那个用法就是检索tcp协议，端口号为指定端口号的句柄。 参考http://man7.org/linux/man-pages/man8/lsof.8.html]]></content>
@@ -272,20 +284,6 @@
   </entry>
   <entry>
     <title><![CDATA[RAC学习笔记之一：KVC（一）]]></title>
-    <url>%2Fios%2Fios-themes.html</url>
-    <content type="text"><![CDATA[摘要RAC学习笔记之一：KVC（一） 博客原帖收藏于IT老兵博客。 前言学习RAC，需要先去了解KVC和KVO，这里对KVC进行一下总结。 正文KVC参考苹果官网的介绍 You typically use accessor methods to gain access to an object’s properties. A get accessor (or getter) returns the value of a property. A set accessor (or setter) sets the value of a property. In Objective-C, you can also directly access a property’s underlying instance variable. Accessing an object property in any of these ways is straightforward, but requires calling on a property-specific method or variable name. As the list of properties grows or changes, so also must the code which accesses these properties. In contrast, a key-value coding compliant object provides a simple messaging interface that is consistent across all of its properties.Key-value coding is a fundamental concept that underlies many other Cocoa technologies, such as key-value observing, Cocoa bindings, Core Data, and AppleScript-ability. Key-value coding can also help to simplify your code in some cases. 一言以蔽之，这一段的意思是编写传统的获取和设置属性的方法（getter和setter）会随着属性值的增加而变得越来越枯燥，所以OC提供了一种直接根据属性名设置值的方法，这种方法就叫做KVC，Key-value coding。 下面摘录一段李刚的《疯狂iOS》，这段例子讲的很清楚，所以摘录在下面： 5.5.1 简单的 KVC最基本的 KVC 由 NSKeyValueCoding 协议提供支持，最基本的操作属性的两个方法如下。setValue：属性值 forKey：属性名：为指定属性设置值。valueForKey：属性名：获取指定属性的值。例如，如下程序定义了 FKUser 类的接口部分。程序清单: codes/05/5.5/FKUser. H1234567#import &lt;Foundation/ Foundation. H&gt;@interface FKUser: NSobject//使用@property 定义 3 个 property@property (nonatomic, copy) NSString* name;@property (nonatomic, copy) NSString* pass;@property (nonatomic, copy) NSDate* birth;@end 上面程序定义了 FKUser 类使用@property 定义 3 个 property，接下来应该为该类定义实现部分，实现部分使用@synthesize 为这 3 个 property 合成 setter 和 getter 方法。类实现部分代码非常简单，故此处不再给出。下面使用 KVC 来设置 FKUser 对象的属性，以及访问 FKUser 对象的属性。程序代码如下:123456789101112131415161718程序清单: codes/05/5.5/FKUserTest.m#import &quot;FKUser. H&quot;int main (int argc，char★argv [])&#123; @autoreleasepool &#123; //创建 FKUser 对象 FKUser* user = [[FKUser alloc] init]; // 使用 KVC 方式为 name 属性设置属性值 [user setValue: @“孙悟空”forKey: @&quot;name&quot;]; //使用 KVC 方式为 pass 属性设置属性值 [user setValue: @&quot;1455&quot; forKey: @&quot;pass&quot;]; //使用 KVC 方式为 birth 属性设置属性值 [user setValue: [[NSDate alloc] init] forKey: @&quot;birth&quot;]; //使用KVC 获取 FKUser 对象的属性 NSLog (@&quot;user 的 name 为：%@“，【user valueForKey: @&quot;name&quot;]); NSLog (@&quot;user 的 pass 为：%@“，【user valueForKey: @&quot;pass&quot;]); NSLog (@&quot;user 的 birth 为：%@”，【user valueForKey: @&quot;birth&quot;]); 上面程序中前 3 行粗体字代码使用 KVC 方式为属性设置属性值，后 3 行粗体字代码使用 KVC 模式获取指定属性的值。编译、运行上面的程序，看到如下输出：123user 的 name 为：孙悟空user 的 pass 为：1455user 的 birth 为：2013-04-08 16:55:49 +0000 在 KVC 编程方式中，无论调用 setValue: forKey 方法，还是调用 valueForKey：方法，都是通过 NSString 对象来指定被操作属性的，其中 forKey：标签用于传入属性名。对于 setValue：属性值 forKey@”name“；代码，底层的执行机制如下。 (1) 程序优先考虑调用“setName：属性值；”代码通过 setter 方法完成设置。 (2) 如果该类没有 setName：方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际上就是对 name 成员变量赋值。 (3) 如果该类既没有 setName：方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为 name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是对 name 成员变量赋值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 setValue: forUndefinedKey：方法。默认的 setValue: forUndefinedKey：方法实现就是引发一个异常，这个异常将会| 导致程序因为异常结束。对于“valueforKey@”name”；，”代码，底层的执行机制如下。 (1) 程序优先考虑调用“name；”代码来获取该 getter 方法的返回值。 (2) 如果该类没有 name 方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC代码底层实际就是返回_ name 成员变量的值。 (3) 如果该类既没有 name 方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是返回 name 成员变量的值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 valueforUndefinedKey：方法。 总结KVC的内容有点多，一章总结不完，这篇文章基本都是摘录了，因为李刚的文章写得相当清楚，那就通过摘录来加深印象。 参考https://developer.apple.com/documentation/foundation/object_runtime/nskeyvaluecoding?language=objchttps://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.htmlhttps://www.objc.io/issues/7-foundation/key-value-coding-and-observing/]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>OC</tag>
-        <tag>ReactiveObjC</tag>
-        <tag>ReactiveCocoa</tag>
-        <tag>KVC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RAC学习笔记之一：KVC（一）]]></title>
     <url>%2Fios%2Fios-oc-kvc-1.html</url>
     <content type="text"><![CDATA[摘要RAC学习笔记之一：KVC（一） 博客原帖收藏于IT老兵博客。 前言学习RAC，需要先去了解KVC和KVO，这里对KVC进行一下总结。 正文KVC参考苹果官网的介绍 You typically use accessor methods to gain access to an object’s properties. A get accessor (or getter) returns the value of a property. A set accessor (or setter) sets the value of a property. In Objective-C, you can also directly access a property’s underlying instance variable. Accessing an object property in any of these ways is straightforward, but requires calling on a property-specific method or variable name. As the list of properties grows or changes, so also must the code which accesses these properties. In contrast, a key-value coding compliant object provides a simple messaging interface that is consistent across all of its properties.Key-value coding is a fundamental concept that underlies many other Cocoa technologies, such as key-value observing, Cocoa bindings, Core Data, and AppleScript-ability. Key-value coding can also help to simplify your code in some cases. 一言以蔽之，这一段的意思是编写传统的获取和设置属性的方法（getter和setter）会随着属性值的增加而变得越来越枯燥，所以OC提供了一种直接根据属性名设置值的方法，这种方法就叫做KVC，Key-value coding。 下面摘录一段李刚的《疯狂iOS》，这段例子讲的很清楚，所以摘录在下面： 5.5.1 简单的 KVC最基本的 KVC 由 NSKeyValueCoding 协议提供支持，最基本的操作属性的两个方法如下。setValue：属性值 forKey：属性名：为指定属性设置值。valueForKey：属性名：获取指定属性的值。例如，如下程序定义了 FKUser 类的接口部分。程序清单: codes/05/5.5/FKUser. H1234567#import &lt;Foundation/ Foundation. H&gt;@interface FKUser: NSobject//使用@property 定义 3 个 property@property (nonatomic, copy) NSString* name;@property (nonatomic, copy) NSString* pass;@property (nonatomic, copy) NSDate* birth;@end 上面程序定义了 FKUser 类使用@property 定义 3 个 property，接下来应该为该类定义实现部分，实现部分使用@synthesize 为这 3 个 property 合成 setter 和 getter 方法。类实现部分代码非常简单，故此处不再给出。下面使用 KVC 来设置 FKUser 对象的属性，以及访问 FKUser 对象的属性。程序代码如下:123456789101112131415161718程序清单: codes/05/5.5/FKUserTest.m#import &quot;FKUser. H&quot;int main (int argc，char★argv [])&#123; @autoreleasepool &#123; //创建 FKUser 对象 FKUser* user = [[FKUser alloc] init]; // 使用 KVC 方式为 name 属性设置属性值 [user setValue: @“孙悟空”forKey: @&quot;name&quot;]; //使用 KVC 方式为 pass 属性设置属性值 [user setValue: @&quot;1455&quot; forKey: @&quot;pass&quot;]; //使用 KVC 方式为 birth 属性设置属性值 [user setValue: [[NSDate alloc] init] forKey: @&quot;birth&quot;]; //使用KVC 获取 FKUser 对象的属性 NSLog (@&quot;user 的 name 为：%@“，【user valueForKey: @&quot;name&quot;]); NSLog (@&quot;user 的 pass 为：%@“，【user valueForKey: @&quot;pass&quot;]); NSLog (@&quot;user 的 birth 为：%@”，【user valueForKey: @&quot;birth&quot;]); 上面程序中前 3 行粗体字代码使用 KVC 方式为属性设置属性值，后 3 行粗体字代码使用 KVC 模式获取指定属性的值。编译、运行上面的程序，看到如下输出：123user 的 name 为：孙悟空user 的 pass 为：1455user 的 birth 为：2013-04-08 16:55:49 +0000 在 KVC 编程方式中，无论调用 setValue: forKey 方法，还是调用 valueForKey：方法，都是通过 NSString 对象来指定被操作属性的，其中 forKey：标签用于传入属性名。对于 setValue：属性值 forKey@”name“；代码，底层的执行机制如下。 (1) 程序优先考虑调用“setName：属性值；”代码通过 setter 方法完成设置。 (2) 如果该类没有 setName：方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际上就是对 name 成员变量赋值。 (3) 如果该类既没有 setName：方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为 name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是对 name 成员变量赋值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 setValue: forUndefinedKey：方法。默认的 setValue: forUndefinedKey：方法实现就是引发一个异常，这个异常将会| 导致程序因为异常结束。对于“valueforKey@”name”；，”代码，底层的执行机制如下。 (1) 程序优先考虑调用“name；”代码来获取该 getter 方法的返回值。 (2) 如果该类没有 name 方法，KVC 机制会搜索该类名为_ name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC代码底层实际就是返回_ name 成员变量的值。 (3) 如果该类既没有 name 方法，也没有定义_ name 成员变量，KVC 机制会搜索该类名为name 的成员变量，无论该成员变量是在类接口部分定义，还是在类实现部分定义，也无论用哪个访问控制符修饰，这条 KVC 代码底层实际就是返回 name 成员变量的值。 (4) 如果上面 3 条都没有找到，系统将会执行该对象的 valueforUndefinedKey：方法。 总结KVC的内容有点多，一章总结不完，这篇文章基本都是摘录了，因为李刚的文章写得相当清楚，那就通过摘录来加深印象。 参考https://developer.apple.com/documentation/foundation/object_runtime/nskeyvaluecoding?language=objchttps://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.htmlhttps://www.objc.io/issues/7-foundation/key-value-coding-and-observing/]]></content>
       <categories>
@@ -534,9 +532,9 @@
         <category>Python</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Ubuntu16.04</tag>
         <tag>升级</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -947,20 +945,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -968,9 +952,23 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
         <tag>依赖包</tag>
+        <tag>波浪字符</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
+        <tag>依赖包</tag>
+        <tag>波浪字符</tag>
       </tags>
   </entry>
   <entry>
@@ -1125,20 +1123,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
-    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
-    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>database</tag>
-        <tag>create</tag>
-        <tag>创建数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
@@ -1150,6 +1134,20 @@
         <tag>collection</tag>
         <tag>数据集合</tag>
         <tag>创建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>database</tag>
+        <tag>create</tag>
+        <tag>创建数据库</tag>
       </tags>
   </entry>
 </search>
