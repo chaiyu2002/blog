@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
-<meta name="keywords" content="Git,用法,checkout">
+  <meta name="description" content="摘要Java：Shiro+SpringMVC的集成实践。">
+<meta name="keywords" content="Java,Shiro,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git：git-checkout的用法总结（1）">
-<meta property="og:url" content="https://www.oxysun.cn/git/git-checkout-1.html">
+<meta property="og:title" content="Java：Shiro+SpringMVC的集成实践">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-shiro-springmvc-integration.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
+<meta property="og:description" content="摘要Java：Shiro+SpringMVC的集成实践。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-04T01:10:52.703Z">
+<meta property="og:updated_time" content="2019-07-24T13:24:30.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git：git-checkout的用法总结（1）">
-<meta name="twitter:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。Git的git-checkout的用法总结。">
+<meta name="twitter:title" content="Java：Shiro+SpringMVC的集成实践">
+<meta name="twitter:description" content="摘要Java：Shiro+SpringMVC的集成实践。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/git/git-checkout-1.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-shiro-springmvc-integration.html"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Git：git-checkout的用法总结（1） | IT老兵驿站</title>
+  <title>Java：Shiro+SpringMVC的集成实践 | IT老兵驿站</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/git/git-checkout-1.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-shiro-springmvc-integration.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="荒于嬉">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git：git-checkout的用法总结（1）
+          <h1 class="post-title" itemprop="name headline">Java：Shiro+SpringMVC的集成实践
               
             
           </h1>
@@ -386,24 +386,12 @@
                 
               
 
-              <time title="创建时间：2018-07-17 23:00:00" itemprop="dateCreated datePublished" datetime="2018-07-17T23:00:00+08:00">2018-07-17</time>
+              <time title="创建时间：2019-07-24 21:24:00 / 修改时间：21:24:30" itemprop="dateCreated datePublished" datetime="2019-07-24T21:24:00+08:00">2019-07-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-04 09:10:52" itemprop="dateModified" datetime="2018-08-04T09:10:52+08:00">2018-08-04</time>
               
             
           </span>
@@ -420,7 +408,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -462,28 +450,40 @@
       
 
       
-        <h2 id="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><a href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。" class="headerlink" title="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"></a>原帖收藏于<a href="https://www.oxysun.cn/git/git-checkout-1.html">IT老兵驿站</a>，传递一个IT老兵在凋零前的光和氧。</h2><p>Git的git-checkout的用法总结。<br><a id="more"></a></p>
-<h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p><code>git-checkout</code>是<code>Git</code>最常用的命令之一，但又是有些复杂的命令，总会感觉有些用不明白，用不明白的原因应该是没有深度地、全面地理解一下，所以要对它好好整理一下。</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><code>checkout</code>在<code>CVS</code>和<code>SVN</code>中都是检出的意思，从版本库检出一个版本，在<code>Git</code>中就不是这么简单了。手册上是这样介绍的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git-checkout - Switch branches or restore working tree files</span><br></pre></td></tr></table></figure>
-<p>在<code>Git</code>里面，<code>checkout</code>用于切换分支或者恢复工作树的文件。</p>
-<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p><strong>问题：</strong>线上分支出现了一个问题，急需要修复（可以参看Git Flow一章）。<br><strong>步骤：</strong></p>
-<ol>
-<li>需要创建一个hotfix分支，参考语法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b|-B &lt;new_branch&gt; [&lt;start point&gt;]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>实际语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b hotfix-1.2.1 master</span><br></pre></td></tr></table></figure></p>
-<p>这个时候分支是本地分支，并没有提交到服务器上去，如果这个分支已经被创建，这个命令会失败，这个时候，如果想要重置这个分支，需要使用<code>-B</code>参数。</p>
-<ol start="2">
-<li>查看分支：<code>git branch -av</code></li>
-<li>进行修改工作</li>
-<li>……</li>
-</ol>
-<p><strong>问题：</strong>本地发生了一些修改，但是想放弃这些修改，回退到获取这个版本初始时的状态。<br>参考语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout [&lt;tree-ish&gt;] [--] &lt;pathspec&gt;…​</span><br></pre></td></tr></table></figure></p>
-<p>实际语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout 26a2e80 # 26a2e80 是一个commit号，这个命令会把index区域和工作区域的内容都更新</span><br><span class="line">git checkout -- README # README是想恢复的文件名，恢复成index区域里面的内容，为什么要加“--”呢，这个是为了告诉Git，这是一个文件而不是一个分支</span><br><span class="line">Git checkout . # 从index区域恢复所有文件</span><br></pre></td></tr></table></figure></p>
-<p>这个命令很灵活，既可以带一个<code>commit</code>号，又可以带着一个路径，<code>tree-ish</code> 可以理解成一个<code>commit</code>号，就是恢复到某一个<code>commit</code>号，<code>index</code>就是暂存区，这里要理解<code>Git</code>的三个区域，如果这个还不明白，那需要单开一篇文章去讲了。</p>
-<p>以上是checkout比较常用的两个用法，逐步整理其他的用法。</p>
-<p>参考：<a href="https://git-scm.com/docs/git-checkout。" target="_blank" rel="noopener">https://git-scm.com/docs/git-checkout。</a><br><a href="https://stackoverflow.com/questions/14460595/git-checkout-with-dot。" target="_blank" rel="noopener">https://stackoverflow.com/questions/14460595/git-checkout-with-dot。</a></p>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>Java：Shiro+SpringMVC的集成实践。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖位于<a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>个人感觉，Shiro的官网有一个问题，讲的不够清楚，尽管看上去好像讲的挺明白，但是我总是感觉很多地方不够清楚，事实上，在阅读了很多帖子之后，发现很多人都对这一点存在疑问，那就不是我一个人的问题了。</p>
+<p>Shiro的官网缺乏完整的例子，而且我所处理的项目是Spring的项目，如何清楚地集成在一起，似乎还没有看到，很多地方都需要摸索，看了张开涛的博客，下面一样有很多人存有疑问。</p>
+<p>之前研究这个，花了几天的时间研究理论，感觉自己已经明白了（这个感觉在另外一篇帖子《Java：Shiro的架构学习笔记》里面有提到），实际上是，纸上得来终觉浅，绝知此事要躬行。</p>
+<p>这篇文章结合着自己的例子，把所理解到的东西做一个总结，以备日后查看，也给需要的朋友们一个参考。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>项目用的是XML配置，至于注解如何配置，暂时还没有时间去研究。</p>
+<p>项目中定义一个spring-shiro.xml文件，配置在classpath里面，可以被系统读取到，这块涉及Spring读取配置文件的功能，官网是写在了applicationContext.xml文件里面，然后在web.xml里面定义filter，现在做项目，似乎已经很少用到这个web.xml文件，基本都是定义在spring-mvc.xml这个文件里面，这里给shiro单独定义了一个配置文件，原理是一样的。</p>
+<p>先定义filter：</p>
+<pre><code>&lt;bean id=&quot;shiroFilter&quot; class=&quot;org.apache.shiro.spring.web.ShiroFilterFactoryBean&quot;&gt;
+    &lt;property name=&quot;securityManager&quot; ref=&quot;securityManager&quot;/&gt;
+&lt;/bean&gt;
+</code></pre><p>这个将会构造一个shiroFilter，参数是securityManager。</p>
+<p>定义securityManager：</p>
+<pre><code>&lt;bean id=&quot;securityManager&quot; class=&quot;org.apache.shiro.web.mgt.DefaultWebSecurityManager&quot;&gt;
+    &lt;property name=&quot;realm&quot; ref=&quot;tokenRealm&quot; /&gt;
+    &lt;property name=&quot;cacheManager&quot; ref=&quot;cacheManager&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;sessionManager&quot; ref=&quot;sessionManager&quot; /&gt;
+    &lt;property name=&quot;subjectFactory&quot; ref=&quot;subjectFactory&quot;/&gt; 
+    &lt;property name=&quot;subjectDAO.sessionStorageEvaluator.sessionStorageEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;!-- By default the servlet container sessions will be used. Uncomment 
+        this line to use shiro&apos;s native sessions (see the JavaDoc for more): --&gt;
+    &lt;property name=&quot;sessionMode&quot; value=&quot;http&quot;/&gt;
+&lt;/bean&gt;
+</code></pre><p>这里构造了securityManager，并且传递了6个参数给它，每个参数可以是自己写的继承类，也可以是默认的类，这里涉及一些业务隐私的问题，不能都贴出来了。</p>
+<p>第一个tokenRealm是用于进行认证的组件。</p>
+<pre><code>&lt;bean id=&quot;tokenRealm&quot; class=&quot;xx.xx.xx.TokenRealm&quot;&gt;
+    &lt;property name=&quot;credentialsMatcher&quot; ref=&quot;credentialsMatcher&quot;/&gt;  
+&lt;/bean&gt;
+</code></pre><p>参数是自定义的一个凭证匹配器。<br>这里需要覆写两个方法：<br><code>protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException</code> 返回认证信息。<br>和<br><code>protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)</code> 返回授权信息。<br>这个地方之前一直没有搞明白，是最让我困惑的地方，doGetAuthenticationInfo的第一个参数就是login方法送过来的token，一般这个token带有username和password，这里根据这个用户名去把数据库把用户的密码取出来，然后构造一个<code>SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());</code>返回，然后会交由匹配器去匹配，匹配器主要匹配第二个参数（原型是：SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)），即凭证是否相等。</p>
+<p>而自定义的匹配器大体是下面这样，覆写匹配的函数（增加了缓存来保存尝试次数）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override  </span><br><span class="line">public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) &#123;  </span><br><span class="line">    String username = (String) token.getPrincipal();  </span><br><span class="line">    AtomicInteger retryCount = loginRetryCache.get(username);  </span><br><span class="line">    System.out.println(&quot;重试次数：&quot; + retryCount);</span><br><span class="line">    if (retryCount != null &amp;&amp; retryCount.intValue() &gt;= maxRetryCount) &#123;</span><br><span class="line">        throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    boolean matches = super.doCredentialsMatch(token, info);  </span><br><span class="line">    if (matches) &#123;  </span><br><span class="line">        //clear retry data  </span><br><span class="line">        System.out.println(&quot;清除重试次数缓存&quot;);</span><br><span class="line">        if (retryCount != null) &#123;</span><br><span class="line">            loginRetryCache.remove(username);  </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (null == retryCount) &#123;  </span><br><span class="line">            retryCount = new AtomicInteger(1);  </span><br><span class="line">            loginRetryCache.put(username, retryCount);  </span><br><span class="line">            System.out.println(&quot;插入缓存，失败次数：&quot; + retryCount);</span><br><span class="line">        &#125; else if (retryCount.incrementAndGet() &gt;= maxRetryCount) &#123;  </span><br><span class="line">            log.warn(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;);  </span><br><span class="line">            throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        </span><br><span class="line">        retryCount = loginRetryCache.get(username);</span><br><span class="line">        System.out.println(&quot;认证失败，失败次数：&quot; + retryCount);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在login完成后，Shiro其实会返回给客户端一个JSESSIONID，并且会在缓存中保存关于这个会话的一些信息，这些会话信息会被定期清理（由调度任务15分钟或者是下一次访问时判断是否过期）或者是由logout方法主动注销掉。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>初步总结了一下Shiro的用法，实践了一天，总结了一天，终于感觉搞明白了，使用Shiro的难度主要在于牵扯的类比较多，而且文档说的不是太清楚，需要自己反复地实践。这也可能说明它设计得很灵活，一般设计得很灵活的东西，都是不容易掌握，但是，一旦掌握了，就非常得方便。<br>这篇帖子还会不断更新，直到把这个地方的概念全部梳理清楚。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/10-minute-tutorial.html" target="_blank" rel="noopener">https://shiro.apache.org/10-minute-tutorial.html</a><br><a href="https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html" target="_blank" rel="noopener">https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html</a><br><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a></p>
 
       
     </div>
@@ -508,11 +508,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/用法/" rel="tag"># 用法</a>
+            <a href="/tags/Shiro/" rel="tag"># Shiro</a>
           
-            <a href="/tags/checkout/" rel="tag"># checkout</a>
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
           
         </div>
       
@@ -525,8 +525,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/linux/shell-command-top.html" rel="next" title="Linux下shell命令用法及常见用例：top">
-                <i class="fa fa-chevron-left"></i> Linux下shell命令用法及常见用例：top
+              <a href="/ios/ios-themes.html" rel="next" title="iOS 设计主题（迟来的总结）">
+                <i class="fa fa-chevron-left"></i> iOS 设计主题（迟来的总结）
               </a>
             
           </div>
@@ -534,10 +534,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/thinking_in_programmer_life/full-stack-programmer.html" rel="prev" title="程序员晋升之路：生存意识、服务意识--IT老兵的心得">
-                程序员晋升之路：生存意识、服务意识--IT老兵的心得 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -991,7 +987,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><span class="nav-number">1.</span> <span class="nav-text">原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初衷"><span class="nav-number"></span> <span class="nav-text">初衷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number"></span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实例"><span class="nav-number"></span> <span class="nav-text">实例</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
