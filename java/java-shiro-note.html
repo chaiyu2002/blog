@@ -108,21 +108,21 @@
 
 
 
-  <meta name="description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。Java：Shiro的架构学习笔记。">
+  <meta name="description" content="概要Java：Shiro的架构学习笔记。">
 <meta name="keywords" content="Java,shiro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：Shiro的架构学习笔记">
 <meta property="og:url" content="https://www.oxysun.cn/java/java-shiro-note.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。Java：Shiro的架构学习笔记。">
+<meta property="og:description" content="概要Java：Shiro的架构学习笔记。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://shiro.apache.org/assets/images/ShiroBasicArchitecture.png">
-<meta property="og:image" content="https://shiro.apache.org/assets/images/ShiroArchitecture.png">
-<meta property="og:updated_time" content="2018-08-18T00:08:05.865Z">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n">
+<meta property="og:updated_time" content="2019-07-18T03:29:07.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：Shiro的架构学习笔记">
-<meta name="twitter:description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。Java：Shiro的架构学习笔记。">
-<meta name="twitter:image" content="https://shiro.apache.org/assets/images/ShiroBasicArchitecture.png">
+<meta name="twitter:description" content="概要Java：Shiro的架构学习笔记。">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc">
 
 
 
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-18 08:08:05" itemprop="dateModified" datetime="2018-08-18T08:08:05+08:00">2018-08-18</time>
+                <time title="修改时间：2019-07-18 11:29:07" itemprop="dateModified" datetime="2019-07-18T11:29:07+08:00">2019-07-18</time>
               
             
           </span>
@@ -465,9 +465,10 @@
       
 
       
-        <h2 id="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。"><a href="#原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。" class="headerlink" title="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。"></a>原帖位于<a href="https://www.oxysun.cn/java/java-shiro-note.html">IT老兵博客</a>，沉淀着一个IT老兵对于这个行业的认知。</h2><p>Java：Shiro的架构学习笔记。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Java：Shiro的架构学习笔记。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵博客</a></p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>张开涛的第一章 Shiro简介——《跟我学Shiro》，其实是解读了一下<a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">Shiro的架构</a>这篇文章，本着寻根究底的态度，我再一次去阅读这篇文章。为什么说是再一次呢？因为之前读过好几次了，不过就是没有完全理解明白，自己也说不好卡在哪里了，包括张开涛的文章，我也读过两遍了，这次第三遍读，一下子豁然开朗，然后不明白之前为啥就没读明白。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="3个主要的概念：Subject-SecurityManager和Realms。"><a href="#3个主要的概念：Subject-SecurityManager和Realms。" class="headerlink" title="3个主要的概念：Subject, SecurityManager和Realms。"></a>3个主要的概念：<code>Subject</code>, <code>SecurityManager</code>和<code>Realms</code>。</h2><p><img src="https://shiro.apache.org/assets/images/ShiroBasicArchitecture.png" alt="这里写图片描述"></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="3个主要的概念：Subject-SecurityManager和Realms。"><a href="#3个主要的概念：Subject-SecurityManager和Realms。" class="headerlink" title="3个主要的概念：Subject, SecurityManager和Realms。"></a>3个主要的概念：<code>Subject</code>, <code>SecurityManager</code>和<code>Realms</code>。</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc" alt="这里写图片描述"></p>
 <p><code>Subject</code>可以是一个用户，但不仅仅可以代表一个用户，所有对这个系统的外部请求的主体都可以看成是一个<code>Subject</code>，例如一个<code>service</code>，这里是做了一个抽象概括的设计，这个我能理解，如果你理解不了的话，那说明你还没有接触过相关的业务，例如<code>SSO</code>，那就先把它理解成一个用户，也没有关系。将来总有一天，你会明白，会回来和我一起唱这首《当当当》。</p>
 <p><code>SecurityManager</code> Shiro设计的核心的逻辑都在这里面，但是，我们应该可以先不理会它是怎么工作的，先把它当做一个黑匣子，它有它自己运行的逻辑。</p>
 <p><code>Realms</code> 这个单词的意思是领域，范围。原文这么说：</p>
@@ -478,7 +479,7 @@
 <p>In this sense a Realm is essentially a security-specific DAO: it encapsulates connection details for data sources and makes the associated data available to Shiro as needed. When configuring Shiro, you must specify at least one Realm to use for authentication and/or authorization. The SecurityManager may be configured with multiple Realms, but at least one is required.</p>
 </blockquote>
 <p>就是说和安全相关数据（<code>security-specific</code>）打交道的是这个对象，有关认证、授权都是通过它来打交道，或者说，通过不同的realm来和相关的“机构”（打个比方）打交道，每个机构有自己的<code>realm</code>，再或者说，<code>realm</code>可以理解成<code>DAO</code>，去访问相关的数据。</p>
-<h2 id="更具体的分析："><a href="#更具体的分析：" class="headerlink" title="更具体的分析："></a>更具体的分析：</h2><p><img src="https://shiro.apache.org/assets/images/ShiroArchitecture.png" alt="这里写图片描述"></p>
+<h2 id="更具体的分析："><a href="#更具体的分析：" class="headerlink" title="更具体的分析："></a>更具体的分析：</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n" alt="这里写图片描述"></p>
 <blockquote>
 <p>Subject：A security-specific ‘view’ of the entity (user, 3rd-party service, cron job, etc) currently interacting with the software.</p>
 </blockquote>
@@ -492,12 +493,14 @@
 <blockquote>
 <p>SessionManager (org.apache.shiro.session.mgt.SessionManager)<br>The SessionManager knows how to create and manage user Session lifecycles to provide a robust Session experience for users in all environments. This is a unique feature in the world of security frameworks - Shiro has the ability to natively manage user Sessions in any environment, even if there is no Web/Servlet or EJB container available. By default, Shiro will use an existing session mechanism if available, (e.g. Servlet Container), but if there isn’t one, such as in a standalone application or non-web environment, it will use its built-in enterprise session management to offer the same programming experience. The SessionDAO exists to allow any datasource to be used to persist sessions.<br><br><br>SessionDAO (org.apache.shiro.session.mgt.eis.SessionDAO)<br>The SessionDAO performs Session persistence (CRUD) operations on behalf of the SessionManager. This allows any data store to be plugged in to the Session Management infrastructure.</p>
 </blockquote>
-<p><code>SessionManager</code>：<code>session</code>管理器，<code>Shiro</code>没有完全依赖<code>HTTP</code>的<code>session</code>，而是设计了一个独立的<code>session</code>。<br><code>SessionDAO</code>：<code>session</code>的<code>DAO</code>，用来处理session数据的保存。</p>
+<p><code>SessionManager</code>：<code>session</code>管理器，<code>Shiro</code>没有完全依赖<code>HTTP</code>的<code>session</code>，而是设计了一个独立的<code>session</code>。</p>
+<p><code>SessionDAO</code>：<code>session</code>的<code>DAO</code>，用来处理session数据的保存。</p>
 <p><code>CacheManager</code>：缓存管理器。</p>
 <p><code>Cryptography</code>：加密模块。</p>
 <p><code>Realms：</code>上面介绍过。</p>
 <h2 id="SecurityManager"><a href="#SecurityManager" class="headerlink" title="SecurityManager"></a>SecurityManager</h2><p>这个是核心，需要反复理解的是这个，下面又用了一些篇幅来介绍这个，不过在没有完全实践之前，总还是不明白，所以就先不总结了。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>又阅读了一遍架构这篇文章，结合着张开涛的文章，感觉明白了不少，现在感觉<code>Shiro</code> 还是挺简单的，有个两三天应该就大体理解了，不明白当时怎么就堵住了，陷入了思维的死胡同。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a></p>
 
       
     </div>
@@ -619,7 +622,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -997,7 +1000,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。"><span class="nav-number">1.</span> <span class="nav-text">原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的认知。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number"></span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3个主要的概念：Subject-SecurityManager和Realms。"><span class="nav-number">1.</span> <span class="nav-text">3个主要的概念：Subject, SecurityManager和Realms。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更具体的分析："><span class="nav-number">2.</span> <span class="nav-text">更具体的分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SecurityManager"><span class="nav-number">3.</span> <span class="nav-text">SecurityManager</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3个主要的概念：Subject-SecurityManager和Realms。"><span class="nav-number">4.1.</span> <span class="nav-text">3个主要的概念：Subject, SecurityManager和Realms。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更具体的分析："><span class="nav-number">4.2.</span> <span class="nav-text">更具体的分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SecurityManager"><span class="nav-number">4.3.</span> <span class="nav-text">SecurityManager</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
