@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n">
-<meta property="og:updated_time" content="2019-07-24T13:24:38.371Z">
+<meta property="og:updated_time" content="2019-07-29T06:26:31.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：Shiro的架构学习笔记">
 <meta name="twitter:description" content="概要Java：Shiro的架构学习笔记。">
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-24 21:24:38" itemprop="dateModified" datetime="2019-07-24T21:24:38+08:00">2019-07-24</time>
+                <time title="修改时间：2019-07-29 14:26:31" itemprop="dateModified" datetime="2019-07-29T14:26:31+08:00">2019-07-29</time>
               
             
           </span>
@@ -467,10 +467,10 @@
       
         <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Java：Shiro的架构学习笔记。<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵博客</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>张开涛的第一章 Shiro简介——《跟我学Shiro》，其实是解读了一下<a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">Shiro的架构</a>这篇文章，本着寻根究底的态度，我再一次去阅读这篇文章。为什么说是再一次呢？因为之前读过好几次了，不过就是没有完全理解明白，自己也说不好卡在哪里了，包括张开涛的文章，我也读过两遍了，这次第三遍读，一下子豁然开朗，然后不明白之前为啥就没读明白。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>张开涛的第一章 Shiro简介——《跟我学Shiro》，其实是解读了一下<a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">Shiro的架构</a>这篇文章，本着寻根究底的态度，我再一次去阅读这篇文章。为什么说是再一次呢？因为之前读过好几次了，不过就是没有完全理解明白，自己也说不好卡在哪里了，包括张开涛的文章，我也读过两遍了，这次第三遍读，一下子豁然开朗，然后不明白之前为啥就没读明白–这可能就是“书读百遍，其义自见”的道理吧。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="3个主要的概念：Subject-SecurityManager和Realms。"><a href="#3个主要的概念：Subject-SecurityManager和Realms。" class="headerlink" title="3个主要的概念：Subject, SecurityManager和Realms。"></a>3个主要的概念：<code>Subject</code>, <code>SecurityManager</code>和<code>Realms</code>。</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc" alt="这里写图片描述"></p>
-<p><code>Subject</code>可以是一个用户，但不仅仅可以代表一个用户，所有对这个系统的外部请求的主体都可以看成是一个<code>Subject</code>，例如一个<code>service</code>，这里是做了一个抽象概括的设计，这个我能理解，如果你理解不了的话，那说明你还没有接触过相关的业务，例如<code>SSO</code>，那就先把它理解成一个用户，也没有关系。将来总有一天，你会明白，会回来和我一起唱这首《当当当》。</p>
-<p><code>SecurityManager</code> Shiro设计的核心的逻辑都在这里面，但是，我们应该可以先不理会它是怎么工作的，先把它当做一个黑匣子，它有它自己运行的逻辑。</p>
+<p><code>Subject</code>可以是一个用户，但不仅仅可以代表一个用户，所有对这个系统的外部请求的主体都可以看成是一个<code>Subject</code>，例如一个<code>service</code>，这里是做了一个抽象概括的设计。（这个我能理解，如果你理解不了的话，那说明你还没有接触过相关的业务，例如<code>SSO</code>，那就先把它理解成一个用户，也没有关系。将来总有一天，你会明白，会回来和我一起唱这首《当当当》。）</p>
+<p><code>SecurityManager</code> Shiro设计的核心的逻辑都在这里面，但是，我们应该可以先不理会它是怎么工作的，先把它当做一个黑匣子，它有它自己运行的逻辑，Shiro的核心调度逻辑是在这里完成的。</p>
 <p><code>Realms</code> 这个单词的意思是领域，范围。原文这么说：</p>
 <blockquote>
 <p>Realms act as the ‘bridge’ or ‘connector’ between Shiro and your application’s security data. When it comes time to actually interact with security-related data like user accounts to perform authentication (login) and authorization (access control), Shiro looks up many of these things from one or more Realms configured for an application.</p>
@@ -478,27 +478,61 @@
 <blockquote>
 <p>In this sense a Realm is essentially a security-specific DAO: it encapsulates connection details for data sources and makes the associated data available to Shiro as needed. When configuring Shiro, you must specify at least one Realm to use for authentication and/or authorization. The SecurityManager may be configured with multiple Realms, but at least one is required.</p>
 </blockquote>
-<p>就是说和安全相关数据（<code>security-specific</code>）打交道的是这个对象，有关认证、授权都是通过它来打交道，或者说，通过不同的realm来和相关的“机构”（打个比方）打交道，每个机构有自己的<code>realm</code>，再或者说，<code>realm</code>可以理解成<code>DAO</code>，去访问相关的数据。</p>
+<p>就是说和安全相关数据（<code>security-specific</code>）打交道的是这个对象，有关登录认证、授权（访问控制）都是通过它来打交道，或者说，通过不同的realm来和相关的“机构”（打个比方）打交道，每个机构有自己的<code>realm</code>，再或者说，<code>realm</code>可以理解成<code>DAO</code>，去访问相关的数据。</p>
+<p>这个地方可以这么理解，Shiro是把认证、获取授权相关的流程，相对固定的流程固化在代码中，把变化的内容暴露出来给使用者去配置，这里的realm就是把认证的信息、授权的信息暴露出来给使用者来进行配置。</p>
 <h2 id="更具体的分析："><a href="#更具体的分析：" class="headerlink" title="更具体的分析："></a>更具体的分析：</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n" alt="这里写图片描述"></p>
 <blockquote>
 <p>Subject：A security-specific ‘view’ of the entity (user, 3rd-party service, cron job, etc) currently interacting with the software.</p>
 </blockquote>
-<p>一个实体的安全相关的<code>view</code>–这个概念还需要好好理解一下，怎么被称为一个<code>view</code>呢？</p>
+<p>一个实体的安全相关的<code>view</code>–这个概念还需要好好理解一下，怎么被称为一个<code>view</code>呢？<br>这里应该是以MVC的概念去划分，那么这里称成一个view就相对来说，好理解一些，因为它是一些信息的聚合体。</p>
 <p>SecurityManager又分为了一些子模块：</p>
-<blockquote>
+<ol>
+<li>Authenticator<blockquote>
 <p>Authenticator (org.apache.shiro.authc.Authenticator)<br>The Authenticator is the component that is responsible for executing and reacting to authentication (log-in) attempts by users. When a user tries to log-in, that logic is executed by the Authenticator. The Authenticator knows how to coordinate with one or more Realms that store relevant user/account information. The data obtained from these Realms is used to verify the user’s identity to guarantee the user really is who they say they are.<br><br><br>Authentication Strategy (org.apache.shiro.authc.pam.AuthenticationStrategy)<br>If more than one Realm is configured, the AuthenticationStrategy will coordinate the Realms to determine the conditions under which an authentication attempt succeeds or fails (for example, if one realm succeeds but others fail, is the attempt successful? Must all realms succeed? Only the first?).</p>
 </blockquote>
+</li>
+</ol>
 <p>Authenticator：认证器，用来负责用户登录认证，它对应着一个或者多个<code>Realm</code>。<br>Authentication Strategy：认证策略，如果多个<code>Realm</code> 被配置，那么<code>Authentication Strategy</code>来负责协调这些<code>Realm</code> 产生矛盾的时候，该如何处理，例如一个<code>realm</code>成功，而其它的失败了，改怎么办，等等。在这一点上，张开涛的文章解释的不是太准确。</p>
-<p>Authrizer：授权器，负责确认用户的访问权限。</p>
-<blockquote>
+<ol start="2">
+<li>Authorizer<blockquote>
+<p>The Authorizer is the component responsible determining users’ access control in the application. It is the mechanism that ultimately says if a user is allowed to do something or not. Like the Authenticator, the Authorizer also knows how to coordinate with multiple back-end data sources to access role and permission information. The Authorizer uses this information to determine exactly if a user is allowed to perform a given action.</p>
+</blockquote>
+</li>
+</ol>
+<p>Authorizer：授权器，负责确认用户的访问权限。<br>这些信息需要由使用者来维护，所以也是暴露出来，交由使用者配置一个数据源给Shiro去调用。</p>
+<ol start="3">
+<li>SessionManager<blockquote>
 <p>SessionManager (org.apache.shiro.session.mgt.SessionManager)<br>The SessionManager knows how to create and manage user Session lifecycles to provide a robust Session experience for users in all environments. This is a unique feature in the world of security frameworks - Shiro has the ability to natively manage user Sessions in any environment, even if there is no Web/Servlet or EJB container available. By default, Shiro will use an existing session mechanism if available, (e.g. Servlet Container), but if there isn’t one, such as in a standalone application or non-web environment, it will use its built-in enterprise session management to offer the same programming experience. The SessionDAO exists to allow any datasource to be used to persist sessions.<br><br><br>SessionDAO (org.apache.shiro.session.mgt.eis.SessionDAO)<br>The SessionDAO performs Session persistence (CRUD) operations on behalf of the SessionManager. This allows any data store to be plugged in to the Session Management infrastructure.</p>
 </blockquote>
-<p><code>SessionManager</code>：<code>session</code>管理器，<code>Shiro</code>没有完全依赖<code>HTTP</code>的<code>session</code>，而是设计了一个独立的<code>session</code>。</p>
-<p><code>SessionDAO</code>：<code>session</code>的<code>DAO</code>，用来处理session数据的保存。</p>
-<p><code>CacheManager</code>：缓存管理器。</p>
-<p><code>Cryptography</code>：加密模块。</p>
+</li>
+</ol>
+<p>SessionManager：<code>session</code>管理器，<code>Shiro</code>没有完全依赖<code>HTTP</code>的<code>session</code>，而是设计了一个独立的<code>session</code>。</p>
+<p>SessionDAO：<code>session</code>的<code>DAO</code>，用来处理session数据的保存。</p>
+<ol start="4">
+<li>CacheManager<blockquote>
+<p>The CacheManager creates and manages Cache instance lifecycles used by other Shiro components. Because Shiro can access many back-end data sources for authentication, authorization and session management, caching has always been a first-class architectural feature in the framework to improve performance while using these data sources. Any of the modern open-source and/or enterprise caching products can be plugged in to Shiro to provide a fast and efficient user-experience.</p>
+</blockquote>
+</li>
+</ol>
+<p>CacheManager：缓存管理器，用于加快访问速度，但是这里只是一个管理器，具体的缓存工具应该是由使用者来定义的。</p>
+<ol start="5">
+<li>Cryptography<blockquote>
+<p>Cryptography is a natural addition to an enterprise security framework. Shiro’s crypto package contains easy-to-use and understand representations of crytographic Ciphers, Hashes (aka digests) and different codec implementations. All of the classes in this package are carefully designed to be very easy to use and easy to understand. Anyone who has used Java’s native cryptography support knows it can be a challenging animal to tame. Shiro’s crypto APIs simplify the complicated Java mechanisms and make cryptography easy to use for normal mortal human beings.</p>
+</blockquote>
+</li>
+</ol>
+<p>Cryptography：加密模块。</p>
+<ol start="6">
+<li>Realms<blockquote>
+<p>As mentioned above, Realms act as the ‘bridge’ or ‘connector’ between Shiro and your application’s security data. When it comes time to actually interact with security-related data like user accounts to perform authentication (login) and authorization (access control), Shiro looks up many of these things from one or more Realms configured for an application. You can configure as many Realms as you need (usually one per data source) and Shiro will coordinate with them as necessary for both authentication and authorization.</p>
+</blockquote>
+</li>
+</ol>
 <p><code>Realms：</code>上面介绍过。</p>
-<h2 id="SecurityManager"><a href="#SecurityManager" class="headerlink" title="SecurityManager"></a>SecurityManager</h2><p>这个是核心，需要反复理解的是这个，下面又用了一些篇幅来介绍这个，不过在没有完全实践之前，总还是不明白，所以就先不总结了。</p>
+<h2 id="SecurityManager"><a href="#SecurityManager" class="headerlink" title="SecurityManager"></a>SecurityManager</h2><blockquote>
+<p>As stated previously, the application’s SecurityManager performs security operations and manages state for all application users. In Shiro’s default SecurityManager implementations, this includes:<br><br><br>Authentication<br>Authorization<br>Session Management<br>Cache Management<br>Realm coordination<br>Event propagation<br>“Remember Me” Services<br>Subject creation<br>Logout and more.</p>
+</blockquote>
+<p>在我的理解，其实SecurityManager就是Shiro的核心，它决定了业务的处理流，在什么样的时机去调用哪一个服务，这些服务会有父类来占位，可以由使用者定义子类来进行具体实现的修改。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>又阅读了一遍架构这篇文章，结合着张开涛的文章，感觉明白了不少，现在感觉<code>Shiro</code> 还是挺简单的，有个两三天应该就大体理解了，不明白当时怎么就堵住了，陷入了思维的死胡同。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a></p>
 
