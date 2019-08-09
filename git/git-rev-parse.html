@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="概要Git：git-rev-parse 命令学习">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-09T10:31:28.751Z">
+<meta property="og:updated_time" content="2019-08-09T10:43:28.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：git-rev-parse 命令学习">
 <meta name="twitter:description" content="概要Git：git-rev-parse 命令学习">
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-08-09 18:28:00 / 修改时间：18:31:28" itemprop="dateCreated datePublished" datetime="2019-08-09T18:28:00+08:00">2019-08-09</time>
+              <time title="创建时间：2019-08-09 18:28:00 / 修改时间：18:43:28" itemprop="dateCreated datePublished" datetime="2019-08-09T18:28:00+08:00">2019-08-09</time>
             
 
             
@@ -479,6 +479,21 @@
 <li>Checking if the repo is a bare using –is-bare-repository</li>
 <li>Printing SHA1 hashes of branches (–branches), tags (–tags) and the refs can also be filtered based on the remote (using –remote)</li>
 <li>–parse-opt to normalize arguments in a script (kind of similar to getopt) and print an output string that can be used with eval</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Massage just implies that it is possible to convert the info from one form into another i.e. a transformation command. These are some quick examples I can think of:</p>
+</blockquote>
+<p>这里解释了Massage，Massage在这里暗示着有可能会把一个信息的格式转换成另外一种。</p>
+<blockquote>
+<ul>
+<li>a branch or tag name into the commit’s SHA1 it is pointing to so that it can be passed to a plumbing command which only accepts SHA1 values for the commit.</li>
+</ul>
+</blockquote>
+<p>把一个分支名或者tag名转换成了一个提交的SHA1，要是从这个意义来理解，这个plumbing还真是管道的意思。</p>
+<blockquote>
+<ul>
+<li>a revision range A..B for git log or git diff into the equivalent arguments for the underlying plumbing command as B ^A</li>
 </ul>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个命令有点绕，第一天完全没看懂，第二天才初步搞明白一点。</p>
