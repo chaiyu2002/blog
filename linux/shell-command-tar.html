@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
+  <meta name="description" content="概要Linux下shell命令用法及常见用例总结：tar。tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下shell命令用法及常见用例：tar">
+<meta property="og:title" content="Linux下shell命令用法及常见用例总结：tar">
 <meta property="og:url" content="https://www.oxysun.cn/linux/shell-command-tar.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
+<meta property="og:description" content="概要Linux下shell命令用法及常见用例总结：tar。tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-18T11:09:55.844Z">
+<meta property="og:updated_time" content="2019-08-12T06:57:58.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下shell命令用法及常见用例：tar">
-<meta name="twitter:description" content="tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
+<meta name="twitter:title" content="Linux下shell命令用法及常见用例总结：tar">
+<meta name="twitter:description" content="概要Linux下shell命令用法及常见用例总结：tar。tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。">
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Linux下shell命令用法及常见用例：tar | IT老兵驿站</title>
+  <title>Linux下shell命令用法及常见用例总结：tar | IT老兵驿站</title>
   
 
 
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux下shell命令用法及常见用例：tar
+          <h1 class="post-title" itemprop="name headline">Linux下shell命令用法及常见用例总结：tar
               
             
           </h1>
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-07-18 19:09:55" itemprop="dateModified" datetime="2018-07-18T19:09:55+08:00">2018-07-18</time>
+                <time title="修改时间：2019-08-12 14:57:58" itemprop="dateModified" datetime="2019-08-12T14:57:58+08:00">2019-08-12</time>
               
             
           </span>
@@ -469,9 +469,9 @@
       
 
       
-        <p>tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。</p>
-<a id="more"></a>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>tar [OPTION...] [FILE]...</code></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Linux下shell命令用法及常见用例总结：tar。<br>tar命令用来归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>tar [OPTION...] [FILE]...</code></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>Tar（Tape ARchive，磁带归档的缩写，最初设计用于将文件打包到磁带上，现在大都使用它来实现备份某个分区或者某些重要的目录）是类Unix系统中使用最广泛的命令，用于归档多个文件或目录到单个归档文件中，并且归档文件可以进一步使用gzip或者bzip2等技术进行压缩，还能保留其文件权限。换言之，tar命令也可以用于备份：先是归档多个文件和目录到一个单独的tar文件或归档文件，然后在需要之时将tar文件中的文件和目录释放出来。</p>
 <h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><table>
 <thead>
@@ -583,7 +583,7 @@
 <p>上面的压缩格式中，主要是gzip和bzip2两个压缩命令，它们是GNU计划的中的一部分，在此之前是compress命令，但它已经不再流行了。bzip2比gzip的压缩比很好，不过bzip2通常只能针对一个文件来压缩和解压缩。如果是这样的话，压缩整个开发环境目录就太繁琐了。</p>
 <p>因此tar命令就出现了，tar不是一个 “压缩命令”，而是一个“打包命令”。也就是说，tar可以把很多文件「打包」成一个文件，甚至连目录也可以进行打包。一开始tar命令的确是不支持压缩的功能，后来GNU计划为了提供给使用者更方便并且更加强大的压缩与打包功能，就把整个tar与压缩的功能结合在一起了。</p>
 <p>仅仅打包起来的tar文件俗称tarfile文件，经过压缩的tar文件叫做tarball文件。</p>
-<h2 id="全能的-tar-命令"><a href="#全能的-tar-命令" class="headerlink" title="全能的 tar 命令"></a>全能的 tar 命令</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>tar可以将多个目录或文件打成一个大文件，同时支持gzip/bzip2</p>
+<h2 id="全能的-tar-命令"><a href="#全能的-tar-命令" class="headerlink" title="全能的 tar 命令"></a>全能的 tar 命令</h2><h3 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a>概要</h3><p>tar可以将多个目录或文件打成一个大文件，同时支持gzip/bzip2</p>
 <p>归档：tar {-c} [option…] -f destination source<br>追加归档：tar {-r | -u} -f source [option…] destination<br>解压：tar {-t | -x} -f source [option…] -C destination</p>
 <p>最简单的使用 tar 只要记住下面的方式：</p>
 <ul>
@@ -616,7 +616,7 @@
 <h3 id="创建tar-gz归档文件"><a href="#创建tar-gz归档文件" class="headerlink" title="创建tar.gz归档文件"></a><strong>创建tar.gz归档文件</strong></h3><p>示例：打包并且使用gzip压缩。<br>描述：将/home/test/images目录下的所有文件以及目录中的文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.gz /home/test/images</span><br><span class="line">OR</span><br><span class="line"><span class="meta">#</span> tar -zcv -f MyImages-18-06-02.tar.tgz /home/test/images</span><br><span class="line">/home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">/home/test/images/brooke-lark-275181.jpg</span><br><span class="line">/home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">/home/test/images/artur-rutkowski-97622.jpg</span><br><span class="line">/home/test/images/ben-white-138743.jpg</span><br></pre></td></tr></table></figure>
 <p>-z表示要使用gzip支持来压缩或者解压文件，注意gzip的压缩的文件格式最好写成tar.gz。（注：tar.gz 和 tgz 是同一个意思）</p>
-<h3 id="打包压缩排除某些文件"><a href="#打包压缩排除某些文件" class="headerlink" title="打包压缩排除某些文件"></a><strong>打包压缩排除某些文件</strong></h3><p>示例：打包压缩并排除某些文件。<br>描述：将/home/test/images目录下，排除brooke-lark-275181.jpg和ben-white-138743.jpg之外的所有文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。</p>
+<h3 id="打包压缩排除某些文件"><a href="#打包压缩排除某些文件" class="headerlink" title="打包压缩排除某些文件"></a><strong>打包压缩排除某些文件</strong></h3><p>示例：打包压缩并排除某些文件。<br>描述：将<code>/home/test/images</code>目录下，排除brooke-lark-275181.jpg和ben-white-138743.jpg之外的所有文件打包，并用gzip进行压缩，生成名为MyImages-18-06-02.tar.gz的归档文件，放在当前目录下。这个<code>--exclude</code>参数需要放在源文件前面。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -czv -f MyImages-18-06-02.tar.gz --exclude=./brooke-lark-275181.jpg --exclude=./ben-white-138743.jpg /home/test/images</span><br><span class="line">/home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">/home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">/home/test/images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
 <h3 id="解压归档文件（默认）"><a href="#解压归档文件（默认）" class="headerlink" title="解压归档文件（默认）"></a><strong>解压归档文件（默认）</strong></h3><p>示例：解压，默认解压。<br>描述：将名为MyImages-18-06-02.tar的归档文件解压至当前目录下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> tar -xvf MyImages-18-06-02.tar</span><br><span class="line">home/test/images/alejandro-gonzalez-17189.jpg</span><br><span class="line">home/test/images/brenda-godinez-228181.jpg</span><br><span class="line">home/test/images/artur-rutkowski-97622.jpg</span><br></pre></td></tr></table></figure>
@@ -676,7 +676,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/js/js-npm-symbol-caret.html" rel="prev" title="JS：NPM依赖包版本号波浪字符"~"">
+              <a href="/js/js-npm-symbol-tilde.html" rel="prev" title="JS：NPM依赖包版本号波浪字符"~"">
                 JS：NPM依赖包版本号波浪字符"~" <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -1134,7 +1134,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-number">1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令功能"><span class="nav-number">2.</span> <span class="nav-text">命令功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令选项"><span class="nav-number">3.</span> <span class="nav-text">命令选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是“文件压缩”？"><span class="nav-number">4.</span> <span class="nav-text">什么是“文件压缩”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的压缩格式"><span class="nav-number">5.</span> <span class="nav-text">常见的压缩格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全能的-tar-命令"><span class="nav-number">6.</span> <span class="nav-text">全能的 tar 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">6.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式参数"><span class="nav-number">6.2.</span> <span class="nav-text">模式参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用参数"><span class="nav-number">6.3.</span> <span class="nav-text">通用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包并创建归档文件"><span class="nav-number">6.4.</span> <span class="nav-text">打包并创建归档文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建tar-gz归档文件"><span class="nav-number">6.5.</span> <span class="nav-text">创建tar.gz归档文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包压缩排除某些文件"><span class="nav-number">6.6.</span> <span class="nav-text">打包压缩排除某些文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压归档文件（默认）"><span class="nav-number">6.7.</span> <span class="nav-text">解压归档文件（默认）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压归档文件并指定目录"><span class="nav-number">6.8.</span> <span class="nav-text">解压归档文件并指定目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看压缩包文件信息"><span class="nav-number">6.9.</span> <span class="nav-text">查看压缩包文件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压单个文件"><span class="nav-number">6.10.</span> <span class="nav-text">解压单个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压多个指定的文件"><span class="nav-number">6.11.</span> <span class="nav-text">解压多个指定的文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-number">3.1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令功能"><span class="nav-number">3.2.</span> <span class="nav-text">命令功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令选项"><span class="nav-number">3.3.</span> <span class="nav-text">命令选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是“文件压缩”？"><span class="nav-number">3.4.</span> <span class="nav-text">什么是“文件压缩”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的压缩格式"><span class="nav-number">3.5.</span> <span class="nav-text">常见的压缩格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全能的-tar-命令"><span class="nav-number">3.6.</span> <span class="nav-text">全能的 tar 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要-1"><span class="nav-number">3.6.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式参数"><span class="nav-number">3.6.2.</span> <span class="nav-text">模式参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用参数"><span class="nav-number">3.6.3.</span> <span class="nav-text">通用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包并创建归档文件"><span class="nav-number">3.6.4.</span> <span class="nav-text">打包并创建归档文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建tar-gz归档文件"><span class="nav-number">3.6.5.</span> <span class="nav-text">创建tar.gz归档文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包压缩排除某些文件"><span class="nav-number">3.6.6.</span> <span class="nav-text">打包压缩排除某些文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压归档文件（默认）"><span class="nav-number">3.6.7.</span> <span class="nav-text">解压归档文件（默认）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压归档文件并指定目录"><span class="nav-number">3.6.8.</span> <span class="nav-text">解压归档文件并指定目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看压缩包文件信息"><span class="nav-number">3.6.9.</span> <span class="nav-text">查看压缩包文件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压单个文件"><span class="nav-number">3.6.10.</span> <span class="nav-text">解压单个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解压多个指定的文件"><span class="nav-number">3.6.11.</span> <span class="nav-text">解压多个指定的文件</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
