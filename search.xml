@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java的VO、DO、DTO和Java Bean学习]]></title>
+    <url>%2Fjava%2Fjava-vo-dto-pojo.html</url>
+    <content type="text"><![CDATA[概要Java的VO、DO、DTO和Java Bean学习。 前言通过Stack Overflow的一篇文章，来学习一下Java的这几个概念。 博客原帖收藏于IT老兵博客。 正文JavaBeansA JavaBean is a class that follows the JavaBeans conventions as defined by Sun. Wikipedia has a pretty good summary of what JavaBeans are: JavaBeans are reusable software components for Java that can be manipulated visually in a builder tool. JavaBean是可重用的软件组件，使用可以被构建工具去可视化地操作。 Practically, they are classes written in the Java programming language conforming to a particular convention. They are used to encapsulate many objects into a single object (the bean), so that they can be passed around as a single bean object instead of as multiple individual objects. A JavaBean is a Java Object that is serializable, has a nullary constructor, and allows access to properties using getter and setter methods. 一个Java Bean 是一个序列化的Java对象，有一个非空的构造器，允许getter和setter方法去访问属性。 In order to function as a JavaBean class, an object class must obey certain conventions about method naming, construction, and behavior. These conventions make it possible to have tools that can use, reuse, replace, and connect JavaBeans. 需要遵循一些关于方法、命名、构造器和表现的约定，这样才好去被使用、重用、取代和连接其他的JavaBean。 The required conventions are: 要求是： The class must have a public default constructor. This allows easy instantiation within editing and activation frameworks. 类必须有一个共有的默认的构造方法。 The class properties must be accessible using get, set, and other methods (so-called accessor methods and mutator methods), following a standard naming convention. This allows easy automated inspection and updating of bean state within frameworks, many of which include custom editors for various types of properties. 类的属性必须可以被get、set和其他被称作访问器和操作器来访问。（对这里的accessor和mutator有些疑问） The class should be serializable. This allows applications and frameworks to reliably save, store, and restore the bean&apos;s state in a fashion that is independent of the VM and platform. 可以被序列化。 Because these requirements are largely expressed as conventions rather than by implementing interfaces, some developers view JavaBeans as Plain Old Java Objects that follow specific naming conventions. POJOA Plain Old Java Object or POJO is a term initially introduced to designate a simple lightweight Java object, not implementing any javax.ejb interface, as opposed to heavyweight EJB 2.x (especially Entity Beans, Stateless Session Beans are not that bad IMO). Today, the term is used for any simple object with no extra stuff. Again, Wikipedia does a good job at defining POJO: 这个是针对EJB方案来的，不需要遵循EJB规范的原生的Java类。 POJO is an acronym for Plain Old Java Object. The name is used to emphasize that the object in question is an ordinary Java Object, not a special object, and in particular not an Enterprise JavaBean (especially before EJB 3). The term was coined by Martin Fowler, Rebecca Parsons and Josh MacKenzie in September 2000: &quot;We wondered why people were so against using regular objects in their systems and concluded that it was because simple objects lacked a fancy name. So we gave them one, and it&apos;s caught on very nicely.&quot; The term continues the pattern of older terms for technologies that do not use fancy new features, such as POTS (Plain Old Telephone Service) in telephony, and PODS (Plain Old Data Structures) that are defined in C++ but use only C language features, and POD (Plain Old Documentation) in Perl. The term has most likely gained widespread acceptance because of the need for a common and easily understood term that contrasts with complicated object frameworks. A JavaBean is a POJO that is serializable, has a no-argument constructor, and allows access to properties using getter and setter methods. An Enterprise JavaBean is not a single class but an entire component model (again, EJB 3 reduces the complexity of Enterprise JavaBeans). As designs using POJOs have become more commonly-used, systems have arisen that give POJOs some of the functionality used in frameworks and more choice about which areas of functionality are actually needed. Hibernate and Spring are examples. Value ObjectA Value Object or VO is an object such as java.lang.Integer that hold values (hence value objects). For a more formal definition, I often refer to Martin Fowler&apos;s description of Value Object: In Patterns of Enterprise Application Architecture I described Value Object as a small object such as a Money or date range object. Their key property is that they follow value semantics rather than reference semantics. VO是一个小的对象，就像Money或者数据范围对象。它们的关键属性是，它们遵循value的语法而不是reference的语法。 You can usually tell them because their notion of equality isn&apos;t based on identity, instead two value objects are equal if all their fields are equal. Although all fields are equal, you don&apos;t need to compare all fields if a subset is unique - for example currency codes for currency objects are enough to test equality. A general heuristic is that value objects should be entirely immutable. If you want to change a value object you should replace the object with a new one and not be allowed to update the values of the value object itself - updatable value objects lead to aliasing problems. Early J2EE literature used the term value object to describe a different notion, what I call a Data Transfer Object. They have since changed their usage and use the term Transfer Object instead. You can find some more good material on value objects on the wiki and by Dirk Riehle. Data Transfer ObjectData Transfer Object or DTO is a (anti) pattern introduced with EJB. Instead of performing many remote calls on EJBs, the idea was to encapsulate data in a value object that could be transfered over the network: a Data Transfer Object. Wikipedia has a decent definition of Data Transfer Object: DTO是用来进行网络传输的封装对象。 Data transfer object (DTO), formerly known as value objects or VO, is a design pattern used to transfer data between software application subsystems. DTOs are often used in conjunction with data access objects to retrieve data from a database. DTO也是一个VO，经常被用于去连接从数据库获取数据的DAO。 The difference between data transfer objects and business objects or data access objects is that a DTO does not have any behaviour except for storage and retrieval of its own data (accessors and mutators). DTO和BO或者DAO的区别是，DTO出了存储和获取它自己的数据之外没有其他行为。 In a traditional EJB architecture, DTOs serve dual purposes: first, they work around the problem that entity beans are not serializable; second, they implicitly define an assembly phase where all data to be used by the view is fetched and marshalled into the DTOs before returning control to the presentation tier. 总结其实看了一下，这些概念原本都是EJB规范中的，现在EJB因为过于厚重，慢慢大家开始使用更轻量级的Java框架，但是这些概念被继承了下来。 参考https://stackoverflow.com/questions/1612334/difference-between-dto-vo-pojo-javabeanshttps://www.programering.com/a/MDM2kjNwATc.html 这个帖子也讲了很多，有待继续研究]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>VO</tag>
+        <tag>DTO</tag>
+        <tag>POJO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[make 和 cmake 的区别学习]]></title>
     <url>%2Flinux%2Fmake-vs-cmake.html</url>
     <content type="text"><![CDATA[概要make 和 cmake 的区别学习 博客博客地址：IT老兵驿站 正文 “The build process has one step if you use a Makefile, namely typing “make” at the command line. For CMake, there are two steps: First, you need to setup your build environment (either by typing cmake &lt;source_dir&gt; in your build directory or by running some GUI client). This creates a makefile or something equivalent, depending on the build system of your choice (e.g. Make on *nix, VC++ or MinGW on Windows, etc). The build system can be passed to CMake as a parameter. However, CMake makes reasonable default choices depending on your system configuration. Second, you perform the actual build in the selected build system.” 参考上文所说，cmake 是两步，通过执行cmake &lt;source_dir&gt;（根据CMakeLists.txt文件的配置）， 先根据环境生成 Makefile 文件，然后正常使用 make 去进行编译。 传统的make，我这里的理解是通过configure去扫描软件的依赖，然后根据Makefile.in(往往是通过automake等工具所生成的)，生成Makefile。 cmake更多是帮助进行跨平台的编译。 初步理解是这样，等待以后来完善。 参考https://www.quora.com/What-is-the-difference-between-CMake-and-makehttps://prateekvjoshi.com/2014/02/01/cmake-vs-make/]]></content>
@@ -58,9 +72,9 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>进程</tag>
         <tag>mac</tag>
         <tag>端口占用</tag>
+        <tag>进程</tag>
       </tags>
   </entry>
   <entry>
@@ -156,7 +170,7 @@
   </entry>
   <entry>
     <title><![CDATA[Java的值传递]]></title>
-    <url>%2Fjava%2Furl-value-pass.html</url>
+    <url>%2Fjava%2Fjava-value-pass.html</url>
     <content type="text"><![CDATA[概要Java的值传递。 博客原帖收藏于IT老兵博客。 正文复习《C++ Primer》第三版第89页，复习了一遍C++的引用。 找到了以前总结的笔记： C++的引用是怎么样的？ “引用是C++的一个特征,它就像能自动被编译器逆向引用的常量型指针一样。 ” “使用引用时有一定的规则: 1) 当引用被创建时,它必须被初始化。(指针则可以在任何时候被初始化。) 2) 一旦一个引用被初始化为指向一个对象,它就不能被改变为对另一个对象的引用。(指 针则可以在任何时候指向另一个对象。) 3) 不可能有NULL引用。必须确保引用是和一块合法的存储单元关连。” --《C++编程思想》 再来理解Java的引用，在《Java编程思想》的第二章，有涉及到这个地方的知识，这里说Java对于对象的传递是通过引用。 https://stackoverflow.com/questions/4712798/how-to-use-references-in-java， 这里讲了原始类型和对象的传递方式。 总结其实Java都是通过值传递，对于原始的类型，是值传递；对于对象，是把引用的值通过值传递传给新的变量，这个变量里面保存的是原来引用所指向的对象的地址，这个时候修改了这个值，对原本的引用不会产生影响。]]></content>
       <categories>
         <category>Java</category>
@@ -213,8 +227,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>jps</tag>
         <tag>进程</tag>
+        <tag>jps</tag>
         <tag>工具</tag>
       </tags>
   </entry>
@@ -239,8 +253,8 @@
         <category>Kafka</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>介绍</tag>
+        <tag>Kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -556,10 +570,10 @@
         <category>Vue</category>
       </categories>
       <tags>
-        <tag>介绍</tag>
         <tag>JS</tag>
         <tag>Vue</tag>
         <tag>笔记</tag>
+        <tag>介绍</tag>
       </tags>
   </entry>
   <entry>
@@ -983,20 +997,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
-      <categories>
-        <category>JavaScript</category>
-        <category>NPM</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
       <categories>
@@ -1007,6 +1007,20 @@
         <tag>依赖包</tag>
         <tag>Javascript</tag>
         <tag>NPM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>NPM</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
       </tags>
   </entry>
   <entry>
@@ -1161,20 +1175,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
-    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
-    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>database</tag>
-        <tag>create</tag>
-        <tag>创建数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
@@ -1186,6 +1186,20 @@
         <tag>collection</tag>
         <tag>数据集合</tag>
         <tag>创建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
+    <url>%2Fmongodb%2Fmongodb-database-create.html</url>
+    <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>database</tag>
+        <tag>create</tag>
+        <tag>创建数据库</tag>
       </tags>
   </entry>
 </search>
