@@ -4,7 +4,14 @@
   <url>
     <loc>https://www.oxysun.cn/linux/linux-top-buffer-cache.html</loc>
     
-    <lastmod>2019-10-19T08:55:07.695Z</lastmod>
+    <lastmod>2019-11-01T11:38:53.032Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/Kafka/kafka-introduction-note.html</loc>
+    
+    <lastmod>2019-11-01T11:38:34.460Z</lastmod>
     
   </url>
   
@@ -166,13 +173,6 @@
     <loc>https://www.oxysun.cn/git/git-index.html</loc>
     
     <lastmod>2019-04-18T09:37:34.011Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.oxysun.cn/Kafka/kafka-introduction-note.html</loc>
-    
-    <lastmod>2019-04-18T01:59:34.488Z</lastmod>
     
   </url>
   
@@ -513,14 +513,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/blockchain/ethereum-rationale-introduction.html</loc>
+    <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
     
     <lastmod>2018-08-18T00:08:05.864Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
+    <loc>https://www.oxysun.cn/blockchain/ethereum-rationale-introduction.html</loc>
     
     <lastmod>2018-08-18T00:08:05.864Z</lastmod>
     
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
+    <loc>https://www.oxysun.cn/git/git-revert.html</loc>
     
     <lastmod>2018-08-02T00:39:42.488Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-revert.html</loc>
+    <loc>https://www.oxysun.cn/git/git-remote-set-url.html</loc>
     
     <lastmod>2018-08-02T00:39:42.488Z</lastmod>
     
