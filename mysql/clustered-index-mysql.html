@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="完整的Linux下Shell命令总结归档于IT老兵博客。 Linux下shell命令用法和实例总结：du">
-<meta name="keywords" content="Linux,du">
+  <meta name="description" content="概要MySQL的聚集索引。">
+<meta name="keywords" content="MySQL,聚集索引">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux下shell命令用法和实例总结：du">
-<meta property="og:url" content="https://www.oxysun.cn/linux/shell-command-du.html">
+<meta property="og:title" content="MySQL的聚集索引">
+<meta property="og:url" content="https://www.oxysun.cn/mysql/clustered-index-mysql.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="完整的Linux下Shell命令总结归档于IT老兵博客。 Linux下shell命令用法和实例总结：du">
+<meta property="og:description" content="概要MySQL的聚集索引。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-28T02:26:55.927Z">
+<meta property="og:updated_time" content="2019-11-05T09:22:41.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下shell命令用法和实例总结：du">
-<meta name="twitter:description" content="完整的Linux下Shell命令总结归档于IT老兵博客。 Linux下shell命令用法和实例总结：du">
+<meta name="twitter:title" content="MySQL的聚集索引">
+<meta name="twitter:description" content="概要MySQL的聚集索引。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/linux/shell-command-du.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/mysql/clustered-index-mysql.html"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Linux下shell命令用法和实例总结：du | IT老兵驿站</title>
+  <title>MySQL的聚集索引 | IT老兵驿站</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/linux/shell-command-du.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mysql/clustered-index-mysql.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="荒于嬉">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux下shell命令用法和实例总结：du
+          <h1 class="post-title" itemprop="name headline">MySQL的聚集索引
               
             
           </h1>
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2018-11-28 10:00:00 / 修改时间：10:26:55" itemprop="dateCreated datePublished" datetime="2018-11-28T10:00:00+08:00">2018-11-28</time>
+              <time title="创建时间：2019-11-05 17:22:45 / 修改时间：17:22:41" itemprop="dateCreated datePublished" datetime="2019-11-05T17:22:45+08:00">2019-11-05</time>
             
 
             
@@ -408,14 +408,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a></span>
 
                 
                 
@@ -457,34 +450,19 @@
       
 
       
-        <p>完整的Linux下Shell命令总结归档于<a href="https://www.oxysun.cn/categories/Linux">IT老兵博客</a>。</p>
-<p>Linux下shell命令用法和实例总结：du<br><a id="more"></a></p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>du [选项] [文件]</p>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>du（disk usage 的简称）命令用于检查计算机上文件和目录的磁盘使用情况，可以递归显示文件和目录。显示每个文件和目录的磁盘使用空间。</p>
-<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-a或-all：显示所有文件的大小，不仅仅是目录。   </li>
-<li>-b或-bytes：显示目录或文件大小时，以byte为单位。   </li>
-<li>-c或–total：除了显示所有目录或文件的大小外，同时也显示所有目录或文件的总和。 </li>
-<li>-k或–kilobytes：以KB(1024bytes)为单位输出。</li>
-<li>-m或–megabytes：以MB为单位输出。   </li>
-<li>-s或–summarize：仅显示总计，只列出最后加总的值。</li>
-<li>-h或–human-readable：以K，M，G为单位，提高信息的可读性。</li>
-<li>-x或–one-file-xystem：以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。 </li>
-<li>-L&lt;符号链接&gt;或–dereference&lt;符号链接&gt;：显示选项中所指定符号链接的源文件大小。   </li>
-<li>-S或–separate-dirs：显示个别目录的大小时，并不含其子目录的大小。 </li>
-<li>-X&lt;文件&gt;或–exclude-from=&lt;文件&gt;：在&lt;文件&gt;指定目录或文件。   </li>
-<li>–exclude=&lt;目录或文件&gt;：略过指定的目录或文件。    </li>
-<li>-D或–dereference-args ：显示指定符号链接的源文件大小。   </li>
-<li>-H或–si：与-h参数相同，但是K，M，G是以1000为换算单位。   </li>
-<li>-l或–count-links：重复计算硬件链接的文件。  </li>
-</ul>
-<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 找出 <code>/root</code> 目录树及其每个子目录的磁盘使用情况摘要</strong><br>描述：以下命令的输出显示了 <code>/root</code> 目录以及其子目录的磁盘块数。<br>命令：<code>du /root</code></p>
-<p><strong>实例：2. 以人类可读格式也就是 kb、mb 等显示文件/目录大小</strong><br>命令：<code>du -h /root</code></p>
-<p><strong>实例：3. 目录的总磁盘使用大小摘要</strong><br>命令：<code>du -s /root</code></p>
-<p><strong>实例：4. 所有文件和目录的磁盘使用情况</strong><br>命令：<code>du -a /root</code></p>
-<p><strong>实例：5. 总的使用磁盘空间</strong><br>描述：-c选项在最后一行提供了一个总的使用磁盘空间。<br>命令：<code>du -c /root</code></p>
-<p><strong>实例：6. 排除给定模式的文件或目录</strong><br>描述：在计算/root的总大小时排除.ssh文件。<br>命令：du -h –exclude=”.ssh” /root</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://man7.org/linux/man-pages/man1/du.1.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man1/du.1.html</a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MySQL的聚集索引。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a>。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>什么是聚集索引？<br>参考<a href="http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/" target="_blank" rel="noopener">这里</a></p>
+<blockquote>
+<p>A clustered index, on the other hand, is actually the table. It is an index that enforces the ordering on the rows of the table physically.</p>
+</blockquote>
+<p>聚集索引就是说索引和数据是在一起的。一般的索引是单独的一个数据结构，而数据是一个数据结构；而聚集索引是说这两块内容是在一起的，并且是有顺序的。</p>
+<p>参考官网：</p>
+<blockquote>
+<p>14.6.2.1 Clustered and Secondary Indexes<br>Every InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key. To get the best performance from queries, inserts, and other database operations, you must understand how InnoDB uses the clustered index to optimize the most common lookup and DML operations for each table.<br><br><br>When you define a PRIMARY KEY on your table, InnoDB uses it as the clustered index. Define a primary key for each table that you create. If there is no logical unique and non-null column or set of columns, add a new auto-increment column, whose values are filled in automatically.<br><br><br>If you do not define a PRIMARY KEY for your table, MySQL locates the first UNIQUE index where all the key columns are NOT NULL and InnoDB uses it as the clustered index.<br><br><br>If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index named GEN_CLUST_INDEX on a synthetic column containing row ID values. The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.</p>
+</blockquote>
+<p>上文讲了MySQL是如何使用聚集索引的。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/" target="_blank" rel="noopener">http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/</a><br><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html</a></p>
 
       
     </div>
@@ -509,9 +487,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
-            <a href="/tags/du/" rel="tag"># du</a>
+            <a href="/tags/聚集索引/" rel="tag"># 聚集索引</a>
           
         </div>
       
@@ -524,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/mysql/mysql-ddl-handy-book.html" rel="next" title="MySQL：DDL的一些整理">
-                <i class="fa fa-chevron-left"></i> MySQL：DDL的一些整理
+              <a href="/mysql/B-tree-note-1.html" rel="next" title="B树、B+树学习之一">
+                <i class="fa fa-chevron-left"></i> B树、B+树学习之一
               </a>
             
           </div>
@@ -533,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/js/js-vue-note-directive.html" rel="prev" title="Vue：学习笔记（七）-自定义指令">
-                Vue：学习笔记（七）-自定义指令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1014,7 +988,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-number">1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令功能"><span class="nav-number">2.</span> <span class="nav-text">命令功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令参数"><span class="nav-number">3.</span> <span class="nav-text">命令参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用命令"><span class="nav-number">4.</span> <span class="nav-text">实用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
