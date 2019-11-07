@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[红黑树学习笔记]]></title>
+    <url>%2Fdata-structure%2FB-tree-note-1.html</url>
+    <content type="text"><![CDATA[摘要红黑树学习笔记。 博客IT老兵驿站。 前言在08、09年的时候，那个时候因为工作的需求，需要研究文件系统，然后就遇到了红黑树，也就研究了一下红黑树，不过时至今日，感觉已经记不太清楚了，感觉当时可能也没有研究的很透彻。 最近的工作中，又遇到了红黑树，就捡起来复习复习。孔子说，“温故而知新，可以为师矣”，我为不了师，不过发现，温故确实是可以知新的。 正文定义参考维基百科： 节点是红色或黑色。根是黑色。所有叶子都是黑色（叶子是NIL节点）。每个红色节点必须有两个黑色的子节点。（从每个叶子到根的所有路径上不能有两个连续的红色节点。）从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。 想要充分理解红黑树，有一些前提条件，需要充分理解二叉树和平衡二叉树，否则，对于红黑树，是很难充分理解的，所以，红黑树可能先看到这里，先去仔细看看平衡二叉树。 参考《算法导论》https://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>红黑树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL的聚集索引]]></title>
     <url>%2Fmysql%2Fclustered-index-mysql.html</url>
     <content type="text"><![CDATA[概要MySQL的聚集索引。 博客原帖收藏于IT老兵驿站。 正文什么是聚集索引？参考这里 A clustered index, on the other hand, is actually the table. It is an index that enforces the ordering on the rows of the table physically. 聚集索引就是说索引和数据是在一起的。一般的索引是单独的一个数据结构，而数据是一个数据结构；而聚集索引是说这两块内容是在一起的，并且是有顺序的。 参考官网： 14.6.2.1 Clustered and Secondary IndexesEvery InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key. To get the best performance from queries, inserts, and other database operations, you must understand how InnoDB uses the clustered index to optimize the most common lookup and DML operations for each table.When you define a PRIMARY KEY on your table, InnoDB uses it as the clustered index. Define a primary key for each table that you create. If there is no logical unique and non-null column or set of columns, add a new auto-increment column, whose values are filled in automatically.If you do not define a PRIMARY KEY for your table, MySQL locates the first UNIQUE index where all the key columns are NOT NULL and InnoDB uses it as the clustered index.If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index named GEN_CLUST_INDEX on a synthetic column containing row ID values. The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order. 上文讲了MySQL是如何使用聚集索引的。 参考http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html]]></content>
@@ -175,8 +186,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>Workflow</tag>
         <tag>工作流</tag>
+        <tag>Workflow</tag>
       </tags>
   </entry>
   <entry>
@@ -789,8 +800,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -853,8 +864,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>git branch</tag>
         <tag>用法</tag>
+        <tag>git branch</tag>
         <tag>分支</tag>
       </tags>
   </entry>
@@ -991,8 +1002,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -1108,8 +1119,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>工作流</tag>
         <tag>Git Flow</tag>
+        <tag>工作流</tag>
       </tags>
   </entry>
   <entry>
@@ -1214,20 +1225,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
-    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-      <tags>
-        <tag>MongoDB</tag>
-        <tag>collection</tag>
-        <tag>数据集合</tag>
-        <tag>创建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB学习笔记：创建数据库]]></title>
     <url>%2Fmongodb%2Fmongodb-database-create.html</url>
     <content type="text"><![CDATA[MongoDB如何创建数据库。 前言 初衷：MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 这是之前写这篇笔记的初衷，现在发生了一些修改，现在本篇文章是作为MongoDB学习笔记的一部分，但也可以作为独立的一个MongoDB知识点学习的笔记。 本篇文章整理一下MongoDB如何创建数据库。 正文进入mongo shell（关于mongo shell，需要先安装并且启动好MongoDB）： 1234root@iZhp3fz3iqsadyes2s8ayeZ:~# mongoMongoDB shell version: 2.6.10connecting to: test...... 如果没有mongo这个命令，表示路径没有配置好。上面的显示表示这个MongoDB的版本是2.6.10，进入数据库后，默认会进入到test库。 使用以下的操作就可以切换数据库，如果数据库不存在，且会创建一个新的数据库：1use &lt;database&gt; 尖括号表示需要你替换的变量，就是你的数据库名称，关于数据库名称是有一些限制的，可以去查一下。 如果数据库存在，这条命令会切换到该数据库，如果不存在，则创建并切换到该数据库。 实例：创建一个数据库，名字为my_test。 12use my_testswitched to db my_test 这样，创建成功一个数据库，这种操作要比MySQL的创建数据库容易很多。 参考https://docs.mongodb.com/manual/core/databases-and-collections/]]></content>
@@ -1239,6 +1236,20 @@
         <tag>database</tag>
         <tag>create</tag>
         <tag>创建数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
+    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>collection</tag>
+        <tag>数据集合</tag>
+        <tag>创建</tag>
       </tags>
   </entry>
 </search>
