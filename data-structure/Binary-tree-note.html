@@ -108,28 +108,27 @@
 
 
 
-  <meta name="description" content="概要Git：工作流程Git Flow。">
-<meta name="keywords" content="Git,Git Flow,工作流">
+  <meta name="description" content="摘要二叉树学习笔记（未完待续）。">
+<meta name="keywords" content="二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git：工作流程Git Flow">
-<meta property="og:url" content="https://www.oxysun.cn/git/git-git-flow.html">
+<meta property="og:title" content="二叉树学习笔记（未完待续）">
+<meta property="og:url" content="https://www.oxysun.cn/data-structure/Binary-tree-note.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要Git：工作流程Git Flow。">
+<meta property="og:description" content="摘要二叉树学习笔记（未完待续）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://nvie.com/img/main-branches@2x.png">
-<meta property="og:image" content="https://nvie.com/img/merge-without-ff@2x.png">
-<meta property="og:updated_time" content="2019-04-16T08:03:29.271Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191108154331812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-11-08T09:27:28.410Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git：工作流程Git Flow">
-<meta name="twitter:description" content="概要Git：工作流程Git Flow。">
-<meta name="twitter:image" content="https://nvie.com/img/main-branches@2x.png">
+<meta name="twitter:title" content="二叉树学习笔记（未完待续）">
+<meta name="twitter:description" content="摘要二叉树学习笔记（未完待续）。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191108154331812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/git/git-git-flow.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/data-structure/Binary-tree-note.html"/>
 
 
 
@@ -139,7 +138,7 @@
   };
 </script>
 
-  <title>Git：工作流程Git Flow | IT老兵驿站</title>
+  <title>二叉树学习笔记（未完待续） | IT老兵驿站</title>
   
 
 
@@ -347,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/git/git-git-flow.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/data-structure/Binary-tree-note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="荒于嬉">
@@ -364,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Git：工作流程Git Flow
+          <h1 class="post-title" itemprop="name headline">二叉树学习笔记（未完待续）
               
             
           </h1>
@@ -389,24 +388,12 @@
                 
               
 
-              <time title="创建时间：2018-07-06 21:22:00" itemprop="dateCreated datePublished" datetime="2018-07-06T21:22:00+08:00">2018-07-06</time>
+              <time title="创建时间：2019-11-08 17:26:00 / 修改时间：17:27:28" itemprop="dateCreated datePublished" datetime="2019-11-08T17:26:00+08:00">2019-11-08</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-16 16:03:29" itemprop="dateModified" datetime="2019-04-16T16:03:29+08:00">2019-04-16</time>
               
             
           </span>
@@ -423,7 +410,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
 
                 
                 
@@ -465,48 +452,25 @@
       
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：工作流程Git Flow。<br><a id="more"></a></p>
-<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参考：<a href="https://nvie.com/posts/a-successful-git-branching-model/，" target="_blank" rel="noopener">https://nvie.com/posts/a-successful-git-branching-model/，</a> 这篇帖子是10年发表的，而我大概是08、09年接触的Git，当时因为刚刚花了好大气力研究明白SVN的流程，所以对Git很排斥，这也是我工作中一直以来的一个问题，因为在一项老技术上花了太多气力，而导致对新技术的出现本能地产生很大的排斥。如果当时仔细去研究一下Git，应该会发现Git不是来革我们这些SVN拥趸的命，而是提供完善和丰富了SVN的功能。</p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>从CVS到SVN，再从SVN到Git。<br>从中心化到去中心化的中心化（Decentralized but centralized），这句话挺有挺有深意。</p>
-<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="长期分支"><a href="#长期分支" class="headerlink" title="长期分支"></a>长期分支</h2><p>项目存在两个长期分支：</p>
-<ul>
-<li>主分支master。</li>
-<li>开发分支develop或者dev。</li>
-</ul>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>二叉树学习笔记（未完待续）。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天（2019-11-07）复习红黑树，发现红黑树和二叉树密不可分，所以这里再复习一下二叉树。</p>
+<p>在大学的时候，这块我很认真地学习了一遍。<br>大学毕业后，因为找工作的缘故，我又多次对这块进行过认真的学习，对于这块，心里还是比较清楚的。</p>
+<p>现在这个笔记呢，既复习一下知识和概念，也回顾总结一下很多经历过的事情。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>参考<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9" target="_blank" rel="noopener">维基百科</a></p>
 <blockquote>
-<p>We consider origin/master to be the main branch where the source code of HEAD always reflects a production-ready state.<br>We consider origin/develop to be the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release. Some would call this the “integration branch”. This is where any automatic nightly builds are built from.</p>
+<p>二叉查找树（英语：Binary Search Tree），也称为二叉搜索树、有序二叉树（ordered binary tree）或排序二叉树（sorted binary tree），是指一棵空树或者具有下列性质的二叉树：<br><br><br>若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；<br>若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值；<br>任意节点的左、右子树也分别为二叉查找树；<br>没有键值相等的节点。</p>
 </blockquote>
-<p>这里的HEAD是Git的一个指针，指向当前的分支上。<br>上面的话的意思大概是master分支总是指向“等待上生产”状态的代码。develop分支往往是最近交付的开发修改。这个过程是和原本的SVN工作流是很接近的，一个开发分支，一个线上分支。开发完，测试后，发布到线上。SVN流程推荐在测试时分叉一个branch出来进行测试，这个时候不影响trunk上业务的继续开发，这个工作流没有这么明说，但是因为Git的灵活性，建立一个临时的测试分支也是没有问题的。Git好就好在非常灵活，不过也正是因为如此，导致了一些问题，之前有一个小朋友，把所有的功能分支都保存了下来，还说这样会更加方便，我很难理解，这样怎么会方便呢？每个人分支都需要不断同步。灵活也应该是相对的，在一个相对固定的流程下，适当的灵活，是可以提高效率的。</p>
-<p><img src="https://nvie.com/img/main-branches@2x.png" width="50%" height="50%"></p>
-<h2 id="支持分支"><a href="#支持分支" class="headerlink" title="支持分支"></a>支持分支</h2><p>原文叫做supporting branches。这里面的每一个分支都有指定的目的和约束的规则，如何产生和如何合并。</p>
-<ul>
-<li>Feature branches</li>
-<li>Release branches</li>
-<li>Hotfix branches</li>
-</ul>
-<h3 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h3><p>可以产生于:<br>develop<br>必须合并到:<br>develop<br>分支命名约定:<br>除了master, develop, release-<em>, or hotfix-</em> 都可以，前面几个作为保留。</p>
-<p>功能分支用于开发未来的一项功能，目标的发布此时可能还不确定。这个分支最终会被合并回develop（采用了）或者被抛弃掉（不采用）。<br>功能分支更多存在于用户仓库，而不是origin仓库。<br><img src="https://nvie.com/img/merge-without-ff@2x.png" width="50%" height="50%"></p>
-<p><strong>创建：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b myfeature develop</span><br><span class="line">Switched to a new branch &quot;myfeature&quot;</span><br></pre></td></tr></table></figure></p>
-<p><strong>合并回develop：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout develop</span><br><span class="line">Switched to branch &apos;develop&apos;</span><br><span class="line">$ git merge --no-ff myfeature</span><br><span class="line">Updating ea1b82a..05e9557</span><br><span class="line">(Summary of changes)</span><br><span class="line">$ git branch -d myfeature</span><br><span class="line">Deleted branch myfeature (was 05e9557).</span><br><span class="line">$ git push origin develop</span><br></pre></td></tr></table></figure>
-<p>对于–no-ff，参考：<a href="https://git-scm.com/docs/git-merge，有待更进一步的解释。" target="_blank" rel="noopener">https://git-scm.com/docs/git-merge，有待更进一步的解释。</a></p>
-<h3 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h3><p>可以产生于:<br>develop<br>必须合并到:<br>develop和master分支<br>分支命名约定:<br>release-*</p>
-<p>我理解的，这里主要用于准备一个发布版的功能已经开发完成，等待一些信息最后的确认，为了不影响下一个开发版的正常进行，打出一个发布分支。</p>
-<p><strong>创建一个发布分支</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b release-1.2 develop</span><br><span class="line">Switched to a new branch &quot;release-1.2&quot;</span><br><span class="line">$ ./bump-version.sh 1.2</span><br><span class="line">Files modified successfully, version bumped to 1.2.</span><br><span class="line">$ git commit -a -m &quot;Bumped version number to 1.2&quot;</span><br><span class="line">[release-1.2 74d9424] Bumped version number to 1.2</span><br><span class="line">1 files changed, 1 insertions(+), 1 deletions(-)</span><br></pre></td></tr></table></figure></p>
-<p><strong>结束一个发布分支</strong><br>合并回master分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">$ git merge --no-ff release-1.2</span><br><span class="line">Merge made by recursive.</span><br><span class="line">(Summary of changes)</span><br><span class="line">$ git tag -a 1.2</span><br></pre></td></tr></table></figure></p>
-<p>合并回develop分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout develop</span><br><span class="line">Switched to branch &apos;develop&apos;</span><br><span class="line">$ git merge --no-ff release-1.2</span><br><span class="line">Merge made by recursive.</span><br><span class="line">(Summary of changes)</span><br></pre></td></tr></table></figure></p>
-<p>删除原分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d release-1.2</span><br><span class="line">Deleted branch release-1.2 (was ff452fe).</span><br></pre></td></tr></table></figure></p>
-<h3 id="热修复分支"><a href="#热修复分支" class="headerlink" title="热修复分支"></a>热修复分支</h3><p>可以产生于:<br>master<br>必须合并到:<br>develop和master分支<br>分支命名约定:<br>hotfix-*</p>
-<p>主要用于对线上代码进行热修复用，线上代码出现了问题，开出一个分支进行修复，等修复完成，合并回master和develop分支。</p>
-<p><strong>创建</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b hotfix-1.2.1 master</span><br><span class="line">Switched to a new branch &quot;hotfix-1.2.1&quot;</span><br><span class="line">$ ./bump-version.sh 1.2.1</span><br><span class="line">Files modified successfully, version bumped to 1.2.1.</span><br><span class="line">$ git commit -a -m &quot;Bumped version number to 1.2.1&quot;</span><br><span class="line">[hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1</span><br><span class="line">1 files changed, 1 insertions(+), 1 deletions(-)</span><br></pre></td></tr></table></figure>
-<p><strong>提交</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;Fixed severe production problem&quot;</span><br><span class="line">[hotfix-1.2.1 abbe5d6] Fixed severe production problem</span><br><span class="line">5 files changed, 32 insertions(+), 17 deletions(-)</span><br></pre></td></tr></table></figure>
-<p><strong>结束</strong><br>合并回master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">$ git merge --no-ff hotfix-1.2.1</span><br><span class="line">Merge made by recursive.</span><br><span class="line">(Summary of changes)</span><br><span class="line">$ git tag -a 1.2.1</span><br></pre></td></tr></table></figure></p>
-<p>合并回develop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout develop</span><br><span class="line">Switched to branch &apos;develop&apos;</span><br><span class="line">$ git merge --no-ff hotfix-1.2.1</span><br><span class="line">Merge made by recursive.</span><br><span class="line">(Summary of changes)</span><br></pre></td></tr></table></figure></p>
-<p>删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d hotfix-1.2.1</span><br><span class="line">Deleted branch hotfix-1.2.1 (was abbe5d6).</span><br></pre></td></tr></table></figure>
+<p>对于定义，这里面会隐含一些理解上需要打通的问题，例如树的高度和叶子的关系，这也是经常出现在面试题里面的一个问题。今天事情有点多，先不做这块的总结了。</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>二叉树的遍历分为前序遍历、中序遍历、后序遍历，这个前中后是以输出根结点关键字的顺序来区别的。</p>
+<p>note：二叉树的遍历涉及到了一个很关键的计算机算法，递归算法，对这个算法，原本一直有点畏惧，一直没有搞清楚。在05年去OpenTV面试的时候，被这个算法给难住了，痛定思痛，那次面试失利之后，对这个算法进行了深度的学习和研究，后来在实际工作中，在合理的时机，也尝试使用了这个算法，现在算是基本掌握了，所以很多事情，躲是躲不开的。</p>
+<p>每个结点的内容（摘抄自《算法导论》，这里用的是“结点”）：</p>
+<blockquote>
+<p>其中每个结点就是一个对象。除了 key 和卫星数据之外，每个结点还包含属性 left、right 和 p，它们分别指向结点的左孩子、右孩子和双亲。如果某个孩子结点和父结点不存在，则相应属性的值为 NIL。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191108154331812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现《算法导论》这里居然印错了，不知道家里面那个纸版的，是不是也是这样，这是第三版了，还会有这样的错误，不应该。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>今天暂时写到这里，未完待续……</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9</a></p>
 
       
     </div>
@@ -531,11 +495,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-            <a href="/tags/Git-Flow/" rel="tag"># Git Flow</a>
-          
-            <a href="/tags/工作流/" rel="tag"># 工作流</a>
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
           
         </div>
       
@@ -548,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/linux/shell-command-netstat.html" rel="next" title="Linux下shell命令用法及常见用例：netstat">
-                <i class="fa fa-chevron-left"></i> Linux下shell命令用法及常见用例：netstat
+              <a href="/data-structure/B-tree-note-1.html" rel="next" title="红黑树学习笔记">
+                <i class="fa fa-chevron-left"></i> 红黑树学习笔记
               </a>
             
           </div>
@@ -557,10 +517,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/java/java-deploy-resource-folder.html" rel="prev" title="Java：Tomcat的部署实例之资源目录">
-                Java：Tomcat的部署实例之资源目录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1044,7 +1000,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">4.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支"><span class="nav-number">5.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#长期分支"><span class="nav-number">5.1.</span> <span class="nav-text">长期分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持分支"><span class="nav-number">5.2.</span> <span class="nav-text">支持分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能分支"><span class="nav-number">5.2.1.</span> <span class="nav-text">功能分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布分支"><span class="nav-number">5.2.2.</span> <span class="nav-text">发布分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热修复分支"><span class="nav-number">5.2.3.</span> <span class="nav-text">热修复分支</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">4.2.</span> <span class="nav-text">遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
