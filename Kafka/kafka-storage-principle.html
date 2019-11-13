@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140725247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019111314075124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190118194330162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-11-13T06:09:14.262Z">
+<meta property="og:updated_time" content="2019-11-13T06:13:01.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kafka学习笔记--存储内部（MD版）">
 <meta name="twitter:description" content="概要Kafka学习笔记–存储内部（MD版）。">
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-13 14:09:14" itemprop="dateModified" datetime="2019-11-13T14:09:14+08:00">2019-11-13</time>
+                <time title="修改时间：2019-11-13 14:13:01" itemprop="dateModified" datetime="2019-11-13T14:13:01+08:00">2019-11-13</time>
               
             
           </span>
@@ -473,21 +473,21 @@
       
         <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Kafka学习笔记–存储内部（MD版）。<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>研究一下Kafka的存储内部的原理，这里转发一篇文章，个人感觉这篇文章讲的非常好，所以推荐出来，同时做一下学习笔记。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>研究一下 Kafka 的存储内部的原理，这里转发一篇文章，个人感觉这篇文章讲的非常好，所以推荐出来，同时做一下学习笔记。</p>
 <p>当然，基于不鼓励懒人，启发式记录的原则，我只是对一些重点进行笔记记录，这样无论是将来自己看，还是现在别人看，都需要参考笔记去阅读一下原文—-这也才是笔记的意义。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
 <p>A Practical Introduction to Kafka Storage Internals<br><br><br>    Kafka is everywhere these days. With the advent of Microservices and distributed computing, Kafka has become a regular occurrence in every product architecture. In this article, I’ll try to explain how Kafka’s internal storage mechanism works.<br><br><br>    Since this is going to be a deep dive into Kafka’s internals, I would expect you to have some understanding about it. Although I’ve tried to keep the entry level for this article pretty low, you might not be able to understand everything if you’re not familiar with the general workings of Kafka. Proceed further with that in mind.<br><br><br>    Kafka is usually referred to as a Distributed, Replicated Messaging Queue, which is technically true but might lead to some confusion, depending on your definition of what a messaging queue is. Instead, I prefer the definition Distributed, Replicated Commit Log. This I think clearly represents what Kafka does as all of us understand how logs are written to disk. And in this case, it is the messages pushed into Kafka that are stored to disk.</p>
 </blockquote>
 <p>这里是一些总体的概要介绍。</p>
-<p>Kafka通常被引用为一个分布的，有备份的消息队列，这在技术上是正确的，但是这个会带来一些困扰，取决于你对于消息队列的定义。取而代之的，作者更倾向于这样的定义，Kafka是一个分布的，备份的提交日志（commit log，这个是一个有语义的术语）。</p>
-<p>Kafka自己定位自己是一个分布式的流化平台，而不是上面所写的分布式，复制的消息队列，或者分布式的，复制的提交日志。（这里这个流化平台的概念不是太容易理解。）</p>
+<p>Kafka 通常被引用为一个分布的，有备份的消息队列，这在技术上是正确的，但是这个会带来一些困扰，取决于你对于消息队列的定义。取而代之的，作者更倾向于这样的定义，Kafka 是一个分布的，备份的提交日志（commit log，这个是一个有语义的术语）。</p>
+<p>Kafka 自己定位自己是一个分布式的流化平台，而不是上面所写的分布式，复制的消息队列，或者分布式的，复制的提交日志。（这里这个流化平台的概念不是太容易理解。）</p>
 <blockquote>
 <p>   With reference to storage in Kafka, you’ll always hear two terms, Partition and Topic. Partitions are the unit of storage in Kafka for data messages. And Topic can be thought of as being a container in which these partitions lie.<br><br><br>    With the basic stuff out of our way, let’s understand these concepts better by working with Kafka.<br><br><br>    I am going to start by creating a topic in Kafka with three partitions defined. If you want to follow along, the command looks like this for a local Kafka setup on windows.</p>
 </blockquote>
-<p>而关于Kafka的存储的介绍，我们会经常听到两个术语，Partition 和 Topic。Partitions 是 Kafka用来存储数据消息的基本单元，一个 Topic 可以被认为是这些 partition 的容器。</p>
+<p>而关于 Kafka 的存储的介绍，我们会经常听到两个术语，Partition 和 Topic。Partitions 是 Kafka用来存储数据消息的基本单元，一个 Topic 可以被认为是这些 partition 的容器。</p>
 <p>下面，作者会带着大家来实践一把。（下面的这些命令是运行在 windows 平台上的，而想要运行在其他的平台，可以参考《快速开始》那一章节。）</p>
 <pre><code>kafka-topics.bat --create --topic freblogg --partitions 3 --replication-factor 1 --zookeeper localhost:2181
-</code></pre><p>按照上面的命令，启动一下Kafka。</p>
+</code></pre><p>按照上面的命令，启动一下 Kafka。</p>
 <blockquote>
 <p>If I go to Kafka’s log directory, I see three directories created as follows.</p>
 </blockquote>
