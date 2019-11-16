@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-16T06:54:01.471Z">
+<meta property="og:updated_time" content="2019-11-16T08:23:07.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中如何创建自定义的注解学习笔记（MD版）">
 <meta name="twitter:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-11-16 14:53:00 / 修改时间：14:54:01" itemprop="dateCreated datePublished" datetime="2019-11-16T14:53:00+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-16 14:53:00 / 修改时间：16:23:07" itemprop="dateCreated datePublished" datetime="2019-11-16T14:53:00+08:00">2019-11-16</time>
             
 
             
@@ -571,7 +571,7 @@
 <blockquote>
 <h3 id="Annotation-Parameters"><a href="#Annotation-Parameters" class="headerlink" title="Annotation Parameters"></a>Annotation Parameters</h3><p>Annotations may also have associated parameters. These parameters may be a primitive (such as <code>int</code> or <code>double</code>), <code>String</code>, class, enum, annotation, or an array of any of the five preceding types (see <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.6.1" target="_blank" rel="noopener">Section 9.6.1 of the JLS</a>). Associating parameters with an annotation allows for an annotation to provide contextual information or can parameterize a processor of an annotation. For example, in our JSON serializer implementation, we will allow for an optional annotation parameter that specifies the name of a field when it is serialized (or use the variable name of the field by default if no name is specified).</p>
 </blockquote>
-<p>注解可以有关联的参数，这些参数可以是一个原语（例如 <code>int</code> 或者 <code>double</code>），这里原语的意思是第一级的类型定义，<code>String</code>, class, enum, annotation，或者前面这五种类型的数据。把参数和一个注解关联起来，这样可以允许一个注解提供上下文的一些信息或者可以参数化一个注解的一个处理器。举个例子，在我们的 JSON 序列化器的实现中，我们将会允许一个作为可选项的注解参数来指定将要被序列化的字段的名字（或者，如果没有名称被指定，那么使用这个字段的默认名字）。</p>
+<p>注解可以有关联的参数，这些参数可以是一个原语（例如 <code>int</code> 或者 <code>double</code>），这里原语的意思是第一级的类型定义，<code>String</code>，class， enum，annotation，或者前面这五种类型的数据。把参数和一个注解关联起来，这样可以允许一个注解提供上下文的一些信息或者可以参数化一个注解的一个处理器。举个例子，在我们的 JSON 序列化器的实现中，我们将会允许一个作为可选项的注解参数来指定将要被序列化的字段的名字（或者，如果没有名称被指定，那么使用这个字段的默认名字）。</p>
 <blockquote>
 <h2 id="How-Are-Annotations-Created"><a href="#How-Are-Annotations-Created" class="headerlink" title="How Are Annotations Created?"></a>How Are Annotations Created?</h2><p>For our JSON serializer, we will create a field annotation that allows a developer to mark a field to be included when serializing an object. For example, if we create a car class, we can annotate the fields of the car (such as make and model) with our annotation. When we serialize a car object, the resulting JSON will include make and model keys, where the values represent the value of the make and model fields, respectively. For the sake of simplicity, we will assume that this annotation will be used only for fields of type <code>String</code>, ensuring that the value of the field can be directly serialized as a string.</p>
 </blockquote>
