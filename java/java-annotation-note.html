@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
+<meta name="keywords" content="Java,注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中如何创建自定义的注解学习笔记（MD版）">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-annotation-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-16T06:54:01.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中如何创建自定义的注解学习笔记（MD版）">
+<meta name="twitter:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://www.oxysun.cn/java/java-annotation-note.html"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java中如何创建自定义的注解学习笔记（MD版） | IT老兵驿站</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120983285-1');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />日程表</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-annotation-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java中如何创建自定义的注解学习笔记（MD版）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-16 14:53:00 / 修改时间：14:54:01" itemprop="dateCreated datePublished" datetime="2019-11-16T14:53:00+08:00">2019-11-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Java中如何创建自定义的注解学习笔记（MD版）。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>记得这篇笔记还是在泉州的龙玲酒店记录的，是一个周六的晚上，坐飞机从上海到泉州，从笔记中能勾起一些旅游的回忆，感觉很丰富。</p>
+<p>这次重新修改它，是因为感觉对 Java 的注解还是没有搞明白，还需要再花点气力。</p>
+<p>这篇文章之前使用的是富文本编辑的，现在感觉迁移起来太痛苦，所以改为 Markdown 来记录。</p>
+<p>关于 Java 的注解，我一直在用，没有太搞明白它的原理，至于如何自定义一个注解，就更不明白了。其实参考的这篇文章，之前看过一遍，当时以为看懂了，但是最近在工作中去印证的时候，发现对注解还是不理解，所以这两天又再看了一遍，感觉这下又懂了一些。</p>
+<p>本文针对着原文的段落进行备注和记录笔记。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<h3 id="This-comprehensive-look-at-annotations-in-Java-not-only-goes-into-how-to-create-them-but-also-advise-on-how-to-use-them-and-how-they’re-processed-by-the-JVM"><a href="#This-comprehensive-look-at-annotations-in-Java-not-only-goes-into-how-to-create-them-but-also-advise-on-how-to-use-them-and-how-they’re-processed-by-the-JVM" class="headerlink" title="This comprehensive look at annotations in Java not only goes into how to create them but also advise on how to use them and how they’re processed by the JVM."></a>This comprehensive look at annotations in Java not only goes into how to create them but also advise on how to use them and how they’re processed by the JVM.</h3></blockquote>
+<p>这篇文章主旨不光是讲如何创建注解，还包括如何使用它们，以及它们在 JVM 上是如何处理的。</p>
+<blockquote>
+<p>Annotations are a powerful part of Java, but most times we tend to be the users rather than the creators of annotations. For example, it is not difficult to find Java source code that includes the <code>@Override</code> annotation processed by the Java compiler, the <code>@Autowired</code> annotation used by the <a href="https://spring.io/" target="_blank" rel="noopener">Spring framework</a>, or the <code>@Entity</code> annotation used by the <a href="http://hibernate.org/" target="_blank" rel="noopener">Hibernate framework</a>, but rarely do we see custom annotations. While custom annotations are an often-overlooked aspect of the Java language, they can be a very useful asset in developing readable code and just as importantly, useful in understanding how many common frameworks, such as Spring or Hibernate, succinctly accomplish their goals.</p>
+</blockquote>
+<p>自定义注解在实际的使用中，其实没有得到足够的重视。</p>
+<blockquote>
+<p>In this article, we will cover the basics of annotations, including what annotations are, how they are useful in large-than-academic examples, and how to process them. In order to demonstrate how annotations work in practice, we will create a Javascript Object Notation (JSON) serializer that processes annotated objects and produces a JSON string representing each object. Along the way, we will cover many of the common stumbling blocks of annotations, including the quirks of the Java reflection framework and visibility concerns for annotation consumers. The interested reader can find the source code for the completed JSON serializer on <a href="https://github.com/albanoj2/dzone-json-serializer" target="_blank" rel="noopener">GitHub</a>.</p>
+</blockquote>
+<p>这篇文章以一个 JSON 序列化器的注解为例来介绍。</p>
+<blockquote>
+<h2 id="What-Are-Annotations"><a href="#What-Are-Annotations" class="headerlink" title="What Are Annotations?"></a>What Are Annotations?</h2><p>Annotations are decorators that are applied to Java constructs, such as classes, methods, or fields, that associate metadata with the construct. These decorators are benign and do not execute any code in-and-of-themselves, but can be used by runtime frameworks or the compiler to perform certain actions. Stated more formally, the Java Language Specification (JLS), <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.7" target="_blank" rel="noopener">Section 9.7</a>, provides the following definition:  <br><br>An <em>annotation</em> is a marker which associates information with a program construct, but has no effect at run time. <br><br>It is important to note the last clause in this definition: Annotations have no effect on a program at runtime. This is not to say that a framework may not change its behavior based on the presence of an annotation at runtime, but that the inclusion of an annotation does not itself change the runtime behavior of a program. While this may appear to be a nuanced distinction, it is a very important one that must be understood in order to grasp the usefulness of annotations. <br><br>For example, adding the <code>@Autowired</code> annotation to an instance field does not in-and-of-itself change the runtime behavior of a program: The compiler simply includes the annotation at runtime, but the annotation does not execute any code or inject any logic that alters the normal behavior of the program (the behavior expected when the annotation is omitted). Once we introduce the Spring framework at runtime, we are able to gain powerful Dependency Injection (DI) functionality when our program is parsed. By including the annotation, we have instructed the Spring framework to inject an appropriate dependency into our field. We will see shortly (when we create our JSON serializer) that the annotation itself does not accomplish this, but rather, the annotation acts as a marker, informing the Spring framework that we desire a dependency to be injected into the annotated field.</p>
+</blockquote>
+<p>注解是一种装饰器，那么参考装饰器设计模式的概念，它其实是给被装饰者增加功能用的。</p>
+<h3 id="Retention-and-Target"><a href="#Retention-and-Target" class="headerlink" title="Retention and Target"></a>Retention and Target</h3><blockquote>
+<p>Creating an annotation requires two pieces of information: (1) a retention policy and (2) a target. A <strong>retention policy</strong> specifies how long, in terms of the program lifecycle, the annotation should be retained for. For example, annotations may be retained during compile-time or runtime, depending on the retention policy associated with the annotation. As of Java 9, there are <a href="https://docs.oracle.com/javase/9/docs/api/java/lang/annotation/RetentionPolicy.html" target="_blank" rel="noopener">three standard retention policies</a>, as summarized below:</p>
+</blockquote>
+<p>创建一个注解，需要两方面的信息：</p>
+<ol>
+<li>一个保留策略</li>
+<li>一个目标</li>
+</ol>
+<p>保留策略指定了多长时间，用术语来说就是程序的生命周期，这个注解可以被保留。参考下面：</p>
+<table>
+<thead>
+<tr>
+<th>POLICY</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source</td>
+<td>Annotations are discarded by the compiler</td>
+</tr>
+<tr>
+<td>Class</td>
+<td>Annotations are recorded in the class file generated by the compiler but are not required to be retained by the Java Virtual Machine (JVM) that processes the class file at runtime</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>Annotations are recorded in the class file by the compiler and retained at runtime by the JVM</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>As we will see shortly, the runtime option for annotation retention is one of the most common, as it allows for Java programs to reflectively access the annotation and execute code based on the presence of an annotation, as well as access the data associated with an annotation. Note that an annotation has <em>exactly one</em> associated retention policy.</p>
+</blockquote>
+<blockquote>
+<p>The <strong>target</strong> of an annotation specifies which Java constructs an annotation can be applied to. For example, some annotations may be valid for methods only, while others may be valid for both classes and fields. As of Java 9, there are <a href="https://docs.oracle.com/javase/9/docs/api/java/lang/annotation/ElementType.html" target="_blank" rel="noopener">eleven standard annotation targets</a>, as summarized in the following table:</p>
+</blockquote>
+<p>注解的 target 指定了一个注解将会被用于哪一个 Java 构造器，下面表格进行了总结：</p>
+<table>
+<thead>
+<tr>
+<th>TARGET</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annotation Type</td>
+<td>Annotates another annotation</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Annotates a constructor</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>Annotates a field, such as an instance variable of a class or an <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html" target="_blank" rel="noopener">enum constant</a></td>
+</tr>
+<tr>
+<td>Local variable</td>
+<td>Annotates a local variable</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>Annotates a method of a class</td>
+</tr>
+<tr>
+<td>Module</td>
+<td>Annotates a module (new in Java 9)</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>Annotates a package</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>Annotates a parameter to a method or constructor</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Annotates a type, such as a class, interfaces, annotation types, or enum declarations</td>
+</tr>
+<tr>
+<td>Type Parameter</td>
+<td>Annotates a type parameter, such as those used as formal generic parameters</td>
+</tr>
+<tr>
+<td>Type Use</td>
+<td>Annotates the use of a type, such as when an object of a type is created using the <code>new</code>keyword, when an object is cast to a specified type, when a class implements an interface, or when the type of a throwable object is declared using the throws keyword (for more information, see the [Type Annotations and Pluggable Type Systems Oracle tutorial]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>For more information on these targets, see <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.7.4" target="_blank" rel="noopener">Section 9.7.4 of the JLS</a>. It is important to note that <em>one or more</em> targets may be associated with an annotation. For example, if the field and constructor targets are associated with an annotation, then the annotation may be used on either fields or constructors. If on the other hand, an annotation only has an associated target of method, then applying the annotation to any construct other than a method results in an error during compilation.</p>
+</blockquote>
+<p>一个注解可以被关联上一个或者多个 targe。</p>
+<blockquote>
+<h3 id="Annotation-Parameters"><a href="#Annotation-Parameters" class="headerlink" title="Annotation Parameters"></a>Annotation Parameters</h3><p>Annotations may also have associated parameters. These parameters may be a primitive (such as <code>int</code> or <code>double</code>), <code>String</code>, class, enum, annotation, or an array of any of the five preceding types (see <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.6.1" target="_blank" rel="noopener">Section 9.6.1 of the JLS</a>). Associating parameters with an annotation allows for an annotation to provide contextual information or can parameterize a processor of an annotation. For example, in our JSON serializer implementation, we will allow for an optional annotation parameter that specifies the name of a field when it is serialized (or use the variable name of the field by default if no name is specified).</p>
+</blockquote>
+<p>注解可以有关联的参数，这些参数可以是一个原语（例如 <code>int</code> 或者 <code>double</code>），这里原语的意思是第一级的类型定义，<code>String</code>, class, enum, annotation，或者前面这五种类型的数据。把参数和一个注解关联起来，这样可以允许一个注解提供上下文的一些信息或者可以参数化一个注解的一个处理器。举个例子，在我们的 JSON 序列化器的实现中，我们将会允许一个作为可选项的注解参数来指定将要被序列化的字段的名字（或者，如果没有名称被指定，那么使用这个字段的默认名字）。</p>
+<blockquote>
+<h2 id="How-Are-Annotations-Created"><a href="#How-Are-Annotations-Created" class="headerlink" title="How Are Annotations Created?"></a>How Are Annotations Created?</h2><p>For our JSON serializer, we will create a field annotation that allows a developer to mark a field to be included when serializing an object. For example, if we create a car class, we can annotate the fields of the car (such as make and model) with our annotation. When we serialize a car object, the resulting JSON will include make and model keys, where the values represent the value of the make and model fields, respectively. For the sake of simplicity, we will assume that this annotation will be used only for fields of type <code>String</code>, ensuring that the value of the field can be directly serialized as a string.</p>
+</blockquote>
+<p>下面要开始举例说明如何创建一个注解。</p>
+<blockquote>
+<p>To create such a field annotation, we declare a new annotation using the <code>@interface</code> keyword:</p>
+</blockquote>
+<pre><code>@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface JsonField {
+    public String value() default &quot;&quot;;
+}
+</code></pre><p>这个地方以前没有看仔细，这里是<code>@interface</code>，不是 <code>interface</code>。</p>
+<blockquote>
+<p>The core of our declaration is the <code>public @interface JsonField</code>, which declares an annotation type with a <code>public</code> modifier, allowing our annotation to be used in any package (assuming the package is properly imported if in another module). The body of the annotation declares a single <code>String</code> parameter, named <code>value</code>, that has a type of <code>String</code> and a default value of an empty string.</p>
+</blockquote>
+<p>上面这段代码声明的核心是 <code>public @interface JsonField</code>，这声明了一个带有 <code>public</code> 修饰符的注解，允许我们的注解在任意的包被使用（假设这个包在任何模块中正确地被引入—-这句话有点看不懂）。声明的 body 部分声明了一个 String 的参数，名字是 value ，类型是 String，默认值是空的 String。</p>
+<blockquote>
+<p>Note that the variable name <code>value</code> has a special meaning: It defines a Single-Element Annotation (<a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.7.3" target="_blank" rel="noopener">Section 9.7.3. of the JLS</a>) and allows users of our annotation to supply a single parameter to the annotation without specifying the name of the parameter. For example, a user can annotate a field using <code>@JsonField(&quot;someFieldName&quot;)</code> and is not <em>required</em> to declare the annotation as <code>@JsonField(value = &quot;someFieldName&quot;)</code>, although the latter may still be used (but it is not required). The inclusion of a default value of empty string allows for the value to be omitted, resulting in <code>value</code> holding an empty string if no value is explicitly specified. For example, if a user declares the above annotation using the form <code>@JsonField</code>, then the <code>value</code> parameter is set to an empty string.</p>
+</blockquote>
+<p>注意这个 value 有一个特殊的意义，它定义了一个单元素的注解，允许注解的使用者给一个注解提供一个单一的参数，而不用指定参数的名字。例如用户可以<code>@JsonField(&quot;someFieldName&quot;)</code> 这样去对一个字段进行注解，而不需要<code>@JsonField(value = &quot;someFieldName&quot;)</code> 这样去声明这个注解，当然后面这种方式还是可以被使用的。默认值的包含允许这个 value 值被忽略，而没有明确的 value 被指定的时候，就会使用这个空字符串作为默认值，例如，一个用户是用<code>@JsonField</code> 来声明的，那么这个 <code>value</code> 就会被设置成空串。</p>
+<blockquote>
+<p>The retention policy and target of the annotation declaration are specified using the <code>@Retention</code> and <code>@Target</code>annotations, respectively. The retention policy is specified using the <code>[java.lang.annotation.RetentionPolicy](https://docs.oracle.com/javase/9/docs/api/java/lang/annotation/RetentionPolicy.html)</code>enum and includes constants for each of the three standard retention policies. Likewise, the target is specified using the <code>[java.lang.annotation.ElementType](https://docs.oracle.com/javase/9/docs/api/java/lang/annotation/ElementType.html)</code>enum, which includes constants for each of the eleven standard target types.</p>
+</blockquote>
+<blockquote>
+<p>In summary, we created a public, single-element annotation named <code>JsonField</code>, which is retained by the JVM during runtime and may only be applied to fields. This annotation has a single parameter, <code>value</code>, of type <code>String</code> with a default value of an empty string. With our annotation created, we can now annotate fields to be serialized.</p>
+</blockquote>
+<blockquote>
+<h2 id="How-Are-Annotations-Used"><a href="#How-Are-Annotations-Used" class="headerlink" title="How Are Annotations Used?"></a>How Are Annotations Used?</h2><p>Using an annotation requires only that the annotation is placed before an appropriate construct (any valid target for the annotation). For example, we can create a <code>Car</code>class using the following class declaration:</p>
+</blockquote>
+<p>下面结合一个例子来讲，注解是如何被使用的。</p>
+<pre><code>public class Car {
+
+    @JsonField(&quot;manufacturer&quot;)
+    private final String make;
+
+    @JsonField
+    private final String model;
+
+    private final String year;
+
+    public Car(String make, String model, String year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    @Override
+    public String toString() {
+        return year + &quot; &quot; + make + &quot; &quot; + model;
+    }
+}
+</code></pre><blockquote>
+<p>This class exercises the two major uses of the <code>@JsonField</code> annotation: (1) with an explicit value and (2) with a default value. We could have also annotated a field using the form <code>@JsonField(value = &quot;someName&quot;)</code>, but this style is overly verbose and does not aid in the readability of our code. Therefore, unless the inclusion of an annotation parameter name <em>in a single-element annotation</em> adds to the readability of code, it should be omitted. For annotations with more than one parameter, the name of each parameter is required to differentiate between parameters (unless only one argument is provided, in which case, the argument is mapped to the <code>value</code> parameter if no name is explicitly provided).</p>
+</blockquote>
+<p>上面的例子实践了注解的两个用法，一个是带有明确的值，一个是带有一个默认值。对于单一参数的注解，可以忽略掉参数名；反之，则不行。</p>
+<blockquote>
+<p>Given the above uses of the <code>@JsonField</code> annotation, we would expect that a <code>Car</code> ject is serialized into a JSON string of the form <code>{&quot;manufacturer&quot;:&quot;someMake&quot;, &quot;model&quot;:&quot;someModel&quot;}</code> (note, as we will see later, we will disregard the order of the keys–<code>manufacturer</code> and <code>model</code>–in this JSON string). Before we proceed, it is important to note that adding the <code>@JsonField</code> annotations does not change the runtime behavior of the <code>Car</code>class. If we compile this class, the inclusion of <code>@JsonField</code> annotations does not enhance the behavior of the <code>Car</code> class anymore than had we omitted the annotations. These annotations are simply recorded, along with the value of the <code>value</code> parameter, in the class file for the <code>Car</code> class. Altering the runtime behavior of our system requires that we process these annotations.</p>
+</blockquote>
+<p>基于上面的 <code>@JsonField</code> 的注解使用，我们可以期望一个 <code>Car</code> 被序列化成一个 JSON 字符串。<br>后面这段是讲，这个注解并没有改变 <code>Car</code> 的运行时的行为。</p>
+<blockquote>
+<h2 id="How-are-Annotations-Processed"><a href="#How-are-Annotations-Processed" class="headerlink" title="How are Annotations Processed?"></a>How are Annotations Processed?</h2><p>Processing annotations is accomplished through the <a href="https://docs.oracle.com/javase/tutorial/reflect/" target="_blank" rel="noopener">Java Reflection Application Programming Interface (API)</a>. Sidelining the technical nature of the reflection API for a moment, the reflection API allows us to write code that will inspect the class, methods, fields, etc. of an object. For example, if we create a method that accepts a <code>Car</code> object, we can inspect the class of this object (namely, <code>Car</code>) and discover that this class has three fields: (1) <code>make</code>, (2) <code>model</code>, and (3) <code>year</code>. Furthermore, we can inspect these fields to discover if each is annotated with a specific annotation.</p>
+</blockquote>
+<p>注解的处理是由反射的 API 来完成的，反射的 API 允许我们写一些代码去检视一个对象的类、方法、域等。</p>
+<blockquote>
+<p>Using this capability, we can iterate through each field of the class associated with the object passed to our method and discover which of these fields are annotated with the <code>@JsonField</code> annotation. If the field is annotated with the <code>@JsonField</code> annotation, we record the name of the field and its value. Once all the fields have been processed, then we can create the JSON string using these field names and values.</p>
+</blockquote>
+<p>使用这个能力，我们可以遍历传递给我们的方法的对象的类的每一个字段，并且去发现那些字段是被 <code>@JsonField</code> 来注解的。前半句有些拗口，“传递给我们的方法的对象”，这里是指什么呢？如果一个域被用 <code>@JsonField</code> 注解，我们记录下来它的域的名称和它的值。</p>
+<blockquote>
+<p>Determining the name of the field requires more complex logic than determining the value. If the <code>@JsonField</code>includes a provided value for the value parameter (such as <code>&quot;manufacturer&quot;</code> in the previous <code>@JsonField(&quot;manufacturer&quot;)</code> use), we will use this provided field name. If the value of the value parameter is an empty string, we know that no field name was explicitly provided (since this is the default value for the value parameter), or else, an empty string was explicitly provided. In either case, we will use the variable name of the field as the field name (for example, <code>model</code> in the <code>private final String model</code> declaration).</p>
+</blockquote>
+<p>确定域的名字比确定值，逻辑要更加复杂。如果 <code>@JsonField</code> 包含一个给 value 参数提供一个值（例如之前的 <code>@JsonField(&quot;manufacturer&quot;)</code>  里面的<code>&quot;manufacturer&quot;</code> ），我们将那个作为域的值。如果 value 参数的值是一个空串，那么我们知道域的名称没有被明确地提供（因为这是 value 参数的默认值），或者提供了一个空串。这种情况下，我们将使用这个域的变量名作为域的名（例如，在  <code>private final String model</code> 声明里面的 <code>model</code>）。</p>
+<p>这个注解其实是为了确认这个域的名称，这里的 value 是这个域的名称的 value，不是这个域的值，这里容易混淆，之前就没搞明白这里。</p>
+<blockquote>
+<p>Combining this logic into a <code>JsonSerializer</code> class, we can create the following class declaration:</p>
+</blockquote>
+<pre><code>public class JsonSerializer {
+
+    public String serialize(Object object) throws JsonSerializeException {
+
+        try {
+            Class&lt;?&gt; objectClass = requireNonNull(object).getClass();
+            Map&lt;String, String&gt; jsonElements = new HashMap&lt;&gt;();
+
+            for (Field field: objectClass.getDeclaredFields()) {
+                field.setAccessible(true);
+                if (field.isAnnotationPresent(JsonField.class)) {
+                    jsonElements.put(getSerializedKey(field), (String) field.get(object));
+                }
+            }
+            System.out.println(toJsonString(jsonElements));
+            return toJsonString(jsonElements);
+        }
+        catch (IllegalAccessException e) {
+            throw new JsonSerializeException(e.getMessage());
+        }
+    }
+
+    private String toJsonString(Map&lt;String, String&gt; jsonMap) {
+        String elementsString = jsonMap.entrySet()
+                .stream()
+                .map(entry -&gt; &quot;\&quot;&quot;  + entry.getKey() + &quot;\&quot;:\&quot;&quot; + entry.getValue() + &quot;\&quot;&quot;)
+                .collect(Collectors.joining(&quot;,&quot;));
+        return &quot;{&quot; + elementsString + &quot;}&quot;;
+    }
+
+    private static String getSerializedKey(Field field) {
+        String annotationValue = field.getAnnotation(JsonField.class).value();
+
+        if (annotationValue.isEmpty()) {
+            return field.getName();
+        }
+        else {
+            return annotationValue;
+        }
+    }
+}
+</code></pre><blockquote>
+<p>Note that multiple responsibilities have been combined into this class for the sake of brevity. For a refactored version of this serializer class, see <a href="https://github.com/albanoj2/dzone-json-serializer/tree/srp_generalization" target="_blank" rel="noopener">this branch</a> in the codebase repository. We also create an exception that will be used to denote if an error has occurred while processing the object supplied to our serialize method:</p>
+</blockquote>
+<pre><code>public class JsonSerializeException extends Exception {
+
+    private static final long serialVersionUID = -8845242379503538623L;
+
+    public JsonSerializeException(String message) {
+        super(message);
+    }
+}
+</code></pre><blockquote>
+<p>Although the <code>JsonSerializer</code> class appears complex, it consists of three main tasks: (1) finding all fields of the supplied class annotated with the <code>@JsonField</code> annotation, (2) recording the field name (or the explicitly provided field name) and value for all fields that include the <code>@JsonField</code> annotation, and (3) converting the recorded field name and value pairs into a JSON string.</p>
+</blockquote>
+<p>上面这个 <code>JsonSerializer</code> 类有一些复杂，它包含了3个主要任务：</p>
+<p><code>1\. 发现所有被@JsonField注解的域。</code></p>
+<p><code>2\. 记录所有包含在@JsonField注解的域的名字，或者明确提供域的名字和所有域的值。</code></p>
+<p><code>3\. 转换这些域的名和值到一个JSON字符串。</code></p>
+<blockquote>
+<p>The line <code>requireNonNull(object).getClass()</code> simply checks that the supplied object is not <code>null</code> (and throws a <code>NullPointerException</code> if it is) and obtains the <code>[Class](https://docs.oracle.com/javase/9/docs/api/java/lang/Class.html)</code> object associated with the supplied object. We will use this <code>Class</code> object shortly to obtain the fields associated with the class. Next, we create a <code>Map</code> of <code>String</code>s to <code>String</code>s, which will be used store the field name and value pairs.</p>
+</blockquote>
+<p>这个代码里面涉及到了一些 Java 的功能，我以前没有接触过，例如  <code>requireNonNull(object).getClass()</code> 可以检查一个对象是否是 <code>null</code>， 如果不是，则去获取这个对象的 <code>[Class]</code> 信息。</p>
+<blockquote>
+<p>With our data structures established, we next iterate through each field declared in the class of the supplied object. For each field, we configure the field to suppress Java language access checking when accessing the field. This is a very important step since the fields we annotated are private. In the standard case, we would be unable to access these fields, and attempting to obtain the value of the private field would result in an <code>IllegalAccessException</code> being thrown. In order to access these private fields, we must instruct the reflection API to suppress the standard Java access checking for this field using the <code>setAccessible</code> method. The <code>setAccessible(boolean)</code> documentation defines the meaning of the supplied boolean flag as follows:</p>
+</blockquote>
+<p>这里涉及到了一个比较关键的地方，即权限问题，本来 Java 的这些私有域都是不能被访问的，为了访问这些私有域，我们必须通知反射的 API 去抑制住标准的 Java 访问检查，即使用 <code>setAccessible</code> 这个方法。</p>
+<blockquote>
+<p>A value of <code>true</code> indicates that the reflected object should suppress Java language access checking when it is used. A value of <code>false</code> indicates that the reflected object should enforce Java language access checks.</p>
+</blockquote>
+<blockquote>
+<p>Note that with the introduction of modules in Java 9, using the <code>setAccessible</code> method requires that the package containing the class whose private fields will be accessed should be declared open in its module definition. For more information, see <a href="https://stackoverflow.com/a/46482376/2403253" target="_blank" rel="noopener">this explanation by Michał Szewczyk</a> and <a href="http://in.relation.to/2017/04/11/accessing-private-state-of-java-9-modules/" target="_blank" rel="noopener">Accessing Private State of Java 9 Modules by Gunnar Morling</a>.</p>
+</blockquote>
+<p>这里会有一个访问权限的问题，因为注解关联的域是私有域，那么想要访问，需要修改反射时的访问权限。</p>
+<blockquote>
+<p>After gaining access to the field, we check if the field is annotated with the <code>@JsonField</code>. If it is, we determine the name of the field (either through an explicit name provided in the <code>@JsonField</code> annotation or the default name, which equals the variable name of the field) and record the name and field value in our previously constructed map. Once all fields have been processed, we then convert the map of field names to field values (<code>jsonElements</code>) into a JSON string.</p>
+</blockquote>
+<blockquote>
+<p>We accomplish by converting the map into a stream of entries (key-value pairs for each entry in the map), mapping each entry to a string of the form <code>&quot;&lt;fieldName&gt;&quot;:&quot;&lt;fieldValue&gt;&quot;</code>, where <code>&lt;fieldName&gt;</code> is the key for the entry and <code>&lt;fieldValue&gt;</code> is the value for the entry. Once all entries have been processed, we combine all of these entry strings with a comma. This results in a string of the form <code>&quot;&lt;fieldName1&gt;&quot;:&quot;&lt;fieldValue1&gt;&quot;,&quot;&lt;fieldName2&gt;&quot;:&quot;&lt;fieldValue2&gt;&quot;,...</code>. Once this terminal string has been joined, we surround it with curly braces, creating a valid JSON string.</p>
+</blockquote>
+<blockquote>
+<p>In order to test this serializer, we can execute the following code:</p>
+</blockquote>
+<pre><code>Car car = new Car(&quot;Ford&quot;, &quot;F150&quot;, &quot;2018&quot;);
+JsonSerializer serializer = new JsonSerializer();
+serializer.serialize(car);
+</code></pre><blockquote>
+<p>This results in the following output:</p>
+</blockquote>
+<pre><code>{&quot;model&quot;:&quot;F150&quot;,&quot;manufacturer&quot;:&quot;Ford&quot;}
+</code></pre><blockquote>
+<p>As expected, the <code>maker</code> and <code>model</code> fields of the <code>Car</code> object have been serialized, using the name of the field (or the explicitly supplied name in the case of the <code>maker</code> field) as the key and the value of the field as the value. Note that the order of JSON elements may be reversed from the output seen above. This occurs because there is no definite ordering for the array of declared fields for a class, as stated in the <a href="https://docs.oracle.com/javase/9/docs/api/java/lang/Class.html#getDeclaredFields--" target="_blank" rel="noopener"><code>getDeclaredFields</code>documentation</a>:</p>
+</blockquote>
+<blockquote>
+<p>The elements in the returned array are not sorted and are not in any particular order.</p>
+</blockquote>
+<blockquote>
+<p>Due to this limitation, the order of the elements in the JSON string may vary. To make the order of the elements deterministic, we would have to impose ordering ourselves (such as by sorting the map of field names to field values). Since a JSON object is defined as an <em>unordered</em> set of name-value pairs, as per the <a href="http://json.org/" target="_blank" rel="noopener">JSON standard</a>, imposing ordering is unneeded. Note, however, a test case for the serialize method should pass for either <code>{&quot;model&quot;:&quot;F150&quot;,&quot;manufacturer&quot;:&quot;Ford&quot;}</code> or <code>{&quot;manufacturer&quot;:&quot;Ford&quot;,&quot;model&quot;:&quot;F150&quot;}</code>.</p>
+</blockquote>
+<p>上面输出的JSON并没有排序，这并没有什么问题，规则中并没有要求有顺序。</p>
+<blockquote>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Java annotations are a very powerful feature in the Java language, but most often, we are the users of standard annotations (such as <code>@Override</code>) or common framework annotations (such as <code>@Autowired</code>), rather than their developers. While annotations should not be used in place of interfaces or other language constructs that properly accomplish a task in an object-oriented manner, they can greatly simplify repetitive logic. For example, rather than creating a <code>toJsonString</code>method within an interface and having all classes that can be serialized implement this interface, we can annotate each serializable field. This takes the repetitive logic of the serialization process (mapping field names to fields values) and places it into a single serializer class. It also decouples the serialization logic from the domain logic, removing the clutter of manual serialization from the conciseness of the domain logic.</p>
+<p>While custom annotations are not frequently used in most Java applications, knowledge of this feature is a requirement for any intermediate or advanced user of the Java language. Not only will knowledge of this feature enhance the toolbox of a developer, which is just as important, but it will also aid in the understanding of the common annotations in the most popular Java frameworks.</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文以一个实际的例子，描述了怎么去写一个 Java 的注解，反复理解这个过程，对于理解注解，有很好的帮助。</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://dzone.com/articles/creating-custom-annotations-in-java" target="_blank" rel="noopener">https://dzone.com/articles/creating-custom-annotations-in-java</a></p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/注解/" rel="tag"># 注解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/data-structure/Binary-tree-note.html" rel="next" title="二叉树学习笔记（未完待续）">
+                <i class="fa fa-chevron-left"></i> 二叉树学习笔记（未完待续）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">荒于嬉</p>
+              <p class="site-description motion-element" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">152</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-comprehensive-look-at-annotations-in-Java-not-only-goes-into-how-to-create-them-but-also-advise-on-how-to-use-them-and-how-they’re-processed-by-the-JVM"><span class="nav-number">4.0.1.</span> <span class="nav-text">This comprehensive look at annotations in Java not only goes into how to create them but also advise on how to use them and how they’re processed by the JVM.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Are-Annotations"><span class="nav-number">4.1.</span> <span class="nav-text">What Are Annotations?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Retention-and-Target"><span class="nav-number">4.1.1.</span> <span class="nav-text">Retention and Target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotation-Parameters"><span class="nav-number">4.1.2.</span> <span class="nav-text">Annotation Parameters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-Are-Annotations-Created"><span class="nav-number">4.2.</span> <span class="nav-text">How Are Annotations Created?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-Are-Annotations-Used"><span class="nav-number">4.3.</span> <span class="nav-text">How Are Annotations Used?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-are-Annotations-Processed"><span class="nav-number">4.4.</span> <span class="nav-text">How are Annotations Processed?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考："><span class="nav-number">6.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
