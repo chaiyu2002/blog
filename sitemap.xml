@@ -4,7 +4,7 @@
   <url>
     <loc>https://www.oxysun.cn/java/java-annotation-note.html</loc>
     
-    <lastmod>2019-11-16T08:23:07.883Z</lastmod>
+    <lastmod>2019-11-17T02:37:31.173Z</lastmod>
     
   </url>
   
@@ -702,13 +702,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
-    
-    <lastmod>2018-07-18T11:09:55.843Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
     <lastmod>2018-07-18T11:09:55.843Z</lastmod>
@@ -716,14 +709,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
+    
+    <lastmod>2018-07-18T11:09:55.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
@@ -737,14 +737,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/index.html</loc>
+    <loc>https://www.oxysun.cn/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.008Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/data.json</loc>
+    <loc>https://www.oxysun.cn/photos/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.008Z</lastmod>
     
