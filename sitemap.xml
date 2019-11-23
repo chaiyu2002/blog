@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/linux/vim-copy-note.html</loc>
+    
+    <lastmod>2019-11-23T04:10:32.705Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/git/git-merge-choose-one-side-code.html</loc>
     
     <lastmod>2019-11-20T11:28:01.379Z</lastmod>
@@ -702,14 +709,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
     
     <lastmod>2018-07-18T11:09:55.843Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-awk.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
     <lastmod>2018-07-18T11:09:55.843Z</lastmod>
     
@@ -758,13 +765,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
-    
-    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-16T08:07:35.992Z</lastmod>
@@ -772,14 +772,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/drafts/iframe.html</loc>
+    
+    <lastmod>2018-06-16T08:07:35.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
