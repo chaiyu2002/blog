@@ -108,25 +108,29 @@
 
 
 
-  <meta name="description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。MongoDB如何设计数据模型。">
-<meta name="keywords" content="MongoDB,schema">
+  <meta name="description" content="概要Git：Python的异步编程介绍（MD）。">
+<meta name="keywords" content="Python,异步编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记">
-<meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html">
+<meta property="og:title" content="Python的异步编程介绍（MD）">
+<meta property="og:url" content="https://www.oxysun.cn/python/python-async-program.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。MongoDB如何设计数据模型。">
+<meta property="og:description" content="概要Git：Python的异步编程介绍（MD）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-18T00:08:05.866Z">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg">
+<meta property="og:image" content="https://miro.medium.com/max/1080/1*t_oCyHBstMnF8WpZ67pKTg.jpeg">
+<meta property="og:image" content="https://miro.medium.com/max/1068/1*n0YzPr3owXrrEzV-xY-eAg.png">
+<meta property="og:updated_time" content="2019-11-28T15:24:43.684Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记">
-<meta name="twitter:description" content="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。MongoDB如何设计数据模型。">
+<meta name="twitter:title" content="Python的异步编程介绍（MD）">
+<meta name="twitter:description" content="概要Git：Python的异步编程介绍（MD）。">
+<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html"/>
+  <link rel="canonical" href="https://www.oxysun.cn/python/python-async-program.html"/>
 
 
 
@@ -136,7 +140,7 @@
   };
 </script>
 
-  <title>《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记 | IT老兵驿站</title>
+  <title>Python的异步编程介绍（MD） | IT老兵驿站</title>
   
 
 
@@ -344,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/python/python-async-program.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="荒于嬉">
@@ -361,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记
+          <h1 class="post-title" itemprop="name headline">Python的异步编程介绍（MD）
               
             
           </h1>
@@ -386,24 +390,12 @@
                 
               
 
-              <time title="创建时间：2018-08-17 15:29:48" itemprop="dateCreated datePublished" datetime="2018-08-17T15:29:48+08:00">2018-08-17</time>
+              <time title="创建时间：2019-11-28 23:23:00 / 修改时间：23:24:43" itemprop="dateCreated datePublished" datetime="2019-11-28T23:23:00+08:00">2019-11-28</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-18 08:08:05" itemprop="dateModified" datetime="2018-08-18T08:08:05+08:00">2018-08-18</time>
               
             
           </span>
@@ -420,7 +412,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -462,104 +454,295 @@
       
 
       
-        <h2 id="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。"><a href="#原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。" class="headerlink" title="原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。"></a>原帖位于<a href="https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html">IT老兵博客</a>，沉淀着一个IT老兵对于这个行业的多年的认知。</h2><p>MongoDB如何设计数据模型。<br><a id="more"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在工作中遇到了要使用MongoDB，学习MongoDB，肯定不能仅仅停留于对一些指令的简单操作的掌握，就像当初学习MySQL一样，要了解一下如何使用MongoDB来设计数据库。这里，找到一篇很好的文章，转载在下面，配上一定的翻译和学习笔记，原文也不是很复杂，贴上原文，是为了不误导读者，也不误导自己，将来可以不断再纠正其中理解不准确的地方。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
-<p>By William Zola, Lead Technical Support Engineer at MongoDB</p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：Python的异步编程介绍（MD）。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里翻译和学习一篇介绍Python的异步编程的文章，在网上找了半天，感觉这篇写的很好，把几种实现方案都举了例子，而且列出了优劣。</p>
+<p>之前的文章采用了富文本编辑，不太方便，这次改为MD格式。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><img alt="" class="has" height="219" src="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg" width="700"></p>
+<h2 id="介绍-Introduction"><a href="#介绍-Introduction" class="headerlink" title="介绍 Introduction"></a>介绍 Introduction</h2><blockquote>
+<p>Asynchronous programming is a type of parallel programming in which a unit of work is allowed to run separately from the primary application <a href="https://whatis.techtarget.com/definition/thread" rel="noopener" target="_blank">thread</a>. When the work is complete, it notifies the main thread about completion or failure of the worker thread. There are numerous benefits to using it, such as improved application performance and enhanced responsiveness.</p>
+</blockquote>
+<p>异步编程是一种并行编程，这里支持一个单元的工作被允许从主程序中分离出来。</p>
+<p><img alt="" class="has" height="321" src="https://miro.medium.com/max/1080/1*t_oCyHBstMnF8WpZ67pKTg.jpeg" width="540"></p>
+<blockquote>
+<p>Asynchronous programming has been gaining a lot of attention in the past few years, and for good reason. Although it can be more difficult than the traditional linear style, it is also much more efficient.</p>
 </blockquote>
 <blockquote>
-<p>“I have lots of experience with SQL, but I’m just a beginner with MongoDB. How do I model a one-to-N relationship?” This is one of the more common questions I get from users attending MongoDB office hours.</p>
+<p>For example, instead of waiting for an <a href="https://blog.ragnarson.com/2013/09/03/life-of-an-http-request.html" rel="noopener" target="_blank">HTTP request</a> to finish before continuing execution, with Python async coroutines you can submit the request and do other work that’s waiting in a queue while waiting for the HTTP request to finish.</p>
+</blockquote>
+<p>例如，与其等待一个 HTTP request 的返回，然后去继续后面的工作，就可以使用 Python async coroutines， 你提交了请求，然后就可以去做别的事情了，当请求回来的时候，它们会在一个队列里面等待。</p>
+<blockquote>
+<p>Asynchronicity seems to be a big reason why Node.js so popular for server-side programming. Much of the code we write, especially in heavy IO applications like websites, depends on external resources. This could be anything from a remote database call to POSTing to a <a href="https://searchmicroservices.techtarget.com/definition/RESTful-API" rel="noopener" target="_blank">REST</a> service. As soon as you ask for any of these resources, your code is waiting around with nothing to do. With asynchronous programming, you allow your code to handle other tasks while waiting for these other resources to respond.</p>
+</blockquote>
+<p>异步性可能就是 Node.js 这么风靡的一个原因。</p>
+<p><strong>How Does Python Do Multiple Things At Once?</strong><br><img alt="" class="has" height="423" src="https://miro.medium.com/max/1068/1*n0YzPr3owXrrEzV-xY-eAg.png" width="534"></p>
+<p><strong>1. Multiple Processes 多进程方式</strong></p>
+<blockquote>
+<p>The most obvious way is to use multiple processes. From the terminal, you can start your script two, three, four…ten times and then all the scripts are going to run independently or at the same time. The operating system that’s underneath will take care of sharing your <a href="https://en.wikipedia.org/wiki/Central_processing_unit" rel="noopener" target="_blank">CPU</a> resources among all those instances. Alternately you can use the <a href="https://docs.python.org/2/library/multiprocessing.html#module-multiprocessing" rel="noopener" target="_blank">multiprocessing</a> library which supports spawning processes as shown in the example below.</p>
+</blockquote>
+<p>多进程的实现方式是最常见的方式。从终端，你可以开启多份脚本去独立运行，这是一种方式；还有一种方式，就是语言层面的支持。</p>
+<p><strong>多进程实现的代码如下。</strong></p>
+<pre class="has">
+<code class="language-python">from multiprocessing import Process
+
+
+def print_func(continent='Asia'):
+    print('The name of continent is : ', continent)
+
+if __name__ == "__main__":  # confirms that the code is under main function
+    names = ['America', 'Europe', 'Africa']
+    procs = []
+    proc = Process(target=print_func)  # instantiating without any argument
+    procs.append(proc)
+    proc.start()
+
+    # instantiating process with arguments
+    for name in names:
+        # print(name)
+        proc = Process(target=print_func, args=(name,))
+        procs.append(proc)
+        proc.start()
+
+    # complete the processes
+    for proc in procs:
+        proc.join()</code></pre>
+
+<p>Output:</p>
+<pre class="has">
+<code class="language-bash">The name of continent is :  Asia
+The name of continent is :  America
+The name of continent is :  Europe
+The name of continent is :  Africa</code></pre>
+
+<p><strong>2. Multiple Threads 多线程方式</strong></p>
+<blockquote>
+<p>The next way to run multiple things at once is to use threads. A thread is a line of execution, pretty much like a process, but you can have multiple threads in the context of one process and they all share access to common resources. But because of this, it’s difficult to write a threading code. And again, the operating system is doing all the heavy lifting on sharing the CPU, but the global interpreter lock (GIL) allows only one thread to run Python code at a given time even when you have multiple threads running code. So, In CPython, the <a href="https://en.wikipedia.org/wiki/Global_interpreter_lock" rel="noopener" target="_blank">GIL</a> prevents multi-core concurrency. Basically, you’re running in a single core even though you may have two or four or more.</p>
+</blockquote>
+<p>多线程是在一个进程上下文中存在的，这样访问一些公共的资源是很容易的。但也同样是因为这一点，编写多线程代码是有些困难的。</p>
+<p><em>多线程实现代码如下，这里有一个问题， GIL 是什么。</em></p>
+<pre class="has">
+<code class="language-python">
+import threading
+
+def print_cube(num):
+    """
+    function to print cube of given num
+    """
+    print("Cube: {}".format(num * num * num))
+
+def print_square(num):
+    """
+    function to print square of given num
+    """
+    print("Square: {}".format(num * num))
+
+if __name__ == "__main__":
+    # creating thread
+    t1 = threading.Thread(target=print_square, args=(10,))
+    t2 = threading.Thread(target=print_cube, args=(10,))
+
+    # starting thread 1
+    t1.start()
+    # starting thread 2
+    t2.start()
+
+    # wait until thread 1 is completely executed
+    t1.join()
+    # wait until thread 2 is completely executed
+    t2.join()
+
+    # both threads completely executed
+    print("Done!")
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>Square: 100
+Cube: 1000
+Done!</code></pre>
+
+<p><strong>3. Coroutines using <em>yield</em> 使用协程</strong></p>
+<blockquote>
+<p>Coroutines are generalization of subroutines. They are used for cooperative multitasking where a process voluntarily yield (give away) control periodically or when idle in order to enable multiple applications to be run simultaneously. Coroutines are similar to <a href="https://wiki.python.org/moin/Generators" rel="noopener" target="_blank">generators</a> but with few extra methods and slight change in how we use <a href="https://www.geeksforgeeks.org/use-yield-keyword-instead-return-keyword-python/" rel="noopener" target="_blank">yield</a> statement. Generators produce data for iteration while coroutines can also consume data.</p>
+</blockquote>
+<p>使用 yield 方式的协程。</p>
+<pre class="has">
+<code class="language-python">def print_name(prefix):
+    print("Searching prefix:{}".format(prefix))
+    try : 
+        while True:
+                # yeild used to create coroutine
+                name = (yield)
+                if prefix in name:
+                    print(name)
+    except GeneratorExit:
+            print("Closing coroutine!!")
+
+corou = print_name("Dear")
+corou.__next__()
+corou.send("James")
+corou.send("Dear James")
+corou.close()</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>Searching prefix:Dear
+Dear James
+Closing coroutine!!</code></pre>
+
+<p><strong>4. Asynchronous Programming 异步编程</strong></p>
+<blockquote>
+<p>The fourth way is an asynchronous programming, where the OS is not participating. As far as OS is concerned you’re going to have one process and there’s going to be a single thread within that process, but you’ll be able to do multiple things at once. So, what’s the trick?</p>
+</blockquote>
+<p>异步编程，这里 OS 并没有参与—-那应该只是语言自身的实现了。</p>
+<p><em>使用asyncio的协程。</em></p>
+<blockquote>
+<p>The answer is <em>asyncio</em></p>
 </blockquote>
 <blockquote>
-<p>I don’t have a short answer to this question, because there isn’t just one way, there’s a whole rainbow’s worth of ways. MongoDB has a rich and nuanced vocabulary for expressing what, in SQL, gets flattened into the term “One-to-N”. Let me take you on a tour of your choices in modeling One-to-N relationships.</p>
-</blockquote>
-<p><strong>笔记：</strong> MongoDB的新手往往会遇到一个问题，我应该怎么去定义一个one-to-N的关系呢？“there’s a whole rainbow’s worth of ways. ”这句应该怎么理解呢？</p>
-<blockquote>
-<p>There’s so much to talk about here, I’m breaking this up into three parts. In this first part, I’ll talk about the three basic ways to model One-to-N relationships. In the second part I’ll cover more sophisticated schema designs, including denormalization and two-way referencing. And in the final part, I’ll review the entire rainbow of choices, and give you some suggestions for choosing among the thousands (really – thousands) of choices that you may consider when modeling a single One-to-N relationship.</p>
-</blockquote>
-<p><strong>笔记：</strong> 这里有很多需要讨论，笔记会将它分为三个部分来讨论。第一部分，也就是本篇文章，来讨论三种建立One-to-N关系模型的基本的方法；第二部分，讨论更复杂的模型设计，包括反范式（denormalization）和双向参考（two-way referencing）；最后一部分，将会复习整个选择的过程，并且给你们一些建立，来在上千的建立一个One-to-N关系的选择中做出判断。</p>
-<blockquote>
-<p>Many beginners think that the only way to model “One-to-N” in MongoDB is to embed an array of sub-documents into the parent document, but that’s just not true. Just because you can embed a document, doesn’t mean you should embed a document.</p>
-</blockquote>
-<p><strong>笔记：</strong> 很多初学者会认为在MongoDB中建立一个“One-to-N”的模型只有一种方法，就是嵌入一个子文档的数组（array），这不是事实。确实是这样，看到的很多帖子就是这么去误导别人。</p>
-<blockquote>
-<p>When designing a MongoDB schema, you need to start with a question that you’d never consider when using SQL: what is the cardinality of the relationship? Put less formally: you need to characterize your “One-to-N” relationship with a bit more nuance: is it “one-to-few”, “one-to-many”, or “one-to-squillions”? Depending on which one it is, you’d use a different format to model the relationship.</p>
-</blockquote>
-<p><strong>笔记：</strong> 在开始设计一个MongoDB的模式时，你需要考虑一个在使用SQL从来不需要考虑的问题：关系的基数是什么？具体来说，就是要考虑“one-to-few”，“one-to-many”, 或者“one-to-squillions”，这个基数不同，设计的格式也不同。</p>
-<blockquote>
-<p>Basics: Modeling One-to-Few</p>
+<p><em>asyncio</em> is the new concurrency module introduced in Python 3.4. It is designed to use coroutines and futures to simplify asynchronous code and make it almost as readable as synchronous code as there are <em>no callbacks</em>.</p>
 </blockquote>
 <blockquote>
-<p>An example of “one-to-few” might be the addresses for a person. This is a good use case for embedding – you’d put the addresses in an array inside of your Person object:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">db.person.findOne()</span><br><span class="line">&#123;</span><br><span class="line">  name: &apos;Kate Monster&apos;,</span><br><span class="line">  ssn: &apos;123-456-7890&apos;,</span><br><span class="line">  addresses : [</span><br><span class="line">     &#123; street: &apos;123 Sesame St&apos;, city: &apos;Anytown&apos;, cc: &apos;USA&apos; &#125;,</span><br><span class="line">     &#123; street: &apos;123 Avenue Q&apos;, city: &apos;New York&apos;, cc: &apos;USA&apos; &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>This design has all of the advantages and disadvantages of embedding. The main advantage is that you don’t have to perform a separate query to get the embedded details; the main disadvantage is that you have no way of accessing the embedded details as stand-alone entities.</p>
-</blockquote>
-<p><strong>笔记：</strong> 上面这是一个常见One-to-Few的例子，个人信息和地址的关系。好处在于你不用单独执行一个查询去获取嵌入的信息；坏处在于你无法根据作为一个单独的条目去访问一个嵌入的内容。这个例子很形象，在那本MySQL实例中，也涉及到人和地址的关系处理。就是说大千世界的一对多的关系其实不是那么一刀切的，而SQL对这个的处理能力是有限的，或者说SQL原本的设计是没有太多考虑这个因素的。这个应该结合那本书一起来讨论，待完成……</p>
-<blockquote>
-<p>For example, if you were modeling a task-tracking system, each Person would have a number of Tasks assigned to them. Embedding Tasks inside the Person document would make queries like “Show me all Tasks due tomorrow” much more difficult than they need to be. I will cover a more appropriate design for this use case in the next post.</p>
+<p><em>asyncio</em> uses different constructs: <em>event loops</em>, <em>coroutines </em>and <em>futures</em>.</p>
 </blockquote>
 <blockquote>
-<p>Basics: One-to-Many</p>
+<ul>
+<li>An <a href="https://docs.python.org/dev/library/asyncio-eventloop.html" rel="noopener" target="_blank"><em>event loop</em></a> manages and distributes the execution of different tasks. It registers them and handles distributing the flow of control between them.</li>
+<li><a href="https://docs.python.org/3.5/library/asyncio-task.html#coroutines" rel="noopener" target="_blank"><em>Coroutines</em></a> (covered above) are special functions that work similarly to Python generators, on <strong><em>await</em></strong> they release the flow of control back to the event loop. A coroutine needs to be scheduled to run on the event loop, once scheduled coroutines are wrapped in <em>Tasks </em>which is a type of <em>Future</em>.</li>
+<li><a href="https://docs.python.org/3.5/library/asyncio-task.html#future" rel="noopener" target="_blank"><em>Futures</em></a> represent the result of a task that may or may not have been executed. This result may be an exception.</li>
+</ul>
+</blockquote>
+<p>上面这段是关键，asyncio使用了三个结构：event loops，coroutines 和 futures。</p>
+<blockquote>
+<p>Using<em> Asyncio</em>, you can structure your code so subtasks are defined as coroutines and allows you to schedule them as you please, including simultaneously. Coroutines contain yield points where we define possible points where a context switch can happen if other tasks are pending, but will not if no other task is pending.</p>
 </blockquote>
 <blockquote>
-<p>An example of “one-to-many” might be parts for a product in a replacement parts ordering system. Each product may have up to several hundred replacement parts, but never more than a couple thousand or so. (All of those different-sized bolts, washers, and gaskets add up.) This is a good use case for referencing – you’d put the ObjectIDs of the parts in an array in product document. (For these examples I’m using 2-byte ObjectIDs because they’re easier to read: real-world code would use 12-byte ObjectIDs.)</p>
+<p>A context switch in <em>asyncio</em> represents the event loop yielding the flow of control from one coroutine to the next.</p>
 </blockquote>
 <blockquote>
-<p>Each Part would have its own document:</p>
+<p>In the example, we run 3 async tasks that query Reddit separately, extract and print the JSON. We leverage <a href="https://aiohttp.readthedocs.io/en/stable/" rel="noopener" target="_blank">aiohttp</a> which is a http client library ensuring even the HTTP request runs asynchronously.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.parts.findOne()</span><br><span class="line">&#123;</span><br><span class="line">    _id : ObjectID(&apos;AAAA&apos;),</span><br><span class="line">    partno : &apos;123-aff-456&apos;,</span><br><span class="line">    name : &apos;#4 grommet&apos;,</span><br><span class="line">    qty: 94,</span><br><span class="line">    cost: 0.94,</span><br><span class="line">    price: 3.99</span><br></pre></td></tr></table></figure>
+<pre class="has">
+<code class="language-python">
+import signal  
+import sys  
+import asyncio  
+import aiohttp  
+import json
+
+loop = asyncio.get_event_loop()  
+client = aiohttp.ClientSession(loop=loop)
+
+async def get_json(client, url):  
+    async with client.get(url) as response:
+        assert response.status == 200
+        return await response.read()
+
+async def get_reddit_top(subreddit, client):  
+    data1 = await get_json(client, 'https://www.reddit.com/r/' + subreddit + '/top.json?sort=top&amp;t=day&amp;limit=5')
+
+    j = json.loads(data1.decode('utf-8'))
+    for i in j['data']['children']:
+        score = i['data']['score']
+        title = i['data']['title']
+        link = i['data']['url']
+        print(str(score) + ': ' + title + ' (' + link + ')')
+
+    print('DONE:', subreddit + '\n')
+
+def signal_handler(signal, frame):  
+    loop.stop()
+    client.close()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+asyncio.ensure_future(get_reddit_top('python', client))  
+asyncio.ensure_future(get_reddit_top('programming', client))  
+asyncio.ensure_future(get_reddit_top('compsci', client))  
+loop.run_forever()  
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>
+50: Undershoot: Parsing theory in 1965 (http://jeffreykegler.github.io/Ocean-of-Awareness-blog/individual/2018/07/knuth_1965_2.html)
+12: Question about best-prefix/failure function/primal match table in kmp algorithm (https://www.reddit.com/r/compsci/comments/8xd3m2/question_about_bestprefixfailure_functionprimal/)
+1: Question regarding calculating the probability of failure of a RAID system (https://www.reddit.com/r/compsci/comments/8xbkk2/question_regarding_calculating_the_probability_of/)
+DONE: compsci
+
+336: /r/thanosdidnothingwrong -- banning people with python (https://clips.twitch.tv/AstutePluckyCocoaLitty)
+175: PythonRobotics: Python sample codes for robotics algorithms (https://atsushisakai.github.io/PythonRobotics/)
+23: Python and Flask Tutorial in VS Code (https://code.visualstudio.com/docs/python/tutorial-flask)
+17: Started a new blog on Celery - what would you like to read about? (https://www.python-celery.com)
+14: A Simple Anomaly Detection Algorithm in Python (https://medium.com/@mathmare_/pyng-a-simple-anomaly-detection-algorithm-2f355d7dc054)
+DONE: python
+
+1360: git bundle (https://dev.to/gabeguz/git-bundle-2l5o)
+1191: Which hashing algorithm is best for uniqueness and speed? Ian Boyd's answer (top voted) is one of the best comments I've seen on Stackexchange. (https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed)
+430: ARM launches “Facts” campaign against RISC-V (https://riscv-basics.com/)
+244: Choice of search engine on Android nuked by “Anonymous Coward” (2009) (https://android.googlesource.com/platform/packages/apps/GlobalSearch/+/592150ac00086400415afe936d96f04d3be3ba0c)
+209: Exploiting freely accessible WhatsApp data or “Why does WhatsApp web know my phone’s battery level?” (https://medium.com/@juan_cortes/exploiting-freely-accessible-whatsapp-data-or-why-does-whatsapp-know-my-battery-level-ddac224041b4)
+DONE: programming
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>上面这段代码有点过时了，现在已经不是太推荐这种用法了，不再直接对 loop 进行操作，而是对 task 进行处理，参考<a href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener">官网</a>，但是这种用法可能是最常见的一种用法。</p>
+<p><strong>Using </strong><a href="https://redis.io/" rel="noopener" target="_blank"><strong>Redis</strong></a><strong> and Redis Queue </strong><a href="https://python-rq.org/" rel="noopener" target="_blank"><strong>RQ</strong></a></p>
+<p>老版本Python的办法，不支持 asyncio 和 aiohttp 的版本怎么办，使用Redis 和 RQ。下面的文章意义已经不大了，就不过多记录了。</p>
 <blockquote>
-<p>Each Product would have its own document, which would contain an array of ObjectID references to the Parts that make up that Product:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">db.products.findOne()</span><br><span class="line">&#123;</span><br><span class="line">    name : &apos;left-handed smoke shifter&apos;,</span><br><span class="line">    manufacturer : &apos;Acme Corp&apos;,</span><br><span class="line">    catalog_number: 1234,</span><br><span class="line">    parts : [     // array of references to Part documents</span><br><span class="line">        ObjectID(&apos;AAAA&apos;),    // reference to the #4 grommet above</span><br><span class="line">        ObjectID(&apos;F17C&apos;),    // reference to a different Part</span><br><span class="line">        ObjectID(&apos;D2AA&apos;),</span><br><span class="line">        // etc</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>You would then use an application-level join to retrieve the parts for a particular product:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Fetch the Product document identified by this catalog number</span><br><span class="line">product = db.products.findOne(&#123;catalog_number: 1234&#125;);</span><br><span class="line">// Fetch all the Parts that are linked to this Product</span><br><span class="line">product_parts = db.parts.find(&#123;_id: &#123; $in : product.parts &#125; &#125; ).toArray() ;</span><br></pre></td></tr></table></figure>
-<p><strong>笔记：</strong> 这个例子是产品和配件的关系，是One-to-Many的关系。产品会有很多的配件，所以这里使用ObjectID来关联，这是一个单项关联。这个例子也是很常见的用来描述One-to-Many关系的。</p>
-<blockquote>
-<p>For efficient operation, you’d need to have an index on ‘products.catalog_number’. Note that there will always be an index on ‘parts._id’, so that query will always be efficient.</p>
+<p>Using asyncio and aiohttp may not always be in an option especially if you are using older versions of python. Also, there will be scenarios when you would want to distribute your tasks across different servers. In that case we can leverage RQ (<em>Redis Queue</em>). It is a simple Python library for queueing jobs and processing them in the background with workers. It is backed by Redis — a key/value data store.</p>
 </blockquote>
 <blockquote>
-<p>This style of referencing has a complementary set of advantages and disadvantages to embedding. Each Part is a stand-alone document, so it’s easy to search them and update them independently. One trade off for using this schema is having to perform a second query to get details about the Parts for a Product. (But hold that thought until we get to denormalizing in part 2.)</p>
+<p>In the example below, we have queued a simple function count_words_at_url using redis.</p>
 </blockquote>
-<p><strong>笔记：</strong> 好处在于每一个配件都有一个独立的文档，很容易查询和更新。交换就是需要单独执行一个查询去获取配件信息。</p>
+<pre class="has">
+<code class="language-python">
+from mymodule import count_words_at_url
+from redis import Redis
+from rq import Queue
+
+
+q = Queue(connection=Redis())
+job = q.enqueue(count_words_at_url, 'http://nvie.com')
+
+
+******mymodule.py******
+
+import requests
+
+def count_words_at_url(url):
+    """Just an example function that's called async."""
+    resp = requests.get(url)
+
+    print( len(resp.text.split()))
+    return( len(resp.text.split()))
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output:</p>
+<pre class="has">
+<code>
+15:10:45 RQ worker 'rq:worker:EMPID18030.9865' started, version 0.11.0
+15:10:45 *** Listening on default...
+15:10:45 Cleaning registries for queue: default
+15:10:50 default: mymodule.count_words_at_url('http://nvie.com') (a2b7451e-731f-4f31-9232-2b7e3549051f)
+322
+15:10:51 default: Job OK (a2b7451e-731f-4f31-9232-2b7e3549051f)
+15:10:51 Result is kept for 500 seconds
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<h1 id="Conclusion-结论"><a href="#Conclusion-结论" class="headerlink" title="Conclusion 结论"></a><strong>Conclusion 结论</strong></h1><blockquote>
+<p>Let’s take a classical example, a chess exhibition where one of the best chess players competes against a lot of people. And if there are 24 games with 24 people to play with and the chess master plays with all of them synchronically, it’ll take at least 12 hours (taking into account that the average game takes 30 moves, the chess master thinks for 5 seconds to come up with a move and the opponent — for approximately 55 seconds). But using the asynchronous mode gives chess master the opportunity to make a move and leave the opponent thinking while going to the next one and making a move there. This way a move on all 24 games can be done in 2 minutes and all of them can be won in just one hour.</p>
+</blockquote>
 <blockquote>
-<p>As an added bonus, this schema lets you have individual Parts used by multiple Products, so your One-to-N schema just became an N-to-N schema without any need for a join table!</p>
+<p>So, this is what’s meant when people talk about asynchronous being really fast. It’s this kind of fast. Chess master doesn’t play chess faster, the time is just more optimized and it’s not get wasted on waiting around. This is how it works.</p>
 </blockquote>
 <blockquote>
-<p>Basics: One-to-Squillions</p>
+<p>In this analogy, the chess master will be our CPU and the idea is that we wanna make sure that the CPU doesn’t wait or waits the least amount of time possible. It’s about always finding something to do.</p>
 </blockquote>
 <blockquote>
-<p>An example of “one-to-squillions” might be an event logging system that collects log messages for different machines. Any given host could generate enough messages to overflow the 16 MB document size, even if all you stored in the array was the ObjectID. This is the classic use case for “parent-referencing” – you’d have a document for the host, and then store the ObjectID of the host in the documents for the log messages.</p>
+<p>A practical definition of Async is that it’s a style of concurrent programming in which tasks release the CPU during waiting periods, so that other tasks can use it. In Python there are several ways to achieve concurrency , based on our requirement, code flow, data manipulation , architecture design and use cases we can select any of these methods.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.hosts.findOne()</span><br><span class="line">&#123;</span><br><span class="line">    _id : ObjectID(&apos;AAAB&apos;),</span><br><span class="line">    name : &apos;goofy.example.com&apos;,</span><br><span class="line">    ipaddr : &apos;127.66.66.66&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">db.logmsg.findOne()</span><br><span class="line">&#123;</span><br><span class="line">    time : ISODate(&quot;2014-03-28T09:42:41.382Z&quot;),</span><br><span class="line">    message : &apos;cpu is on fire!&apos;,</span><br><span class="line">    host: ObjectID(&apos;AAAB&apos;)       // Reference to the Host document</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>You’d use a (slightly different) application-level join to find the most recent 5,000 messages for a host:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// find the parent ‘host’ document</span><br><span class="line">host = db.hosts.findOne(&#123;ipaddr : &apos;127.66.66.66&apos;&#125;);  // assumes unique index</span><br><span class="line">// find the most recent 5000 log message documents linked to that host</span><br><span class="line">last_5k_msg = db.logmsg.find(&#123;host: host._id&#125;).sort(&#123;time : -1&#125;).limit(5000).toArray()</span><br></pre></td></tr></table></figure>
-<p><strong>笔记：</strong> 主机和日志的关系来体现One-to-Squillions，区别在于关系建立在了孩子身上，孩子指向了父亲。</p>
-<blockquote>
-<p>Recap</p>
-</blockquote>
-<blockquote>
-<p>So, even at this basic level, there is more to think about when designing a MongoDB schema than when designing a comparable relational schema. You need to consider two factors:</p>
-</blockquote>
-<blockquote>
-<p>Will the entities on the “N” side of the One-to-N ever need to stand alone?<br>What is the cardinality of the relationship: is it one-to-few; one-to-many; or one-to-squillions?</p>
-</blockquote>
-<p><strong>笔记：</strong></p>
-<p>在设计关系时，你需要考虑两个因素：</p>
-<p>One-to-N的“N”这边需要单独作为一个条目吗？<br>关系的基数是什么：one-to-few；one-to-many；或者 one-to-squillions？<br>Based on these factors, you can pick one of the three basic One-to-N schema designs:</p>
-<blockquote>
-<p>Embed the N side if the cardinality is one-to-few and there is no need to access the embedded object outside the context of the parent object<br>Use an array of references to the N-side objects if the cardinality is one-to-many or if the N-side objects should stand alone for any reasons<br>Use a reference to the One-side in the N-side objects if the cardinality is one-to-squillions<br>笔记：</p>
-</blockquote>
-<p>基于这些因素，你可以考虑这三个基本模式设计：</p>
-<p>如果基数是one-to-few，并且在父对象的上下文之外没有访问嵌入的对象的需求，那么嵌入N边。<br>如果基数是one-to-many，或者N边的对象基于一些原因需要单独展示，那么使用一个数组来指向N边的对象。<br>如果基数是one-to-squillions，使用一个参考去指向One那边。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>学习和梳理了这篇文章，感觉思路清晰了很多，MongoDB是在One-to-N这个领域做了很多设计，这可能也是跟当前的One-to-N的需求越来越多，而SQL对这个支持有限有关系。</p>
-<p>待办的事情，配合总结一下MySQL的设计模式。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>href=”<a href="https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb&quot;" target="_blank" rel="noopener">https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb&quot;</a> rel=”nofollow”&gt;<a href="https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb" target="_blank" rel="noopener">https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb</a><br><a href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener">https://docs.python.org/3/library/asyncio-task.html</a></p>
 
       
     </div>
@@ -584,9 +767,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
-            <a href="/tags/schema/" rel="tag"># schema</a>
+            <a href="/tags/异步编程/" rel="tag"># 异步编程</a>
           
         </div>
       
@@ -599,8 +782,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/java/java-shiro-note.html" rel="next" title="Java：Shiro的架构学习笔记">
-                <i class="fa fa-chevron-left"></i> Java：Shiro的架构学习笔记
+              <a href="/linux/vim-copy-note.html" rel="next" title="vim 的移动">
+                <i class="fa fa-chevron-left"></i> vim 的移动
               </a>
             
           </div>
@@ -608,10 +791,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mongodb/mongodb-study-note-1.html" rel="prev" title="MongoDB学习笔记（一）：启程">
-                MongoDB学习笔记（一）：启程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1099,7 +1278,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。"><span class="nav-number">1.</span> <span class="nav-text">原帖位于IT老兵博客，沉淀着一个IT老兵对于这个行业的多年的认知。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number"></span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍-Introduction"><span class="nav-number">4.1.</span> <span class="nav-text">介绍 Introduction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion-结论"><span class="nav-number">5.</span> <span class="nav-text">Conclusion 结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

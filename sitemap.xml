@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/python/python-async-program.html</loc>
+    
+    <lastmod>2019-11-28T15:24:43.684Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/linux/vim-copy-note.html</loc>
     
-    <lastmod>2019-11-23T04:10:32.705Z</lastmod>
+    <lastmod>2019-11-23T06:12:27.343Z</lastmod>
     
   </url>
   
@@ -723,14 +730,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
@@ -779,14 +786,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/atom/index.html</loc>
+    <loc>https://www.oxysun.cn/books/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/books/index.html</loc>
+    <loc>https://www.oxysun.cn/atom/index.html</loc>
     
     <lastmod>2018-06-16T08:07:35.991Z</lastmod>
     
