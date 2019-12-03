@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+  <meta name="description" content="概要MongoDB 学习笔记：数据库、集合和文档。">
 <meta name="keywords" content="MongoDB,文档,数据库,集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB学习笔记（二）：数据库、集合">
+<meta property="og:title" content="MongoDB 学习笔记：数据库、集合和文档">
 <meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+<meta property="og:description" content="概要MongoDB 学习笔记：数据库、集合和文档。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-26T03:00:39.311Z">
+<meta property="og:updated_time" content="2019-12-03T12:36:29.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB学习笔记（二）：数据库、集合">
-<meta name="twitter:description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+<meta name="twitter:title" content="MongoDB 学习笔记：数据库、集合和文档">
+<meta name="twitter:description" content="概要MongoDB 学习笔记：数据库、集合和文档。">
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>MongoDB学习笔记（二）：数据库、集合 | IT老兵驿站</title>
+  <title>MongoDB 学习笔记：数据库、集合和文档 | IT老兵驿站</title>
   
 
 
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MongoDB学习笔记（二）：数据库、集合
+          <h1 class="post-title" itemprop="name headline">MongoDB 学习笔记：数据库、集合和文档
               
             
           </h1>
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-26 11:00:39" itemprop="dateModified" datetime="2018-09-26T11:00:39+08:00">2018-09-26</time>
+                <time title="修改时间：2019-12-03 20:36:29" itemprop="dateModified" datetime="2019-12-03T20:36:29+08:00">2019-12-03</time>
               
             
           </span>
@@ -462,7 +462,8 @@
       
 
       
-        <h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-2.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MongoDB 学习笔记：数据库、集合和文档。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
 <!--
 提纲
 数据库和表的概念。
@@ -471,9 +472,10 @@
 -->
 <!--讲一下笔记的记录思路，沿着官网的路线，结合自己的学习过程，配合着书籍。-->
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直在想，这个笔记应该按照什么思路，或者说，原则来记录呢？如果说按照当时学习的路线，那么一定是一条非常弯曲的曲线。还是按照官网的路线，配合着书籍，结合着自己的学习和工作过程来记录吧，这应该是最高效的学习路线—-尽管一开始看上去可能是较为漫长的。</p>
+<p>这里，梳理一下总体的一些概念。</p>
 <!--先跳过地图册，介绍一下数据库和集合-->
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>MongoDB推出了一个云服务，叫做Atlas，Atlas和本地安装是两种选择，因为基本用的是本地安装，对这一部分还没有深入研究，所以暂时先跳过。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>MongoDB的三个概念：数据库、集合和文档，对应于关系型数据库中的数据库、表和行，这样更容易进行记忆。但是，它们是存在区别的。<br><!--修改创建数据库--></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>MongoDB 推出了一个云服务，叫做 Atlas，Atlas 和本地安装是两种选择，因为基本用的是本地安装，对这一部分还没有深入研究，所以暂时先跳过。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>MongoDB 的三个概念：数据库、集合和文档，对应于关系型数据库中的数据库、表和行，这样更容易进行记忆。但是，它们是存在区别的。<br><!--修改创建数据库--></p>
 <ul>
 <li><p>如何创建数据库，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-database-create.html">这里</a>。</p>
 </li>
@@ -482,8 +484,8 @@
 <li><p>如何创建（插入）一条文档，总结在<a href="https://www.oxysun.cn/mongodb/mongodb-collection-insert-1.html">这里</a>。</p>
 </li>
 </ul>
-<h2 id="文档验证"><a href="#文档验证" class="headerlink" title="文档验证"></a>文档验证</h2><p>MongoDB的文档是没有<code>predefined shemas</code>的，没有预定义的模式，这和SQL型的数据库不一样，它的每一条文档的结构都是可以不一样的，同时，MongoDB也提供给你一些对文档进行约束的<a href="https://docs.mongodb.com/manual/core/schema-validation/" target="_blank" rel="noopener">功能</a>，帮助你可以去约束文档。</p>
-<p>对于修改文档的结构，这个就更加简单了，你在更新文档的同时就可以去更新文档的结构，就不需要像MySQL那样去使用DDL语言。</p>
+<h2 id="文档验证"><a href="#文档验证" class="headerlink" title="文档验证"></a>文档验证</h2><p>MongoDB 的文档是没有<code>predefined shemas</code>的，没有预定义的模式，这和 SQL 型的数据库不一样，它的每一条文档的结构都是可以不一样的，同时，MongoDB 也提供给你一些对文档进行约束的<a href="https://docs.mongodb.com/manual/core/schema-validation/" target="_blank" rel="noopener">功能</a>，帮助你可以去约束文档。</p>
+<p>对于修改文档的结构，这个就更加简单了，你在更新文档的同时就可以去更新文档的结构，就不需要像 MySQL 那样去使用 DDL 语言。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>重新整理了一下创建数据库、创建集合、创建文档，由这篇文章作为纲领，这样可以提纲挈领，看的比较明白。</p>
 
       
@@ -1028,7 +1030,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的MongoDB学习笔记位于IT老兵博客。"><span class="nav-number">1.</span> <span class="nav-text">完整的MongoDB学习笔记位于IT老兵博客。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number"></span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档验证"><span class="nav-number">2.</span> <span class="nav-text">文档验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">4.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档验证"><span class="nav-number">4.2.</span> <span class="nav-text">文档验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
