@@ -111,14 +111,14 @@
   <meta name="description" content="概要搭建一个 nexus 的 maven 仓库。">
 <meta name="keywords" content="Java,nexus,maven">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建一个 nexus 的 maven 仓库">
+<meta property="og:title" content="搭建一个 Nexus 的 Maven 仓库">
 <meta property="og:url" content="https://www.oxysun.cn/java/java-maven-nexus-note.html">
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="概要搭建一个 nexus 的 maven 仓库。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-04T10:52:54.025Z">
+<meta property="og:updated_time" content="2019-12-04T10:59:12.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建一个 nexus 的 maven 仓库">
+<meta name="twitter:title" content="搭建一个 Nexus 的 Maven 仓库">
 <meta name="twitter:description" content="概要搭建一个 nexus 的 maven 仓库。">
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>搭建一个 nexus 的 maven 仓库 | IT老兵驿站</title>
+  <title>搭建一个 Nexus 的 Maven 仓库 | IT老兵驿站</title>
   
 
 
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建一个 nexus 的 maven 仓库
+          <h1 class="post-title" itemprop="name headline">搭建一个 Nexus 的 Maven 仓库
               
             
           </h1>
@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-12-04 18:52:00 / 修改时间：18:52:54" itemprop="dateCreated datePublished" datetime="2019-12-04T18:52:00+08:00">2019-12-04</time>
+              <time title="创建时间：2019-12-04 18:52:00 / 修改时间：18:59:12" itemprop="dateCreated datePublished" datetime="2019-12-04T18:52:00+08:00">2019-12-04</time>
             
 
             
@@ -472,7 +472,9 @@
 <h3 id="Layout-policy-层级策略"><a href="#Layout-policy-层级策略" class="headerlink" title="Layout policy 层级策略"></a>Layout policy 层级策略</h3><p>Maven 仓库定义了默认的目录结构，以下的参数表示允许不允许破坏这个默认的规则。</p>
 <p>Permissive<br>允许。</p>
 <p>Strict<br>严格遵守。</p>
-<h2 id="Proxying-Maven-Repositories-代理-Maven-仓库"><a href="#Proxying-Maven-Repositories-代理-Maven-仓库" class="headerlink" title="Proxying Maven Repositories 代理 Maven 仓库"></a>Proxying Maven Repositories 代理 Maven 仓库</h2><p>A default installation of Nexus Repository Manager includes a proxy repository configured to access the Central Repository via HTTPS using the URL <a href="https://repo1.maven.org/maven2/" target="_blank" rel="noopener">https://repo1.maven.org/maven2/</a>. To reduce duplicate downloads and improve download speeds for your developers and CI servers, you should proxy all other remote repositories you access as proxy repositories as well.</p>
+<h2 id="Proxying-Maven-Repositories-代理-Maven-仓库"><a href="#Proxying-Maven-Repositories-代理-Maven-仓库" class="headerlink" title="Proxying Maven Repositories 代理 Maven 仓库"></a>Proxying Maven Repositories 代理 Maven 仓库</h2><blockquote>
+<p>A default installation of Nexus Repository Manager includes a proxy repository configured to access the Central Repository via HTTPS using the URL <a href="https://repo1.maven.org/maven2/" target="_blank" rel="noopener">https://repo1.maven.org/maven2/</a>. To reduce duplicate downloads and improve download speeds for your developers and CI servers, you should proxy all other remote repositories you access as proxy repositories as well.</p>
+</blockquote>
 <p>Nexus 默认会包含一个代理仓库，可以配置去访问中心仓库 <a href="https://repo1.maven.org/maven2/。这样相当于是一级缓存，不用每次都去从远程去拉取。" target="_blank" rel="noopener">https://repo1.maven.org/maven2/。这样相当于是一级缓存，不用每次都去从远程去拉取。</a></p>
 <h2 id="Hosting-Maven-Repositories-自主-Maven-仓库"><a href="#Hosting-Maven-Repositories-自主-Maven-仓库" class="headerlink" title="Hosting Maven Repositories 自主 Maven 仓库"></a>Hosting Maven Repositories 自主 Maven 仓库</h2><p>这个地方不知道怎么去翻译这个 hosting。</p>
 <p>这个方式可以存放第三方的库。默认会有两个仓库 maven-releases 和  maven-snapshots， 和上面的原理一样。</p>
@@ -534,6 +536,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/mongodb/mongodb-collection-aggregation-stage-operator.html" rel="prev" title="MongoDB学习笔记：聚合之管道操作符">
+                MongoDB学习笔记：聚合之管道操作符 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -603,7 +609,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -989,7 +995,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">156</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">158</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[搭建一个 nexus 的 maven 仓库]]></title>
+    <title><![CDATA[Python 的 module 和 package]]></title>
+    <url>%2Fpython%2Fpython-package-module-note.html</url>
+    <content type="text"><![CDATA[概要Python 的 module 和 package。 博客博客地址：IT老兵驿站。 前言学Python也有一段时间了，一直没有搞清楚 module 和 package 的区别和概念，走了一些弯路，所以需要做做笔记，总结一下。 本文结合着对于这篇文章的阅读，进行记录笔记，不打算全文翻译，那样没有意义，扼要地记录关键的，感觉需要记录的内容。 正文编写 module 的方式 There are actually three different ways to define a module in Python: A module can be written in Python itself.A module can be written in C and loaded dynamically at run-time, like the re (regular expression) module.A built-in module is intrinsically contained in the interpreter, like the itertools module. 一共3种方式，Python 自己编写，由C 语言编写，动态加载，由解释器内部包含的内建 module。 编写方式 Here, the focus will mostly be on modules that are written in Python. The cool thing about modules written in Python is that they are exceedingly straightforward to build. All you need to do is create a file that contains legitimate Python code and then give the file a name with a .py extension. That’s it! No special syntax or voodoo is necessary. 非常简单，就是编写一个合法的 Python 的代码，以 .py 的扩展名结束，就是这么简单。 module 搜索目录 The directory from which the input script was run or the current directory if the interpreter is being run interactively The list of directories contained in the PYTHONPATH environment variable, if it is set. (The format for PYTHONPATH is OS-dependent but should mimic the PATH environment variable.) An installation-dependent list of directories configured at the time Python is installed 引入一个 module，是需要从一些位置去搜索，当前运行目录，PYTHONPATH 变量配置的目录，安装依赖的目录。 The resulting search path is accessible in the Python variable sys.path, which is obtained from a module named sys: 12345&gt;&gt;&gt; import sys&gt;&gt;&gt; sys.path['', 'C:\\Users\\john\\Documents\\Python\\doc', 'C:\\Python36\\Lib\\idlelib','C:\\Python36\\python36.zip', 'C:\\Python36\\DLLs', 'C:\\Python36\\lib','C:\\Python36', 'C:\\Python36\\lib\\site-packages'] 这些搜索路径会保存在 sys.path 里面，可以通过上面的方式获得。 换一个角度来说，想知道被导入的一个 module 的路径，可以通过以下的方式： 1234567&gt;&gt;&gt; import mod&gt;&gt;&gt; mod.__file__'C:\\Users\\john\\mod.py'&gt;&gt;&gt; import re&gt;&gt;&gt; re.__file__'C:\\Python36\\lib\\re.py' 参考https://realpython.com/python-modules-packages/]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>module</tag>
+        <tag>package</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：聚合之管道操作符]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-aggregation-stage-operator.html</url>
+    <content type="text"><![CDATA[博客IT老兵博客。 概述MongoDB学习笔记：聚合之管道操作符。 前言这里整理一下 MongoDB 的聚合的操作符，这些操作符代表着聚合操作的一个阶段。 db.collection.aggregate( [ { }, … ] ) 如上，聚合操作可以包含多个阶段。 正文以下的操作符会逐步整理，先整理已经用到的，可能是比较常用的。阶段（stage）| 描述| - | - | - |$match | 过滤器，设定匹配条件，符合条件的记录会被过滤出来。$group | 对输入的数据，根据特定的id表达式进行分组，并且应用累加表达式。会输出id域（表现为_id，针对前面）和累加域（如果前面指定）。$sort | 对输入结果进行排序。$limit | 对输入结果设定数值限制。$unwind | 解构数组，对数组中的每一条记录单独生成一条记录。 参考https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>aggregate</tag>
+        <tag>聚合</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[搭建一个 Nexus 的 Maven 仓库]]></title>
     <url>%2Fjava%2Fjava-maven-nexus-note.html</url>
-    <content type="text"><![CDATA[概要搭建一个 nexus 的 maven 仓库。 博客博客地址：IT老兵驿站。 前言今年开始深度编写 Java 代码，这样就势必会遇到搭建自己的 Maven 仓库，但是 Maven 这个东西，似乎不是那么简单，可以一蹴而就的，所以，需要好好记录一下学习的笔记。 本文记录一下使用 Nexus 来搭建 Maven 的仓库的笔记，感觉不是太好记，内容太多，先走一步，看一步吧，记录一下，总比不记录要好，看来记录笔记，是有很大的学问的。 正文安装和启动参考这里，安装和启动，和其他的 Java 项目一样，都是非常简单的。 Maven Repository Format 格式Maven 仓库的格式的规范。 Version policy 版本策略ReleaseMaven 仓库可以被配置为 Release 版本策略。 SnapshotSnapshot 版本策略。 Mixed混合策略。 Release 和 Snapshot 是 Maven 的一个概念，参考官网： What is a SNAPSHOT version?Notice the value of the version tag in the pom.xml file shown below has the suffix: -SNAPSHOT. 在 pom.xml 中会有带有-SNAPSHOT后缀的标记。 12345678&lt;project xmlns="http://maven.apache.org/POM/4.0.0" ... &lt;groupId&gt;...&lt;/groupId&gt; &lt;artifactId&gt;my-app&lt;/artifactId&gt; ... &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Maven Quick Start Archetype&lt;/name&gt; ... The SNAPSHOT value refers to the ‘latest’ code along a development branch, and provides no guarantee the code is stable or unchanging. Conversely, the code in a ‘release’ version (any version value without the suffix SNAPSHOT) is unchanging.In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.During the release process, a version of x.y-SNAPSHOT changes to x.y. The release process also increments the development version to x.(y+1)-SNAPSHOT. For example, version 1.0-SNAPSHOT is released as version 1.0, and the new development version is version 1.1-SNAPSHOT. SNAPSHOT 表示开发分支的最后代码，不保证代码是固定的或者不变。而位于 release 版本里面的则表示不会被修改了。 Layout policy 层级策略Maven 仓库定义了默认的目录结构，以下的参数表示允许不允许破坏这个默认的规则。 Permissive允许。 Strict严格遵守。 Proxying Maven Repositories 代理 Maven 仓库A default installation of Nexus Repository Manager includes a proxy repository configured to access the Central Repository via HTTPS using the URL https://repo1.maven.org/maven2/. To reduce duplicate downloads and improve download speeds for your developers and CI servers, you should proxy all other remote repositories you access as proxy repositories as well. Nexus 默认会包含一个代理仓库，可以配置去访问中心仓库 https://repo1.maven.org/maven2/。这样相当于是一级缓存，不用每次都去从远程去拉取。 Hosting Maven Repositories 自主 Maven 仓库这个地方不知道怎么去翻译这个 hosting。 这个方式可以存放第三方的库。默认会有两个仓库 maven-releases 和 maven-snapshots， 和上面的原理一样。 Grouping Maven Repositories 对仓库分组可以把代理的和自主的仓库通过这种方式统一暴露出去。 上述这几个过程，在这个帖子都配有图来讲解，这里就不再赘述。 配置客户端把以下内容配置在~/.m2/settings.xml文件中，这是配置访问你的仓库的凭证，并且告诉 mvn，你的仓库是作为中心仓库的一个镜像。12345678910111213141516171819202122232425262728&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"&gt; &lt;servers&gt; &lt;server&gt; &lt;id&gt;nexus-snapshots&lt;/id&gt; &lt;username&gt;admin&lt;/username&gt; &lt;password&gt;admin123&lt;/password&gt; &lt;/server&gt; &lt;server&gt; &lt;id&gt;nexus-releases&lt;/id&gt; &lt;username&gt;admin&lt;/username&gt; &lt;password&gt;admin123&lt;/password&gt; &lt;/server&gt; &lt;/servers&gt; &lt;mirrors&gt; &lt;mirror&gt; &lt;id&gt;central&lt;/id&gt; &lt;name&gt;central&lt;/name&gt; &lt;url&gt;http://your-host:8081/repository/maven-group/&lt;/url&gt; &lt;mirrorOf&gt;*&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;/mirrors&gt;&lt;/settings&gt; 配置项目配置项目依赖： 1234567891011&lt;project ...&gt; ... &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;maven-group&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-group/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt;&lt;/project&gt; 配置发布（mvn deploy）：123456789101112131415&lt;project ...&gt; ... &lt;distributionManagement&gt; &lt;snapshotRepository&gt; &lt;id&gt;nexus-snapshots&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-snapshots/&lt;/url&gt; &lt;/snapshotRepository&gt; &lt;repository&gt; &lt;id&gt;nexus-releases&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-releases/&lt;/url&gt; &lt;/repository&gt; &lt;/distributionManagement&gt;&lt;/project&gt; 总结至此，大体将这个过程梳理一遍，断断续续花了不少时间，Maven 的细节比较多，还是需要时间的。 参考https://blog.sonatype.com/using-nexus-3-as-your-repository-part-1-maven-artifactshttps://help.sonatype.com/repomanager3/formats/maven-repositories#MavenRepositories-ProxyingMavenRepositories]]></content>
+    <content type="text"><![CDATA[概要搭建一个 nexus 的 maven 仓库。 博客博客地址：IT老兵驿站。 前言今年开始深度编写 Java 代码，这样就势必会遇到搭建自己的 Maven 仓库，但是 Maven 这个东西，似乎不是那么简单，可以一蹴而就的，所以，需要好好记录一下学习的笔记。 本文记录一下使用 Nexus 来搭建 Maven 的仓库的笔记，感觉不是太好记，内容太多，先走一步，看一步吧，记录一下，总比不记录要好，看来记录笔记，是有很大的学问的。 正文安装和启动参考这里，安装和启动，和其他的 Java 项目一样，都是非常简单的。 Maven Repository Format 格式Maven 仓库的格式的规范。 Version policy 版本策略ReleaseMaven 仓库可以被配置为 Release 版本策略。 SnapshotSnapshot 版本策略。 Mixed混合策略。 Release 和 Snapshot 是 Maven 的一个概念，参考官网： What is a SNAPSHOT version?Notice the value of the version tag in the pom.xml file shown below has the suffix: -SNAPSHOT. 在 pom.xml 中会有带有-SNAPSHOT后缀的标记。 12345678&lt;project xmlns="http://maven.apache.org/POM/4.0.0" ... &lt;groupId&gt;...&lt;/groupId&gt; &lt;artifactId&gt;my-app&lt;/artifactId&gt; ... &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Maven Quick Start Archetype&lt;/name&gt; ... The SNAPSHOT value refers to the ‘latest’ code along a development branch, and provides no guarantee the code is stable or unchanging. Conversely, the code in a ‘release’ version (any version value without the suffix SNAPSHOT) is unchanging.In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.During the release process, a version of x.y-SNAPSHOT changes to x.y. The release process also increments the development version to x.(y+1)-SNAPSHOT. For example, version 1.0-SNAPSHOT is released as version 1.0, and the new development version is version 1.1-SNAPSHOT. SNAPSHOT 表示开发分支的最后代码，不保证代码是固定的或者不变。而位于 release 版本里面的则表示不会被修改了。 Layout policy 层级策略Maven 仓库定义了默认的目录结构，以下的参数表示允许不允许破坏这个默认的规则。 Permissive允许。 Strict严格遵守。 Proxying Maven Repositories 代理 Maven 仓库 A default installation of Nexus Repository Manager includes a proxy repository configured to access the Central Repository via HTTPS using the URL https://repo1.maven.org/maven2/. To reduce duplicate downloads and improve download speeds for your developers and CI servers, you should proxy all other remote repositories you access as proxy repositories as well. Nexus 默认会包含一个代理仓库，可以配置去访问中心仓库 https://repo1.maven.org/maven2/。这样相当于是一级缓存，不用每次都去从远程去拉取。 Hosting Maven Repositories 自主 Maven 仓库这个地方不知道怎么去翻译这个 hosting。 这个方式可以存放第三方的库。默认会有两个仓库 maven-releases 和 maven-snapshots， 和上面的原理一样。 Grouping Maven Repositories 对仓库分组可以把代理的和自主的仓库通过这种方式统一暴露出去。 上述这几个过程，在这个帖子都配有图来讲解，这里就不再赘述。 配置客户端把以下内容配置在~/.m2/settings.xml文件中，这是配置访问你的仓库的凭证，并且告诉 mvn，你的仓库是作为中心仓库的一个镜像。12345678910111213141516171819202122232425262728&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"&gt; &lt;servers&gt; &lt;server&gt; &lt;id&gt;nexus-snapshots&lt;/id&gt; &lt;username&gt;admin&lt;/username&gt; &lt;password&gt;admin123&lt;/password&gt; &lt;/server&gt; &lt;server&gt; &lt;id&gt;nexus-releases&lt;/id&gt; &lt;username&gt;admin&lt;/username&gt; &lt;password&gt;admin123&lt;/password&gt; &lt;/server&gt; &lt;/servers&gt; &lt;mirrors&gt; &lt;mirror&gt; &lt;id&gt;central&lt;/id&gt; &lt;name&gt;central&lt;/name&gt; &lt;url&gt;http://your-host:8081/repository/maven-group/&lt;/url&gt; &lt;mirrorOf&gt;*&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;/mirrors&gt;&lt;/settings&gt; 配置项目配置项目依赖： 1234567891011&lt;project ...&gt; ... &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;maven-group&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-group/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt;&lt;/project&gt; 配置发布（mvn deploy）：123456789101112131415&lt;project ...&gt; ... &lt;distributionManagement&gt; &lt;snapshotRepository&gt; &lt;id&gt;nexus-snapshots&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-snapshots/&lt;/url&gt; &lt;/snapshotRepository&gt; &lt;repository&gt; &lt;id&gt;nexus-releases&lt;/id&gt; &lt;url&gt;http://your-host:8081/repository/maven-releases/&lt;/url&gt; &lt;/repository&gt; &lt;/distributionManagement&gt;&lt;/project&gt; 总结至此，大体将这个过程梳理一遍，断断续续花了不少时间，Maven 的细节比较多，还是需要时间的。 参考https://blog.sonatype.com/using-nexus-3-as-your-repository-part-1-maven-artifactshttps://help.sonatype.com/repomanager3/formats/maven-repositories#MavenRepositories-ProxyingMavenRepositories]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -479,8 +505,8 @@
         <category>CSS</category>
       </categories>
       <tags>
-        <tag>CSS</tag>
         <tag>SASS</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -694,9 +720,9 @@
         <category>Python</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Ubuntu16.04</tag>
         <tag>升级</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1114,9 +1140,9 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
         <tag>依赖包</tag>
+        <tag>波浪字符</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1127,10 +1153,10 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
         <tag>Javascript</tag>
         <tag>NPM</tag>
+        <tag>依赖包</tag>
+        <tag>波浪字符</tag>
       </tags>
   </entry>
   <entry>
