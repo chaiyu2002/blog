@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.oxysun.cn/linux/linux-delete-by-inode-note.html</loc>
+    
+    <lastmod>2019-12-15T02:29:31.151Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/es/restudy-es-note.html</loc>
     
     <lastmod>2019-12-11T08:13:08.725Z</lastmod>
@@ -765,14 +772,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/tags/index.html</loc>
+    <loc>https://www.oxysun.cn/slides/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/slides/index.html</loc>
+    <loc>https://www.oxysun.cn/tags/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.011Z</lastmod>
     
@@ -786,14 +793,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/index.html</loc>
+    <loc>https://www.oxysun.cn/photos/data.json</loc>
     
     <lastmod>2018-06-16T08:07:36.008Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/photos/data.json</loc>
+    <loc>https://www.oxysun.cn/photos/index.html</loc>
     
     <lastmod>2018-06-16T08:07:36.008Z</lastmod>
     
