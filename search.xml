@@ -425,8 +425,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>进程</tag>
         <tag>Java</tag>
+        <tag>进程</tag>
         <tag>jps</tag>
         <tag>工具</tag>
       </tags>
@@ -848,9 +848,9 @@
       </categories>
       <tags>
         <tag>MongoDB</tag>
+        <tag>文档</tag>
         <tag>数据库</tag>
         <tag>集合</tag>
-        <tag>文档</tag>
       </tags>
   </entry>
   <entry>
@@ -1026,9 +1026,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>Java</tag>
         <tag>tomcat</tag>
+        <tag>linux</tag>
         <tag>X-Frame-Options</tag>
       </tags>
   </entry>
@@ -1196,20 +1196,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
-      <categories>
-        <category>JavaScript</category>
-        <category>NPM</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
       <categories>
@@ -1220,6 +1206,20 @@
         <tag>依赖包</tag>
         <tag>Javascript</tag>
         <tag>NPM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
+      <categories>
+        <category>JavaScript</category>
+        <category>NPM</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
       </tags>
   </entry>
   <entry>
@@ -1306,14 +1306,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB：查询和投影操作符]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-find-projection-operator.html</url>
-    <content type="text"><![CDATA[MongoDB查询和投影操作符。 官网：https://docs.mongodb.com/manual/reference/operator/query/。 这一章节都是很简单的英语，就做一个很简单的备注，如果连这个英语都看不懂，那就需要提高了，程序员看不懂基本的英语是很难提高的。这一章节还需要完善一些样例，这个有待补充。 查询选择器比较 名字 描述 $eq Matches values that are equal to a specified value.（判断相等） $gt Matches values that are greater than a specified value.（判断大于） $gte Matches values that are greater than or equal to a specified value.（判断大于等于） $in Matches any of the values specified in an array.（判断在其中） $lt Matches values that are less than a specified value.（判断小于） $lte Matches values that are less than or equal to a specified value.（判断小于等于） $ne Matches all values that are not equal to a specified value.（判断所有值都不等于指定值） $nin Matches none of the values specified in an array.（判断不在其中） 逻辑 名字 描述 $and Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.（与） $not Inverts the effect of a query expression and returns documents that do not match the query expression.（非） $nor Joins query clauses with a logical NOR returns all documents that fail to match both clauses.（异或） $or Joins query clauses with a logical OR returns all documents that match the conditions of either clause.（或） 元素 名字 描述 $exists Matches documents that have the specified field. $type Selects documents if a field is of the specified type. 评估 名字 描述 $expr Allows use of aggregation expressions within the query language. $jsonSchema Validate documents against the given JSON Schema. $mod Performs a modulo operation on the value of a field and selects documents with a specified result. $regex Selects documents where values match a specified regular expression. $text Performs text search. $where Matches documents that satisfy a JavaScript expression. 地理空间 名字 描述 $geoIntersects Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects. $geoWithin Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin. $near Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near. $nearSphere Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere. 数组 名字 描述 $all Matches arrays that contain all elements specified in the query. $elemMatch Selects documents if element in the array field matches all the specified $elemMatch conditions. $size Selects documents if the array field is a specified size. 位操作 名字 描述 $bitsAllClear Matches numeric or binary values in which a set of bit positions all have a value of 0. $bitsAllSet Matches numeric or binary values in which a set of bit positions all have a value of 1. $bitsAnyClear Matches numeric or binary values in which any bit from a set of bit positions has a value of 0. $bitsAnySet Matches numeric or binary values in which any bit from a set of bit positions has a value of 1. 注释 名字 描述 $comment Adds a comment to a query predicate. 投影操作 名字 描述 $ Projects the first element in an array that matches the query condition. $elemMatch Projects the first element in an array that matches the specified $elemMatch condition. $meta Projects the document’s score assigned during $text operation. $slice Limits the number of elements projected from an array. Supports skip and limit slices.]]></content>
-      <categories>
-        <category>MongoDB</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[MongoDB集合的基本操作：查找记录（查）]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-find-1.html</url>
     <content type="text"><![CDATA[MongoDB集合的基本操作：查找记录（查）。 博客原文收藏于IT老兵驿站。 语法1db.collection.find(query, projection) 在集合或者视图的文档中进行选择，并且返回一个指向被选中的文档的游标。（原文是：Selects documents in a collection or view and returns a cursor to the selected documents.）参数|类型|描述-|-|-query|文档型|可选。使用查询操作符(参考这里)，指定了查询过滤器。 想要返回集合中所有的文档，忽略这个参数，或者传一个空的文档({})。projection|文档型|可选。制定了匹配查询过滤器，要返回的文档的域。想要返回匹配的文档中的所有域，忽略这个参数。 projection参数决定了哪些域需要被返回。 1&#123; field1: &lt;value&gt;, field2: &lt;value&gt; ... &#125; &lt;value&gt;可以是: 1 或 true 表示要在返回文档中包含这个域。 0 或 false 表示不包含这个域。 表达式使用了投影操作符（有待解释）。 分析基本的查找参考上面的语法即可，下面也有实例，其实较为难以掌握的是组合查找，例如逻辑关系是AND的，或者是OR的，还有IN的，这几个需要梳理一下。 实例实例 查找上文test集合中的所有文档。12345678910111213141516171819&gt; db.test.find().pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;&#125;&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;&#125; pretty()是用来让展示更加舒适。 实例 查找test集合中的b=&quot;3&quot;的记录，这里要注意“3”和3是不一样的，这里是要符合js的语法，字符串和数字表示方式是不同的。做一个好的程序员，一定要严谨，而做到了严谨，可以帮你更快地提高，更快地产出，更好地规避错误，其实加快了你的职场发展节奏。12345678910&gt; db.test.find(&#123;b: &quot;3&quot;&#125;).pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;&#125; 可以看到，这次只查出了一条符合条件的记录。 实例 查找test集合中的b=&quot;3&quot;的记录a和b两个域，不要其它域。 12&gt; db.test.find(&#123;b: &quot;3&quot;&#125;, &#123;a: 1, b: 1&#125;).pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot; &#125; 可以看到，没有涉及的域就没有再获取出来，这样在一些情况下是可以节省网络开销和分析成本的，在《高性能MySQL》也是讲过类似的原理，不要大而全地去把所有内容获取回来，对于资源的使用，应该是有规划的、经济地去使用。 实例 查找test集合中的b=&quot;3&quot; 并且a=&quot;4&quot;的记录。1&gt; db.test.find(&#123;b: &quot;3&quot;, a: &quot;4&quot;&#125;&#125;).pretty() 可以看到，在第一个{} 中逗号分隔开的是AND的查询关系。 实例 查找test集合中的b=&quot;3&quot; 或者b=&quot;4&quot;的记录。1&gt; db.test.find(&#123;b: &#123;$in: [&quot;3&quot;, &quot;4&quot;]&#125;&#125;).pretty() 这个语法的原则是操作符$in在前，作为JSON名值对的名，[&quot;3&quot;, &quot;4&quot;]是它的值，然后整个{$in: [&quot;3&quot;, &quot;4&quot;]}作为b的值，从JSON语法的角度去思考和记忆这个语法，就容易一些了。 实例 修改一下上面的例子，查找test集合中的b=&quot;3&quot; 或者a=&quot;4&quot;的记录。1&gt; db.test.find(&#123;$or: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty() 这个语法和IN 的道理是一样的，其实AND也可以这么用，上面那种是隐式的用法，显式的用法是这样：1&gt; db.test.find(&#123;$and: [&#123;b: &quot;3&quot;&#125;, &#123;a: &quot;4&quot;&#125;]&#125;).pretty() 查询操作符还有一些大于、小于等操作，具体参考查询操作符一节。 总结本文只是总结了MongoDB查询的一部分的功能，MongoDB是NoSQL的，没有统一的模式，以一个json对象来保存记录，而查询主要是根据这个json对象的健值来做判断。 参考https://docs.mongodb.com/manual/reference/method/db.collection.find/]]></content>
@@ -1325,6 +1317,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[MongoDB：查询和投影操作符]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-find-projection-operator.html</url>
+    <content type="text"><![CDATA[MongoDB查询和投影操作符。 官网：https://docs.mongodb.com/manual/reference/operator/query/。 这一章节都是很简单的英语，就做一个很简单的备注，如果连这个英语都看不懂，那就需要提高了，程序员看不懂基本的英语是很难提高的。这一章节还需要完善一些样例，这个有待补充。 查询选择器比较 名字 描述 $eq Matches values that are equal to a specified value.（判断相等） $gt Matches values that are greater than a specified value.（判断大于） $gte Matches values that are greater than or equal to a specified value.（判断大于等于） $in Matches any of the values specified in an array.（判断在其中） $lt Matches values that are less than a specified value.（判断小于） $lte Matches values that are less than or equal to a specified value.（判断小于等于） $ne Matches all values that are not equal to a specified value.（判断所有值都不等于指定值） $nin Matches none of the values specified in an array.（判断不在其中） 逻辑 名字 描述 $and Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.（与） $not Inverts the effect of a query expression and returns documents that do not match the query expression.（非） $nor Joins query clauses with a logical NOR returns all documents that fail to match both clauses.（异或） $or Joins query clauses with a logical OR returns all documents that match the conditions of either clause.（或） 元素 名字 描述 $exists Matches documents that have the specified field. $type Selects documents if a field is of the specified type. 评估 名字 描述 $expr Allows use of aggregation expressions within the query language. $jsonSchema Validate documents against the given JSON Schema. $mod Performs a modulo operation on the value of a field and selects documents with a specified result. $regex Selects documents where values match a specified regular expression. $text Performs text search. $where Matches documents that satisfy a JavaScript expression. 地理空间 名字 描述 $geoIntersects Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects. $geoWithin Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin. $near Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near. $nearSphere Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere. 数组 名字 描述 $all Matches arrays that contain all elements specified in the query. $elemMatch Selects documents if element in the array field matches all the specified $elemMatch conditions. $size Selects documents if the array field is a specified size. 位操作 名字 描述 $bitsAllClear Matches numeric or binary values in which a set of bit positions all have a value of 0. $bitsAllSet Matches numeric or binary values in which a set of bit positions all have a value of 1. $bitsAnyClear Matches numeric or binary values in which any bit from a set of bit positions has a value of 0. $bitsAnySet Matches numeric or binary values in which any bit from a set of bit positions has a value of 1. 注释 名字 描述 $comment Adds a comment to a query predicate. 投影操作 名字 描述 $ Projects the first element in an array that matches the query condition. $elemMatch Projects the first element in an array that matches the specified $elemMatch condition. $meta Projects the document’s score assigned during $text operation. $slice Limits the number of elements projected from an array. Supports skip and limit slices.]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[MongoDB学习笔记：插入记录（增）]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-insert-1.html</url>
     <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB学习笔记：插入记录（增）。 初衷MongoDB的使用还是有一定难度的，官网讲解的一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下，便于快速查找。另外，做一做笔记，对于记忆和理解也是有好处的，同时可以方便一些英语暂时不好的同学用来参考。 语法1233.2版本之后db.collection.insertOne()db.collection.insertMany() 123.2版本之前db.collection.insert() 12345678910111213141516171819202122db.collection.insert( &lt;document or array of documents&gt;, &#123; writeConcern: &lt;document&gt;, ordered: &lt;boolean&gt; &#125;)db.collection.insertOne( &lt;document&gt;, &#123; writeConcern: &lt;document&gt; &#125;)db.collection.insertMany( [ &lt;document 1&gt; , &lt;document 2&gt;, ... ], &#123; writeConcern: &lt;document&gt;, ordered: &lt;boolean&gt; &#125;) 参数 类型 描述 document 文档或者数组 将要插入集合的文档或者文档数组。 writeConcern 文档 可选。待解释和细化。 ordered 布尔型 可选。插入数组时是否要按照顺序，默认为true。 实例：数据库：my_test，之前文章创建的数据库，创建数据库，参看这里。集合：test。插入记录如下： 123456789&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125; 语句： 123456789db.test.insert(&#123; &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 看到最后这句，表示插入一条记录成功。馈赠一条，为之后的例子做一个铺垫：123456789db.test.insert(&#123; &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 查看一下： 12345678910111213141516171819&gt; db.test.find().pretty()&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;&#125;&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080120&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;3&quot;&#125; 我们看到了两条记录，查询的语法请参考关于查询的文档。 参考https://docs.mongodb.com/manual/tutorial/insert-documents/。https://docs.mongodb.com/manual/reference/method/db.collection.insert/#db.collection.insert。]]></content>
@@ -1333,26 +1333,14 @@
       </categories>
       <tags>
         <tag>MongoDB</tag>
-        <tag>文档</tag>
         <tag>插入</tag>
+        <tag>文档</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Linux下shell命令用法及常见用例：touch]]></title>
     <url>%2Flinux%2Fshell-command-touch.html</url>
     <content type="text"><![CDATA[touch命令用来创建文件，也可以更改和修改一个文件的时间戳。 概要touch [选项]... 文件... 描述touch命令用来创建文件，也可以更改和修改一个文件的时间戳。Linux中的每个文件都与时间戳相关联，而且每个文件都存储上次访问时间，上次修改时间，上次更改时间的信息。因为，无论何时创建一个新文件，访问或者修改现有文件，时间戳都会被自动更新。 命令选项Linux中的文件有三个时间： access time（atime）：访问时间，对一次文件的内容就会更新。例如cat，vi/vim，cp，touch命令。 modification time（mtime）：修改时间，对文件内容修改一次就会更新。例如touch，vi/vim命令。 status time（ctime）：状态改动时间。通过chmod/chown/chgrp等命令更改一次文件属性，通过touch准确地修改时间等，这个时间就会更新。例如mv，touch，chmod/chown/chgrp，vi/vim等命令。 touch命令选项： -a，只改变访问时间。 -c，如果文件不存在，那就不创建。 -d，更新访问时间和修改时间。 -m，只改变修改时间。 -r，将参照文件ref_file相应的时间戳作为指定文件file时间戳的新值。 -t，用指定的时间创建文件，格式是[[CC]YY]MMDDhhmm[.SS]。CCYY的范围在1969~2068之内。SS为秒数，范围在0~61之间，这样可以处理闰秒。由于系统的限制，早于1970年1月1日的时间是错误的。 示例：1. 创建空文件描述：若文件不存在，使用touch命令可以轻松地创建一个空文件，或是创建多个。如果文件已存在，那么文件的3个时间：修改时间（mtime）、状态改动时间（ctime）和访问时间（atime）都会被更新为当前时间。stat命令可以查看文件时间。命令：touch my_onestat my_onetouch my_one my_two my_three输出： 示例：2. 只改变文件的修改时间（mtime）和状态改动时间（ctime）描述：只改变my_three文件的修改时间为当前时间，同时状态改动时间会在命令执行后更新为当前时间。这个操作并不需要修改文件内容。-m选项只更改文件的修改时间。命令：touch -m my_three输出： 示例：3. 只改变文件访问时间（atime）和状态改动时间（ctime）描述：只改变my_three文件的访问时间为当前时间，同时状态改动时间会在命令执行后更新为当前时间。如果文件不存在，会创建新的空文件。-a选项只更改文件的访问时间。命令：touch -a my_three输出： 示例：4. 指定文件的访问时间和修改时间描述：同时设置文件的访问时间和修改时间为指定时间，同时会更新状态改变时间为当前命令执行后的时间。如果文件不存在，会创建新的空文件。-d选项同时改变文件的访问时间和修改时间。命令：touch -d &quot;2018-06-14 14:00:00&quot; my_three输出： 描述：将my_three文件的访问时间和修改时间修改成两天前。touch还支持像date命令那样修改文件的时间。命令：touch -d &quot;2 days ago&quot; my_three输出： 示例：5. 避免创建新文件描述：更新atime、ctime、mtime，如果文件不存在，-c选项不会创建新的文件。命令：touch -c leena输出： 示例：6. 使用另一个文件的时间戳描述：-r选项将my_three的时间戳作为my_two文件的时间戳的新值，这两个文件有相同的时间戳。命令：touch -r my_three my_two输出： 示例：7. 使用指定的时间戳创建一个文件描述：将my_four文件的时间戳指定为1997年6月14日17点00分55秒。时间格式是[[CC]YY]MMDDhhmm[.SS]。命令：touch -t 199706141700.55 my_four输出：]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>Shell</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux下shell命令用法及常见用例：sed]]></title>
-    <url>%2Flinux%2Fshell-command-sed.html</url>
-    <content type="text"><![CDATA[sed是stream editor（流式编辑器）的缩写，是一个非交互式的流编辑器，用于过滤或者转换文本。未完待续… 概要sed 选项… [脚本] [输入文件…] 描述sed编辑器被称作流编辑器(stream editor)，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中(比如vim)，你可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中。sed编辑器会执行下列操作。(1) 一次从输入中读取一行数据。(2) 根据所提供的编辑器命令匹配数据。(3) 按照命令修改流中的数据。(4) 将新的数据输出到STDOUT。 在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程。在流编辑器处理完流中的所有数据行后，它就会终止。 由于命令是按顺序逐行给出的，sed编辑器只需对数据流进行一遍处理就可以完成编辑操作。这使得sed编辑器要比交互式编辑器快得多，你可以快速完成对数据的自动修改。 理解这个命令使用起来有些复杂，复杂在于功能强大，需要逐步消化。 常见用例实例 替换input.txt文件中所有的“hello”为“world”，并且输出到output.txt中。 1sed &apos;s/hello/world/&apos; input.txt &gt; output.txt 这可能是最常用的例子了（至少在我工作这么多年的经验中），这里使用了sed的命令s。如果想输出到原文件的话，使用-i参数。 1sed -i &apos;s/hello/world/&apos; input.txt 这个在mac下表现会不一样，参考：https://blog.csdn.net/cuiaamay/article/details/49495885。 参考：https://www.gnu.org/software/sed/manual/sed.html。]]></content>
       <categories>
         <category>Linux</category>
         <category>Shell</category>
@@ -1374,17 +1362,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
-    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
-    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
+    <title><![CDATA[Linux下shell命令用法及常见用例：sed]]></title>
+    <url>%2Flinux%2Fshell-command-sed.html</url>
+    <content type="text"><![CDATA[sed是stream editor（流式编辑器）的缩写，是一个非交互式的流编辑器，用于过滤或者转换文本。未完待续… 概要sed 选项… [脚本] [输入文件…] 描述sed编辑器被称作流编辑器(stream editor)，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中(比如vim)，你可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令行中输入，要么存储在一个命令文本文件中。sed编辑器会执行下列操作。(1) 一次从输入中读取一行数据。(2) 根据所提供的编辑器命令匹配数据。(3) 按照命令修改流中的数据。(4) 将新的数据输出到STDOUT。 在流编辑器将所有命令与一行数据匹配完毕后，它会读取下一行数据并重复这个过程。在流编辑器处理完流中的所有数据行后，它就会终止。 由于命令是按顺序逐行给出的，sed编辑器只需对数据流进行一遍处理就可以完成编辑操作。这使得sed编辑器要比交互式编辑器快得多，你可以快速完成对数据的自动修改。 理解这个命令使用起来有些复杂，复杂在于功能强大，需要逐步消化。 常见用例实例 替换input.txt文件中所有的“hello”为“world”，并且输出到output.txt中。 1sed &apos;s/hello/world/&apos; input.txt &gt; output.txt 这可能是最常用的例子了（至少在我工作这么多年的经验中），这里使用了sed的命令s。如果想输出到原文件的话，使用-i参数。 1sed -i &apos;s/hello/world/&apos; input.txt 这个在mac下表现会不一样，参考：https://blog.csdn.net/cuiaamay/article/details/49495885。 参考：https://www.gnu.org/software/sed/manual/sed.html。]]></content>
       <categories>
-        <category>MongoDB</category>
+        <category>Linux</category>
+        <category>Shell</category>
       </categories>
       <tags>
-        <tag>MongoDB</tag>
-        <tag>collection</tag>
-        <tag>数据集合</tag>
-        <tag>创建</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1399,6 +1385,20 @@
         <tag>database</tag>
         <tag>create</tag>
         <tag>创建数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MongoDB学习笔记：创建数据集合]]></title>
+    <url>%2Fmongodb%2Fmongodb-collection-create.html</url>
+    <content type="text"><![CDATA[完整的MongoDB学习笔记位于IT老兵博客。 MongoDB如何创建数据集合（collection）。 前言本篇文章整理一下MongoDB如何创建数据集合。 正文这节有点混乱，也有点尴尬，因为原本MongoDB就有些“没有规矩”。 关于快速创建一个集合，需要参考插入这一节，因为如果集合不存在的情况下，插入一条记录就会创建集合，这是非常方面的一种操作。 再举个例子，如下： 12345678910db.test.insert(&#123; &quot;_id&quot; : ObjectId(&quot;5abb3b5bce69c048be080199&quot;), &quot;meta&quot; : &#123; &quot;createAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;), &quot;updateAt&quot; : ISODate(&quot;2018-03-28T06:51:07.579Z&quot;) &#125;, &quot;a&quot; : &quot;1&quot;, &quot;b&quot; : &quot;1&quot;,&#125;)WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;) 这样即会创建集合test，又会给这个集合插入一条记录。 如果非要规矩地创建（其实是可以设置一些选项），那么： 12345678910111213db.createCollection(&lt;name&gt;, &#123; capped: &lt;boolean&gt;, autoIndexId: &lt;boolean&gt;, size: &lt;number&gt;, max: &lt;number&gt;, storageEngine: &lt;document&gt;, validator: &lt;document&gt;, validationLevel: &lt;string&gt;, validationAction: &lt;string&gt;, indexOptionDefaults: &lt;document&gt;, viewOn: &lt;string&gt;, pipeline: &lt;pipeline&gt;, collation: &lt;document&gt;, writeConcern: &lt;document&gt;&#125; ) 参数 类型 描述 name 字符串 要创建的集合的名称。 options 文档 可选。一大堆选项，暂时没用到，将来再补充了。 参考https://docs.mongodb.com/manual/reference/method/db.createCollection/#db.createCollection。]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>collection</tag>
+        <tag>数据集合</tag>
+        <tag>创建</tag>
       </tags>
   </entry>
 </search>
