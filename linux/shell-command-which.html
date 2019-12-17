@@ -137,7 +137,8 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">一个IT老兵的驿站</p>
+        <h1 class="site-subtitle" itemprop="description">一个IT老兵的驿站</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -221,9 +222,9 @@
       <meta itemprop="name" content="IT老兵驿站">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           Linux下shell命令用法及常见用例：which
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -318,6 +319,13 @@
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -475,6 +483,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
@@ -493,6 +510,23 @@
   
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'YXYioA0OYoX5c9MzYgvPH8g41vE9jtNVv29XdJ07SJP9wZqs5NbqvlV91i3QpR6b',
+      shortname: 'www-oxysun-cn',
+      url: "https://www.oxysun.cn/linux/shell-command-which.html",
+      identifier: "linux/shell-command-which.html",
+      title: "Linux下shell命令用法及常见用例：which",
+    });
+  }, window.DisqusJS);
+});
+</script>
 
 </body>
 </html>
