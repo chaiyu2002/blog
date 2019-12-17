@@ -1,1 +1,563 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概要Java：Shiro的架构学习笔记。">
+<meta name="keywords" content="Java,Shiro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java：Shiro的架构学习笔记">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-shiro-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要Java：Shiro的架构学习笔记。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n">
+<meta property="og:updated_time" content="2019-07-29T06:26:31.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java：Shiro的架构学习笔记">
+<meta name="twitter:description" content="概要Java：Shiro的架构学习笔记。">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc">
+
+<link rel="canonical" href="https://www.oxysun.cn/java/java-shiro-note.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Java：Shiro的架构学习笔记 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-shiro-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java：Shiro的架构学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-17 10:38:00" itemprop="dateCreated datePublished" datetime="2018-08-17T10:38:00+08:00">2018-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-07-29 14:26:31" itemprop="dateModified" datetime="2019-07-29T14:26:31+08:00">2019-07-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Java：Shiro的架构学习笔记。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵博客</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>张开涛的第一章 Shiro简介——《跟我学Shiro》，其实是解读了一下<a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">Shiro的架构</a>这篇文章，本着寻根究底的态度，我再一次去阅读这篇文章。为什么说是再一次呢？因为之前读过好几次了，不过就是没有完全理解明白，自己也说不好卡在哪里了，包括张开涛的文章，我也读过两遍了，这次第三遍读，一下子豁然开朗，然后不明白之前为啥就没读明白–这可能就是“书读百遍，其义自见”的道理吧。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="3个主要的概念：Subject-SecurityManager和Realms。"><a href="#3个主要的概念：Subject-SecurityManager和Realms。" class="headerlink" title="3个主要的概念：Subject, SecurityManager和Realms。"></a>3个主要的概念：<code>Subject</code>, <code>SecurityManager</code>和<code>Realms</code>。</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9CYXNpY0FyY2hpdGVjdHVyZS5wbmc" alt="这里写图片描述"></p>
+<p><code>Subject</code>可以是一个用户，但不仅仅可以代表一个用户，所有对这个系统的外部请求的主体都可以看成是一个<code>Subject</code>，例如一个<code>service</code>，这里是做了一个抽象概括的设计。（这个我能理解，如果你理解不了的话，那说明你还没有接触过相关的业务，例如<code>SSO</code>，那就先把它理解成一个用户，也没有关系。将来总有一天，你会明白，会回来和我一起唱这首《当当当》。）</p>
+<p><code>SecurityManager</code> Shiro设计的核心的逻辑都在这里面，但是，我们应该可以先不理会它是怎么工作的，先把它当做一个黑匣子，它有它自己运行的逻辑，Shiro的核心调度逻辑是在这里完成的。</p>
+<p><code>Realms</code> 这个单词的意思是领域，范围。原文这么说：</p>
+<blockquote>
+<p>Realms act as the ‘bridge’ or ‘connector’ between Shiro and your application’s security data. When it comes time to actually interact with security-related data like user accounts to perform authentication (login) and authorization (access control), Shiro looks up many of these things from one or more Realms configured for an application.</p>
+</blockquote>
+<blockquote>
+<p>In this sense a Realm is essentially a security-specific DAO: it encapsulates connection details for data sources and makes the associated data available to Shiro as needed. When configuring Shiro, you must specify at least one Realm to use for authentication and/or authorization. The SecurityManager may be configured with multiple Realms, but at least one is required.</p>
+</blockquote>
+<p>就是说和安全相关数据（<code>security-specific</code>）打交道的是这个对象，有关登录认证、授权（访问控制）都是通过它来打交道，或者说，通过不同的realm来和相关的“机构”（打个比方）打交道，每个机构有自己的<code>realm</code>，再或者说，<code>realm</code>可以理解成<code>DAO</code>，去访问相关的数据。</p>
+<p>这个地方可以这么理解，Shiro是把认证、获取授权相关的流程，相对固定的流程固化在代码中，把变化的内容暴露出来给使用者去配置，这里的realm就是把认证的信息、授权的信息暴露出来给使用者来进行配置。</p>
+<h2 id="更具体的分析："><a href="#更具体的分析：" class="headerlink" title="更具体的分析："></a>更具体的分析：</h2><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9zaGlyby5hcGFjaGUub3JnL2Fzc2V0cy9pbWFnZXMvU2hpcm9BcmNoaXRlY3R1cmUucG5n" alt="这里写图片描述"></p>
+<blockquote>
+<p>Subject：A security-specific ‘view’ of the entity (user, 3rd-party service, cron job, etc) currently interacting with the software.</p>
+</blockquote>
+<p>一个实体的安全相关的<code>view</code>–这个概念还需要好好理解一下，怎么被称为一个<code>view</code>呢？<br>这里应该是以MVC的概念去划分，那么这里称成一个view就相对来说，好理解一些，因为它是一些信息的聚合体。</p>
+<p>SecurityManager又分为了一些子模块：</p>
+<ol>
+<li>Authenticator<blockquote>
+<p>Authenticator (org.apache.shiro.authc.Authenticator)<br>The Authenticator is the component that is responsible for executing and reacting to authentication (log-in) attempts by users. When a user tries to log-in, that logic is executed by the Authenticator. The Authenticator knows how to coordinate with one or more Realms that store relevant user/account information. The data obtained from these Realms is used to verify the user’s identity to guarantee the user really is who they say they are.<br><br><br>Authentication Strategy (org.apache.shiro.authc.pam.AuthenticationStrategy)<br>If more than one Realm is configured, the AuthenticationStrategy will coordinate the Realms to determine the conditions under which an authentication attempt succeeds or fails (for example, if one realm succeeds but others fail, is the attempt successful? Must all realms succeed? Only the first?).</p>
+</blockquote>
+</li>
+</ol>
+<p>Authenticator：认证器，用来负责用户登录认证，它对应着一个或者多个<code>Realm</code>。<br>Authentication Strategy：认证策略，如果多个<code>Realm</code> 被配置，那么<code>Authentication Strategy</code>来负责协调这些<code>Realm</code> 产生矛盾的时候，该如何处理，例如一个<code>realm</code>成功，而其它的失败了，改怎么办，等等。在这一点上，张开涛的文章解释的不是太准确。</p>
+<ol start="2">
+<li>Authorizer<blockquote>
+<p>The Authorizer is the component responsible determining users’ access control in the application. It is the mechanism that ultimately says if a user is allowed to do something or not. Like the Authenticator, the Authorizer also knows how to coordinate with multiple back-end data sources to access role and permission information. The Authorizer uses this information to determine exactly if a user is allowed to perform a given action.</p>
+</blockquote>
+</li>
+</ol>
+<p>Authorizer：授权器，负责确认用户的访问权限。<br>这些信息需要由使用者来维护，所以也是暴露出来，交由使用者配置一个数据源给Shiro去调用。</p>
+<ol start="3">
+<li>SessionManager<blockquote>
+<p>SessionManager (org.apache.shiro.session.mgt.SessionManager)<br>The SessionManager knows how to create and manage user Session lifecycles to provide a robust Session experience for users in all environments. This is a unique feature in the world of security frameworks - Shiro has the ability to natively manage user Sessions in any environment, even if there is no Web/Servlet or EJB container available. By default, Shiro will use an existing session mechanism if available, (e.g. Servlet Container), but if there isn’t one, such as in a standalone application or non-web environment, it will use its built-in enterprise session management to offer the same programming experience. The SessionDAO exists to allow any datasource to be used to persist sessions.<br><br><br>SessionDAO (org.apache.shiro.session.mgt.eis.SessionDAO)<br>The SessionDAO performs Session persistence (CRUD) operations on behalf of the SessionManager. This allows any data store to be plugged in to the Session Management infrastructure.</p>
+</blockquote>
+</li>
+</ol>
+<p>SessionManager：<code>session</code>管理器，<code>Shiro</code>没有完全依赖<code>HTTP</code>的<code>session</code>，而是设计了一个独立的<code>session</code>。</p>
+<p>SessionDAO：<code>session</code>的<code>DAO</code>，用来处理session数据的保存。</p>
+<ol start="4">
+<li>CacheManager<blockquote>
+<p>The CacheManager creates and manages Cache instance lifecycles used by other Shiro components. Because Shiro can access many back-end data sources for authentication, authorization and session management, caching has always been a first-class architectural feature in the framework to improve performance while using these data sources. Any of the modern open-source and/or enterprise caching products can be plugged in to Shiro to provide a fast and efficient user-experience.</p>
+</blockquote>
+</li>
+</ol>
+<p>CacheManager：缓存管理器，用于加快访问速度，但是这里只是一个管理器，具体的缓存工具应该是由使用者来定义的。</p>
+<ol start="5">
+<li>Cryptography<blockquote>
+<p>Cryptography is a natural addition to an enterprise security framework. Shiro’s crypto package contains easy-to-use and understand representations of crytographic Ciphers, Hashes (aka digests) and different codec implementations. All of the classes in this package are carefully designed to be very easy to use and easy to understand. Anyone who has used Java’s native cryptography support knows it can be a challenging animal to tame. Shiro’s crypto APIs simplify the complicated Java mechanisms and make cryptography easy to use for normal mortal human beings.</p>
+</blockquote>
+</li>
+</ol>
+<p>Cryptography：加密模块。</p>
+<ol start="6">
+<li>Realms<blockquote>
+<p>As mentioned above, Realms act as the ‘bridge’ or ‘connector’ between Shiro and your application’s security data. When it comes time to actually interact with security-related data like user accounts to perform authentication (login) and authorization (access control), Shiro looks up many of these things from one or more Realms configured for an application. You can configure as many Realms as you need (usually one per data source) and Shiro will coordinate with them as necessary for both authentication and authorization.</p>
+</blockquote>
+</li>
+</ol>
+<p><code>Realms：</code>上面介绍过。</p>
+<h2 id="SecurityManager"><a href="#SecurityManager" class="headerlink" title="SecurityManager"></a>SecurityManager</h2><blockquote>
+<p>As stated previously, the application’s SecurityManager performs security operations and manages state for all application users. In Shiro’s default SecurityManager implementations, this includes:<br><br><br>Authentication<br>Authorization<br>Session Management<br>Cache Management<br>Realm coordination<br>Event propagation<br>“Remember Me” Services<br>Subject creation<br>Logout and more.</p>
+</blockquote>
+<p>在我的理解，其实SecurityManager就是Shiro的核心，它决定了业务的处理流，在什么样的时机去调用哪一个服务，这些服务会有父类来占位，可以由使用者定义子类来进行具体实现的修改。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>又阅读了一遍架构这篇文章，结合着张开涛的文章，感觉明白了不少，现在感觉<code>Shiro</code> 还是挺简单的，有个两三天应该就大体理解了，不明白当时怎么就堵住了，陷入了思维的死胡同。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Shiro/" rel="tag"># Shiro</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/git/git-reflog.html" rel="prev" title="Git：git-reflog的用法总结">
+      <i class="fa fa-chevron-left"></i> Git：git-reflog的用法总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/mongodb/mongodb-schema-design-note.html" rel="next" title="《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记">
+      《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3个主要的概念：Subject-SecurityManager和Realms。"><span class="nav-number">4.1.</span> <span class="nav-text">3个主要的概念：Subject, SecurityManager和Realms。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更具体的分析："><span class="nav-number">4.2.</span> <span class="nav-text">更具体的分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SecurityManager"><span class="nav-number">4.3.</span> <span class="nav-text">SecurityManager</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

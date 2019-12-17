@@ -1,1 +1,542 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。区块链：比特币难度的概念。">
+<meta name="keywords" content="区块链,比特币,难度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链：比特币难度的概念">
+<meta property="og:url" content="https://www.oxysun.cn/blockchain/bitcoin-difficulty.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。区块链：比特币难度的概念。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-18T00:08:05.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链：比特币难度的概念">
+<meta name="twitter:description" content="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。区块链：比特币难度的概念。">
+
+<link rel="canonical" href="https://www.oxysun.cn/blockchain/bitcoin-difficulty.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>区块链：比特币难度的概念 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/blockchain/bitcoin-difficulty.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          区块链：比特币难度的概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-30 16:46:00" itemprop="dateCreated datePublished" datetime="2018-07-30T16:46:00+08:00">2018-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-08-18 08:08:05" itemprop="dateModified" datetime="2018-08-18T08:08:05+08:00">2018-08-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Blockchain/" itemprop="url" rel="index">
+                    <span itemprop="name">Blockchain</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><a href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。" class="headerlink" title="原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"></a>原帖收藏于<a href="https://www.oxysun.cn/blockchain/bitcoin-difficulty.html">IT老兵驿站</a>，传递一个IT老兵在凋零前的光和氧。</h2><p>区块链：比特币难度的概念。<br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇笔记记录一下对于比特币难度的学习，参考<a href="https://en.bitcoin.it/wiki/Difficulty" target="_blank" rel="noopener">这里</a>，记录下来自己的理解，哩哩啦啦地写了两天，边看边查，还是没有理解到位，等待之后再补充吧。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><blockquote>
+<p>Difficulty is a measure of how difficult it is to find a hash below a given target.</p>
+</blockquote>
+<p><code>Difficulty</code> 是用来衡量找到一个低于给定目标的<code>hash</code>的困难程度。</p>
+<h3 id="难度公式："><a href="#难度公式：" class="headerlink" title="难度公式："></a>难度公式：</h3><blockquote>
+<p>difficulty = difficulty_1_target / current_target<br>(target is a 256 bit number)</p>
+</blockquote>
+<p>有许多不同测量难度的方法，得到的difficulty_1_target可能不同。传统地，它表示一个<code>HASH</code>值，前32位为0，后面都为1（也就是被称为“矿池难度”或“pdiff”的值），比特币协议把目标<code>HASH</code>表示成一个有限精度的自定义浮点类型。因而，比特币客户端用该值来估计难度(称之为：“bdiff”)。</p>
+<h3 id="难度如何保存在区块上呢？"><a href="#难度如何保存在区块上呢？" class="headerlink" title="难度如何保存在区块上呢？"></a>难度如何保存在区块上呢？</h3><p>每一个区块会用一种压缩的格式（被称为“Bits”）来表示实际的16进制的目标值。目标值通过一个预先定义好的公式，从这个压缩值中得出。举一个例子，压缩值为<code>0x1b0404cb</code>，16进制的目标值则是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x0404cb * 2**(8*(0x1b - 3)) = 0x00000000000404CB000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note that the 0x0404cb value is a signed value in this format. The largest legal value for this field is 0x7fffff. To make a larger value you must shift it down one full byte. Also 0x008000 is the smallest positive valid value.</p>
+</blockquote>
+<p>注意<code>0x0404cb</code> 是一个符号数，最大值是<code>0x7fffff</code>，这个明白，下面两句就不明白了：如果想生成一个更大的值，你需要向下移动一整个字节。同时，<code>0x008000</code> 是最小的正值（为什么不是<code>0x000001</code>呢？）。</p>
+<h3 id="难度如何计算？"><a href="#难度如何计算？" class="headerlink" title="难度如何计算？"></a>难度如何计算？</h3><p>最大目标难度（1）被定义成<code>0x1d00ffff</code>， 那么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00ffff * 2**(8*(0x1d - 3)) = 0x00000000FFFF0000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+<p>这个是截断后的目标值，就是上文所说的比特币协议定义的格式，如果没有截断，那么就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</span><br></pre></td></tr></table></figure>
+<p>所以<code>0x1b0404cb</code> 位置的难度是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x00000000FFFF0000000000000000000000000000000000000000000000000000 /</span><br><span class="line">0x00000000000404CB000000000000000000000000000000000000000000000000 </span><br><span class="line">= 16307.420938523983 (bdiff)</span><br></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF /</span><br><span class="line">0x00000000000404CB000000000000000000000000000000000000000000000000 </span><br><span class="line">= 16307.669773817162 (pdiff)</span><br></pre></td></tr></table></figure>
+<h3 id="当前难度是什么"><a href="#当前难度是什么" class="headerlink" title="当前难度是什么"></a>当前难度是什么</h3><p><a href="https://blockexplorer.com/api/status?q=getDifficulty" target="_blank" rel="noopener">Current difficulty</a>。这个是比特币浏览器提供的接口，给出了当前难度。</p>
+<h3 id="什么是最大难度"><a href="#什么是最大难度" class="headerlink" title="什么是最大难度"></a>什么是最大难度</h3><blockquote>
+<p>There is no minimum target. The maximum difficulty is roughly: maximum_target / 1 (since 0 would result in infinity), which is a ridiculously huge number (about 2^224).</p>
+</blockquote>
+<blockquote>
+<p>The actual maximum difficulty is when current_target=0, but we would not be able to calculate the difficulty if that happened. (fortunately it never will, so we’re ok.)</p>
+</blockquote>
+<p>不存在最小的目标。最大难度可以粗暴地认为是：maximum_target / 1（因为0会产生无限值），这个数很大，大约是2的224次方。</p>
+<h3 id="网络难度是否可以降低"><a href="#网络难度是否可以降低" class="headerlink" title="网络难度是否可以降低"></a>网络难度是否可以降低</h3><p>可以，参考上面的内容。</p>
+<h3 id="最小难度是什么"><a href="#最小难度是什么" class="headerlink" title="最小难度是什么"></a>最小难度是什么</h3><blockquote>
+<p>The minimum difficulty, when the target is at the maximum allowed value, is 1.</p>
+</blockquote>
+<p>当targe是最大允许值的时候，最小难度，也就是1。这里说的target应该是分母，分子的最大值是确定的，上文已经说过了。</p>
+<h3 id="在给定难度的情况下，网络hash率是如何得出的"><a href="#在给定难度的情况下，网络hash率是如何得出的" class="headerlink" title="在给定难度的情况下，网络hash率是如何得出的"></a>在给定难度的情况下，网络hash率是如何得出的</h3><p>根据10分钟一块的平均速度，产生2016个块应该需要两周。每产生2016个块，会调整一下难度，根据之前产生这2016个块花费的时间，和理论上应该花费的时间–两周做一下对比。</p>
+<p>难度为1时的目标值（上文提到的）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xffff * 2**208</span><br></pre></td></tr></table></figure>
+<p>难度为D时的目标值应该是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(0xffff * 2**208) / D</span><br></pre></td></tr></table></figure>
+<p>所需要的<code>hash</code>计算数（2**256是最大<code>hash</code>计算数，除以当前的目标值，也是一个256位的数，例如上面的<code>0x00000000000404CB000000000000000000000000000000000000000000000000</code> ，这个地方不是太理解，这样除，就可以算出总共需要的计算数？翻了一些帖子，还是没有找到答案）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D * 2**256 / (0xffff * 2**208)</span><br></pre></td></tr></table></figure></p>
+<p>简化为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D * 2**48 / 0xffff</span><br></pre></td></tr></table></figure>
+<p>以上是10分钟的<code>hash</code>数，<code>hash</code>率是以秒为单位的，所以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D * 2**48 / 0xffff / 600</span><br></pre></td></tr></table></figure></p>
+<p>最后简化为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D * 2**32 / 600</span><br></pre></td></tr></table></figure>
+<p>如果难度为1的话，每秒钟7 Mhashes。<br>原文写作时，难度是 22012.4941572，那么过去2016个块的<code>hash</code>率是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">22012.4941572 * 2**32 / 600 = around 157 Ghashes per second.</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.bitcoin.it/wiki/Difficulty。" target="_blank" rel="noopener">https://en.bitcoin.it/wiki/Difficulty。</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/区块链/" rel="tag"># 区块链</a>
+              <a href="/tags/比特币/" rel="tag"># 比特币</a>
+              <a href="/tags/难度/" rel="tag"># 难度</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/git/git-branch.html" rel="prev" title="Git：git-branch的用法总结">
+      <i class="fa fa-chevron-left"></i> Git：git-branch的用法总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/git/git-reset.html" rel="next" title="Git：git-reset的用法总结">
+      Git：git-reset的用法总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。"><span class="nav-number">1.</span> <span class="nav-text">原帖收藏于IT老兵驿站，传递一个IT老兵在凋零前的光和氧。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度公式："><span class="nav-number">1.1.</span> <span class="nav-text">难度公式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难度如何保存在区块上呢？"><span class="nav-number">1.2.</span> <span class="nav-text">难度如何保存在区块上呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难度如何计算？"><span class="nav-number">1.3.</span> <span class="nav-text">难度如何计算？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前难度是什么"><span class="nav-number">1.4.</span> <span class="nav-text">当前难度是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是最大难度"><span class="nav-number">1.5.</span> <span class="nav-text">什么是最大难度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络难度是否可以降低"><span class="nav-number">1.6.</span> <span class="nav-text">网络难度是否可以降低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小难度是什么"><span class="nav-number">1.7.</span> <span class="nav-text">最小难度是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在给定难度的情况下，网络hash率是如何得出的"><span class="nav-number">1.8.</span> <span class="nav-text">在给定难度的情况下，网络hash率是如何得出的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

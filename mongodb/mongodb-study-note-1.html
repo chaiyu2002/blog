@@ -1,1 +1,530 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+<meta name="keywords" content="MongoDB,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB学习笔记（一）：启程">
+<meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-03T12:54:10.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB学习笔记（一）：启程">
+<meta name="twitter:description" content="完整的MongoDB学习笔记位于IT老兵博客。MongoDB学习笔记。">
+
+<link rel="canonical" href="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>MongoDB学习笔记（一）：启程 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MongoDB学习笔记（一）：启程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-18 21:37:00" itemprop="dateCreated datePublished" datetime="2018-08-18T21:37:00+08:00">2018-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-03 20:54:10" itemprop="dateModified" datetime="2019-12-03T20:54:10+08:00">2019-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="完整的MongoDB学习笔记位于IT老兵博客。"><a href="#完整的MongoDB学习笔记位于IT老兵博客。" class="headerlink" title="完整的MongoDB学习笔记位于IT老兵博客。"></a>完整的MongoDB学习笔记位于<a href="https://www.oxysun.cn/mongodb/mongodb-study-note-1.html">IT老兵博客</a>。</h2><p>MongoDB学习笔记。<br><a id="more"></a></p>
+<!--
+提纲
+第一部分
+总结一下之前大概的学习情况，三段的学习历程，存在的问题，浪费了好多时间，写作这篇文章的目的。
+第二部分
+怎么开始的。
+选择学习的书籍。
+记录学习的过程。
+学习的态度，抨击速成的理念。
+中心思想？
+-->
+<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MongoDB学习笔记。<br><!-- more --></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵博客</a>。</p>
+<!--
+提纲
+第一部分
+总结一下之前大概的学习情况，三段的学习历程，存在的问题，浪费了好多时间，写作这篇文章的目的。
+第二部分
+怎么开始的。
+选择学习的书籍。
+记录学习的过程。
+学习的态度，抨击速成的理念。
+中心思想？
+-->
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>先介绍一下学习MongoDB的历程。</p>
+<p>对于MongoDB，是从14年听说的，当时大概地看了一下，没有仔细研究，</p>
+<p>说实话，当时心里其实是有点排斥的。因为“浸淫” SQL 多年（花了好些年去研究和使用 MySQL、Oracle，研究各种范式，做的项目都是基于 SQL的），突然出来一种<code>NoSQL</code>和<code>反范式设计</code>的概念，尤其是，突然有一堆刚毕业的，完全不懂范式，没有用范式做过系统的小朋友，跟你说“SQL已经过时”的时候，内心是非常排斥的，“你们连范式都还没有搞明白，都没有做出什么有点规模的系统，居然跟我奢谈说SQL已经过时”。</p>
+<p>此外，还有一个因素，那就是一个老程序员，对于新技术的冲击，本能的有些排斥。新技术似乎会降低我们自身的价值，这个时候，我们就变成了保守派，想捍卫一些东西—-这是不可取的。</p>
+<p>16年，在一家小公司任职，带领着团队研究新技术（小公司往往有机会去研究和使用新技术），大概看了看（看了一本好像是国人写的 MongoDB 的书），自以为大体是掌握了—-自以为是了。</p>
+<p>18年，开始真正要用 MongoDB 做一个项目，才发现之前掌握的，完全不到位。这个时候，端正了心态，踏踏实实地开始学习，到现在有了一些小的心得。</p>
+<p>这个时候回想，如果当初不要那么浮光略影地看书，而是踏踏实实地，结合着书籍，写一些实例应用，可能会掌握得更加清楚。这样，总共加起来，花费的学习时间应该会缩短很多，有的时候，要把有的事情做到位才会有效果，正是“纸上得来终觉浅，绝知此事要躬行”。</p>
+<p>所以，为了总结这一个过程，记录笔记来跟踪整个学习的过程，到现在为止，已经总结了几篇 MongoDB 的使用方式，感觉还是不足以完整地记录整个学习过程，所以，再用这种方式记录一下，串联起来。</p>
+<p>这个笔记，计划是花一个多月的时间，争取每周输出几篇，每一篇的篇幅不会太长，根据一个统一的原则来进行每篇内容的拆分，最终达到对MongoDB 的外围和内延的认识达到一个深度。总共的篇幅，暂时还不确定，达到了最终的目的为止，最后输出一个可以对学习 MongoDB 很有帮助的系列性的笔记。</p>
+<p>本篇笔记，稍微啰嗦一下，现在可以理解很多书籍的前言了，这个时候总想表达一下写作的目的，中间的经历和艰辛，很多心得和感悟，从这个角度来说，本篇其实就是前言了。</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>“工欲善其事必先利其器”，想学好 MongoDB，先得选择好的学习资料。从从业十多年的经验中，我得到一个认知，“因快得慢”。举一个例子，当年快毕业，准备出去面试，需要学习linux的一些基本原理，这个时候，摆在面前的有几种资料，一种是《Linux与unix shell编程指南》，这是当时很经典的书籍，但是篇幅较长；另外一种是，速成的教程（原谅我连名字都不记得了，因为实在是没有太多的价值）。当时我果断的选择了后者，结果因为这种速成的教程往往只是讲了一些最没有价值的东西，就像快餐一样，真正有营养的东西，需要慢慢去吸收和消化。后来，其实又花了很多气力，踏踏实实地重来一遍，这样算来，第一遍花费的时间，一点都没有意义，所以，这就是计算机学习，为什么要去读经典的原理，这才是最节省时间的方式，走得越扎实，其实才是走的最快的方式。</p>
+<p>官网，<a href="https://docs.mongodb.com/，" target="_blank" rel="noopener">https://docs.mongodb.com/，</a> 永远是学习的第一选择，MongoDB 的手册官网做的稍微有些复杂，但是它的例子比较丰富，这对于学习起来，帮助很大。不过，官网是英文的，对于很多人来说，是有些困难的（当然，如果想成为一个好的程序员，这个困难是需要客服的）。</p>
+<p>Stack Overflow 网站，<a href="https://stackoverflow.com/，" target="_blank" rel="noopener">https://stackoverflow.com/，</a> 寻找某些问题答案最好的网站，从10年开始，我已经把它看做是和官网差不多比重的资料网站了。</p>
+<p>《MongoDB权威指南》，O’REILLY 的书一般质量都还不错，当然，在京东上看看评论，找一本其他评价高的书来作为资料都是可以的。</p>
+<p>好了，神器在手，天下我有，准备启程。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+              <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mongodb/mongodb-schema-design-note.html" rel="prev" title="《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记">
+      <i class="fa fa-chevron-left"></i> 《6 Rules of Thumb for MongoDB Schema Design》 Part 1 翻译和笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/mongodb/mongodb-study-note-2.html" rel="next" title="MongoDB 学习笔记：数据库、集合和文档">
+      MongoDB 学习笔记：数据库、集合和文档 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#完整的MongoDB学习笔记位于IT老兵博客。"><span class="nav-number">1.</span> <span class="nav-text">完整的MongoDB学习笔记位于IT老兵博客。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number"></span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number"></span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number"></span> <span class="nav-text">准备</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

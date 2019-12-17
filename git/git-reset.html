@@ -1,1 +1,574 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概要Git：git-reset的用法总结。">
+<meta name="keywords" content="Git,用法,git reset">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git：git-reset的用法总结">
+<meta property="og:url" content="https://www.oxysun.cn/git/git-reset.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要Git：git-reset的用法总结。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-11T02:40:19.065Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git：git-reset的用法总结">
+<meta name="twitter:description" content="概要Git：git-reset的用法总结。">
+
+<link rel="canonical" href="https://www.oxysun.cn/git/git-reset.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Git：git-reset的用法总结 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/git/git-reset.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git：git-reset的用法总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-31 17:23:00" itemprop="dateCreated datePublished" datetime="2018-07-31T17:23:00+08:00">2018-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-11 10:40:19" itemprop="dateModified" datetime="2019-04-11T10:40:19+08:00">2019-04-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：git-reset的用法总结。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Git reset</code>感觉是相当复杂的一个指令，用了快一年了，总感觉还没有用明白，所以，需要好好总结一下。</p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…​</span><br><span class="line">git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…​]</span><br><span class="line">git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</span><br></pre></td></tr></table></figure>
+<p>这个命令有三种用法，前两种用来从<code>&lt;tree-ish&gt;</code>所指定的地方拷贝条目到<code>index</code>区域。<br>其实这个是说从仓库的某一个版本获取到<code>index</code>区域，感觉这个用法更多是用在了对于<code>git add</code>等操作的逆向操作。</p>
+<p>第三种格式，将当前分支的<code>HEAD</code>指针设定为<code>&lt;commit&gt;</code> 这个提交号，同时可以选择性地修改<code>index</code>和工作区域。</p>
+<p><code>tree-ish</code>是什么意思呢？要参考<a href="https://stackoverflow.com/questions/4044368/what-does-tree-ish-mean-in-git" target="_blank" rel="noopener">这里</a>，是Git所使用的指明路径的语法。类似以下这样的格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;rev&gt;:&lt;path&gt;, e.g. HEAD:README, :README, master:./README</span><br><span class="line">	</span><br><span class="line">A suffix : followed by a path names the blob or tree at the given path in the tree-ish object named by the part before the colon.</span><br></pre></td></tr></table></figure>
+<p>是指某个版本的某个文件，或者某个分支的某个文件。</p>
+<h2 id="用法1"><a href="#用法1" class="headerlink" title="用法1"></a>用法1</h2><p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…​</code></p>
+<blockquote>
+<p>This form resets the index entries for all <paths> to their state at <tree-ish>. (It does not affect the working tree or the current branch.)</tree-ish></paths></p>
+</blockquote>
+<blockquote>
+<p>This means that git reset <paths> is the opposite of git add <paths>.</paths></paths></p>
+</blockquote>
+<blockquote>
+<p>After running git reset <paths> to update the index entry, you can use git-checkout[1] to check the contents out of the index to the working tree. Alternatively, using git-checkout[1] and specifying a commit, you can copy the contents of a path out of a commit to the index and to the working tree in one go.</paths></p>
+</blockquote>
+<p>这个用法将<code>index</code>区域所有符合<paths>的条目修改为<code>&lt;tree-ish&gt;</code> 的状态。（这并不影响工作目录或者当前分支。）<br>这个<code>reset</code>是更新<code>index</code>条目，更新后，可以从<code>index</code>中通过<code>checkout</code>指令获取内容到工作目录。如果<code>git checkout</code>指定了一个提交号，那么就可以根据这个提交号更新内容到<code>index</code>和工作目录。</paths></p>
+<p>关于<code>ORIG_HEAD</code>的介绍：需要参考<a href="https://stackoverflow.com/questions/964876/head-and-orig-head-in-git" target="_blank" rel="noopener">这里</a>。</p>
+<blockquote>
+<p>HEAD is (direct or indirect, i.e. symbolic) reference to the current commit. It is a commit that you have checked in the working directory (unless you made some changes, or equivalent), and it is a commit on top of which “git commit” would make a new one. Usually HEAD is symbolic reference to some other named branch; this branch is currently checked out branch, or current branch. HEAD can also point directly to a commit; this state is called “detached HEAD”, and can be understood as being on unnamed, anonymous branch.</p>
+</blockquote>
+<blockquote>
+<p>And @ alone is a shortcut for HEAD, since Git 1.8.5</p>
+</blockquote>
+<blockquote>
+<p>ORIG_HEAD is previous state of HEAD, set by commands that have possibly dangerous behavior, to be easy to revert them. It is less useful now that Git has reflog: HEAD@{1} is roughly equivalent to ORIG_HEAD (HEAD@{1} is always last value of HEAD, ORIG_HEAD is last value of HEAD before dangerous operation).</p>
+</blockquote>
+<blockquote>
+<p>For more information read git(1) manpage, Git User’s Manual, the Git Community Book and Git Glossary</p>
+</blockquote>
+<p><code>HEAD</code>是指当前分支上当前的提交号。<br><code>ORIG_HEAD</code> 是指上一个HEAD所指向的提交号。<br>这其实是两个指针，第二个指针的设计其实是为了做保护，一旦第一个指针被误操作了，还有机会去挽回。</p>
+<p><strong>实例：</strong><br>将发生改变的文件 <code>_config.yml</code>加入<code>index</code> ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>这样<code>_config.yml</code> 文件就被加入到<code>index</code>区域中，显示成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">        modified:   _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>撤销上面的操作，恢复<code>_config.yml</code>为版本库中的状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>这种用法相当于<code>&lt;tree-ish&gt;</code>的参数设置为<code>HEAD</code>。</p>
+<h2 id="用法2"><a href="#用法2" class="headerlink" title="用法2"></a>用法2</h2><p><code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…​]</code></p>
+<blockquote>
+<p>Interactively select hunks in the difference between the index and <tree-ish> (defaults to HEAD). The chosen hunks are applied in reverse to the index.</tree-ish></p>
+</blockquote>
+<blockquote>
+<p>This means that git reset -p is the opposite of git add -p, i.e. you can use it to selectively reset hunks. See the “Interactive Mode” section of git-add[1] to learn how to operate the –patch mode.</p>
+</blockquote>
+<p>这个用法是以<code>patch</code> 的方式展示出来需要<code>reset</code>的代码， <code>git reset -p</code> 和<code>git add -p</code> 就是一对互为反向的操作，后者是把工作目录下变更的代码以<code>patch</code> 的方式展示出来，以互动的方式应用到<code>index</code>上，前者则是一个反向操作。</p>
+<p><strong>实例：</strong><br>将发生改变的文件 <code>_config.yml</code>加入<code>index</code> ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add -p  _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>撤销上面的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset -p  _config.yml</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，这种用法相对上面那一种用法其实是增加了互动的提醒。</p>
+<h2 id="用法3"><a href="#用法3" class="headerlink" title="用法3"></a>用法3</h2><p><code>git reset [&lt;mode&gt;] [&lt;commit&gt;]</code></p>
+<p>This form resets the current branch head to <commit> and possibly updates the index (resetting it to the tree of <commit>) and the working tree depending on <mode>. If <mode> is omitted, defaults to “–mixed”. The <mode> must be one of the following:</mode></mode></mode></commit></commit></p>
+<p>这个用法是用来设置当前的分支的<code>HEAD</code>指针，或者<code>index</code> 的指向当前版本的指针，或者工作空间指向当前版本的指针。</p>
+<blockquote>
+<p>–soft<br>Does not touch the index file or the working tree at all (but resets the head to <commit>, just like all modes do). This leaves all your changed files “Changes to be committed”, as git status would put it.</commit></p>
+</blockquote>
+<p><code>soft</code>参数用来设置<code>HEAD</code>指针。</p>
+<blockquote>
+<p>–mixed<br>Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated. This is the default action.</p>
+</blockquote>
+<p><code>mixed</code>参数用来设置<code>index</code>指针，文件的修改仍然会被保留，但是没有纳入到<code>index</code>中。</p>
+<blockquote>
+<p>If -N is specified, removed paths are marked as intent-to-add (see git-add[1]).</p>
+</blockquote>
+<blockquote>
+<p>–hard<br>Resets the index and working tree. Any changes to tracked files in the working tree since <commit> are discarded.</commit></p>
+</blockquote>
+<p><code>hard</code>重置<code>index</code>和工作区域，所有在这个<code>&lt;commit&gt;</code>之后的修改将被丢弃。</p>
+<blockquote>
+<p>–merge<br>Resets the index and updates the files in the working tree that are different between <commit> and HEAD, but keeps those which are different between the index and working tree (i.e. which have changes which have not been added). If a file that is different between <commit> and the index has unstaged changes, reset is aborted.</commit></commit></p>
+</blockquote>
+<blockquote>
+<p>In other words, –merge does something like a git read-tree -u -m <commit>, but carries forward unmerged index entries.</commit></p>
+</blockquote>
+<p><code>merge</code>重置<code>index</code> ，并且更新那些工作区的文件（在<code>&lt;commit&gt;</code>和<code>HEAD</code>中不同的）。这个还需要进一步理解一下。</p>
+<blockquote>
+<p>–keep<br>Resets index entries and updates files in the working tree that are different between <commit> and HEAD. If a file that is different between <commit> and HEAD has local changes, reset is aborted.</commit></commit></p>
+</blockquote>
+<blockquote>
+<p>If you want to undo a commit other than the latest on a branch, git-revert[1] is your friend.</p>
+</blockquote>
+<p><strong>实例</strong> 版本库中的提交如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">commit cac453cf6501c3ea3b626636bc4399ed48704543 (HEAD -&gt; master, origin/master, origin/HEAD)</span><br><span class="line">Author: xxx &lt;xxx@xxx.xxx&gt;</span><br><span class="line">Date:   Fri Jul 27 18:08:46 2018 +0800</span><br><span class="line"></span><br><span class="line">    从版本库中移除项目配置文件和日志配置文件</span><br><span class="line"></span><br><span class="line">commit cd36b7297106a871ae331f487179fd5584fb38cd</span><br><span class="line">Author: xxx &lt;xxx@xxx.xxx&gt;</span><br><span class="line">Date:   Fri Jul 27 18:06:37 2018 +0800</span><br><span class="line"></span><br><span class="line">    暂时参考原来的逻辑，使用硬编码的方式，新增了权限</span><br><span class="line"></span><br><span class="line">commit 24f19e80b5b8e2c05faf04706d95b5ac538ddbdd (f_1486)</span><br><span class="line">Author: xxx &lt;xxx@xxx.xxx&gt;</span><br><span class="line">Date:   Wed Jul 11 22:00:43 2018 +0800</span><br><span class="line"></span><br><span class="line">    修改了login的登录按钮的宽度</span><br><span class="line"></span><br><span class="line">commit e948bb044676ff917be862d9fae8391ba1b82351</span><br><span class="line">Author: xxx &lt;xxx@xxx.xxx&gt;</span><br><span class="line">Date:   Tue Jul 10 23:39:28 2018 +0800</span><br><span class="line"></span><br><span class="line">    完成初步的修改</span><br></pre></td></tr></table></figure></p>
+<p>现在发现最后三次提交是存在问题的，不应该直接提交到<code>master</code>上，这个时候需要把<code>HEAD</code>指针恢复到倒数第四次提交上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --soft e948bb044676ff917be862d9fae8391ba1b82351</span><br></pre></td></tr></table></figure></p>
+<p>这样后面三次提交的改变从版本库还原出来，变成尚未提交的状态，这样我们就可以新开一个临时的<code>dev</code>分支，继续我们之前的工作（参考Git Flow一篇文章）。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/用法/" rel="tag"># 用法</a>
+              <a href="/tags/git-reset/" rel="tag"># git reset</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blockchain/bitcoin-difficulty.html" rel="prev" title="区块链：比特币难度的概念">
+      <i class="fa fa-chevron-left"></i> 区块链：比特币难度的概念
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/git/git-tag.html" rel="next" title="Git：git-tag的用法总结">
+      Git：git-tag的用法总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法1"><span class="nav-number">4.1.</span> <span class="nav-text">用法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法2"><span class="nav-number">4.2.</span> <span class="nav-text">用法2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法3"><span class="nav-number">4.3.</span> <span class="nav-text">用法3</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

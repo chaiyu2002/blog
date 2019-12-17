@@ -1,1 +1,530 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="摘要B树、B+树学习之一。">
+<meta name="keywords" content="B 树,B+ 树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B树、B+树学习之一">
+<meta property="og:url" content="https://www.oxysun.cn/mysql/B-tree-note-1.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="摘要B树、B+树学习之一。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20151023102337562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2019-11-06T09:07:27.997Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="B树、B+树学习之一">
+<meta name="twitter:description" content="摘要B树、B+树学习之一。">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20151023102337562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+<link rel="canonical" href="https://www.oxysun.cn/mysql/B-tree-note-1.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>B树、B+树学习之一 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mysql/B-tree-note-1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          B树、B+树学习之一
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-05 16:45:45" itemprop="dateCreated datePublished" datetime="2019-11-05T16:45:45+08:00">2019-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-06 17:07:27" itemprop="dateModified" datetime="2019-11-06T17:07:27+08:00">2019-11-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>B树、B+树学习之一。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇帖子原本写于2015年，写于厦门，时至今日（2019年11月5日）来看，感觉当时记录笔记，缺乏一个完整的思路，记录的不好，不方便以后的阅读，今天刚好又遇到了B树的学习，那么把它修改一下。</p>
+<p>其实在11年刚进360的时候，学习MySQL，那个时候对B树做过一次很深的研究，自己实践过一遍B树的数据结构，不过那个时候没有云笔记，自己也没有做好笔记管理，现在找不到了，对于这些，用一句香港连续剧里面的话可以很准确的表达心情，无限唏嘘。</p>
+<p>原本的帖子不是用MD写的，不利于编辑，只好删除掉，重新用MD格式来编辑。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>个人理解，现在，B树主要的一个应用是数据库存储引擎（InnoDB），用B树的原因，是为了更少地访问磁盘，更快地检索到数据的位置。（关于这一点，《算法导论》在介绍B树时，也是这样地描写的）</p>
+<p>所以，这里要对磁盘的很多概念有所了解。</p>
+<h2 id="磁盘RPM"><a href="#磁盘RPM" class="headerlink" title="磁盘RPM"></a>磁盘RPM</h2><p>磁盘参数RPM是Revolutions Per Minute的缩写</p>
+<blockquote>
+<p>revolution<br>n. 革命；旋转；运行；循环<br>这么说，旋转就是革命了。</p>
+</blockquote>
+<p>《算法导论》第三版第279页：</p>
+<blockquote>
+<p>对存储在磁盘上的一颗大的B树，通常看到分支因子在50~2000之间，具体取决于一个关键字相对于一页的大小。一个大的分支因子可以大大地降低树的高度以及查找任何一个关键字所需的磁盘存取次数。</p>
+</blockquote>
+<h2 id="块的概念"><a href="#块的概念" class="headerlink" title="块的概念"></a>块的概念</h2><p>参考：<a href="http://oss.org.cn/kernel-book/ch09/9.1.htm，很可惜，这个网站已经不能访问了，只能参考《深入理解Linux内核》了。" target="_blank" rel="noopener">http://oss.org.cn/kernel-book/ch09/9.1.htm，很可惜，这个网站已经不能访问了，只能参考《深入理解Linux内核》了。</a></p>
+<blockquote>
+<p>9.1  基本概念<br>在上一章中，我们把Ext2、Minix、Ext等实际可使用的文件系统称为具体文件系统。具体文件系统管理的是一个逻辑空间，这个逻辑空间就象一个大的数组，数组的每个元素就是文件系统操作的基本单位——逻辑块，逻辑块是从0开始编号的，而且，逻辑块是连续的。与逻辑块相对的是物理块，物理块是数据在磁盘上的存取单位，也就是每进行一次I/O操作，最小传输的数据大小。我们知道数据是存储在磁盘的扇区中的，那么扇区是不是物理块呢？或者物理块是多大呢？这涉及到文件系统效率的问题。</p>
+</blockquote>
+<p>参考<a href="https://en.wikipedia.org/wiki/Block_%28data_storage%29" target="_blank" rel="noopener">维基百科</a></p>
+<blockquote>
+<p>In computing (specifically data transmission and data storage), a block, sometimes called a physical record, is a sequence of bytes or bits, usually containing some whole number of records, having a maximum length, a block size.[1] Data thus structured are said to be blocked. The process of putting data into blocks is called blocking, while deblocking is the process of extracting data from blocks. Blocked data is normally stored in a data buffer and read or written a whole block at a time. </p>
+</blockquote>
+<blockquote>
+<p>In the 1970s IBM introduced the Direct Access Storage Device (DASD) with fixed-block architecture using sizes of 512, 1024, 2048, or 4096 bytes. Cray Research had an 819 disk controller in 1975 that transferred 512 64-bit words (4096 bytes) per sector. Later,[specify] hard disk drives supporting 1,024-byte sectors began to be integrated into consumer electronics devices such as portable media players and digital video cameras.[citation needed] However, by far the majority of hard drives shipped up to the start of the 2010s still used the traditional 512-byte sector size.</p>
+</blockquote>
+<p>从这里感觉，sector和block是一个概念。</p>
+<p>参考<a href="https://en.wikipedia.org/wiki/Cylinder-head-sector" target="_blank" rel="noopener">这里</a>，看到：<br>​​​​<img src="https://img-blog.csdn.net/20151023102337562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="在这里插入图片描述"></p>
+<h2 id="树的阶数如何翻译，应该用order"><a href="#树的阶数如何翻译，应该用order" class="headerlink" title="树的阶数如何翻译，应该用order"></a>树的阶数如何翻译，应该用order</h2><p><a href="https://en.wikipedia.org/wiki/Tree_(data_structure)。" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Tree_(data_structure)。</a></p>
+<h2 id="block的概念"><a href="#block的概念" class="headerlink" title="block的概念"></a>block的概念</h2><p><a href="https://en.wikipedia.org/wiki/Block_(data_storage)。" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Block_(data_storage)。</a></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><blockquote>
+<p>根据 Knuth 的定义，一个 m 阶的B树是一个有以下属性的树：<br>每一个节点最多有 m 个子节点<br>每一个非叶子节点（除根节点）最少有 ⌈m/2⌉ 个子节点<br>如果根节点不是叶子节点，那么它至少有两个子节点<br>有 k 个子节点的非叶子节点拥有 k − 1 个键<br>所有的叶子节点都在同一层</p>
+</blockquote>
+<p>这是维基上B树的定义。（各个地方的定义不尽相同，可能背后的概念是一样的，我觉得不一致，可能是因为我理解的还不够透彻。）</p>
+<p>这个地方没有强调关键字是有序的。</p>
+<p>这里面要搞清楚树的高度、树的度、树和子树的关系，子树和关键字之间的关系，这些人关系搞清楚，这个B树就搞明白了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>今天先整理到这里，明天继续完善，今天还没有涉及到B树的主要概念，只是涉及到了磁盘的一些概念。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.csdn.net/liuaigui/article/details/6168186。" target="_blank" rel="noopener">http://blog.csdn.net/liuaigui/article/details/6168186。</a><br><a href="http://stackoverflow.com/questions/12345804/difference-between-blocks-and-sectors" target="_blank" rel="noopener">http://stackoverflow.com/questions/12345804/difference-between-blocks-and-sectors</a><br><a href="https://en.wikipedia.org/wiki/Disk_sector" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Disk_sector</a><br><a href="http://baike.baidu.com/view/110462.htm" target="_blank" rel="noopener">http://baike.baidu.com/view/110462.htm</a> 这里是我原来所学的<br><a href="http://oss.org.cn/kernel-book/ch09/9.1.htm" target="_blank" rel="noopener">http://oss.org.cn/kernel-book/ch09/9.1.htm</a> 物理块的概念<br><a href="https://en.wikipedia.org/wiki/B-tree" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/B-tree</a><br><a href="http://blog.csdn.net/v_july_v/article/details/6530142" target="_blank" rel="noopener">http://blog.csdn.net/v_july_v/article/details/6530142</a> 这个帖子介绍的比较详细</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/B-树/" rel="tag"># B 树</a>
+              <a href="/tags/B-树/" rel="tag"># B+ 树</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/linux/linux-top-buffer-cache.html" rel="prev" title="Linux的top和free命令里面的buffer和cache">
+      <i class="fa fa-chevron-left"></i> Linux的top和free命令里面的buffer和cache
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/mysql/clustered-index-mysql.html" rel="next" title="MySQL的聚集索引">
+      MySQL的聚集索引 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘RPM"><span class="nav-number">4.1.</span> <span class="nav-text">磁盘RPM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块的概念"><span class="nav-number">4.2.</span> <span class="nav-text">块的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树的阶数如何翻译，应该用order"><span class="nav-number">4.3.</span> <span class="nav-text">树的阶数如何翻译，应该用order</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block的概念"><span class="nav-number">4.4.</span> <span class="nav-text">block的概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">5.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

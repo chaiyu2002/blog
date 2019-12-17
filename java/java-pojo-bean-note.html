@@ -1,1 +1,627 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Java：学习Java的POJO和Beans。">
+<meta name="keywords" content="Java,POJO,Beans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java的POJO和Beans">
+<meta property="og:url" content="https://www.oxysun.cn/java/java-pojo-bean-note.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Java：学习Java的POJO和Beans。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/pojo.jpg">
+<meta property="og:updated_time" content="2019-01-22T04:37:06.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java的POJO和Beans">
+<meta name="twitter:description" content="Java：学习Java的POJO和Beans。">
+<meta name="twitter:image" content="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/pojo.jpg">
+
+<link rel="canonical" href="https://www.oxysun.cn/java/java-pojo-bean-note.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Java的POJO和Beans | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/java-pojo-bean-note.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java的POJO和Beans
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-01-22 12:32:00 / 修改时间：12:37:06" itemprop="dateCreated datePublished" datetime="2019-01-22T12:32:00+08:00">2019-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Java：学习Java的POJO和Beans。<br><a id="more"></a></p>
+<h1 id="收藏"><a href="#收藏" class="headerlink" title="收藏"></a>收藏</h1><p>原帖位于<a href="https://www.oxysun.cn/">IT老兵博客</a>，沉淀着一个IT老兵对于这个行业的认知。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想总结一下POJO和Beans，发现这个工作有人已经做了，认真地阅读，然后转帖下来，记录笔记。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="POJO-vs-Java-Beans"><a href="#POJO-vs-Java-Beans" class="headerlink" title="POJO vs Java Beans"></a>POJO vs Java Beans</h2><p><strong>POJO classes</strong></p>
+<p>POJO stands for Plain Old Java Object. It is an ordinary Java object, not bound by any special restriction other than those forced by the Java Language Specification and not requiring any class path. POJOs are used for increasing the readability and re-usability of a program. POJOs have gained most acceptance because they are easy to write and understand. They were introduced in EJB 3.0 by Sun microsystems.</p>
+<p>POJO代表着Plain Old Java Object，简单的旧的Java对象。它是一个常规的Java对象，除了被Java语言规范之外不被任何指定的限制所约束，并且不需要任何class path。POJOs被用于增加一个程序的可读性和可重用性。</p>
+<p><strong>A POJO should not:</strong></p>
+<ol>
+<li>Extend prespecified classes, Ex: public class GFG extends javax.servlet.http.HttpServlet { … } is <strong>not</strong> a POJO class.</li>
+<li>Implement prespecified interfaces, Ex: public class Bar implements javax.ejb.EntityBean { … } is <strong>not</strong> a POJO class.</li>
+<li>Contain prespecified annotations, Ex: @javax.persistence.Entity public class Baz { … } is <strong>not </strong>a POJO class.</li>
+</ol>
+<p><strong>一个POJO不应该</strong>：</p>
+<ol>
+<li>继承别的预先指定的类。</li>
+<li>实现预先指定的接口。</li>
+<li>包含预先指定的注解。</li>
+</ol>
+<p>POJOs basically defines an entity. Like in you program, if you want a Employee class then you can create a POJO as follows:</p>
+<pre><code>// Employee POJO class to represent entity Employee
+public class Employee
+{
+    // default field
+    String name;
+    // public field
+    public String id;
+    // private salary
+    private double salary;
+    //arg-constructor to initialize fields
+    public Employee(String name, String id, double salary)
+    {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+    // getter method for name
+    public String getName()
+    {
+        return name;
+    }
+    // getter method for id
+    public String getId()
+    {
+        return id;
+    }
+    // getter method for salary
+    public Double getSalary()
+    {
+        return salary;
+    }
+}
+</code></pre><p>The above example is a well defined example of POJO class. As you can see, there is no restriction on access-modifier of fields. They can be private, default, protected or public. It is also not necessary to include any constructor in it.</p>
+<p>对于域的访问和修改没有限制。</p>
+<p>POJO is an object which encapsulates Business Logic. Following image shows a working example of POJO class. Controllers get interact with your business logic which in turn interact with POJO to access the database. In this example a database entity is represented by POJO. This POJO has the same members as database entity.</p>
+<p>POJO是一个封装了业务逻辑的对象。控制器和你的商业逻辑打交道，然后要通过和POJO打交道去访问数据库。在这个例子里面，一个数据库实例被一个POJO锁代表。这个POJO和数据库实体拥有同样的成员。这里其实就是ORM的概念了。</p>
+<p><img src="https://cdncontribute.geeksforgeeks.org/wp-content/uploads/pojo.jpg" alt=""></p>
+<p><strong>Java Beans</strong></p>
+<p><strong>Beans are special type of Pojos. There are some restrictions on POJO to be a bean.</strong></p>
+<ol>
+<li>All JavaBeans are POJOs but not all POJOs are JavaBeans.</li>
+<li>Serializable i.e. they should implement Serializable interface. Still some POJOs who don’t implement Serializable interface are called POJOs beacause Serializable is a marker interface and therefore not of much burden.</li>
+<li>Fields should be private. This is to provide the complete control on fields.</li>
+<li>Fields should have getters or setters or both.</li>
+<li>A no-arg constructor should be there in a bean.</li>
+<li>Fields are accessed only by constructor or getter setters.</li>
+</ol>
+<p><strong>Bean是一种特殊类型的POJO。要成为一个bean，有一些对于POJO的限制</strong>。</p>
+<ol>
+<li>所有JavaBeans都是POJO，但不是所有的POJO是JavaBeans。</li>
+<li>有些POJOs不实现Serializable接口，它们仍然被称作POJO，这里和上面的POJO的特征有点冲突啊。这里说Serializable interface是一个marker的interface，什么意思，标记型的interface？</li>
+<li>域可以是私有的。</li>
+<li>域需要提供getter或者setter方法，或者都要。</li>
+<li>需要一个无参数的构造函数。</li>
+<li>域只能被构造函数或者getter和setter方法访问。</li>
+</ol>
+<p>Getters and Setters have some special names depending on field name. For example, if field name is someProperty then its<strong> getter</strong> preferably will be:</p>
+<pre><code>public void getSomeProperty()
+{
+   return someProperty;
+}
+</code></pre><p>and <strong>setter </strong>will be</p>
+<pre><code>public void setSomePRoperty(someProperty)
+{
+   this.someProperty=someProperty;
+}
+</code></pre><p>Visibility of getters and setters in generally public. Getters and setters provide the complete restriction on fields. e.g. consider below property,</p>
+<pre><code>Integer age;
+</code></pre><p>If you set visibility of age to public, then any object can use this. Suppose you want that age can’t be 0. In that case you can’t have control. Any object can set it 0. But by using setter method, you have control. You can have a condition in your setter method. Similarly, for getter method if you want that if your age is 0 then it should return null, you can achieve this by using getter method as in following example:</p>
+<pre><code>// Java program to illustrate JavaBeans
+class Bean
+{
+    // private field property
+    private Integer property;
+    Bean()
+    {
+        // No-arg constructor
+    }
+    // setter method for property
+    public void setProperty(Integer property)
+    {
+        if (property == 0)
+        {
+            // if property is 0 return
+            return;
+        }
+        this.property=property;
+    }
+    // getter method for property
+    public int getProperty()
+    {
+        if (property == 0)
+        {
+            // if property is 0 return null
+            return null;
+        }
+        return property;
+    }
+}
+// Class to test above bean
+public class GFG
+{
+    public static void main(String[] args)
+    {
+        Bean bean = new Bean();
+        bean.setProperty(0);
+        System.out.println(&quot;After setting to 0: &quot; +
+                                 bean.getProperty());
+        bean.setProperty(5);
+        System.out.println(&quot;After setting to valid&quot; +
+                      &quot; value: &quot; + bean.getProperty());
+    }
+}
+</code></pre><p>Output:</p>
+<pre><code>After setting to 0: null
+After setting to valid value: 5
+</code></pre><p><strong>POJO vs Java Bean</strong></p>
+<table><br><tbody><br><tr><br><th>POJO</th><th>JAVA BEAN</th><br></tr><br><tr><br><td>It doesn’t have special restrictions other than those forced by Java language.</td><br><td>It is a special POJO which have some restrictions.</td><br></tr><br><tr><br><td>It doesn’t provide much control on members.</td><br><td>It provides complete control on members.</td><br></tr><br><tr><br><td>It can implement Serializable interface.</td><br><td>It should implement serializable interface.</td><br></tr><br><tr><br><td>Fields can be accessed by their names.</td><br><td>Fields are accessed only by getters and setters.</td><br></tr><br><tr><br><td>Fields can have any visibility.</td><br><td>Fields have only private visibility.</td><br></tr><br><tr><br><td>There can be a no-arg constructor.</td><br><td>It must have a no-arg constructor.</td><br></tr><br><tr><br><td>It is used when you don’t want to give restriction on your members and give user complete access of your entity</td><br><td>It is used when you want to provide user your entity but only some part of your entity.</td><br></tr><br></tbody><br></table>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>看过了这篇文章，基本搞明白了POJO和Bean的概念。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.geeksforgeeks.org/pojo-vs-java-beans/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/pojo-vs-java-beans/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/POJO/" rel="tag"># POJO</a>
+              <a href="/tags/Beans/" rel="tag"># Beans</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Kafka/kafka-introduction-note.html" rel="prev" title="Kafka的学习笔记--介绍（总体概念）">
+      <i class="fa fa-chevron-left"></i> Kafka的学习笔记--介绍（总体概念）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/java/java-jps-note.html" rel="next" title="Java的进程查看工具jps学习笔记">
+      Java的进程查看工具jps学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#收藏"><span class="nav-number">1.</span> <span class="nav-text">收藏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#POJO-vs-Java-Beans"><span class="nav-number">3.1.</span> <span class="nav-text">POJO vs Java Beans</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

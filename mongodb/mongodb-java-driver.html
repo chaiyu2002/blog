@@ -1,1 +1,535 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Java访问MongoDB：安装驱动。">
+<meta name="keywords" content="Java,MongoDB,driver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java访问MongoDB：安装驱动">
+<meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-java-driver.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Java访问MongoDB：安装驱动。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-06T02:22:04.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java访问MongoDB：安装驱动">
+<meta name="twitter:description" content="Java访问MongoDB：安装驱动。">
+
+<link rel="canonical" href="https://www.oxysun.cn/mongodb/mongodb-java-driver.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Java访问MongoDB：安装驱动 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mongodb/mongodb-java-driver.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java访问MongoDB：安装驱动
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-01-06 10:20:00 / 修改时间：10:22:04" itemprop="dateCreated datePublished" datetime="2019-01-06T10:20:00+08:00">2019-01-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Java访问MongoDB：安装驱动。<br><a id="more"></a></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Spring项目中可能需要用到MongoDB，要了解一下Java项目如何连接MongoDB，查了查google，对比了一下，发现官网的讲解非常清楚，这样的话，直接阅读官网，效率是最高的。</p>
+<p>官网的位置：<a href="http://mongodb.github.io/mongo-java-driver/3.9/driver/getting-started/quick-start/。" target="_blank" rel="noopener">http://mongodb.github.io/mongo-java-driver/3.9/driver/getting-started/quick-start/。</a></p>
+<p>本文捡着最主要的地方做一下笔记，方便自己学习，也输出一下，这样输出的速度也快，也可以方便他人借鉴，但不再全文翻译，那样输出太慢，而且个人感觉，只是方便了懒人，学习计算机，不提高英文，永远是短一条腿走路，很难达到很高的水平。</p>
+<blockquote>
+<p>Installation<br>The recommended way to get started using one of the drivers in your project is with a dependency management system.<br><br><br>There are two Maven artifacts available in the release. The preferred artifact for new applications is mongodb-driver-sync however, we still publish the legacy mongo-java-driver uber-jar as well as the mongodb-driver jar introduced in 3.0.</p>
+</blockquote>
+<p>Java的MongoDB驱动当前一共有4个库，先需要搞清楚这4个库的关系，优先推荐mongodb-driver-sync。</p>
+<blockquote>
+<p>MongoDB Driver Sync<br>The MongoDB Driver mongodb-driver-sync is the synchronous Java driver containing only the generic MongoCollection interface that complies with a new cross-driver CRUD specification. It does not include the legacy API (e.g. DBCollection).</p>
+</blockquote>
+<p>这个库只有MongoCollection接口，并且不包含废弃的API。</p>
+<blockquote>
+<p>IMPORTANT<br><br><br>This is a Java 9-compliant module with an Automatic-Module-Name of org.mongodb.driver.sync.client.<br><br><br>The mongodb-driver-sync artifact is a valid OSGi bundle whose symbolic name is org.mongodb.driver-sync.</p>
+</blockquote>
+<p>这块有点没明白，似乎是分成了两个包，一个是兼容Java 9的org.mongodb.driver.sync.client和遵循OSGi的org.mongodb.driver-sync。</p>
+<p>下面是Maven的配置，原帖中还有Gradle的配置方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mongodb-driver-sync&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.9.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Note: You can also download the mongodb-driver-sync jar directly from sonatype.<br><br><br>If downloading mongodb-driver-sync manually, you must also download its dependencies: bson and mongodb-driver-core</p>
+</blockquote>
+<p>当然，你可以可以直接从sonatype下载jar包，如果那样的话，你需要还下载一下依赖。</p>
+<blockquote>
+<p>MongoDB Driver Legacy<br>The MongoDB Legacy driver mongodb-driver-legacy is the legacy synchronous Java driver whose entry point is com.mongodb.MongoClient and central classes include com.mongodb.DB, com.mongodb.DBCollection, and com.mongodb.DBCursor.</p>
+</blockquote>
+<p>这个mongodb-driver-legacy驱动带有com.mongodb.MongoClient这个入口，核心类是com.mongodb.DB, com.mongodb.DBCollection和com.mongodb.DBCursor，很多网上的样例用的是这两个类。</p>
+<blockquote>
+<p>IMPORTANT<br><br><br>While not deprecated, we recommend that new applications depend on the mongodb-driver-syncmodule.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mongodb-driver-legacy&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.9.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>Note: You can also download the mongodb-driver-legacy jar directly from sonatype.<br><br><br>If downloading mongodb-driver-legacy manually, you must also download its dependencies: bson andmongodb-driver-core</p>
+</blockquote>
+<blockquote>
+<p>MongoDB Driver<br>The MongoDB Driver mongodb-driver is the updated synchronous Java driver that includes the legacy API as well as a new generic MongoCollection interface that complies with a new cross-driver CRUD specification.</p>
+</blockquote>
+<p>mongodb-driver是更新的同步化的Java驱动，包含旧的API，也包含新的MongoCollection接口。（这个应该是为了过渡考虑）</p>
+<blockquote>
+<p>IMPORTANT<br><br><br>mongodb-driver is not an OSGi bundle: both mongodb-driver and mongodb-driver-core, a dependency of mongodb-driver, include classes from the com.mongodb package.<br><br><br>For OSGi-based applications, use the mongodb-driver-sync or the mongo-java-driver uber jar instead.<br><br><br>It is also not a Java 9 module.<br><br><br>This module is deprecated and will no longer be published in the next major release of the driver (4.0).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mongodb-driver&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.9.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>Note: You can also download the mongodb-driver jar directly from sonatype.<br><br><br>If downloading mongodb-driver manually, you must also download its dependencies: bson and mongodb-driver-core<br><br><br>Uber Jar (Legacy)<br>For new applications, the preferred artifact is mongodb-driver-sync; however, the legacy mongo-java-driver uber jar is still available. The uber jar contains: the BSON library, the core library, and the mongodb-driver.</p>
+</blockquote>
+<p>uber jar这个包是很老的包，但是还是可以用。</p>
+<blockquote>
+<p>NOTE<br><br><br>This is a Java 9-compliant module with an Automatic-Module-Name of org.mongodb.driver.sync.client.<br><br><br>The mongo-java-driver artifact is a valid OSGi bundle whose symbolic name is org.mongodb.mongo-java-driver.<br><br><br>IMPORTANT<br><br><br>This module is deprecated and will no longer be published in the next major release of the driver (4.0).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.9.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>Note: You can also download the mongo-java-driver jar directly from sonatype.</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://mongodb.github.io/mongo-java-driver/3.9/driver/getting-started/installation/" target="_blank" rel="noopener">http://mongodb.github.io/mongo-java-driver/3.9/driver/getting-started/installation/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+              <a href="/tags/driver/" rel="tag"># driver</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/css/css-font-note.html" rel="prev" title="CSS的font和font-size">
+      <i class="fa fa-chevron-left"></i> CSS的font和font-size
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Kafka/kafka-introduction-note.html" rel="next" title="Kafka的学习笔记--介绍（总体概念）">
+      Kafka的学习笔记--介绍（总体概念） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">1.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

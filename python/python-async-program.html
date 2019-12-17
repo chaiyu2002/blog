@@ -1,1 +1,777 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概要Git：Python的异步编程介绍（MD）。">
+<meta name="keywords" content="Python,异步编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的异步编程介绍（MD）">
+<meta property="og:url" content="https://www.oxysun.cn/python/python-async-program.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要Git：Python的异步编程介绍（MD）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg">
+<meta property="og:image" content="https://miro.medium.com/max/1080/1*t_oCyHBstMnF8WpZ67pKTg.jpeg">
+<meta property="og:image" content="https://miro.medium.com/max/1068/1*n0YzPr3owXrrEzV-xY-eAg.png">
+<meta property="og:updated_time" content="2019-11-28T15:24:43.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python的异步编程介绍（MD）">
+<meta name="twitter:description" content="概要Git：Python的异步编程介绍（MD）。">
+<meta name="twitter:image" content="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg">
+
+<link rel="canonical" href="https://www.oxysun.cn/python/python-async-program.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Python的异步编程介绍（MD） | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/python/python-async-program.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python的异步编程介绍（MD）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-28 23:23:00 / 修改时间：23:24:43" itemprop="dateCreated datePublished" datetime="2019-11-28T23:23:00+08:00">2019-11-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：Python的异步编程介绍（MD）。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里翻译和学习一篇介绍Python的异步编程的文章，在网上找了半天，感觉这篇写的很好，把几种实现方案都举了例子，而且列出了优劣。</p>
+<p>之前的文章采用了富文本编辑，不太方便，这次改为MD格式。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><img alt="" class="has" height="219" src="https://miro.medium.com/max/1400/1*X-nPMOzhSa1Q-VcGn6xouA.jpeg" width="700"></p>
+<h2 id="介绍-Introduction"><a href="#介绍-Introduction" class="headerlink" title="介绍 Introduction"></a>介绍 Introduction</h2><blockquote>
+<p>Asynchronous programming is a type of parallel programming in which a unit of work is allowed to run separately from the primary application <a href="https://whatis.techtarget.com/definition/thread" rel="noopener" target="_blank">thread</a>. When the work is complete, it notifies the main thread about completion or failure of the worker thread. There are numerous benefits to using it, such as improved application performance and enhanced responsiveness.</p>
+</blockquote>
+<p>异步编程是一种并行编程，这里支持一个单元的工作被允许从主程序中分离出来。</p>
+<p><img alt="" class="has" height="321" src="https://miro.medium.com/max/1080/1*t_oCyHBstMnF8WpZ67pKTg.jpeg" width="540"></p>
+<blockquote>
+<p>Asynchronous programming has been gaining a lot of attention in the past few years, and for good reason. Although it can be more difficult than the traditional linear style, it is also much more efficient.</p>
+</blockquote>
+<blockquote>
+<p>For example, instead of waiting for an <a href="https://blog.ragnarson.com/2013/09/03/life-of-an-http-request.html" rel="noopener" target="_blank">HTTP request</a> to finish before continuing execution, with Python async coroutines you can submit the request and do other work that’s waiting in a queue while waiting for the HTTP request to finish.</p>
+</blockquote>
+<p>例如，与其等待一个 HTTP request 的返回，然后去继续后面的工作，就可以使用 Python async coroutines， 你提交了请求，然后就可以去做别的事情了，当请求回来的时候，它们会在一个队列里面等待。</p>
+<blockquote>
+<p>Asynchronicity seems to be a big reason why Node.js so popular for server-side programming. Much of the code we write, especially in heavy IO applications like websites, depends on external resources. This could be anything from a remote database call to POSTing to a <a href="https://searchmicroservices.techtarget.com/definition/RESTful-API" rel="noopener" target="_blank">REST</a> service. As soon as you ask for any of these resources, your code is waiting around with nothing to do. With asynchronous programming, you allow your code to handle other tasks while waiting for these other resources to respond.</p>
+</blockquote>
+<p>异步性可能就是 Node.js 这么风靡的一个原因。</p>
+<p><strong>How Does Python Do Multiple Things At Once?</strong><br><img alt="" class="has" height="423" src="https://miro.medium.com/max/1068/1*n0YzPr3owXrrEzV-xY-eAg.png" width="534"></p>
+<p><strong>1. Multiple Processes 多进程方式</strong></p>
+<blockquote>
+<p>The most obvious way is to use multiple processes. From the terminal, you can start your script two, three, four…ten times and then all the scripts are going to run independently or at the same time. The operating system that’s underneath will take care of sharing your <a href="https://en.wikipedia.org/wiki/Central_processing_unit" rel="noopener" target="_blank">CPU</a> resources among all those instances. Alternately you can use the <a href="https://docs.python.org/2/library/multiprocessing.html#module-multiprocessing" rel="noopener" target="_blank">multiprocessing</a> library which supports spawning processes as shown in the example below.</p>
+</blockquote>
+<p>多进程的实现方式是最常见的方式。从终端，你可以开启多份脚本去独立运行，这是一种方式；还有一种方式，就是语言层面的支持。</p>
+<p><strong>多进程实现的代码如下。</strong></p>
+<pre class="has">
+<code class="language-python">from multiprocessing import Process
+
+
+def print_func(continent='Asia'):
+    print('The name of continent is : ', continent)
+
+if __name__ == "__main__":  # confirms that the code is under main function
+    names = ['America', 'Europe', 'Africa']
+    procs = []
+    proc = Process(target=print_func)  # instantiating without any argument
+    procs.append(proc)
+    proc.start()
+
+    # instantiating process with arguments
+    for name in names:
+        # print(name)
+        proc = Process(target=print_func, args=(name,))
+        procs.append(proc)
+        proc.start()
+
+    # complete the processes
+    for proc in procs:
+        proc.join()</code></pre>
+
+<p>Output:</p>
+<pre class="has">
+<code class="language-bash">The name of continent is :  Asia
+The name of continent is :  America
+The name of continent is :  Europe
+The name of continent is :  Africa</code></pre>
+
+<p><strong>2. Multiple Threads 多线程方式</strong></p>
+<blockquote>
+<p>The next way to run multiple things at once is to use threads. A thread is a line of execution, pretty much like a process, but you can have multiple threads in the context of one process and they all share access to common resources. But because of this, it’s difficult to write a threading code. And again, the operating system is doing all the heavy lifting on sharing the CPU, but the global interpreter lock (GIL) allows only one thread to run Python code at a given time even when you have multiple threads running code. So, In CPython, the <a href="https://en.wikipedia.org/wiki/Global_interpreter_lock" rel="noopener" target="_blank">GIL</a> prevents multi-core concurrency. Basically, you’re running in a single core even though you may have two or four or more.</p>
+</blockquote>
+<p>多线程是在一个进程上下文中存在的，这样访问一些公共的资源是很容易的。但也同样是因为这一点，编写多线程代码是有些困难的。</p>
+<p><em>多线程实现代码如下，这里有一个问题， GIL 是什么。</em></p>
+<pre class="has">
+<code class="language-python">
+import threading
+
+def print_cube(num):
+    """
+    function to print cube of given num
+    """
+    print("Cube: {}".format(num * num * num))
+
+def print_square(num):
+    """
+    function to print square of given num
+    """
+    print("Square: {}".format(num * num))
+
+if __name__ == "__main__":
+    # creating thread
+    t1 = threading.Thread(target=print_square, args=(10,))
+    t2 = threading.Thread(target=print_cube, args=(10,))
+
+    # starting thread 1
+    t1.start()
+    # starting thread 2
+    t2.start()
+
+    # wait until thread 1 is completely executed
+    t1.join()
+    # wait until thread 2 is completely executed
+    t2.join()
+
+    # both threads completely executed
+    print("Done!")
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>Square: 100
+Cube: 1000
+Done!</code></pre>
+
+<p><strong>3. Coroutines using <em>yield</em> 使用协程</strong></p>
+<blockquote>
+<p>Coroutines are generalization of subroutines. They are used for cooperative multitasking where a process voluntarily yield (give away) control periodically or when idle in order to enable multiple applications to be run simultaneously. Coroutines are similar to <a href="https://wiki.python.org/moin/Generators" rel="noopener" target="_blank">generators</a> but with few extra methods and slight change in how we use <a href="https://www.geeksforgeeks.org/use-yield-keyword-instead-return-keyword-python/" rel="noopener" target="_blank">yield</a> statement. Generators produce data for iteration while coroutines can also consume data.</p>
+</blockquote>
+<p>使用 yield 方式的协程。</p>
+<pre class="has">
+<code class="language-python">def print_name(prefix):
+    print("Searching prefix:{}".format(prefix))
+    try : 
+        while True:
+                # yeild used to create coroutine
+                name = (yield)
+                if prefix in name:
+                    print(name)
+    except GeneratorExit:
+            print("Closing coroutine!!")
+
+corou = print_name("Dear")
+corou.__next__()
+corou.send("James")
+corou.send("Dear James")
+corou.close()</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>Searching prefix:Dear
+Dear James
+Closing coroutine!!</code></pre>
+
+<p><strong>4. Asynchronous Programming 异步编程</strong></p>
+<blockquote>
+<p>The fourth way is an asynchronous programming, where the OS is not participating. As far as OS is concerned you’re going to have one process and there’s going to be a single thread within that process, but you’ll be able to do multiple things at once. So, what’s the trick?</p>
+</blockquote>
+<p>异步编程，这里 OS 并没有参与—-那应该只是语言自身的实现了。</p>
+<p><em>使用asyncio的协程。</em></p>
+<blockquote>
+<p>The answer is <em>asyncio</em></p>
+</blockquote>
+<blockquote>
+<p><em>asyncio</em> is the new concurrency module introduced in Python 3.4. It is designed to use coroutines and futures to simplify asynchronous code and make it almost as readable as synchronous code as there are <em>no callbacks</em>.</p>
+</blockquote>
+<blockquote>
+<p><em>asyncio</em> uses different constructs: <em>event loops</em>, <em>coroutines </em>and <em>futures</em>.</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>An <a href="https://docs.python.org/dev/library/asyncio-eventloop.html" rel="noopener" target="_blank"><em>event loop</em></a> manages and distributes the execution of different tasks. It registers them and handles distributing the flow of control between them.</li>
+<li><a href="https://docs.python.org/3.5/library/asyncio-task.html#coroutines" rel="noopener" target="_blank"><em>Coroutines</em></a> (covered above) are special functions that work similarly to Python generators, on <strong><em>await</em></strong> they release the flow of control back to the event loop. A coroutine needs to be scheduled to run on the event loop, once scheduled coroutines are wrapped in <em>Tasks </em>which is a type of <em>Future</em>.</li>
+<li><a href="https://docs.python.org/3.5/library/asyncio-task.html#future" rel="noopener" target="_blank"><em>Futures</em></a> represent the result of a task that may or may not have been executed. This result may be an exception.</li>
+</ul>
+</blockquote>
+<p>上面这段是关键，asyncio使用了三个结构：event loops，coroutines 和 futures。</p>
+<blockquote>
+<p>Using<em> Asyncio</em>, you can structure your code so subtasks are defined as coroutines and allows you to schedule them as you please, including simultaneously. Coroutines contain yield points where we define possible points where a context switch can happen if other tasks are pending, but will not if no other task is pending.</p>
+</blockquote>
+<blockquote>
+<p>A context switch in <em>asyncio</em> represents the event loop yielding the flow of control from one coroutine to the next.</p>
+</blockquote>
+<blockquote>
+<p>In the example, we run 3 async tasks that query Reddit separately, extract and print the JSON. We leverage <a href="https://aiohttp.readthedocs.io/en/stable/" rel="noopener" target="_blank">aiohttp</a> which is a http client library ensuring even the HTTP request runs asynchronously.</p>
+</blockquote>
+<pre class="has">
+<code class="language-python">
+import signal  
+import sys  
+import asyncio  
+import aiohttp  
+import json
+
+loop = asyncio.get_event_loop()  
+client = aiohttp.ClientSession(loop=loop)
+
+async def get_json(client, url):  
+    async with client.get(url) as response:
+        assert response.status == 200
+        return await response.read()
+
+async def get_reddit_top(subreddit, client):  
+    data1 = await get_json(client, 'https://www.reddit.com/r/' + subreddit + '/top.json?sort=top&amp;t=day&amp;limit=5')
+
+    j = json.loads(data1.decode('utf-8'))
+    for i in j['data']['children']:
+        score = i['data']['score']
+        title = i['data']['title']
+        link = i['data']['url']
+        print(str(score) + ': ' + title + ' (' + link + ')')
+
+    print('DONE:', subreddit + '\n')
+
+def signal_handler(signal, frame):  
+    loop.stop()
+    client.close()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+asyncio.ensure_future(get_reddit_top('python', client))  
+asyncio.ensure_future(get_reddit_top('programming', client))  
+asyncio.ensure_future(get_reddit_top('compsci', client))  
+loop.run_forever()  
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output :</p>
+<pre class="has">
+<code>
+50: Undershoot: Parsing theory in 1965 (http://jeffreykegler.github.io/Ocean-of-Awareness-blog/individual/2018/07/knuth_1965_2.html)
+12: Question about best-prefix/failure function/primal match table in kmp algorithm (https://www.reddit.com/r/compsci/comments/8xd3m2/question_about_bestprefixfailure_functionprimal/)
+1: Question regarding calculating the probability of failure of a RAID system (https://www.reddit.com/r/compsci/comments/8xbkk2/question_regarding_calculating_the_probability_of/)
+DONE: compsci
+
+336: /r/thanosdidnothingwrong -- banning people with python (https://clips.twitch.tv/AstutePluckyCocoaLitty)
+175: PythonRobotics: Python sample codes for robotics algorithms (https://atsushisakai.github.io/PythonRobotics/)
+23: Python and Flask Tutorial in VS Code (https://code.visualstudio.com/docs/python/tutorial-flask)
+17: Started a new blog on Celery - what would you like to read about? (https://www.python-celery.com)
+14: A Simple Anomaly Detection Algorithm in Python (https://medium.com/@mathmare_/pyng-a-simple-anomaly-detection-algorithm-2f355d7dc054)
+DONE: python
+
+1360: git bundle (https://dev.to/gabeguz/git-bundle-2l5o)
+1191: Which hashing algorithm is best for uniqueness and speed? Ian Boyd's answer (top voted) is one of the best comments I've seen on Stackexchange. (https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed)
+430: ARM launches “Facts” campaign against RISC-V (https://riscv-basics.com/)
+244: Choice of search engine on Android nuked by “Anonymous Coward” (2009) (https://android.googlesource.com/platform/packages/apps/GlobalSearch/+/592150ac00086400415afe936d96f04d3be3ba0c)
+209: Exploiting freely accessible WhatsApp data or “Why does WhatsApp web know my phone’s battery level?” (https://medium.com/@juan_cortes/exploiting-freely-accessible-whatsapp-data-or-why-does-whatsapp-know-my-battery-level-ddac224041b4)
+DONE: programming
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>上面这段代码有点过时了，现在已经不是太推荐这种用法了，不再直接对 loop 进行操作，而是对 task 进行处理，参考<a href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener">官网</a>，但是这种用法可能是最常见的一种用法。</p>
+<p><strong>Using </strong><a href="https://redis.io/" rel="noopener" target="_blank"><strong>Redis</strong></a><strong> and Redis Queue </strong><a href="https://python-rq.org/" rel="noopener" target="_blank"><strong>RQ</strong></a></p>
+<p>老版本Python的办法，不支持 asyncio 和 aiohttp 的版本怎么办，使用Redis 和 RQ。下面的文章意义已经不大了，就不过多记录了。</p>
+<blockquote>
+<p>Using asyncio and aiohttp may not always be in an option especially if you are using older versions of python. Also, there will be scenarios when you would want to distribute your tasks across different servers. In that case we can leverage RQ (<em>Redis Queue</em>). It is a simple Python library for queueing jobs and processing them in the background with workers. It is backed by Redis — a key/value data store.</p>
+</blockquote>
+<blockquote>
+<p>In the example below, we have queued a simple function count_words_at_url using redis.</p>
+</blockquote>
+<pre class="has">
+<code class="language-python">
+from mymodule import count_words_at_url
+from redis import Redis
+from rq import Queue
+
+
+q = Queue(connection=Redis())
+job = q.enqueue(count_words_at_url, 'http://nvie.com')
+
+
+******mymodule.py******
+
+import requests
+
+def count_words_at_url(url):
+    """Just an example function that's called async."""
+    resp = requests.get(url)
+
+    print( len(resp.text.split()))
+    return( len(resp.text.split()))
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<p>Output:</p>
+<pre class="has">
+<code>
+15:10:45 RQ worker 'rq:worker:EMPID18030.9865' started, version 0.11.0
+15:10:45 *** Listening on default...
+15:10:45 Cleaning registries for queue: default
+15:10:50 default: mymodule.count_words_at_url('http://nvie.com') (a2b7451e-731f-4f31-9232-2b7e3549051f)
+322
+15:10:51 default: Job OK (a2b7451e-731f-4f31-9232-2b7e3549051f)
+15:10:51 Result is kept for 500 seconds
+view rawgistfile1.txt hosted with ❤ by GitHub</code></pre>
+
+<h1 id="Conclusion-结论"><a href="#Conclusion-结论" class="headerlink" title="Conclusion 结论"></a><strong>Conclusion 结论</strong></h1><blockquote>
+<p>Let’s take a classical example, a chess exhibition where one of the best chess players competes against a lot of people. And if there are 24 games with 24 people to play with and the chess master plays with all of them synchronically, it’ll take at least 12 hours (taking into account that the average game takes 30 moves, the chess master thinks for 5 seconds to come up with a move and the opponent — for approximately 55 seconds). But using the asynchronous mode gives chess master the opportunity to make a move and leave the opponent thinking while going to the next one and making a move there. This way a move on all 24 games can be done in 2 minutes and all of them can be won in just one hour.</p>
+</blockquote>
+<blockquote>
+<p>So, this is what’s meant when people talk about asynchronous being really fast. It’s this kind of fast. Chess master doesn’t play chess faster, the time is just more optimized and it’s not get wasted on waiting around. This is how it works.</p>
+</blockquote>
+<blockquote>
+<p>In this analogy, the chess master will be our CPU and the idea is that we wanna make sure that the CPU doesn’t wait or waits the least amount of time possible. It’s about always finding something to do.</p>
+</blockquote>
+<blockquote>
+<p>A practical definition of Async is that it’s a style of concurrent programming in which tasks release the CPU during waiting periods, so that other tasks can use it. In Python there are several ways to achieve concurrency , based on our requirement, code flow, data manipulation , architecture design and use cases we can select any of these methods.</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>href=”<a href="https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb&quot;" target="_blank" rel="noopener">https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb&quot;</a> rel=”nofollow”&gt;<a href="https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb" target="_blank" rel="noopener">https://medium.com/velotio-perspectives/an-introduction-to-asynchronous-programming-in-python-af0189a88bbb</a><br><a href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener">https://docs.python.org/3/library/asyncio-task.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/异步编程/" rel="tag"># 异步编程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/linux/vim-copy-note.html" rel="prev" title="vim 的移动">
+      <i class="fa fa-chevron-left"></i> vim 的移动
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/java/java-maven-nexus-note.html" rel="next" title="搭建一个 Nexus 的 Maven 仓库">
+      搭建一个 Nexus 的 Maven 仓库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍-Introduction"><span class="nav-number">4.1.</span> <span class="nav-text">介绍 Introduction</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion-结论"><span class="nav-number">5.</span> <span class="nav-text">Conclusion 结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

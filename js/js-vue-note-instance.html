@@ -1,1 +1,561 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Vue：学习笔记-实例。">
+<meta name="keywords" content="JS,Vue,笔记,实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue：学习笔记（二）-实例">
+<meta property="og:url" content="https://www.oxysun.cn/js/js-vue-note-instance.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="Vue：学习笔记-实例。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://vuejs.org/images/lifecycle.png">
+<meta property="og:updated_time" content="2018-09-26T03:01:48.986Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue：学习笔记（二）-实例">
+<meta name="twitter:description" content="Vue：学习笔记-实例。">
+<meta name="twitter:image" content="https://vuejs.org/images/lifecycle.png">
+
+<link rel="canonical" href="https://www.oxysun.cn/js/js-vue-note-instance.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Vue：学习笔记（二）-实例 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/js/js-vue-note-instance.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue：学习笔记（二）-实例
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-09-26 09:26:00 / 修改时间：11:01:48" itemprop="dateCreated datePublished" datetime="2018-09-26T09:26:00+08:00">2018-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Vue：学习笔记-实例。<br><a id="more"></a></p>
+<h1 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h1><p>原帖完整收藏于<a href="https://www.oxysun.cn/js/js-vue-note-instance.htm">IT老兵驿站</a>，并会不断更新。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>书接前文。继续学习Vue，距离上一篇笔记又有十几天了，因为最近实在是工作太忙了，但还是应该努力坚持。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="创建Vue实例"><a href="#创建Vue实例" class="headerlink" title="创建Vue实例"></a>创建Vue实例</h2><p>如何创建一个Vue的实例呢？</p>
+<pre><code>var vm = new Vue({
+  // options
+})
+</code></pre><p>Vue参考了MVVM模型，这里的vm指代ViewModel。<br>当你创建一个Vue实例的时候，你可以创建一个options对象给它，这个将来会再具体讨论。</p>
+<h2 id="数据和方法"><a href="#数据和方法" class="headerlink" title="数据和方法"></a>数据和方法</h2><p>当一个Vue实例被创建时，它会把所有位于data对象里面的属性加入到Vue响应式系统里面，这样一旦这些属性发生了变化，视图会响应，并且更新相应的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// Our data object 这是一个自定义的对象</span><br><span class="line"> var data = &#123; a: 1 &#125;</span><br><span class="line"> </span><br><span class="line"> // The object is added to a Vue instance 这个对象被加入进了vm实例</span><br><span class="line"> var vm = new Vue(&#123;</span><br><span class="line">   data: data // 这里是一个赋值语句，前面一个data是vm的关键属性对象，后面是上面我们定义的变量</span><br><span class="line"> &#125;)</span><br><span class="line"> </span><br><span class="line"> // Getting the property on the instance</span><br><span class="line"> // returns the one from the original data </span><br><span class="line"> //这里做了一个判断，判断vm的a属性和外面的data的a属性是否相等，因为它们其实是一致的，指向一个实际的对象，所以是相等的。不过，这里的写法是vm.a，而不是vm.data.a。</span><br><span class="line"> vm.a == data.a // =&gt; true </span><br><span class="line"> </span><br><span class="line"> // Setting the property on the instance</span><br><span class="line"> // also affects the original data</span><br><span class="line"> // 用赋值来进行判断</span><br><span class="line"> vm.a = 2</span><br><span class="line"> data.a // =&gt; 2</span><br><span class="line"> </span><br><span class="line"> // ... and vice-versa</span><br><span class="line"> // 上面这句话叫做反之亦然</span><br><span class="line"> data.a = 3</span><br><span class="line"> vm.a // =&gt; 3</span><br></pre></td></tr></table></figure></p>
+<p>这是官网的一个例子，加了一些翻译和注释，方便理解，从中可以看到变量data和vm的关系。</p>
+<p>需要注意一个地方，data对象里面的属性只有是在Vue实例创建时就存在的，才会被纳入响应式系统里面去，这也就是说，后来加进去的属性，是不会具有上面这种响应式的能力的。所以，一旦你希望有一个属性能够具有这种能力，但是在一开始你又不确定它的值的话，做法就很明显了，你需要先定义这个属性，并且赋一个初始值，例如：</p>
+<pre><code>data: {
+  newTodoText: &apos;&apos;,
+  visitCount: 0,
+  hideCompletedTodos: false,
+  todos: [],
+  error: null
+}
+</code></pre><p>例外的，还有一个用法，Object.freeze()，这个用法是用来不让属性被修改。</p>
+<pre><code>var obj = {
+  foo: &apos;bar&apos;
+}
+
+Object.freeze(obj)
+
+new Vue({
+  el: &apos;#app&apos;,
+  data: obj
+})
+
+&lt;div id=&quot;app&quot;&gt;
+  &lt;p&gt;{{ foo }}&lt;/p&gt;
+  &lt;!-- this will no longer update `foo`! --&gt;
+  &lt;button v-on:click=&quot;foo = &apos;baz&apos;&quot;&gt;Change it&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>Vue自身还有一些实例属性和方法，为了和用户定义的区分开，以“$”为前缀。</p>
+<pre><code>var data = { a: 1 }
+var vm = new Vue({
+  el: &apos;#example&apos;,
+  data: data
+})
+
+vm.$data === data // =&gt; true
+vm.$el === document.getElementById(&apos;example&apos;) // =&gt; true
+
+// $watch is an instance method
+vm.$watch(&apos;a&apos;, function (newValue, oldValue) {
+  // This callback will be called when `vm.a` changes
+})
+</code></pre><h2 id="实例生命周期的钩子"><a href="#实例生命周期的钩子" class="headerlink" title="实例生命周期的钩子"></a>实例生命周期的钩子</h2><blockquote>
+<p>Each Vue instance goes through a series of initialization steps when it’s created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called lifecycle hooks, giving users the opportunity to add their own code at specific stages.</p>
+</blockquote>
+<p>这里的意思实际是：实例的生命周期被定义为了几个阶段，每个阶段会有一个回调函数来暴露给用户，让用户来进行一些工作，这个很像安卓的设计。</p>
+<p>例如：</p>
+<pre><code>new Vue({
+  data: {
+    a: 1
+  },
+  created: function () {
+    // `this` points to the vm instance
+    console.log(&apos;a is: &apos; + this.a)
+  }
+})
+</code></pre><p>这个就是在Vue创建时暴露给用户。</p>
+<p>完整的生命周期参考下图：<br><img src="https://vuejs.org/images/lifecycle.png" alt="Vue生命周期"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这么细细地读一遍，同时总结一遍，感觉很踏实，其实有些笔记是为了输出，以飨他人，虽然辛苦一点，总是有意义，“好好活，就是做好多有意义的事情；有意义，就是好好活”</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://vuejs.org/v2/guide/instance.html" target="_blank" rel="noopener">https://vuejs.org/v2/guide/instance.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/tags/笔记/" rel="tag"># 笔记</a>
+              <a href="/tags/实例/" rel="tag"># 实例</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/js/js-vue-note-introduction.html" rel="prev" title="Vue：学习笔记（一）-介绍">
+      <i class="fa fa-chevron-left"></i> Vue：学习笔记（一）-介绍
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/js/js-this.html" rel="next" title="JS：对“this”的学习">
+      JS：对“this”的学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#提醒"><span class="nav-number">1.</span> <span class="nav-text">提醒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Vue实例"><span class="nav-number">3.1.</span> <span class="nav-text">创建Vue实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据和方法"><span class="nav-number">3.2.</span> <span class="nav-text">数据和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例生命周期的钩子"><span class="nav-number">3.3.</span> <span class="nav-text">实例生命周期的钩子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

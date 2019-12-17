@@ -1,1 +1,696 @@
-null
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概要Kafka学习笔记–存储内部（MD版）。">
+<meta name="keywords" content="Kafka,存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka学习笔记--存储内部（MD版）">
+<meta property="og:url" content="https://www.oxysun.cn/Kafka/kafka-storage-principle.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要Kafka学习笔记–存储内部（MD版）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140444986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140527943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140559166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140629922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019111314070468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113140725247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019111314075124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190118194330162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-11-13T06:13:01.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kafka学习笔记--存储内部（MD版）">
+<meta name="twitter:description" content="概要Kafka学习笔记–存储内部（MD版）。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191113140444986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://www.oxysun.cn/Kafka/kafka-storage-principle.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Kafka学习笔记--存储内部（MD版） | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一个IT老兵的驿站</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/Kafka/kafka-storage-principle.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kafka学习笔记--存储内部（MD版）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-18 17:31:00" itemprop="dateCreated datePublished" datetime="2019-04-18T17:31:00+08:00">2019-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-13 14:13:01" itemprop="dateModified" datetime="2019-11-13T14:13:01+08:00">2019-11-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">Kafka</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Kafka学习笔记–存储内部（MD版）。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>研究一下 Kafka 的存储内部的原理，这里转发一篇文章，个人感觉这篇文章讲的非常好，所以推荐出来，同时做一下学习笔记。</p>
+<p>当然，基于不鼓励懒人，启发式记录的原则，我只是对一些重点进行笔记记录，这样无论是将来自己看，还是现在别人看，都需要参考笔记去阅读一下原文—-这也才是笔记的意义。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<p>A Practical Introduction to Kafka Storage Internals<br><br><br>    Kafka is everywhere these days. With the advent of Microservices and distributed computing, Kafka has become a regular occurrence in every product architecture. In this article, I’ll try to explain how Kafka’s internal storage mechanism works.<br><br><br>    Since this is going to be a deep dive into Kafka’s internals, I would expect you to have some understanding about it. Although I’ve tried to keep the entry level for this article pretty low, you might not be able to understand everything if you’re not familiar with the general workings of Kafka. Proceed further with that in mind.<br><br><br>    Kafka is usually referred to as a Distributed, Replicated Messaging Queue, which is technically true but might lead to some confusion, depending on your definition of what a messaging queue is. Instead, I prefer the definition Distributed, Replicated Commit Log. This I think clearly represents what Kafka does as all of us understand how logs are written to disk. And in this case, it is the messages pushed into Kafka that are stored to disk.</p>
+</blockquote>
+<p>这里是一些总体的概要介绍。</p>
+<p>Kafka 通常被引用为一个分布的，有备份的消息队列，这在技术上是正确的，但是这个会带来一些困扰，取决于你对于消息队列的定义。取而代之的，作者更倾向于这样的定义，Kafka 是一个分布的，备份的提交日志（commit log，这个是一个有语义的术语）。</p>
+<p>Kafka 自己定位自己是一个分布式的流化平台，而不是上面所写的分布式，复制的消息队列，或者分布式的，复制的提交日志。（这里这个流化平台的概念不是太容易理解。）</p>
+<blockquote>
+<p>   With reference to storage in Kafka, you’ll always hear two terms, Partition and Topic. Partitions are the unit of storage in Kafka for data messages. And Topic can be thought of as being a container in which these partitions lie.<br><br><br>    With the basic stuff out of our way, let’s understand these concepts better by working with Kafka.<br><br><br>    I am going to start by creating a topic in Kafka with three partitions defined. If you want to follow along, the command looks like this for a local Kafka setup on windows.</p>
+</blockquote>
+<p>而关于 Kafka 的存储的介绍，我们会经常听到两个术语，Partition 和 Topic。Partitions 是 Kafka用来存储数据消息的基本单元，一个 Topic 可以被认为是这些 partition 的容器。</p>
+<p>下面，作者会带着大家来实践一把。（下面的这些命令是运行在 windows 平台上的，而想要运行在其他的平台，可以参考《快速开始》那一章节。）</p>
+<pre><code>kafka-topics.bat --create --topic freblogg --partitions 3 --replication-factor 1 --zookeeper localhost:2181
+</code></pre><p>按照上面的命令，启动一下 Kafka。</p>
+<blockquote>
+<p>If I go to Kafka’s log directory, I see three directories created as follows.</p>
+</blockquote>
+<pre><code>$ tree freblogg*
+freblogg-0
+|-- 00000000000000000000.index
+|-- 00000000000000000000.log
+|-- 00000000000000000000.timeindex
+`-- leader-epoch-checkpoint
+freblogg-1
+|-- 00000000000000000000.index
+|-- 00000000000000000000.log
+|-- 00000000000000000000.timeindex
+`-- leader-epoch-checkpoint
+freblogg-2
+|-- 00000000000000000000.index
+|-- 00000000000000000000.log
+|-- 00000000000000000000.timeindex
+`-- leader-epoch-checkpoint
+</code></pre><p>上面的例子创建了3个 partition，当你查看目录，会看到上文这样的目录和文件结构。</p>
+<blockquote>
+<p>We have three directories created because we’ve given three partitions for our topic, which means that each partition gets a directory on the file system. You also see some files like index, log etc. We’ll get to them shortly.</p>
+</blockquote>
+<p>一个 partition 对应着一个实际的目录，有几种文件，index，log 等等。别着急，下面会有讲解。<br>这句是关键，一个 partition 对应着一个目录。</p>
+<blockquote>
+<p>One more thing that you should be able to see from here is that in Kafka, the topic is more of a logical grouping than anything else and that the Partition is the actual unit of storage in Kafka. Let’s understand partitions in some more detail.<br><br><br>Partitions<br><br><br>A partition, in theory, can be described as an immutable collection (or sequence) of messages. We can only append messages to a partition but cannot delete from it. And by “We”, I am talking about the Kafka consumer. A consumer can’t delete the messages in the topic.<br><br><br>Now we’ll send some messages into the topic. But before that, I want you to see the sizes of files in our partition folders.</p>
+</blockquote>
+<p>这里你可以看到，一个 topic 其实是一个逻辑上的组，而 partition 则是 Kafka 中实际的存储单元。</p>
+<p>一个 partition，在理论上，被描述为一个不可修改的消息集合（或者序列）。我们仅仅可以给一个 partition 追加消息而不能从它中间删除。这里的“我们”，我是说作为一个Kafka消费者（consumer）。</p>
+<p>在发送消息给这个主题之前，我们先看一下这些文件的大小。</p>
+<pre><code>$ ls -lh freblogg-0
+total 20M
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index
+- freblogg 197121   0 Aug  5 08:26 00000000000000000000.log
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex
+- freblogg 197121   0 Aug  5 08:26 leader-epoch-checkpoint
+You see the index files combined are about 20M in size while the log file is completely empty. This is the same case with freblogg-1 and freblogg-2folders.
+</code></pre><blockquote>
+<p>Now let us send a couple of messages and see what happens. To send the messages I’m using the console producer as follows:</p>
+</blockquote>
+<p>2个 index 文件大概 20M，log 文件是空的，3个目录是一样的。</p>
+<p>现在，我们发送一些消息去看看会发生什么。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-producer.bat --topic freblogg --broker-list localhost:9092</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>I have sent two messages, first a customary “hello world” and then I pressed the Enter key, which becomes the second message. Now if I print the sizes again:</p>
+</blockquote>
+<p>笔者发送了两个消息，第一个是“hello world”，第二个是一个空消息。</p>
+<pre><code>$ ls -lh freblogg*
+freblogg-0:
+total 20M
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index
+- freblogg 197121   0 Aug  5 08:26 00000000000000000000.log
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex
+- freblogg 197121   0 Aug  5 08:26 leader-epoch-checkpoint
+
+freblogg-1:
+total 21M
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index
+- freblogg 197121  68 Aug  5 10:15 00000000000000000000.log
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex
+- freblogg 197121  11 Aug  5 10:15 leader-epoch-checkpoint
+
+freblogg-2:
+total 21M
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index
+- freblogg 197121  79 Aug  5 09:59 00000000000000000000.log
+- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex
+- freblogg 197121  11 Aug  5 09:59 leader-epoch-checkpoint
+</code></pre><blockquote>
+<p>You will see that the log files have a non zero size now. This is because the messages in the partition are stored in the ‘xxxx.log’ file. To confirm that the messages are indeed stored in the log file, we can just see what’s inside that log file.</p>
+</blockquote>
+<p>可以看到两个文件发生了变化，都是 log 文件，这是因为partition的消息是存储在 log 文件里面的，我们来再确认一下。 </p>
+<pre><code>$ cat freblogg-2/*.log
+@^@^BÂ°Â£Ã¦Ãƒ^@^K^XÃ¿Ã¿Ã¿Ã¿Ã¿Ã¿^@^@^@^A&quot;^@^@^A^VHello World^@
+</code></pre><blockquote>
+<p>The file format of the ‘log’ file is not one that is conducive for textual representation but nevertheless, you should see the ‘Hello World’ at the end indicating that this file got updated when we have sent the message into the topic.<br><br><br>Notice that the first message we sent, went into the third partition (freblogg-2) and the second message went into the second partition. This is because Kafka arbitrarily picks the partition for the first message and then distributes the messages to partitions in a round robin fashion. If a third message comes now, it would go into freblogg-0 and this order of partition continues for any new message that comes in. We can also make Kafka always choose the partition for our messages by adding a key to the message. Kafka stores all the messages with the same key into a single partition.<br><br><br>Each new message in the partition gets an ID which is one more than the previous Id number. This Id number is also called as the Offset. So, the first message is at ‘offset’ 0, the second message is at offset 1 and so on. These offset Id’s are always incremented from the previous value.</p>
+</blockquote>
+<p>我们可以看到这个 log 文件的尾部有 “Hello World”，这说明这个消息被发送到了这个 topic 中。</p>
+<p>注意，第一个消息发到了第三个 partition，第二个消息发送到了第二个 partition。这是因为Kafka 是随机地选取了一个 partition 来发送第一个消息，然后使用一个 round robin 的方式选择第二个 partition 来发送第二个消息，如果有第三个消息，它就会发送到第一个 partition 里面。我们也可以选择 partition 来发送，通过增加一个 key 给消息，Kafka 的一个 partition 是使用同一个 key 的。</p>
+<p>这里讲的在每个 partition 里面，有一个 sequence Id，也就是 offset，每个消息一个，按1来步进增加。<br><img src="https://img-blog.csdnimg.cn/20191113140444986.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>&lt;Quick detour&gt;</code><br><br><br>We can understand those random characters in the log file, using a Kafka tool. Those extra characters might not seem useful to us, but they are useful for Kafka as they are the metadata for each message in the queue. If I run,</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-run-class.bat kafka.tools.DumpLogSegments --deep-iteration --<span class="built_in">print</span>-data-log --files logs\freblogg-2\00000000000000000000.log</span><br></pre></td></tr></table></figure>
+<pre><code>This gives the output
+
+Dumping logs\freblogg-2\00000000000000000000.log
+Starting offset: 0
+
+offset: 0 position: 0 CreateTime: 1533443377944 isvalid: true keysize: -1 valuesize: 11 producerId: -1 headerKeys: [] payload: Hello World
+
+offset: 1 position: 79 CreateTime: 1533462689974 isvalid: true keysize: -1 valuesize: 6 producerId: -1 headerKeys: [] payload: amazon
+(I’ve removed a couple of things from this output which are not necessary for this discussion.)
+</code></pre><p>我们用 Kafka 的工具来输出一下log里面的内容，这些是一些元数据。</p>
+<blockquote>
+<p>You can see that it stores information of the offset, time of creation, key and value sizes etc along with the actual message payload in the log file.<br><br><br><br><br><br>It is also important to note that a partition is tied to a broker. In other words, If we have three brokers and if the folder freblogg-0 exists on broker-1, you can be sure that it will not appear in any of the other brokers. Partitions of a topic can be spread out to multiple brokers but a partition is always present on one single Kafka broker (When the replication factor has its default value, which is 1. Replication is mentioned further below).</p>
+</blockquote>
+<p>partition 是和 broker 绑定在一起的，一个 partition 只会在一个 broker 上出现一次。这里的broker 指的是宿主服务器。</p>
+<p>但是如何备份呢？按照之前几篇文章的介绍，每个 partition 会在每个 broker 上被备份一份。<br><img src="https://img-blog.csdnimg.cn/20191113140527943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>Segments<br><br><br>We’ll finally talk about those index and log files we’ve seen in the partition directory. Partition might be the standard unit of storage in Kafka, but it is not the lowest level of abstraction provided. Each partition is sub-divided into segments.</p>
+</blockquote>
+<p>这里提到了一个新的概念，segments，尽管 partition 被作为一个标准的存储单元，但并不是被提供的最低级别的抽象。每一个 partition 又被划分为 segments。</p>
+<blockquote>
+<p>A segment is simply a collection of messages of a partition. Instead of storing all the messages of a partition in a single file (think of the log file analogy again), Kafka splits them into chunks called segments. Doing this provides several advantages. Divide and Conquer FTW!</p>
+</blockquote>
+<p>一个  segment是在一个 partition 里面的一个简单的消息集合。取代把一个 partition 的所有消息都放在一个单一文件里面的方案是，Kafka 把它们分成被称为 segment 的大块。这是一种分而治之的方法。</p>
+<blockquote>
+<p>Most importantly, it makes purging data easy. As previously introduced partition is immutable from a consumer perspective. But Kafka can still remove the messages based on the “Retention policy” of the topic. Deleting segments is much simpler than deleting things from a single file, especially when a producer might be pushing data into it.</p>
+</blockquote>
+<p>很重要的是，这使得清理数据非常容易。Kafka 根据 topic 上的 “Retention policy”（保留策略）来移除消息。这样，删除一个 segment 会比从一个文件中删除东西要容易的多，尤其在一个producer 可能要往里面放数据的时候。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ls -lh freblogg-0</span><br><span class="line">total 20M</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index</span><br><span class="line">- freblogg 197121   0 Aug  5 08:26 00000000000000000000.log</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex</span><br><span class="line">- freblogg 197121   0 Aug  5 08:26 leader-epoch-checkpoint</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The <code>00000000000000000000</code> in front of the log and the index files in each partition folder, is the name of our segment. Each segment file has segment.log, segment.index and segment.timeindex files.</p>
+</blockquote>
+<p>在每个 index 文件前面的00000000000000000000，是 segment 的名字，每个 segment 由segment.log，segment.index 和 segment.timeindex 构成。</p>
+<blockquote>
+<p>Kafka always writes the messages into these segment files under a partition. There is always an active segment to which Kafka writes to. Once the segment’s size limit is reached, a new segment file is created and that becomes the newly active segment.</p>
+</blockquote>
+<p>会有一个活跃的 segment 来让Kafka去写入。一旦segment的大小限制达到了，一个新的segment文件会被创建，并且成为新的活跃的 segment。<br><img src="https://img-blog.csdnimg.cn/20191113140559166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>Each segment file is created with the offset of the first message as its file name. So, In the above picture, segment 0 has messages from offset 0 to offset 2, segment 3 has messages from offset 3 to 5 and so on. Segment 6 which is the last segment is the active segment.</p>
+</blockquote>
+<p>每个 segment 被使用第一个消息的 offset 来作为它的文件名来创建，（可以看上面的图，我第一次看到这个图，还对这个segment的名字感到奇怪）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ ls -lh freblogg*</span><br><span class="line">freblogg-0:</span><br><span class="line">total 20M</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index</span><br><span class="line">- freblogg 197121   0 Aug  5 08:26 00000000000000000000.log</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex</span><br><span class="line">- freblogg 197121   0 Aug  5 08:26 leader-epoch-checkpoint</span><br><span class="line"></span><br><span class="line">freblogg-1:</span><br><span class="line">total 21M</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index</span><br><span class="line">- freblogg 197121  68 Aug  5 10:15 00000000000000000000.log</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex</span><br><span class="line">- freblogg 197121  11 Aug  5 10:15 leader-epoch-checkpoint</span><br><span class="line"></span><br><span class="line">freblogg-2:</span><br><span class="line">total 21M</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.index</span><br><span class="line">- freblogg 197121  79 Aug  5 09:59 00000000000000000000.log</span><br><span class="line">- freblogg 197121 10M Aug  5 08:26 00000000000000000000.timeindex</span><br><span class="line">- freblogg 197121  11 Aug  5 09:59 leader-epoch-checkpoint</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>In our case, we only had one segment in each of our partitions which is 00000000000000000000. Since we don’t see another segment file present, it means that 00000000000000000000 is the active segment in each of those partitions.<br><br><br>The default value for segment size is a high value (1 GB) but let’s say we’ve tweaked Kafka configuration so that each segment can hold only three messages. Let’s see how that would play out.</p>
+</blockquote>
+<p>每个 segment 的默认大小是1GB，但是让我们调整一下 Kafka 的配置，让每个 segment 只能保有3条消息。</p>
+<blockquote>
+<p>Say this is the current state of the freblogg-2 partition. We’ve three messages pushed into it.<br><img src="https://img-blog.csdnimg.cn/20191113140629922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Since ‘three messages’ is the limit we’ve set, If a new message comes into this partition, Kafka will automatically close the current segment, create a new segment, make that the active segment and store that new message in the new segment’s log file.</p>
+</blockquote>
+<p>因为我们设置了3条消息的显示，所以如果有新的消息到来，Kafka 将会自动关闭当前的segment，创建一个新的 segment，让它成为活跃的 segment，并且在新的 segment 里面存储新的消息。</p>
+<blockquote>
+<p>(I’m not showing the preceding zeroes to make it easy on the eyes)</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">freblogg-2</span><br><span class="line">|-- 00.index</span><br><span class="line">|-- 00.log</span><br><span class="line">|-- 00.timeindex</span><br><span class="line">|-- 03.index</span><br><span class="line">|-- 03.log</span><br><span class="line">|-- 03.timeindex</span><br><span class="line">`--</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>You should’ve noted that the name of the newer segment is not 01. Instead, you see 03.index, 03.log. So, what is going on?</p>
+</blockquote>
+<p>看到了吧，新的 segment 出现了，名字是03。</p>
+<p><img src="https://img-blog.csdnimg.cn/2019111314070468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>This is because Kafka makes the lowest offset in the segment as its name. Since the new message that came into the partition has the offset 3, that is the name Kafka gives for the new segment. It also means that since we have 00 and 03 as our segments, we can be sure that the messages with offsets 0,1 and 2 are indeed present in the 00 segment. New messages coming into freblogg-2 partition with offsets 3,4 and 5 will be stored in the segment 03.<br><br><br>One of the common operations in Kafka is to read the message at a particular offset. For this, if it has to go to the log file to find the offset, it becomes an expensive task especially because the log file can grow to huge sizes (Default — 1G). This is where the .index file becomes useful. Index file stores the offsets and physical position of the message in the log file.</p>
+</blockquote>
+<p>因为 segment 可以达到1G，那么查找起来，有一个索引会快很多，Index 文件存储着 offsets 和消息在 log 文件上的物理位置。</p>
+<blockquote>
+<p>An index file for the log file I’ve showed in the ‘Quick detour’ above would look something like this:</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20191113140725247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>而 index 文件则会显示类似上面的内容，在1G的空间内，有一个索引来指定位置，这样查找起来会非常的块。</p>
+<blockquote>
+<p>If you need to read the message at offset 1, you first search for it in the index file and figure out that the message is in position 79. Then you directly go to position 79 in the log file and start reading. This makes it quite effective as you can use binary search to quickly get to the correct offset in the already sorted index file.<br><br><br>Parallelism with Partitions<br><br><br>To guarantee the order of reading messages from a partition, Kafka restricts to having only consumer (from a consumer group) per partition. So, if a partition gets messages a,f and k, the consumer will also read them in the order a,f and k. This is an important thing to make a note of as order of message consumption is not guaranteed at a topic level when you have multiple partitions.</p>
+</blockquote>
+<p>消息的顺序仅在 partition 层面被保证，在 topic 层面是不被保证的。</p>
+<blockquote>
+<p>Just increasing the number of consumers won’t increase the parallelism. You need to scale your partitions accordingly. To read data from a topic in parallel with two consumers, you create two partitions so that each consumer can read from its own partition. Also since partitions of a topic can be on different brokers, two consumers of a topic can read the data from two different brokers.</p>
+</blockquote>
+<p>仅仅增加 consumer 的数量并不能增加并行能力，增加 partition 才可以，不同的 partition 有可能位于不同的 broker上，这样增加了数据的读的能力。</p>
+<blockquote>
+<p>Topics<br><br><br>We’ve finally come to what a topic is. We’ve covered a lot of things about topics already. The most important thing to know is that a Topic is merely a logical grouping of several partitions.</p>
+</blockquote>
+<p>一个 Topic 只不过是一些 partition 的一个逻辑上的组。</p>
+<blockquote>
+<p>A topic can be distributed across multiple brokers. This is done using the partitions. But a partition still needs to be on a single broker. Each topic will have its unique name and the partitions will be named from that.<br><br><br>Replication<br><br><br>Let’s talk about replication. Whenever we’re creating a topic in Kafka, we need to specify what the replication factor we need for that topic. Let’s say we’ve two brokers and so we’ve given the replication-factor as 2. What this means is that Kafka will try to always ensure that each partition of this topic has a backup/replica. The way Kafka distributes the partitions is quite similar to how HDFS distributes its data blocks across nodes.<br><br><br>Say for the freblogg topic that we’ve been using so far, we’ve given the replication factor as 2. The resulting distribution of its three partitions will look something like this.</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2019111314075124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>Even when you have a replicated partition on a different broker, Kafka wouldn’t let you read from it because in each replicated set of partitions, there is a LEADER and the rest of them are just mere FOLLOWERS serving as backup. The followers keep on syncing the data from the leader partition periodically, waiting for their chance to shine. When the leader goes down, one of the in-sync follower partitions is chosen as the new leader and now you can consume data from this partition.</p>
+</blockquote>
+<p>你永远是从作为 LEADER 的 partition 中去读数据，其余的 FOLLOWERS 仅仅作为备份。”The followers keep on syncing the data from the leader partition periodically, waiting for their chance to shine. “这句话挺有意思，这些 follower 周期性地保持着对 leader 的 partition 的数据同步，等待着它们能够大放光芒的一天。</p>
+<blockquote>
+<p>A Leader and a Follower of a single partition are never in a single broker. It should be quite obvious why that is so.<br><br><br>Finally, this long article ends. Congratulations on making this far. You now know most of what there is to know about Kafka’s data storage. To ensure that you retain this information let’s do a quick recap.<br><br><br>Recap<br><br><br>Data in Kafka is stored in topics<br>Topics are partitioned<br>Each partition is further divided into segments<br>Each segment has a log file to store the actual message and an index file to store the position of the messages in the log file<br>Various partitions of a topic can be on different brokers but a partition is always tied to a single broker<br>Replicated partitions are passive. You can consume messages from them only when the leader is down<br>That ought to cover everything we’ve talked about. Thanks for reading. See you again in the next one.<br><br><br>Attribution:<br><br><br>Kafka image — <a href="https://kafka.apache.org/images/kafka_diagram.png" target="_blank" rel="noopener">https://kafka.apache.org/images/kafka_diagram.png</a></p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章写得很好，非常清楚地总体地讲明白了Kafka的存储，我初步翻译了一下，总体英文难度不高，其余的内容很容易看懂。</p>
+<p>补充一点，在partition上面的目录结构，参考这里：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190118194330162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://medium.com/@durgaswaroop/a-practical-introduction-to-kafka-storage-internals-d5b544f6925f" target="_blank" rel="noopener">https://medium.com/@durgaswaroop/a-practical-introduction-to-kafka-storage-internals-d5b544f6925f</a></p>
+<p><a href="https://stackoverflow.com/questions/27731558/where-kafka-stores-partitions-for-the-topics" target="_blank" rel="noopener">https://stackoverflow.com/questions/27731558/where-kafka-stores-partitions-for-the-topics</a></p>
+<h1 id="修改历史"><a href="#修改历史" class="headerlink" title="修改历史"></a>修改历史</h1><p>2019-11-13，修改了一下格式，每个英文单词前后加了空格，移除了一些原本的疑问，修正了几处错误，之前的图片链接都失效了，只好重新下载，再上传上去，学习就是辛苦的，苦中作乐吧。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+              <a href="/tags/存储/" rel="tag"># 存储</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/git/git-gitlab-flow.html" rel="prev" title="Git 的工作流总结">
+      <i class="fa fa-chevron-left"></i> Git 的工作流总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/delegate-and-proxy.html" rel="next" title="设计模式：委托和代理">
+      设计模式：委托和代理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改历史"><span class="nav-number">7.</span> <span class="nav-text">修改历史</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">167</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
