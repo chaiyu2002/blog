@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="概要Git：merge的时候全部采用某一个端的文件。">
+  <meta name="description" content="前言Git：merge的时候全部采用某一个端的文件。 这个帖子原本感觉没有完全搞明白这个地方。">
 <meta name="keywords" content="Git,git merge,冲突">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：merge的时候全部采用某一个端的文件">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-merge-choose-one-side-code.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要Git：merge的时候全部采用某一个端的文件。">
+<meta property="og:description" content="前言Git：merge的时候全部采用某一个端的文件。 这个帖子原本感觉没有完全搞明白这个地方。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-20T11:28:01.379Z">
+<meta property="og:updated_time" content="2019-12-17T15:15:37.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：merge的时候全部采用某一个端的文件">
-<meta name="twitter:description" content="概要Git：merge的时候全部采用某一个端的文件。">
+<meta name="twitter:description" content="前言Git：merge的时候全部采用某一个端的文件。 这个帖子原本感觉没有完全搞明白这个地方。">
 
 <link rel="canonical" href="https://www.oxysun.cn/git/git-merge-choose-one-side-code.html">
 
@@ -239,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-20 19:28:01" itemprop="dateModified" datetime="2019-11-20T19:28:01+08:00">2019-11-20</time>
+                <time title="修改时间：2019-12-17 23:15:37" itemprop="dateModified" datetime="2019-12-17T23:15:37+08:00">2019-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,16 +271,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：merge的时候全部采用某一个端的文件。<br><a id="more"></a></p>
-<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在Git使用过程中，有的时候进行merge，可能需要会全部采用某一端的文件，换句话说，就是完全采用本地的，或者完全采用远程的，怎么实现这个功能呢？</p>
-<p>使用merge命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># keep remote files</span><br><span class="line">git merge --strategy-option theirs</span><br><span class="line"># keep local files</span><br><span class="line">git merge --strategy-option ours</span><br></pre></td></tr></table></figure></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git：merge的时候全部采用某一个端的文件。</p>
+<p>这个帖子原本感觉没有完全搞明白这个地方。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在Git使用过程中，有的时候进行 merge，可能需要会全部采用某一端的文件，换句话说，就是完全采用本地的，或者完全采用远程的，怎么实现这个功能呢？</p>
+<p>使用 merge 命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># keep remote files</span><br><span class="line">git merge --strategy-option theirs</span><br><span class="line"># keep local files</span><br><span class="line">git merge --strategy-option ours</span><br></pre></td></tr></table></figure></p>
 <p>官网是这样写的</p>
 <blockquote>
 <p><code>--strategy-option=&lt;option&gt;</code><br>Pass merge strategy specific option through to the merge strategy.</p>
 </blockquote>
 <p>这里的策略选项可以参考另外一篇文章《Git：真实merge》。</p>
-<p>git-pull也有同样的功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull -X theirs</span><br></pre></td></tr></table></figure></p>
+<p>—-其实上面写的是不完全对的，上面这个只是配置在某一种 merge 策略下的 option，另外一篇笔记《Git：git-merge 的用法总结》后面对这些策略和选项再做一次完整的总结。</p>
+<p>git-pull 也有同样的功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull -X theirs</span><br></pre></td></tr></table></figure></p>
 <p>原理是一样的。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/6650215/how-to-keep-the-local-file-or-the-remote-file-during-merge-using-git-and-the-com" target="_blank" rel="noopener">https://stackoverflow.com/questions/6650215/how-to-keep-the-local-file-or-the-remote-file-during-merge-using-git-and-the-com</a><br><a href="https://stackoverflow.com/questions/10697463/resolve-git-merge-conflicts-in-favor-of-their-changes-during-a-pull" target="_blank" rel="noopener">https://stackoverflow.com/questions/10697463/resolve-git-merge-conflicts-in-favor-of-their-changes-during-a-pull</a></p>
 
@@ -369,7 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
