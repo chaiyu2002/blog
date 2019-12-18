@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="概要Git：真实merge。">
+  <meta name="description" content="前言Git：真实 merge 是一种 merge 的方式，除去真实 merge，肯定还有不真实的 merge，就是那种 FF （FAST-FORWARD MERGE）的 merge，这个 FF，曾经出现在在收音机上，出现在录像机上，出现在视频播放器上，就是快进的意思。">
 <meta name="keywords" content="Git,git merge,true merge">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git：真实merge">
+<meta property="og:title" content="Git：真实 merge">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-git-merge-true-merge.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要Git：真实merge。">
+<meta property="og:description" content="前言Git：真实 merge 是一种 merge 的方式，除去真实 merge，肯定还有不真实的 merge，就是那种 FF （FAST-FORWARD MERGE）的 merge，这个 FF，曾经出现在在收音机上，出现在录像机上，出现在视频播放器上，就是快进的意思。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-29T10:05:32.803Z">
+<meta property="og:updated_time" content="2019-12-18T11:24:55.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git：真实merge">
-<meta name="twitter:description" content="概要Git：真实merge。">
+<meta name="twitter:title" content="Git：真实 merge">
+<meta name="twitter:description" content="前言Git：真实 merge 是一种 merge 的方式，除去真实 merge，肯定还有不真实的 merge，就是那种 FF （FAST-FORWARD MERGE）的 merge，这个 FF，曾经出现在在收音机上，出现在录像机上，出现在视频播放器上，就是快进的意思。">
 
 <link rel="canonical" href="https://www.oxysun.cn/git/git-git-merge-true-merge.html">
 
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>Git：真实merge | IT老兵驿站</title>
+  <title>Git：真实 merge | IT老兵驿站</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
     <script>
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Git：真实merge
+          Git：真实 merge
         </h2>
 
         <div class="post-meta">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-05-29 18:05:32" itemprop="dateModified" datetime="2019-05-29T18:05:32+08:00">2019-05-29</time>
+                <time title="修改时间：2019-12-18 19:24:55" itemprop="dateModified" datetime="2019-12-18T19:24:55+08:00">2019-12-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,20 +272,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Git：真实merge。<br><a id="more"></a></p>
-<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这里准备碎片化地去解读和理解Git的一些功能。关于git-merge的总结一直没有做，但是几乎每天都会遇到git-merge，而且会遇到很多随着merge而产生的问题，所以只好碎片化地去做一做整理。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>git-merge有两种merge方式，ff方式和true merge方式，关于ff的方式，另外一篇文章有讲过，这里不再赘述，这里整理一下true merge，真实merge。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git：真实 merge 是一种 merge 的方式，除去真实 merge，肯定还有不真实的 merge，就是那种 FF （FAST-FORWARD MERGE）的 merge，这个 FF，曾经出现在在收音机上，出现在录像机上，出现在视频播放器上，就是快进的意思。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h1><p>这里准备碎片化地去解读和理解 Git 的一些功能。关于 git-merge 的总结一直没有做，但是几乎每天都会遇到 git-merge，而且会遇到很多随着 merge 而产生的问题，所以只好碎片化地去做一做整理。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>git-merge 有两种 merge 方式，ff 方式和 true merge 方式，关于 ff 的方式，另外一篇文章有讲过，这里不再赘述，这里整理一下 true merge，真实 merge。</p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>先摘录一段：</p>
 <blockquote>
-<p>TRUE MERGE<br>Except in a fast-forward merge (see above), the branches to be merged must be tied together by a merge commit that has both of them as its parents.<br>真实merge是真的去merge一下，而不是像ff那样，只是把一个commit放过来。<br><br><br>A merged version reconciling the changes from all branches to be merged is committed, and your HEAD, index, and working tree are updated to it. It is possible to have modifications in the working tree as long as they do not overlap; the update will preserve them.<br>一个merge的版本调节了所有要被merge的分支的改变，并且会被提交，这样你的HEAD、index、working tree都会被更新。<br><br><br>When it is not obvious how to reconcile the changes, the following happens:<br><br><br>The HEAD pointer stays the same.<br><br><br>The MERGE_HEAD ref is set to point to the other branch head.<br><br><br>Paths that merged cleanly are updated both in the index file and in your working tree.<br><br><br>For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from HEAD, and stage 3 from MERGE_HEAD (you can inspect the stages with git ls-files -u). The working tree files contain the result of the “merge” program; i.e. 3-way merge results with familiar conflict markers &lt;&lt;&lt; === &gt;&gt;&gt;.<br>3路merge，公共祖先、HEAD、MERGE_HEAD来merge。<br><br><br>No other changes are made. In particular, the local modifications you had before you started merge will stay the same and the index entries for them stay as they were, i.e. matching HEAD.<br><br><br>If you tried a merge which resulted in complex conflicts and want to start over, you can recover with git merge –abort.</p>
+<p>TRUE MERGE<br>Except in a fast-forward merge (see above), the branches to be merged must be tied together by a merge commit that has both of them as its parents.</p>
 </blockquote>
+<p>真实 merge 是真的去 merge 一下，而不是像 ff 那样，只是把一个 commit 放过来，从这个角度来说，ff 不是有点像 cherry-pick 吗？</p>
+<blockquote>
+<p>A merged version reconciling the changes from all branches to be merged is committed, and your HEAD, index, and working tree are updated to it. It is possible to have modifications in the working tree as long as they do not overlap; the update will preserve them.</p>
+</blockquote>
+<p>一个 merge 的版本融合了（reconcile 的意思是调节，放在这里有点不好理解，所以解释为融合）所有要被 merge 的分支的改变，并且会被提交，这样你的 HEAD、index、working tree 都会被更新。</p>
+<blockquote>
+<p>When it is not obvious how to reconcile the changes, the following happens:<br><br><br>The HEAD pointer stays the same.<br><br><br>The MERGE_HEAD ref is set to point to the other branch head.<br><br><br>Paths that merged cleanly are updated both in the index file and in your working tree.<br><br><br>For conflicting paths, the index file records up to three versions: stage 1 stores the version from the common ancestor, stage 2 from HEAD, and stage 3 from MERGE_HEAD (you can inspect the stages with git ls-files -u). The working tree files contain the result of the “merge” program; i.e. 3-way merge results with familiar conflict markers &lt;&lt;&lt; === &gt;&gt;&gt;.</p>
+</blockquote>
+<p>3路 merge，公共祖先、HEAD、MERGE_HEAD（是指另外那个分支的 HEAD） 这三个方面来 merge。</p>
 <p>这里是三个版本的关系，公共祖先的版本、HEAD（本地仓库的版本）、MERGE_HEAD（另外一个分支想要merge过来的版本），所以叫3-way merge，三路合并。</p>
+<blockquote>
+<p>If you tried a merge which resulted in complex conflicts and want to start over, you can recover with git merge –abort.</p>
+</blockquote>
+<p>当你搞不定了，使用 <code>git merge --abort</code> 回滚吧。</p>
 <p>关于HEAD、index、worktree、local repository、remote repository的关系，请参考<a href="https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git" target="_blank" rel="noopener">这里</a>，这个挺重要，随后要整理一下。</p>
 <h2 id="合并策略："><a href="#合并策略：" class="headerlink" title="合并策略："></a>合并策略：</h2><blockquote>
-<p>MERGE STRATEGIES<br><br><br>The merge mechanism (git merge and git pull commands) allows the backend merge strategies to be chosen with -s option. Some strategies can also take their own options, which can be passed by giving -X<option> arguments to git merge and/or git pull.<br>git merge和git pull 命令使用的merge机制允许通过-s选项后面的merge策略被选择。<br><br><br>resolve<br>This can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.<br><br><br>recursive<br>This can only resolve two heads using a 3-way merge algorithm. When there is more than one common ancestor that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mismerges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames, but currently cannot make use of detected copies. This is the default merge strategy when pulling or merging one branch.<br><br><br>The recursive strategy can take the following options:<br><br><br>ours<br>This option forces conflicting hunks to be auto-resolved cleanly by favoring our version. Changes from the other tree that do not conflict with our side are reflected to the merge result. For a binary file, the entire contents are taken from our side.<br><br><br>This should not be confused with the ours merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring our history contains all that happened in it.<br><br><br>theirs<br>This is the opposite of ours; note that, unlike ours, there is no theirs merge strategy to confuse this merge option with.<br>……</option></p>
+<p>MERGE STRATEGIES<br><br><br>The merge mechanism (git merge and git pull commands) allows the backend merge strategies to be chosen with -s option. Some strategies can also take their own options, which can be passed by giving -X<option> arguments to git merge and/or git pull.</option></p>
 </blockquote>
-<p>使用<code>-X&lt;option&gt;</code>参数，可以指定合并策略，上面摘录了两种，一种是resolve，一种是recursive，第一种策略看上去似乎是可以自动解决冲突，第二种是Git默认的merge策略，会产生一些少量的冲突，而不会进行错误的合并，它还有几个选项，就是合并时，只选择本地的（ours），或者只选择别人的（theirs）。</p>
+<p>git merge 和 git pull 命令使用的 merge 机制允许通过 -s 选项后面的 merge 策略被选择。</p>
+<blockquote>
+<p>resolve<br>This can only resolve two heads (i.e. the current branch and another branch you pulled from) using a 3-way merge algorithm. It tries to carefully detect criss-cross merge ambiguities and is considered generally safe and fast.</p>
+</blockquote>
+<blockquote>
+<p>recursive<br>This can only resolve two heads using a 3-way merge algorithm. When there is more than one common ancestor that can be used for 3-way merge, it creates a merged tree of the common ancestors and uses that as the reference tree for the 3-way merge. This has been reported to result in fewer merge conflicts without causing mismerges by tests done on actual merge commits taken from Linux 2.6 kernel development history. Additionally this can detect and handle merges involving renames, but currently cannot make use of detected copies. This is the default merge strategy when pulling or merging one branch.<br><br><br>The recursive strategy can take the following options:<br><br><br>ours<br>This option forces conflicting hunks to be auto-resolved cleanly by favoring our version. Changes from the other tree that do not conflict with our side are reflected to the merge result. For a binary file, the entire contents are taken from our side.<br><br><br>This should not be confused with the ours merge strategy, which does not even look at what the other tree contains at all. It discards everything the other tree did, declaring our history contains all that happened in it.<br><br><br>theirs<br>This is the opposite of ours; note that, unlike ours, there is no theirs merge strategy to confuse this merge option with.<br>……</p>
+</blockquote>
+<p>使用<code>-X&lt;option&gt;</code>参数，可以指定合并策略，上面摘录了两种，一种是 resolve，一种是recursive，第一种策略看上去似乎是可以自动解决冲突，第二种是 Git 默认的 merge 策略，会产生一些少量的冲突，而不会进行错误的合并，它还有几个选项，就是合并时，只选择本地的（ours），或者只选择别人的（theirs）。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://git-scm.com/docs/git-merge" target="_blank" rel="noopener">https://git-scm.com/docs/git-merge</a><br><a href="https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git" target="_blank" rel="noopener">https://stackoverflow.com/questions/3689838/whats-the-difference-between-head-working-tree-and-index-in-git</a></p>
 
     </div>
@@ -380,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">4.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并策略："><span class="nav-number">4.2.</span> <span class="nav-text">合并策略：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言-1"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">4.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并策略："><span class="nav-number">4.2.</span> <span class="nav-text">合并策略：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -530,7 +550,7 @@ NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
       shortname: 'www-oxysun-cn',
       url: "https://www.oxysun.cn/git/git-git-merge-true-merge.html",
       identifier: "git/git-git-merge-true-merge.html",
-      title: "Git：真实merge",
+      title: "Git：真实 merge",
     });
   }, window.DisqusJS);
 });
