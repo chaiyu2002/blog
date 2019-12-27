@@ -239,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-24 17:55:08" itemprop="dateModified" datetime="2019-12-24T17:55:08+08:00">2019-12-24</time>
+                <time title="修改时间：2019-12-27 16:59:21" itemprop="dateModified" datetime="2019-12-27T16:59:21+08:00">2019-12-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,102 +276,15 @@ Maven install
 
 Maven  package-->
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大概几十年前搞一个什么项目，研究 Makefile，看一些帖子说有 ant 这么一个东西，比 Makefile 要方便，然后又接触到了 mvn， 使用过 mvn install 这个命令—-现在好像这个 install 命令都不怎么看得到了 —- 一晃这么多年，又要和它打交道了，不过最近这一年来做 maven 项目，不知道看了多少遍官网了，感觉还是没有梳理清楚，这说明 maven 还真不是那么简单就能掌握的，老办法，还是要做做笔记整理整理，这篇文章记录对 pom 文件的学习。</p>
-<p>对于我来说，学习的思路，都是充分阅读官网（见参考），这个网页十分长，估计要分多次来记录笔记了。</p>
-<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>先看一个 pom 文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">                      http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;!-- The Basics --&gt;</span><br><span class="line">  &lt;groupId&gt;...&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;...&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;...&lt;/version&gt;</span><br><span class="line">  &lt;packaging&gt;...&lt;/packaging&gt;</span><br><span class="line">  &lt;dependencies&gt;...&lt;/dependencies&gt;</span><br><span class="line">  &lt;parent&gt;...&lt;/parent&gt;</span><br><span class="line">  &lt;dependencyManagement&gt;...&lt;/dependencyManagement&gt;</span><br><span class="line">  &lt;modules&gt;...&lt;/modules&gt;</span><br><span class="line">  &lt;properties&gt;...&lt;/properties&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;!-- Build Settings --&gt;</span><br><span class="line">  &lt;build&gt;...&lt;/build&gt;</span><br><span class="line">  &lt;reporting&gt;...&lt;/reporting&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;!-- More Project Information --&gt;</span><br><span class="line">  &lt;name&gt;...&lt;/name&gt;</span><br><span class="line">  &lt;description&gt;...&lt;/description&gt;</span><br><span class="line">  &lt;url&gt;...&lt;/url&gt;</span><br><span class="line">  &lt;inceptionYear&gt;...&lt;/inceptionYear&gt;</span><br><span class="line">  &lt;licenses&gt;...&lt;/licenses&gt;</span><br><span class="line">  &lt;organization&gt;...&lt;/organization&gt;</span><br><span class="line">  &lt;developers&gt;...&lt;/developers&gt;</span><br><span class="line">  &lt;contributors&gt;...&lt;/contributors&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;!-- Environment Settings --&gt;</span><br><span class="line">  &lt;issueManagement&gt;...&lt;/issueManagement&gt;</span><br><span class="line">  &lt;ciManagement&gt;...&lt;/ciManagement&gt;</span><br><span class="line">  &lt;mailingLists&gt;...&lt;/mailingLists&gt;</span><br><span class="line">  &lt;scm&gt;...&lt;/scm&gt;</span><br><span class="line">  &lt;prerequisites&gt;...&lt;/prerequisites&gt;</span><br><span class="line">  &lt;repositories&gt;...&lt;/repositories&gt;</span><br><span class="line">  &lt;pluginRepositories&gt;...&lt;/pluginRepositories&gt;</span><br><span class="line">  &lt;distributionManagement&gt;...&lt;/distributionManagement&gt;</span><br><span class="line">  &lt;profiles&gt;...&lt;/profiles&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
-<p>这是一个标准的 pom 文件的格式，摘自官网。</p>
-<p>整篇文章就是围绕上面的这个格式来解释，分为了4个部分。</p>
-<h2 id="Basics-基础部分"><a href="#Basics-基础部分" class="headerlink" title="Basics 基础部分"></a>Basics 基础部分</h2><h3 id="Maven-Coordinates-坐标"><a href="#Maven-Coordinates-坐标" class="headerlink" title="Maven Coordinates 坐标"></a>Maven Coordinates 坐标</h3><p>groupId、artifactId、version 是所有需要的字段，它们也可以从一个 parent 文件中继承，这个时候它们可以不被明确定义。这三个字段扮演的就像地址和时间戳，它们在 Maven 项目中就像坐标系统一样，在一个仓库里面指定了一个特定的位置。</p>
-<p>groupId：在一个项目或者一个组织中是唯一的。</p>
-<p>artifactId：制品Id是指项目的名字。</p>
-<p>version：版本。</p>
-<h3 id="packaging"><a href="#packaging" class="headerlink" title="packaging"></a>packaging</h3><p>打包的目标，可用的有 pom、jar、maven-plugin、ejb、war、ear、rar。<br>默认是 jar。</p>
-<h3 id="POM-关系"><a href="#POM-关系" class="headerlink" title="POM 关系"></a>POM 关系</h3><blockquote>
-<p>One powerful aspect of Maven is its handling of project relationships: this includes dependencies (and transitive dependencies), inheritance, and aggregation (multi-module projects).</p>
-</blockquote>
-<p>Maven 一个很强的地方是它的对于项目关系的处理，包含了依赖（transitive dependencies，在这里可能应该理解为传递依赖），继承，和聚合（多模块项目）。</p>
-<blockquote>
-<p>Dependency management has a long tradition of being a complicated mess for anything but the most trivial of projects. “Jarmageddon” quickly ensues as the dependency tree becomes large and complicated. “Jar Hell” follows, where versions of dependencies on one system are not equivalent to the versions developed with, either by the wrong version given, or conflicting versions between similarly named jars.<br><br><br>Maven solves both problems through a common local repository from which to link projects correctly, versions and all.</p>
-</blockquote>
-<p>这里面，Jarmageddon 和 Jar Hell 应该是两种常见的项目依赖的问题，不过我暂时没有找到准确的解释，先放一下。</p>
-<h4 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h4><p>这块可是复杂了，内容太多了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">                      https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">      &lt;type&gt;jar&lt;/type&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">      &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这是一个依赖的模板，这块内容非常多，看了几遍，暂时没有想到应该如何总结，可能回头单独总结了，尤其版本这块，和 js 的依赖关系是一样的，有各种规则，包含以下这些字段。</p>
-<p>groupId, artifactId, version:</p>
-<p>type:</p>
-<p>scope:</p>
-<p>systemPath:</p>
-<p>optional:</p>
-<h5 id="Dependency-Version-Requirement-Specification-依赖版本需求规格"><a href="#Dependency-Version-Requirement-Specification-依赖版本需求规格" class="headerlink" title="Dependency Version Requirement Specification 依赖版本需求规格"></a>Dependency Version Requirement Specification 依赖版本需求规格</h5><h5 id="Version-Order-Specification-版本的顺序规格"><a href="#Version-Order-Specification-版本的顺序规格" class="headerlink" title="Version Order Specification 版本的顺序规格"></a>Version Order Specification 版本的顺序规格</h5><h5 id="Version-Order-Testing-版本顺序测试"><a href="#Version-Order-Testing-版本顺序测试" class="headerlink" title="Version Order Testing 版本顺序测试"></a>Version Order Testing 版本顺序测试</h5><h5 id="Exclusions-排除"><a href="#Exclusions-排除" class="headerlink" title="Exclusions 排除"></a>Exclusions 排除</h5><h5 id="Inheritance-继承"><a href="#Inheritance-继承" class="headerlink" title="Inheritance 继承"></a>Inheritance 继承</h5><blockquote>
-<p>One powerful addition that Maven brings to build management is the concept of project inheritance. Although in build systems such as Ant, inheritance can certainly be simulated, Maven has gone the extra step in making project inheritance explicit to the project object model.</p>
-</blockquote>
-<p>Maven 带来的一个强大的功能就是项目的继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">                      https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-parent&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.0&lt;/version&gt;</span><br><span class="line">  &lt;packaging&gt;pom&lt;/packaging&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>The packaging type required to be pom for parent and aggregation (multi-module) projects. These types define the goals bound to a set of lifecycle stages. For example, if packaging is jar, then the package phase will execute the jar:jar goal. Now we may add values to the parent POM, which will be inherited by its children. Most elements from the parent POM are inherited by its children, including:</p>
-</blockquote>
-<p>上面这段 xml 里面的 packaging 类型需要设置成 pom 类型，对于 parent 或者 aggregation 项目。这个类型定义了目标被约束在一套的生命阶段中。举例来说，如果 packaging 是 jar，那么<br>这个打包阶段将会执行 jar:jar 目标。</p>
-<blockquote>
-<p>groupId<br>version<br>description<br>url<br>inceptionYear<br>organization<br>licenses<br>developers<br>contributors<br>mailingLists<br>scm<br>issueManagement<br>ciManagement<br>properties<br>dependencyManagement<br>dependencies<br>repositories<br>pluginRepositories<br>build<br>plugin executions with matching ids<br>plugin configuration<br>etc.<br>reporting<br>profiles</p>
-</blockquote>
-<p>上面这些属性是可以被继承的。</p>
-<blockquote>
-<p>artifactId<br>name<br>prerequisites</p>
-</blockquote>
-<p>上面这些是不可以被继承的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">                      https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;my-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0&lt;/version&gt;</span><br><span class="line">    &lt;relativePath&gt;../my-parent&lt;/relativePath&gt;</span><br><span class="line">  &lt;/parent&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;artifactId&gt;my-project&lt;/artifactId&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>Notice the relativePath element. It is not required, but may be used as a signifier to Maven to first search the path given for this project’s parent, before searching the local and then remote repositories.</p>
-</blockquote>
-<p>relativePath 不是必须的，但是它可以作为一个记号，告诉 Maven 首先去哪里去搜索项目的 parent，可以是一个相对的路径，而不是去本地的 Maven 缓存或者远程的仓库中去寻找。</p>
-<h5 id="The-Super-POM-超级-POM"><a href="#The-Super-POM-超级-POM" class="headerlink" title="The Super POM 超级 POM"></a>The Super POM 超级 POM</h5><p>这里的概念和 Java 语言的概念是一样的，所有的 pom 都是继承自一个超级 pom，这个超级 pom 的内容态度，这里不复述了，参考<a href="https://maven.apache.org/pom.html#The_Super_POM" target="_blank" rel="noopener">这里</a>。</p>
-<h5 id="Dependency-Management-依赖管理"><a href="#Dependency-Management-依赖管理" class="headerlink" title="Dependency Management 依赖管理"></a>Dependency Management 依赖管理</h5><blockquote>
-<p>Besides inheriting certain top-level elements, parents have elements to configure values for child POMs and transitive dependencies. One of those elements is dependencyManagement.</p>
-</blockquote>
-<p>包含某些顶级元素在内，parent 可以给一些元素配置值来给 child POM 使用和实现一些依赖的传递。其中一个元素就是 dependencyManagement。</p>
-<blockquote>
-<p>dependencyManagement: is used by a POM to help manage dependency information across all of its children. If the my-parent project uses dependencyManagement to define a dependency on junit:junit:4.12, then POMs inheriting from this one can set their dependency giving the groupId=junit and artifactId=junit only and Maven will fill in the version set by the parent. The benefits of this method are obvious. Dependency details can be set in one central location, which propagates to all inheriting POMs.</p>
-</blockquote>
-<p>dependencyManagement：被 POM 用于在所有的孩子之间去帮助管理依赖信息。如果 my-parent  项目使用了 dependencyManagement 去定义一个依赖  junit:junit:4.12， 那么继承这个 POM 的孩子只用设置依赖 groupId=junit 和 artifactId=junit，不用设置版本。</p>
-<blockquote>
-<p>Note that the version and scope of artifacts which are incorporated from transitive dependencies are also controlled by version specifications in a dependency management section. This can lead to unexpected consequences. Consider a case in which your project uses two dependences, dep1 and dep2. dep2 in turn also uses dep1, and requires a particular minimum version to function. If you then use dependencyManagement to specify an older version, dep2 will be forced to use the older version, and fail. So, you must be careful to check the entire dependency tree to avoid this problem; mvn dependency:tree is helpful.</p>
-</blockquote>
-<p>注意在 dependency management 部分里面的这个 version 和制品的 scope（被传递合成进来的）也是被 version specifications 所控制。这有可能会引起一些预料外的结果。考虑一个问题，你的项目使用了2个依赖，dep1 和 dep2，dep2 也使用了 dep1，需要一个特别的小版本。如果你使用了 dependencyManagement 去指定一个更早的版本，dep2 将会被强迫使用这个较早的版本，并且会失败。所以，你必须小心地去检查完全的依赖树（entire dependency tree）去避免这个问题；mvn dependency:tree 会有帮助。</p>
-<h5 id="Aggregation-or-Multi-Module-聚合（或者多模块）"><a href="#Aggregation-or-Multi-Module-聚合（或者多模块）" class="headerlink" title="Aggregation (or Multi-Module) 聚合（或者多模块）"></a>Aggregation (or Multi-Module) 聚合（或者多模块）</h5><blockquote>
-<p>A project with modules is known as a multimodule, or aggregator project.</p>
-</blockquote>
-<p>带有模块的项目被称为一个 multimodule，或者 aggregator 项目。这一部分好像暂时没有太多需要记录的。</p>
-<h5 id="Properties-属性"><a href="#Properties-属性" class="headerlink" title="Properties 属性"></a>Properties 属性</h5><blockquote>
-<p>Properties are the last required piece to understand POM basics. Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property. Or they can be used by plugins as default values, for example:</p>
-</blockquote>
-<p>Properties 可以在一个 POM 文件的任意一个位置被访问到，通过使用 ${X}， X 就是这个属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;</span><br><span class="line">    &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;</span><br><span class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">  &lt;/properties&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>They come in five different styles:<br><br><br>env.X: Prefixing a variable with “env.” will return the shell’s environment variable. For example, ${env.PATH} contains the PATH environment variable.<br>Note: While environment variables themselves are case-insensitive on Windows, lookup of properties is case-sensitive. In other words, while the Windows shell returns the same value for %PATH% and %Path%, Maven distinguishes between ${env.PATH} and ${env.Path}. The names of environment variables are normalized to all upper-case for the sake of reliability.</p>
-</blockquote>
-<p>env.X：返回 shell 的环境变量。这个应该是在启动时读入虚拟机的。</p>
-<blockquote>
-<p>project.x: A dot (.) notated path in the POM will contain the corresponding element’s value. For example: <project><version>1.0</version></project> is accessible via ${project.version}.</p>
-</blockquote>
-<p>project.x：在 POM 文件中的以点表示的路径，访问的是对应的元素的值。</p>
-<blockquote>
-<p>settings.x: A dot (.) notated path in the settings.xml will contain the corresponding element’s value. For example: <settings><offline>false</offline></settings> is accessible via ${settings.offline}.</p>
-</blockquote>
-<p>settings.x：在 settings.xml 的原理同上面。</p>
-<blockquote>
-<p>Java System Properties: All properties accessible via java.lang.System.getProperties() are available as POM properties, such as ${java.home}.</p>
-</blockquote>
-<p>Java System Properties：Java  系统属性。</p>
-<blockquote>
-<p>x: Set within a <properties> element in the POM. The value of <properties><somevar>value</somevar></properties> may be used as ${someVar}.</properties></p>
-</blockquote>
-<p>x：表示在 POM 文件的 <properties> 元素内的值。</properties></p>
-<h2 id="Build-Settings-构建配置"><a href="#Build-Settings-构建配置" class="headerlink" title="Build Settings 构建配置"></a>Build Settings 构建配置</h2><blockquote>
-<p>Beyond the basics of the POM given above, there are two more elements that must be understood before claiming basic competency of the POM. They are the build element, that handles things like declaring your project’s directory structure and managing plugins; and the reporting element, that largely mirrors the build element for reporting purposes.</p>
-</blockquote>
-<p>除了上面的配置，还有两个元素需要理解，build 和 report。</p>
-<h2 id="More-Project-Information-更多的项目信息"><a href="#More-Project-Information-更多的项目信息" class="headerlink" title="More Project Information 更多的项目信息"></a>More Project Information 更多的项目信息</h2><h2 id="Environment-Settings-环境设置"><a href="#Environment-Settings-环境设置" class="headerlink" title="Environment Settings 环境设置"></a>Environment Settings 环境设置</h2><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>pom 的官网这篇文章非常长，就是因为太长了，所以，其实我断断续续，或者说断章取义地看过不少遍，但总是感觉没有看明白，还是需要系统地、具体地梳理一遍。</p>
-<p>未完待续……</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://maven.apache.org/pom.html" target="_blank" rel="noopener">https://maven.apache.org/pom.html</a><br><a href="https://www.cnblogs.com/AlanLee/p/6132976.html" target="_blank" rel="noopener">https://www.cnblogs.com/AlanLee/p/6132976.html</a> 这个帖子和下面这个帖子讲的不错，不过又有一样的地方，不知道是谁借鉴谁<br><a href="https://www.cnblogs.com/javahr/p/9328483.html" target="_blank" rel="noopener">https://www.cnblogs.com/javahr/p/9328483.html</a><br><a href="https://www.cnblogs.com/yjmyzz/p/3495762.html" target="_blank" rel="noopener">https://www.cnblogs.com/yjmyzz/p/3495762.html</a></p>
-
+<p>对于我来说，学习的思路，都是充分阅读官网（见参考），这个网页十分长，估计要分多次来记录笔记了。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/java/java-maven-pom-note.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
