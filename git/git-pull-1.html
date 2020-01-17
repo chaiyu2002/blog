@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="Git用法总结系列收藏于IT老兵驿站。Git：git-pull的用法总结。">
+  <meta name="description" content="前言本篇文章总结一下git-pull 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：  认真读完官网之后，才会知道它到底有多少内容，这样要比一次一次碎片化地去查要节省很多的时间，不这样读一遍，你怎么能知道git-pull有多少功能呢，如果不知道，回头遇到了需要这个功能的时候，都不知道怎么去查，要了解这个命令的外延。 当然，很多内容一下子是记不住的。记录">
 <meta name="keywords" content="Git,git pull">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git：git-pull的用法总结">
 <meta property="og:url" content="https://www.oxysun.cn/git/git-pull-1.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="Git用法总结系列收藏于IT老兵驿站。Git：git-pull的用法总结。">
+<meta property="og:description" content="前言本篇文章总结一下git-pull 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：  认真读完官网之后，才会知道它到底有多少内容，这样要比一次一次碎片化地去查要节省很多的时间，不这样读一遍，你怎么能知道git-pull有多少功能呢，如果不知道，回头遇到了需要这个功能的时候，都不知道怎么去查，要了解这个命令的外延。 当然，很多内容一下子是记不住的。记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-28T09:23:59.159Z">
+<meta property="og:updated_time" content="2020-01-17T06:36:26.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git：git-pull的用法总结">
-<meta name="twitter:description" content="Git用法总结系列收藏于IT老兵驿站。Git：git-pull的用法总结。">
+<meta name="twitter:description" content="前言本篇文章总结一下git-pull 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：  认真读完官网之后，才会知道它到底有多少内容，这样要比一次一次碎片化地去查要节省很多的时间，不这样读一遍，你怎么能知道git-pull有多少功能呢，如果不知道，回头遇到了需要这个功能的时候，都不知道怎么去查，要了解这个命令的外延。 当然，很多内容一下子是记不住的。记录">
 
 <link rel="canonical" href="https://www.oxysun.cn/git/git-pull-1.html">
 
@@ -232,10 +232,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2018-08-28 17:19:00 / 修改时间：17:23:59" itemprop="dateCreated datePublished" datetime="2018-08-28T17:19:00+08:00">2018-08-28</time>
+              <time title="创建时间：2018-08-28 17:19:00" itemprop="dateCreated datePublished" datetime="2018-08-28T17:19:00+08:00">2018-08-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-17 14:36:26" itemprop="dateModified" datetime="2020-01-17T14:36:26+08:00">2020-01-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -266,14 +272,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Git用法总结系列收藏于IT老兵驿站。"><a href="#Git用法总结系列收藏于IT老兵驿站。" class="headerlink" title="Git用法总结系列收藏于IT老兵驿站。"></a>Git用法总结系列收藏于<a href="https://www.oxysun.cn/git/git-pull-1.html">IT老兵驿站</a>。</h2><p>Git：git-pull的用法总结。<br><a id="more"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章总结一下<code>git-pull</code> 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇文章总结一下<code>git-pull</code> 的用法，主要过程是基于对官网的完整阅读，记录关键笔记和样例，加上自己的理解。整个过程是这样：</p>
 <ol>
 <li>认真读完官网之后，才会知道它到底有多少内容，这样要比一次一次碎片化地去查要节省很多的时间，不这样读一遍，你怎么能知道<code>git-pull</code>有多少功能呢，如果不知道，回头遇到了需要这个功能的时候，都不知道怎么去查，要了解这个命令的外延。</li>
 <li>当然，很多内容一下子是记不住的。记录适当的，或者说关键性的笔记来辅助记忆，将来可以多次去查看。</li>
 <li>记录学习的心得。</li>
 </ol>
-<p>粗读了一遍<code>git-pull</code>的文档，内容很多，恐怕一篇笔记不足以总结到位，可能要分为多篇笔记来总结。</p>
+<p>粗读了一遍<code>git-pull</code>的文档，内容很多，恐怕一篇笔记不足以总结到位，可能要分为多篇笔记来总结。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p><a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>git pull的作用是从一个仓库或者本地的分支拉取并且整合代码。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull [&lt;options&gt;] [&lt;repository&gt; [&lt;refspec&gt;…​]]</span><br></pre></td></tr></table></figure>
 <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><code>git pull</code>相当于 <code>git fetch</code> 跟着一个 <code>git merge FETCH_HEAD</code>。<code>&lt;repository&gt;</code>是仓库的名字，<code>&lt;refspec&gt;</code> 是分支的名字。如果都不写，会有一个默认值。</p>
@@ -297,7 +303,7 @@
 <p>按照<code>git branch</code> 设置的默认跟踪的服务器和分支来拉取。</p>
 <p><strong>实例：</strong> 拉取远程服务器<code>origin</code>的<code>master</code>分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>git-pull的用法先总结到这里，还有很多需要细化的地方，一口吃不下，需要一口一口来。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><code>git-pull</code>的用法先总结到这里，还有很多需要细化的地方，一口吃不下，需要一口一口来。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://git-scm.com/docs/git-pull" target="_blank" rel="noopener">https://git-scm.com/docs/git-pull</a><br><a href="https://www.atlassian.com/git/tutorials/syncing/git-pull" target="_blank" rel="noopener">https://www.atlassian.com/git/tutorials/syncing/git-pull</a></p>
 
     </div>
@@ -391,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git用法总结系列收藏于IT老兵驿站。"><span class="nav-number">1.</span> <span class="nav-text">Git用法总结系列收藏于IT老兵驿站。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number"></span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number"></span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">2.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#options（选项）"><span class="nav-number">3.</span> <span class="nav-text">options（选项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述"><span class="nav-number">3.2.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#options（选项）"><span class="nav-number">3.3.</span> <span class="nav-text">options（选项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.4.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
