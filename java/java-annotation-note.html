@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-17T02:44:28.140Z">
+<meta property="og:updated_time" content="2020-02-01T13:33:37.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中如何创建自定义的注解学习笔记（MD版）">
 <meta name="twitter:description" content="概要Java中如何创建自定义的注解学习笔记（MD版）。">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-17 10:44:28" itemprop="dateModified" datetime="2019-11-17T10:44:28+08:00">2019-11-17</time>
+                <time title="修改时间：2020-02-01 21:33:37" itemprop="dateModified" datetime="2020-02-01T21:33:37+08:00">2020-02-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
 <table>
 <thead>
 <tr>
-<th>TARGET1111111111</th>
+<th>TARGET</th>
 <th>DESCRIPTION</th>
 </tr>
 </thead>
@@ -544,7 +544,7 @@ public @interface JsonField {
 <blockquote>
 <p>The line <code>requireNonNull(object).getClass()</code> simply checks that the supplied object is not <code>null</code> (and throws a <code>NullPointerException</code> if it is) and obtains the <code>[Class](https://docs.oracle.com/javase/9/docs/api/java/lang/Class.html)</code> object associated with the supplied object. We will use this <code>Class</code> object shortly to obtain the fields associated with the class. Next, we create a <code>Map</code> of <code>String</code>s to <code>String</code>s, which will be used store the field name and value pairs.</p>
 </blockquote>
-<p>这个代码里面涉及到了一些 Java 的功能，我以前没有接触过，例如  <code>requireNonNull(object).getClass()</code> 可以检查一个对象是否是 <code>null</code>， 如果不是，则去获取这个对象的 <code>[Class]</code> 信息。</p>
+<p>这个代码里面涉及到了一些新的 Java 的功能，我以前没有接触过，例如  <code>requireNonNull(object).getClass()</code> 可以检查一个对象是否是 <code>null</code>， 如果不是，则去获取这个对象的 <code>[Class]</code> 信息。</p>
 <blockquote>
 <p>With our data structures established, we next iterate through each field declared in the class of the supplied object. For each field, we configure the field to suppress Java language access checking when accessing the field. This is a very important step since the fields we annotated are private. In the standard case, we would be unable to access these fields, and attempting to obtain the value of the private field would result in an <code>IllegalAccessException</code> being thrown. In order to access these private fields, we must instruct the reflection API to suppress the standard Java access checking for this field using the <code>setAccessible</code> method. The <code>setAccessible(boolean)</code> documentation defines the meaning of the supplied boolean flag as follows:</p>
 </blockquote>
@@ -581,13 +581,15 @@ serializer.serialize(car);
 <blockquote>
 <p>Due to this limitation, the order of the elements in the JSON string may vary. To make the order of the elements deterministic, we would have to impose ordering ourselves (such as by sorting the map of field names to field values). Since a JSON object is defined as an <em>unordered</em> set of name-value pairs, as per the <a href="http://json.org/" target="_blank" rel="noopener">JSON standard</a>, imposing ordering is unneeded. Note, however, a test case for the serialize method should pass for either <code>{&quot;model&quot;:&quot;F150&quot;,&quot;manufacturer&quot;:&quot;Ford&quot;}</code> or <code>{&quot;manufacturer&quot;:&quot;Ford&quot;,&quot;model&quot;:&quot;F150&quot;}</code>.</p>
 </blockquote>
-<p>上面输出的JSON并没有排序，这并没有什么问题，规则中并没有要求有顺序。</p>
+<p>上面输出的 JSON 并没有排序，这并没有什么问题，规则中并没有要求有顺序。</p>
 <h2 id="Conclusion-结论"><a href="#Conclusion-结论" class="headerlink" title="Conclusion 结论"></a>Conclusion 结论</h2><blockquote>
 <p>Java annotations are a very powerful feature in the Java language, but most often, we are the users of standard annotations (such as <code>@Override</code>) or common framework annotations (such as <code>@Autowired</code>), rather than their developers. While annotations should not be used in place of interfaces or other language constructs that properly accomplish a task in an object-oriented manner, they can greatly simplify repetitive logic. For example, rather than creating a <code>toJsonString</code>method within an interface and having all classes that can be serialized implement this interface, we can annotate each serializable field. This takes the repetitive logic of the serialization process (mapping field names to fields values) and places it into a single serializer class. It also decouples the serialization logic from the domain logic, removing the clutter of manual serialization from the conciseness of the domain logic.</p>
 <p>While custom annotations are not frequently used in most Java applications, knowledge of this feature is a requirement for any intermediate or advanced user of the Java language. Not only will knowledge of this feature enhance the toolbox of a developer, which is just as important, but it will also aid in the understanding of the common annotations in the most popular Java frameworks.</p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文以一个实际的例子，描述了怎么去写一个 Java 的注解，反复理解这个过程，对于理解注解，有很好的帮助。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://dzone.com/articles/creating-custom-annotations-in-java" target="_blank" rel="noopener">https://dzone.com/articles/creating-custom-annotations-in-java</a></p>
+<p>其实通过一些特定的类，可以反向获取到很多 Java 对象类的信息，例如域，例如注解，这样来给原本的对象类增加了一些功能。</p>
+<p>这里面涉及到的类、方法、用法：<br><code>Class</code> 这个类可以获取对象类的基本信息，从 JDK 1.0 就开始存在了，以前研究反射应该是用过，但是没有仔细琢磨过这个类。<br><code>requireNonNull</code> 这个是 Objects 的一个静态方法，1.7 之后引入的，这个类可以理解为一个工具类，它的注释里面也写着 utilities。<br>Field 用来动态访问类或者接口的类<br>@Test JUnit 的注解<br>NullPointerException<br>静态 import 参考底下的链接，1.5 版本引入的，不再需要类名，直接可以使用静态方法，不过不推荐使用</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://dzone.com/articles/creating-custom-annotations-in-java" target="_blank" rel="noopener">https://dzone.com/articles/creating-custom-annotations-in-java</a><br><a href="https://www.geeksforgeeks.org/static-import-java/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/static-import-java/</a></p>
 
     </div>
 
