@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.7.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.oxysun.cn').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概要MyBatis 的 mapper-locations 引发的。">
+<meta name="keywords" content="Java,Maven,mapper-locations">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis 的 mapper-locations 引发的">
+<meta property="og:url" content="https://www.oxysun.cn/java/mybatis-mapper-locations.html">
+<meta property="og:site_name" content="IT老兵驿站">
+<meta property="og:description" content="概要MyBatis 的 mapper-locations 引发的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216112600922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200216180159985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-02-16T10:15:17.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis 的 mapper-locations 引发的">
+<meta name="twitter:description" content="概要MyBatis 的 mapper-locations 引发的。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200216112600922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="https://www.oxysun.cn/java/mybatis-mapper-locations.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>MyBatis 的 mapper-locations 引发的 | IT老兵驿站</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-120983285-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?fb668234203638fe0510ea377e46a1ae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT老兵驿站</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">一个IT老兵的驿站</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/java/mybatis-mapper-locations.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="荒于嬉">
+      <meta itemprop="description" content="一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT老兵驿站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          MyBatis 的 mapper-locations 引发的
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-16 18:12:00 / 修改时间：18:15:17" itemprop="dateCreated datePublished" datetime="2020-02-16T18:12:00+08:00">2020-02-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MyBatis 的 mapper-locations 引发的。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>之前做项目，用的是 eclipse，项目是 gradle 管理的 SpringMVC 的项目，使用到 MyBatis，Mapper 的 Java<br>文件和实现的 xml 文件放在一个目录下就可以，不需要做额外的工作。</p>
+<p>最近使用 Idea 开发 Maven 管理的 SpringBoot 项目，发现 xml 文件和 Mapper 文件没有放在一起，xml 文件单独放在了 resources 目录下面，这种放置方式，让我感觉很不习惯，接口和实现放在了两个不同的地方。</p>
+<p>于是，我把 xml 移动到了 Mapper 的目录下，这个时候，问题产生了，编译时找不到 xml 文件了，我觉得这可能是 SpringBoot 的问题，根据这个查找关键字，找到了 <a href="https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/" target="_blank" rel="noopener">Mybatis 手册</a>，这里面需要修改一项配置：</p>
+<blockquote>
+<p>mapper-locations    Locations of Mapper xml config file.</p>
+</blockquote>
+<p>因为使用的文件是 application.properties，所以相对应的配置项就是 mybatis.mapper-locations，如果是别的配置文件（xml 或者 yml），配置项的名称又有区别。（这里其实就是 Java 项目的一个难点，发展的时间长了，太多沉淀下来的东西，原因已经不被人知道了）</p>
+<p>将这个地方修改成 xml 所在的包，编译，发现仍然报告错误，这个时候，在网上没有了对于这个问题明确的答案了，只能自己尝试了。</p>
+<p>参考<a href="https://mybatis.org/spring/factorybean.html" target="_blank" rel="noopener">这里</a>，换了一种写法：<br><img src="https://img-blog.csdnimg.cn/20200216112600922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这种写法，说是 Ant-style， 从 Ant 借鉴过来的，可以扫描所有 sample.config.mappers 下面的包。</p>
+<p>查了 Ant 的官网，Ant-style 好像仅仅是说 “*<em>” 是会递归当前目录及子目录，而没有说“classpath</em>” 的意思。</p>
+<p>继续检索，在<a href="https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference" target="_blank" rel="noopener">这里</a>找到了说法：<br><img src="https://img-blog.csdnimg.cn/20200216180159985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>而 Spring 的<a href="https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards" target="_blank" rel="noopener">官网</a>的 resources 的介绍对此有很详细的讲解。</p>
+<p>但是，哪怕使用了上面这样带有通配符的方式，还是找不到 xml 文件，这个时候，我开始怀疑 Idea 并没有把 xml 拷贝到被查找的目标位置，于是，我手动把 xml 拷贝到 target 下面相应的路径下，这时，编译成功。</p>
+<p>带着这个结论，再去研究 Maven 的<a href="https://maven.apache.org/pom.html#Resources" target="_blank" rel="noopener">文档</a>（而另外一篇对于 pom 的学习，刚好就忽略了对于 resources 的学习，认为不重要），大概就明白了，Idea 在执行 Maven 的编译，并没有拷贝 resources 目录之外的资源，需要手动配置一下，但是感觉 eclipse 是默认就会拷贝过去的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个问题，大体搞明白了，还有一些细节，还需要进一步细化。发现，Java 的很多问题，有可能会牵扯到好几个框架，牵扯到一些历史原因，想找到原因，还真是不简单。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference" target="_blank" rel="noopener">https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference</a><br><a href="https://maven.apache.org/pom.html#Resources" target="_blank" rel="noopener">https://maven.apache.org/pom.html#Resources</a><br><a href="https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards</a><br><a href="https://mybatis.org/spring/factorybean.htmlhttps://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure" target="_blank" rel="noopener">https://mybatis.org/spring/factorybean.htmlhttps://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Maven/" rel="tag"># Maven</a>
+              <a href="/tags/mapper-locations/" rel="tag"># mapper-locations</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/soa/microservice-article-note.html" rel="prev" title="马丁富勒微服务论文学习">
+      <i class="fa fa-chevron-left"></i> 马丁富勒微服务论文学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">荒于嬉</p>
+  <div class="site-description" itemprop="description">一个IT老兵的驿站，记录下来过去的，当前的所有想表达的东西。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">172</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">荒于嬉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1273963895&web_id=1273963895"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'YXYioA0OYoX5c9MzYgvPH8g41vE9jtNVv29XdJ07SJP9wZqs5NbqvlV91i3QpR6b',
+      shortname: 'www-oxysun-cn',
+      url: "https://www.oxysun.cn/java/mybatis-mapper-locations.html",
+      identifier: "java/mybatis-mapper-locations.html",
+      title: "MyBatis 的 mapper-locations 引发的",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+</body>
+</html>
