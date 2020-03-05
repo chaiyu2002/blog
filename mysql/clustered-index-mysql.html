@@ -46,18 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="概要MySQL的聚集索引。">
+  <meta name="description" content="概要MySQL 的聚集索引，有的地方又叫聚簇索引，其实英文单词是 cluster。">
 <meta name="keywords" content="MySQL,聚集索引">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL的聚集索引">
 <meta property="og:url" content="https://www.oxysun.cn/mysql/clustered-index-mysql.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要MySQL的聚集索引。">
+<meta property="og:description" content="概要MySQL 的聚集索引，有的地方又叫聚簇索引，其实英文单词是 cluster。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-05T09:22:41.898Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200305114615850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-03-05T03:48:57.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL的聚集索引">
-<meta name="twitter:description" content="概要MySQL的聚集索引。">
+<meta name="twitter:description" content="概要MySQL 的聚集索引，有的地方又叫聚簇索引，其实英文单词是 cluster。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200305114615850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 
 <link rel="canonical" href="https://www.oxysun.cn/mysql/clustered-index-mysql.html">
 
@@ -232,10 +234,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-05 17:22:45 / 修改时间：17:22:41" itemprop="dateCreated datePublished" datetime="2019-11-05T17:22:45+08:00">2019-11-05</time>
+              <time title="创建时间：2019-11-05 17:22:45" itemprop="dateCreated datePublished" datetime="2019-11-05T17:22:45+08:00">2019-11-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-05 11:48:57" itemprop="dateModified" datetime="2020-03-05T11:48:57+08:00">2020-03-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -266,7 +274,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MySQL的聚集索引。<br><a id="more"></a></p>
+        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>MySQL 的聚集索引，有的地方又叫聚簇索引，其实英文单词是 cluster。<br><a id="more"></a></p>
 <h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn">IT老兵驿站</a>。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>什么是聚集索引？<br>参考<a href="http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/" target="_blank" rel="noopener">这里</a></p>
 <blockquote>
@@ -275,9 +283,10 @@
 <p>聚集索引就是说索引和数据是在一起的。一般的索引是单独的一个数据结构，而数据是一个数据结构；而聚集索引是说这两块内容是在一起的，并且是有顺序的。</p>
 <p>参考官网：</p>
 <blockquote>
-<p>14.6.2.1 Clustered and Secondary Indexes<br>Every InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key. To get the best performance from queries, inserts, and other database operations, you must understand how InnoDB uses the clustered index to optimize the most common lookup and DML operations for each table.<br><br><br>When you define a PRIMARY KEY on your table, InnoDB uses it as the clustered index. Define a primary key for each table that you create. If there is no logical unique and non-null column or set of columns, add a new auto-increment column, whose values are filled in automatically.<br><br><br>If you do not define a PRIMARY KEY for your table, MySQL locates the first UNIQUE index where all the key columns are NOT NULL and InnoDB uses it as the clustered index.<br><br><br>If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index named GEN_CLUST_INDEX on a synthetic column containing row ID values. The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.</p>
+<p>14.6.2.1 Clustered and Secondary Indexes<br>Every InnoDB table has a special index called the clustered index where the data for the rows is stored. Typically, the clustered index is synonymous with the primary key. To get the best performance from queries, inserts, and other database operations, you must understand how InnoDB uses the clustered index to optimize the most common lookup and DML operations for each table.<br><strong>每一个 InnoDB 表都会有一个特别的索引，被称作聚簇索引，存储了行的数据。聚簇索引是主键的同义词。</strong><br>When you define a PRIMARY KEY on your table, InnoDB uses it as the clustered index. Define a primary key for each table that you create. If there is no logical unique and non-null column or set of columns, add a new auto-increment column, whose values are filled in automatically.<br>If you do not define a PRIMARY KEY for your table, MySQL locates the first UNIQUE index where all the key columns are NOT NULL and InnoDB uses it as the clustered index.<br><strong>MySQL 会自己选择一个唯一索引来作为主键，如果你没有定义主键的话。</strong><br>If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index named GEN_CLUST_INDEX on a synthetic column containing row ID values. The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.</p>
 </blockquote>
-<p>上文讲了MySQL是如何使用聚集索引的。</p>
+<p>上文的摘抄讲了 MySQL 是如何使用聚集索引的。</p>
+<p>光看上文，还是有些没有搞明白，参考《高可用 MySQL》，找到这张图：<br><img src="https://img-blog.csdnimg.cn/20200305114615850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从这张图就可以看得比较明白了，叶子节点包含所有数据，而非叶子节点里面存在的是索引，这样其实数据和索引在一个结构里面，这就是聚簇索引。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/" target="_blank" rel="noopener">http://www.mysqltutorial.org/mysql-index/mysql-clustered-index/</a><br><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html</a></p>
 
     </div>
@@ -385,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -398,7 +407,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">172</span>
+        <span class="site-state-item-count">173</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,3 +1,3 @@
+https://www.oxysun.cn/mysql/mysql-ddl-note.html
 https://www.oxysun.cn/java/mybatis-mapper-locations.html
 https://www.oxysun.cn/soa/microservice-article-note.html
-https://www.oxysun.cn/java/java-maven-pom-note.html

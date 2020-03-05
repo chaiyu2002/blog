@@ -56,7 +56,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200216112600922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200216180159985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-02-16T10:15:17.495Z">
+<meta property="og:updated_time" content="2020-02-16T11:00:31.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis 的 mapper-locations 引发的">
 <meta name="twitter:description" content="概要MyBatis 的 mapper-locations 引发的。">
@@ -237,7 +237,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-16 18:12:00 / 修改时间：18:15:17" itemprop="dateCreated datePublished" datetime="2020-02-16T18:12:00+08:00">2020-02-16</time>
+              <time title="创建时间：2020-02-16 18:12:00 / 修改时间：19:00:31" itemprop="dateCreated datePublished" datetime="2020-02-16T18:12:00+08:00">2020-02-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,10 +281,11 @@
 <p>将这个地方修改成 xml 所在的包，编译，发现仍然报告错误，这个时候，在网上没有了对于这个问题明确的答案了，只能自己尝试了。</p>
 <p>参考<a href="https://mybatis.org/spring/factorybean.html" target="_blank" rel="noopener">这里</a>，换了一种写法：<br><img src="https://img-blog.csdnimg.cn/20200216112600922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这种写法，说是 Ant-style， 从 Ant 借鉴过来的，可以扫描所有 sample.config.mappers 下面的包。</p>
 <p>查了 Ant 的官网，Ant-style 好像仅仅是说 “*<em>” 是会递归当前目录及子目录，而没有说“classpath</em>” 的意思。</p>
-<p>继续检索，在<a href="https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference" target="_blank" rel="noopener">这里</a>找到了说法：<br><img src="https://img-blog.csdnimg.cn/20200216180159985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>而 Spring 的<a href="https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards" target="_blank" rel="noopener">官网</a>的 resources 的介绍对此有很详细的讲解。</p>
+<p>继续检索，在<a href="https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference" target="_blank" rel="noopener">这里</a>找到了说法：<br><img src="https://img-blog.csdnimg.cn/20200216180159985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYWl5dTIwMDI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这里的意思是说，classpath*:conf/appContext.xml 是指所有在 classpath 下面的 conf 目录下的 appContext.xml 都会被检索，并且合并为一个文件。</p>
+<p>而 Spring 的<a href="https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards" target="_blank" rel="noopener">官网</a>的 resources 的介绍对此有很详细的讲解。</p>
 <p>但是，哪怕使用了上面这样带有通配符的方式，还是找不到 xml 文件，这个时候，我开始怀疑 Idea 并没有把 xml 拷贝到被查找的目标位置，于是，我手动把 xml 拷贝到 target 下面相应的路径下，这时，编译成功。</p>
 <p>带着这个结论，再去研究 Maven 的<a href="https://maven.apache.org/pom.html#Resources" target="_blank" rel="noopener">文档</a>（而另外一篇对于 pom 的学习，刚好就忽略了对于 resources 的学习，认为不重要），大概就明白了，Idea 在执行 Maven 的编译，并没有拷贝 resources 目录之外的资源，需要手动配置一下，但是感觉 eclipse 是默认就会拷贝过去的。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个问题，大体搞明白了，还有一些细节，还需要进一步细化。发现，Java 的很多问题，有可能会牵扯到好几个框架，牵扯到一些历史原因，想找到原因，还真是不简单。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个问题，大体搞明白了，还有一些细节，还需要进一步细化。发现，Java 的很多问题，有可能会牵扯到好几个框架，牵扯到一些历史原因，想找到原因，还真是不简单</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference" target="_blank" rel="noopener">https://stackoverflow.com/questions/3294423/spring-classpath-prefix-difference</a><br><a href="https://maven.apache.org/pom.html#Resources" target="_blank" rel="noopener">https://maven.apache.org/pom.html#Resources</a><br><a href="https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/resources.html#resources-classpath-wildcards</a><br><a href="https://mybatis.org/spring/factorybean.htmlhttps://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure" target="_blank" rel="noopener">https://mybatis.org/spring/factorybean.htmlhttps://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure</a></p>
 
     </div>
@@ -309,7 +310,10 @@
     <a href="/soa/microservice-article-note.html" rel="prev" title="马丁富勒微服务论文学习">
       <i class="fa fa-chevron-left"></i> 马丁富勒微服务论文学习
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/mysql/mysql-ddl-note.html" rel="next" title="MySQL 的 DDL 的一些整理">
+      MySQL 的 DDL 的一些整理 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -390,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,7 +407,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">172</span>
+        <span class="site-state-item-count">173</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
