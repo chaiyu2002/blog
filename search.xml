@@ -119,8 +119,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>linux</tag>
         <tag>shell</tag>
+        <tag>linux</tag>
         <tag>semicolon</tag>
         <tag>double ampersand</tag>
         <tag>double vertical bar</tag>
@@ -488,8 +488,8 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>进程</tag>
+        <tag>Java</tag>
         <tag>jps</tag>
         <tag>工具</tag>
       </tags>
@@ -846,9 +846,9 @@
         <category>Python</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Ubuntu16.04</tag>
         <tag>升级</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -911,9 +911,9 @@
       </categories>
       <tags>
         <tag>MongoDB</tag>
-        <tag>文档</tag>
         <tag>数据库</tag>
         <tag>集合</tag>
+        <tag>文档</tag>
       </tags>
   </entry>
   <entry>
@@ -1396,8 +1396,8 @@
       </categories>
       <tags>
         <tag>MongoDB</tag>
-        <tag>插入</tag>
         <tag>文档</tag>
+        <tag>插入</tag>
       </tags>
   </entry>
   <entry>
