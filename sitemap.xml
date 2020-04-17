@@ -37,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/python/upgrade-python-under-ubuntu1604.html</loc>
+    <loc>https://www.oxysun.cn/scheme/2018-10.html</loc>
     
     <lastmod>2020-04-17T06:28:18.556Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/scheme/2018-10.html</loc>
+    <loc>https://www.oxysun.cn/python/upgrade-python-under-ubuntu1604.html</loc>
     
     <lastmod>2020-04-17T06:28:18.556Z</lastmod>
     
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-1.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html</loc>
     
     <lastmod>2020-04-17T06:28:18.547Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-schema-design-note.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-study-note-1.html</loc>
     
     <lastmod>2020-04-17T06:28:18.547Z</lastmod>
     
@@ -170,13 +170,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-delete.html</loc>
-    
-    <lastmod>2020-04-17T06:28:18.542Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/mongodb/mongodb-collection-create.html</loc>
     
     <lastmod>2020-04-17T06:28:18.542Z</lastmod>
@@ -184,14 +177,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-delete.html</loc>
+    
+    <lastmod>2020-04-17T06:28:18.542Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-stage-operator.html</loc>
     
     <lastmod>2020-04-17T06:28:18.541Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-stage-operator.html</loc>
+    <loc>https://www.oxysun.cn/mongodb/mongodb-collection-aggregator-accumulate-operator.html</loc>
     
     <lastmod>2020-04-17T06:28:18.541Z</lastmod>
     
@@ -226,6 +226,13 @@
   </url>
   
   <url>
+    <loc>https://www.oxysun.cn/linux/shell-command-which.html</loc>
+    
+    <lastmod>2020-04-17T06:28:18.537Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.oxysun.cn/linux/shell-command-top.html</loc>
     
     <lastmod>2020-04-17T06:28:18.537Z</lastmod>
@@ -240,13 +247,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-which.html</loc>
-    
-    <lastmod>2020-04-17T06:28:18.537Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/linux/shell-command-tar.html</loc>
     
     <lastmod>2020-04-17T06:28:18.536Z</lastmod>
@@ -254,14 +254,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
     
     <lastmod>2020-04-17T06:28:18.535Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/linux/shell-command-sed.html</loc>
+    <loc>https://www.oxysun.cn/linux/shell-command-netstat.html</loc>
     
     <lastmod>2020-04-17T06:28:18.535Z</lastmod>
     
@@ -366,13 +366,6 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/js/js-this.html</loc>
-    
-    <lastmod>2020-04-17T06:28:18.526Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.oxysun.cn/js/js-npm-symbol-tilde.html</loc>
     
     <lastmod>2020-04-17T06:28:18.526Z</lastmod>
@@ -380,14 +373,21 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/js/js-npm-symbol-caret.html</loc>
+    <loc>https://www.oxysun.cn/js/js-this.html</loc>
+    
+    <lastmod>2020-04-17T06:28:18.526Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.oxysun.cn/js/js-logical-operator.html</loc>
     
     <lastmod>2020-04-17T06:28:18.525Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/js/js-logical-operator.html</loc>
+    <loc>https://www.oxysun.cn/js/js-npm-symbol-caret.html</loc>
     
     <lastmod>2020-04-17T06:28:18.525Z</lastmod>
     
@@ -499,14 +499,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
+    <loc>https://www.oxysun.cn/java/java-array-and-container-note.html</loc>
     
     <lastmod>2020-04-17T06:28:18.510Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/java/java-array-and-container-note.html</loc>
+    <loc>https://www.oxysun.cn/java/java-deploy-resource-folder.html</loc>
     
     <lastmod>2020-04-17T06:28:18.510Z</lastmod>
     
@@ -674,14 +674,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
+    <loc>https://www.oxysun.cn/git/git-branch.html</loc>
     
     <lastmod>2020-04-17T06:28:18.487Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/git/git-branch.html</loc>
+    <loc>https://www.oxysun.cn/git/git-change-server-password.html</loc>
     
     <lastmod>2020-04-17T06:28:18.487Z</lastmod>
     
@@ -702,14 +702,14 @@
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/design-pattern/delegate-and-proxy.html</loc>
+    <loc>https://www.oxysun.cn/es/restudy-es-note.html</loc>
     
     <lastmod>2020-04-17T06:28:18.484Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.oxysun.cn/es/restudy-es-note.html</loc>
+    <loc>https://www.oxysun.cn/design-pattern/delegate-and-proxy.html</loc>
     
     <lastmod>2020-04-17T06:28:18.484Z</lastmod>
     
