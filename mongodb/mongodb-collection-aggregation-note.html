@@ -46,22 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="概要Linux的top和free命令里面的buffer和cache">
-<meta name="keywords" content="Linux,top,cache,buffer,free">
+  <meta name="description" content="研究一个 MongoDB 的 aggregate 的 match 和 project 的样例。">
+<meta name="keywords" content="MongoDB,aggregate,聚合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux的top和free命令里面的buffer和cache">
-<meta property="og:url" content="https://www.oxysun.cn/linux/linux-top-buffer-cache.html">
+<meta property="og:title" content="MongoDB 聚合 aggregate 的 match 和 project 阶段样例">
+<meta property="og:url" content="https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-note.html">
 <meta property="og:site_name" content="IT老兵驿站">
-<meta property="og:description" content="概要Linux的top和free命令里面的buffer和cache">
+<meta property="og:description" content="研究一个 MongoDB 的 aggregate 的 match 和 project 的样例。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191019114618560.png">
-<meta property="og:updated_time" content="2020-04-17T06:28:18.531Z">
+<meta property="og:updated_time" content="2020-04-18T03:26:27.357Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux的top和free命令里面的buffer和cache">
-<meta name="twitter:description" content="概要Linux的top和free命令里面的buffer和cache">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191019114618560.png">
+<meta name="twitter:title" content="MongoDB 聚合 aggregate 的 match 和 project 阶段样例">
+<meta name="twitter:description" content="研究一个 MongoDB 的 aggregate 的 match 和 project 的样例。">
 
-<link rel="canonical" href="https://www.oxysun.cn/linux/linux-top-buffer-cache.html">
+<link rel="canonical" href="https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-note.html">
 
 
 <script id="page-configurations">
@@ -73,7 +71,7 @@
   };
 </script>
 
-  <title>Linux的top和free命令里面的buffer和cache | IT老兵驿站</title>
+  <title>MongoDB 聚合 aggregate 的 match 和 project 阶段样例 | IT老兵驿站</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120983285-1"></script>
     <script>
@@ -212,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/linux/linux-top-buffer-cache.html">
+    <link itemprop="mainEntityOfPage" href="https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -225,7 +223,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Linux的top和free命令里面的buffer和cache
+          MongoDB 聚合 aggregate 的 match 和 project 阶段样例
         </h2>
 
         <div class="post-meta">
@@ -234,24 +232,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-10-19 16:52:00" itemprop="dateCreated datePublished" datetime="2019-10-19T16:52:00+08:00">2019-10-19</time>
+              <time title="创建时间：2020-04-18 00:00:00 / 修改时间：11:26:27" itemprop="dateCreated datePublished" datetime="2020-04-18T00:00:00+08:00">2020-04-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-17 14:28:18" itemprop="dateModified" datetime="2020-04-17T14:28:18+08:00">2020-04-17</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
                   </a>
                 </span>
             </span>
@@ -274,34 +266,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><p>Linux的top和free命令里面的buffer和cache<br><a id="more"></a></p>
-<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>原帖收藏于<a href="https://www.oxysun.cn/">IT老兵博客</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>linux</code>里面<code>top</code>命令和<code>free</code>命令都会有一个<code>buff/cache</code>，从08年就一直遇到这个，感觉一直没有搞的太明白，这次好好地做一个总结。<br><img src="https://img-blog.csdnimg.cn/20191019114618560.png" alt="在这里插入图片描述"><br>这个总结不见得能一步到位，到不了位，就分步来走，聚沙成塔。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>参考<a href="https://unix.stackexchange.com/questions/390518/what-do-the-buff-cache-and-avail-mem-fields-in-top-mean" target="_blank" rel="noopener">这里</a>，</p>
-<blockquote>
-<p><strong>buffers</strong><br><br><br>Memory used by kernel buffers (Buffers in /proc/meminfo)<br><br><br><strong>cache</strong><br><br><br>Memory used by the page cache and slabs (Cached and SReclaimable in /proc/meminfo)<br><br><br><strong>buff/cache</strong><br><br><br>Sum of buffers and cache<br><br><br><strong>available</strong><br><br><br>Estimation of how much memory is available for starting new applications, without swapping. Unlike the data provided by the cache or free fields, this field takes into account page cache and also that not all reclaimable memory slabs will be reclaimed due to items being in use (MemAvailable in /proc/meminfo, available on kernels 3.14, emulated on kernels 2.6.27+, otherwise the same as free)</p>
-</blockquote>
-<p>这里说，<code>buffer</code>是内核所使用的<code>buffer</code>，而<code>cache</code>是<code>page cache</code>和<code>slabs</code>所使用的。</p>
-<p>内核所使用的<code>buffer</code>，暂时不明白。<br>而<code>page cache</code>，我大概知道，是文件系统所使用的缓存。<br><code>slabs</code>机制是内存分配的一个机制，预分配一些大块的内存，在使用的时候，再从中分配，易于回收，这样是为了规避碎片化，<code>slab</code>本身的意思就是大块的厚板。</p>
-<p>上面的帖子还参考了<a href="https://unix.stackexchange.com/questions/440558/30-of-ram-is-buffers-what-is-it" target="_blank" rel="noopener">这里</a>，感觉讲解的更加细致。</p>
-<blockquote>
-<p><strong>1. What is the difference between “buffer”, and the other type of cache?</strong><br><br><br>Buffers reports the amount of page cache used for block devices. The kernel has to deliberately subtract this amount from the rest of the page cache when it reports Cached.</p>
-</blockquote>
-<p>这里说，buffer也是指的是<code>page cache</code>，是用于块设备的<code>page cache</code>。</p>
-<blockquote>
-<p>Early UNIX had a “buffer cache” of disk blocks, and did not have mmap(). Apparently when mmap() was first added, they simply bolted the page cache on top of the buffer cache. This is as messy as it sounds. Eventually, UNIX-based OS’s got rid of the buffer cache. So now all file cache is in units of pages. Pages are looked up by (file, offset), not by location on disk. This was called “unified buffer cache”, perhaps because people were more familiar with “buffer cache”.[3]</p>
-</blockquote>
-<p>看到这段，我有点印象了，在08年的时候，那会还是2.6版本的Linux，而我正在看《情景》，《情景》是根据2.4来写的，所以，那会<code>buffer</code>是说用于块设备，就是这是一个数据结构，单独用作了块设备，而看上文，后来对这里进行了统一，都用统一的数据结构<code>page</code>来处理。</p>
-<blockquote>
-<p><strong>4. Why might we expect Buffers in particular to be larger or smaller?</strong><br>In this case it turns out the ext4 journal size for my filesystem is 128M. So this explains why 1) my buffer cache can stabilize at slightly over 128M; 2) buffer cache does not scale proportionally with the larger amount of RAM on my laptop.</p>
-</blockquote>
-<p>由上文可以看到，<code>Buffer</code>一般基本是固定的，不随着<code>RAM</code>的变大而变大。</p>
-<blockquote>
-<p>For some other possible causes, see What is the buffers column in the output from free? Note that “buffers” reported by free is actually a combination of Buffers and reclaimable slab memory.</p>
-</blockquote>
-<p>这里说<code>buffer</code>是包含着<code>Buffers</code>和<code>slab</code>，这个地方就和上面第一篇文章矛盾了，那篇文章说的是<code>cache</code>包含着<code>slab</code>。</p>
-<p>……未完待续……（2019-10-19）</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://unix.stackexchange.com/questions/390518/what-do-the-buff-cache-and-avail-mem-fields-in-top-mean" target="_blank" rel="noopener">https://unix.stackexchange.com/questions/390518/what-do-the-buff-cache-and-avail-mem-fields-in-top-mean</a><br><a href="http://man7.org/linux/man-pages/man1/free.1.html" target="_blank" rel="noopener">http://man7.org/linux/man-pages/man1/free.1.html</a><br><a href="https://unix.stackexchange.com/questions/261247/how-can-i-get-the-amount-of-available-memory-portably-across-distributions" target="_blank" rel="noopener">https://unix.stackexchange.com/questions/261247/how-can-i-get-the-amount-of-available-memory-portably-across-distributions</a></p>
+        <p>研究一个 MongoDB 的 aggregate 的 match 和 project 的样例。<br><a id="more"></a></p>
+<h1 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h1><p>博客地址：<a href="https://www.oxysun.cn/">IT老兵驿站</a>。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>前面的帖子有讲过，MongoDB 的 aggregate 是可以分为多个阶段的（pipeline），以下这个例子来自于 BTC 浏览器的源代码中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; db.coins.findOne();</span><br><span class="line">&#123;</span><br><span class="line">	&quot;_id&quot; : ObjectId(&quot;5c6faf29b83e35862e5d2201&quot;),</span><br><span class="line">	&quot;chain&quot; : &quot;BTC&quot;,</span><br><span class="line">	&quot;mintIndex&quot; : 0,</span><br><span class="line">	&quot;mintTxid&quot; : &quot;0e3e2357e806b6cdb1f70b54c3a3a17b6714ee1f0e68bebb44a74b1efd512098&quot;,</span><br><span class="line">	&quot;network&quot; : &quot;mainnet&quot;,</span><br><span class="line">	&quot;address&quot; : &quot;12c6DSiU4Rq3P4ZxziKxzrL5LmMBrzjrJX&quot;,</span><br><span class="line">	&quot;coinbase&quot; : true,</span><br><span class="line">	&quot;mintHeight&quot; : 1,</span><br><span class="line">	&quot;script&quot; : BinData(0,&quot;QQSWtTjoU1GccmoskeYewRYArhOQgTpifGb7i+eUe+Y8Utp1iTeVFdTgpgT4FBeB5iKUchFmv2Iec6gsvyNCyFjurA==&quot;),</span><br><span class="line">	&quot;spentHeight&quot; : -2,</span><br><span class="line">	&quot;value&quot; : 5000000000,</span><br><span class="line">	&quot;wallets&quot; : [ ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面表示模型数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">db.coins.aggregate([</span><br><span class="line">	&#123;</span><br><span class="line">		$match: &#123; address : &quot;12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S&quot; 	&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">	  $project: &#123;</span><br><span class="line">	    value: 1,</span><br><span class="line">	    status: &#123; $cond: &#123; if: &#123; $gte: [&apos;$mintHeight&apos;, 6] &#125;, then: &apos;confirmed&apos;, else: &apos;unconfirmed&apos; &#125; &#125;,</span><br><span class="line">	    _id: 0</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">	  $group: &#123;</span><br><span class="line">	    _id: &apos;$status&apos;,</span><br><span class="line">	    balance: &#123; $sum: &apos;$value&apos; &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure></p>
+<p>第一阶段，<code>$match</code>，这里可以参考《MongoDB：查询和投影操作符》这篇文章，根据条件去查找。<br>第二阶段，<code>$project</code>，表示要哪个域，不要哪个域，或者投影成别的一个域，这里表示 value 域保留，status 域，根据条件来转换成 “confirmed” 或者 “unconfirmed”，_id 不要。<br>第三阶段，<code>$group</code>，_id 域用前面的<code>$status</code>来表示，balance 是对之前的<code>$value</code>进行求和。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/match/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/aggregation/match/</a><br><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/project/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/aggregation/project/</a><br><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/group/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/reference/operator/aggregation/group/</a></p>
 
     </div>
 
@@ -311,11 +282,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/top/" rel="tag"># top</a>
-              <a href="/tags/cache/" rel="tag"># cache</a>
-              <a href="/tags/buffer/" rel="tag"># buffer</a>
-              <a href="/tags/free/" rel="tag"># free</a>
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+              <a href="/tags/aggregate/" rel="tag"># aggregate</a>
+              <a href="/tags/聚合/" rel="tag"># 聚合</a>
           </div>
 
         
@@ -324,13 +293,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/java/java-vo-dto-pojo.html" rel="prev" title="Java的VO、DO、DTO和Java Bean学习">
-      <i class="fa fa-chevron-left"></i> Java的VO、DO、DTO和Java Bean学习
+    <a href="/python/python-package-module.html" rel="prev" title="Python 的 module 和 package">
+      <i class="fa fa-chevron-left"></i> Python 的 module 和 package
     </a></div>
-      <div class="post-nav-item">
-    <a href="/mysql/B-tree-note-1.html" rel="next" title="B树、B+树学习之一">
-      B树、B+树学习之一 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -397,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">2.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">3.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">4.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博客"><span class="nav-number">1.</span> <span class="nav-text">博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -545,9 +511,9 @@ NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
       api: '' || 'https://disqus.com/api/',
       apikey: 'YXYioA0OYoX5c9MzYgvPH8g41vE9jtNVv29XdJ07SJP9wZqs5NbqvlV91i3QpR6b',
       shortname: 'www-oxysun-cn',
-      url: "https://www.oxysun.cn/linux/linux-top-buffer-cache.html",
-      identifier: "linux/linux-top-buffer-cache.html",
-      title: "Linux的top和free命令里面的buffer和cache",
+      url: "https://www.oxysun.cn/mongodb/mongodb-collection-aggregation-note.html",
+      identifier: "mongodb/mongodb-collection-aggregation-note.html",
+      title: "MongoDB 聚合 aggregate 的 match 和 project 阶段样例",
     });
   }, window.DisqusJS);
 });
