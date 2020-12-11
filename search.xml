@@ -1272,20 +1272,6 @@
   </entry>
   <entry>
     <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
-    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
-    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>NPM</tag>
-        <tag>依赖包</tag>
-        <tag>波浪字符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
     <url>%2Fjs%2Fjs-npm-symbol-caret.html</url>
     <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 正文官网摘录如下： Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 简单翻译：如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。这里需要理解NPM的版本三元组，NPM采用的是3元组的版本控制，[major，minor，patch]。（详细知识需要参考这里） 实例： ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0 minor被指定为2，所以能够获取的版本是大于等于1.2.3，小于1.3之间。 ~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x) minor被指定为2，所以能够获取的版本是大于等于1.2，小于1.3之间。 ~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x) minor没有被指定，所以能够获取的版本是大于等于1，小于2之间，就是minor可以改变。 下面留几道思考题： ~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple. 参考https://github.com/npm/node-semver#functions。]]></content>
       <categories>
@@ -1293,9 +1279,23 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>依赖包</tag>
-        <tag>波浪字符</tag>
         <tag>JavaScript</tag>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS：NPM依赖包版本号波浪字符"~"]]></title>
+    <url>%2Fjs%2Fjs-npm-symbol-tilde.html</url>
+    <content type="text"><![CDATA[提醒原帖完整收藏于IT老兵驿站，并会不断更新。 JS：NPM依赖包版本号波浪字符”~”。 参考官网：https://github.com/npm/node-semver#functions。 Tilde Ranges ~1.2.3 ~1.2 ~1Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not. 如果minor被指定，则允许patch被改变；如果没有，允许minor被改变。（个别知识需要参考前面的帖子） ~1.2.3 := &gt;=1.2.3 &lt;1.(2+1).0 := &gt;=1.2.3 &lt;1.3.0~1.2 := &gt;=1.2.0 &lt;1.(2+1).0 := &gt;=1.2.0 &lt;1.3.0 (Same as 1.2.x)~1 := &gt;=1.0.0 &lt;(1+1).0.0 := &gt;=1.0.0 &lt;2.0.0 (Same as 1.x)~0.2.3 := &gt;=0.2.3 &lt;0.(2+1).0 := &gt;=0.2.3 &lt;0.3.0~0.2 := &gt;=0.2.0 &lt;0.(2+1).0 := &gt;=0.2.0 &lt;0.3.0 (Same as 0.2.x)~0 := &gt;=0.0.0 &lt;(0+1).0.0 := &gt;=0.0.0 &lt;1.0.0 (Same as 0.x)~1.2.3-beta.2 := &gt;=1.2.3-beta.2 &lt;1.3.0 Note that prereleases in the 1.2.3 version will be allowed, if they are greater than or equal to beta.2. So, 1.2.3-beta.4 would be allowed, but 1.2.4-beta.2 would not, because it is a prerelease of a different [major, minor, patch] tuple.]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>波浪字符</tag>
+        <tag>依赖包</tag>
+        <tag>Javascript</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
@@ -1371,7 +1371,7 @@
   <entry>
     <title><![CDATA[MongoDB学习笔记：聚合之介绍]]></title>
     <url>%2Fmongodb%2Fmongodb-collection-aggregation-introduction.html</url>
-    <content type="text"><![CDATA[博客IT老兵博客。 概述MongoDB学习笔记：聚合之介绍。 前言初衷：MongoDB 的使用还是有一定难度的，官网的讲解一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 （本文第一版是2018年7月4完成，8月30日感觉这篇文章的结构和后来写的结构不太统一，思路也不统一，所以对其进行一定的修改。） 正文概念聚合函数是对记录集（data records）进行操作，是把多条记录集合（group）在一起，进行一些统一的操作，返回一个结果，与此相对应的是SQL 的 group by 等操作，这是数据处理所涉及的一个方面，对很多具有一定相同属性的数据整体进行处理。 MongoDB 提供三种聚合方法： 聚合管道。 map-reduce 函数。 单一功能的聚合方法。 聚合管道接触过linux shell的人应该对管道不会陌生，管道就是对输入的数据进行一系列的处理、转换，变成新的数据。 这里的聚合管道是对记录集进行多阶段（multi-stage）的转换，转换文档为一个新的聚合结果，例如： 1234db.orders.aggregate([ &#123; $match: &#123; status: "A" &#125; &#125;, &#123; $group: &#123; _id: "$cust_id", total: &#123; $sum: "$amount" &#125; &#125; &#125;]) 解释一下： 数据集合：orders，共有4条记录，这里省略了_id 这个域。 需求：查找所有status=&quot;A&quot; 的记录，根据cust_id进行分组，计算每个组的amount的和。 分析：{$match: {status: &quot;A&quot;}}，第一个阶段，匹配阶段，查找所有status=&quot;A&quot; 的记录。{$group: {_id: &quot;$cust_id&quot;, total: {$sum: &quot;$amount&quot;}}}，第二个阶段，分组计算，根据cust_id进行分组，对每个组的amount进行求和。这里涉及$group 的语法，如下： 1&#123; $group: &#123; _id: &lt;expression&gt;, &lt;field1&gt;: &#123; &lt;accumulator1&gt; : &lt;expression1&gt; &#125;, ... &#125; &#125; 其中，_id是强制的，后面是可选的。&lt;accumulator1&gt;是累加操作符，参考这里，例如这里的$sum，注意，这里必须要加$，这里是一个运算符。&lt;expression1&gt;是表达式，有待补充， &quot;$amount&quot; , 表示是去取上一个结果（或者说输入流）中的amount 这个域，对其进行累加，并把结果存入新的域total中。 上面这张图讲述了聚合表达式是如何使用 field path 去访问输入文档的字段，”\$user” 指向 user 字段，”\$user.name” 指向 “user.name” 字段。 这个例子看明白了，聚合就基本明白了。 Map-Reducemap-reduce操作分为两个阶段：map 阶段，处理每一条记录，产出一个或多个对象；reduce 阶段，合并 map 阶段的输出。作为可选，map-reduce可以有一个最终阶段来对结果进行最终的操作。map-reduce 也可以进行查询、排序和限制输出结果。 图片取自 MongoDB 官网。 这个例子的顺序有点不太好理解，先做 query，然后是 map，reduce， 但是在指令中，则是先有 map。 In this map-reduce operation, MongoDB applies the map phase to each input document (i.e. the documents in the collection that match the query condition). The map function emits key-value pairs. For those keys that have multiple values, MongoDB applies the reduce phase, which collects and condenses the aggregated data. MongoDB then stores the results in a collection. Optionally, the output of the reduce function may pass through a finalize function to further condense or process the results of the aggregation. 在这个过程中，MongoDB 应用 map 去针对每一条输入文档（这些文档是满足了 query 查询条件的）。map 函数 emit （发射出）key-value 对，对于那些有多值的 key，MongoDB 使用 reduce，来收集和浓缩这些聚集数据。 单一功能的聚合方法MongoDB也提供db.collection.count()（求和）和db.collection.distinct()（去重）函数。 图片取自 MongoDB 官网。 总结关于聚合，总体的概念总结到这里，下一步，需要细化了。 （2019-12-02）又复习整理了一遍聚合，感觉理解的更加清楚了。 之前的图片都失效了，把这些图片都补上了。 参考https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operationshttps://docs.mongodb.com/manual/core/map-reduce/https://docs.mongodb.com/manual/meta/aggregation-quick-reference/#aggregation-expressions]]></content>
+    <content type="text"><![CDATA[博客IT老兵博客。 概述MongoDB学习笔记：聚合之介绍。 前言初衷：MongoDB 的使用还是有一定难度的，官网的讲解一环牵扯一环，不容易一下子把握住重点，也不利于快速查询操作，所以整理一下。 （本文第一版是2018年7月4完成，8月30日感觉这篇文章的结构和后来写的结构不太统一，思路也不统一，所以对其进行一定的修改。） 正文概念聚合函数是对记录集（data records）进行操作，是把多条记录集合（group）在一起，进行一些统一的操作，返回一个结果，与此相对应的是SQL 的 group by 等操作，这是数据处理所涉及的一个方面，对很多具有一定相同属性的数据整体进行处理。 MongoDB 提供三种聚合方法： 聚合管道。 map-reduce 函数。 单一功能的聚合方法。 聚合管道接触过linux shell的人应该对管道不会陌生，管道就是对输入的数据进行一系列的处理、转换，变成新的数据。 这里的聚合管道是对记录集进行多阶段（multi-stage）的转换，转换文档为一个新的聚合结果，例如： 1234db.orders.aggregate([ &#123; $match: &#123; status: "A" &#125; &#125;, &#123; $group: &#123; _id: "$cust_id", total: &#123; $sum: "$amount" &#125; &#125; &#125;]) 解释一下： 数据集合：orders，共有4条记录，这里省略了_id 这个域。 需求：查找所有status=&quot;A&quot; 的记录，根据cust_id进行分组，计算每个组的amount的和。 分析：{$match: {status: &quot;A&quot;}}，第一个阶段，匹配阶段，查找所有status=&quot;A&quot; 的记录。{$group: {_id: &quot;$cust_id&quot;, total: {$sum: &quot;$amount&quot;}}}，第二个阶段，分组计算，根据cust_id进行分组，对每个组的amount进行求和。这里涉及$group 的语法，如下： 1&#123; $group: &#123; _id: &lt;expression&gt;, &lt;field1&gt;: &#123; &lt;accumulator1&gt; : &lt;expression1&gt; &#125;, ... &#125; &#125; 其中，_id是强制的，后面是可选的。&lt;accumulator1&gt;是累加操作符，参考这里，例如这里的$sum，注意，这里必须要加$，这里是一个运算符。&lt;expression1&gt;是表达式，有待补充， &quot;$amount&quot; , 表示是去取上一个结果（或者说输入流）中的amount 这个域，对其进行累加，并把结果存入新的域total中。 上面这张图讲述了聚合表达式是如何使用 field path 去访问输入文档的字段，”$user” 指向 user 字段，”$user.name” 指向 “user.name” 字段。 这个例子看明白了，聚合就基本明白了。 Map-Reducemap-reduce操作分为两个阶段：map 阶段，处理每一条记录，产出一个或多个对象；reduce 阶段，合并 map 阶段的输出。作为可选，map-reduce可以有一个最终阶段来对结果进行最终的操作。map-reduce 也可以进行查询、排序和限制输出结果。 图片取自 MongoDB 官网。 这个例子的顺序有点不太好理解，先做 query，然后是 map，reduce， 但是在指令中，则是先有 map。 In this map-reduce operation, MongoDB applies the map phase to each input document (i.e. the documents in the collection that match the query condition). The map function emits key-value pairs. For those keys that have multiple values, MongoDB applies the reduce phase, which collects and condenses the aggregated data. MongoDB then stores the results in a collection. Optionally, the output of the reduce function may pass through a finalize function to further condense or process the results of the aggregation. 在这个过程中，MongoDB 应用 map 去针对每一条输入文档（这些文档是满足了 query 查询条件的）。map 函数 emit （发射出）key-value 对，对于那些有多值的 key，MongoDB 使用 reduce，来收集和浓缩这些聚集数据。 单一功能的聚合方法MongoDB也提供db.collection.count()（求和）和db.collection.distinct()（去重）函数。 图片取自 MongoDB 官网。 总结关于聚合，总体的概念总结到这里，下一步，需要细化了。 （2019-12-02）又复习整理了一遍聚合，感觉理解的更加清楚了。 之前的图片都失效了，把这些图片都补上了。 参考https://docs.mongodb.com/manual/aggregation/#single-purpose-agg-operationshttps://docs.mongodb.com/manual/core/map-reduce/https://docs.mongodb.com/manual/meta/aggregation-quick-reference/#aggregation-expressions]]></content>
       <categories>
         <category>MongoDB</category>
       </categories>
