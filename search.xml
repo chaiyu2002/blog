@@ -1025,8 +1025,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -1089,8 +1089,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>git branch</tag>
         <tag>用法</tag>
+        <tag>git branch</tag>
         <tag>分支</tag>
       </tags>
   </entry>
@@ -1227,8 +1227,8 @@
       </categories>
       <tags>
         <tag>Git</tag>
-        <tag>用法</tag>
         <tag>checkout</tag>
+        <tag>用法</tag>
       </tags>
   </entry>
   <entry>
@@ -1279,9 +1279,9 @@
         <category>NPM</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
-        <tag>波浪字符</tag>
         <tag>依赖包</tag>
+        <tag>波浪字符</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -1292,10 +1292,10 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>波浪字符</tag>
-        <tag>依赖包</tag>
         <tag>Javascript</tag>
         <tag>NPM</tag>
+        <tag>依赖包</tag>
+        <tag>波浪字符</tag>
       </tags>
   </entry>
   <entry>
