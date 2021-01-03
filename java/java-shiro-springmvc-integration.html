@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="IT老兵驿站">
 <meta property="og:description" content="摘要Java：Shiro+SpringMVC的集成实践。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-17T06:28:18.516Z">
+<meta property="og:updated_time" content="2021-01-03T23:52:35.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java：Shiro+SpringMVC的集成实践">
 <meta name="twitter:description" content="摘要Java：Shiro+SpringMVC的集成实践。">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-17 14:28:18" itemprop="dateModified" datetime="2020-04-17T14:28:18+08:00">2020-04-17</time>
+                <time title="修改时间：2021-01-04 07:52:35" itemprop="dateModified" datetime="2021-01-04T07:52:35+08:00">2021-01-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,7 +285,29 @@
     &lt;property name=&quot;securityManager&quot; ref=&quot;securityManager&quot;/&gt;
 &lt;/bean&gt;
 </code></pre><p>这个将会构造一个shiroFilter，参数是securityManager。</p>
-<p>定义securityManager：</p>
+<p>然后需要在web.xml中定义：</p>
+<pre><code>&lt;filter&gt;
+    &lt;filter-name&gt;shiroFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 --&gt;
+        &lt;param-name&gt;targetFilterLifecycle&lt;/param-name&gt;
+        &lt;param-value&gt;true&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;shiroFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</code></pre><p>可以参考<a href="https://www.baeldung.com/spring-delegating-filter-proxy" target="_blank" rel="noopener">这里</a>，这里有点复杂，我感觉还没有完全搞明白，大概的意思是要这么做，对SecurityManager进行装配。</p>
+<pre><code>DelegatingFilterProxy is a class in Spring&apos;s Web module. It provides features for making HTTP calls pass through filters before reaching the actual destination. With the help of DelegatingFilterProxy, a class implementing the javax.Servlet.Filter interface can be wired into the filter chain.
+
+As an example, Spring Security makes use of DelegatingFilterProxy to so it can take advantage of Spring’s dependency injection features and lifecycle interfaces for security filters.
+
+DelegatingFilterProxy also leverages invoking specific or multiple filters as per Request URI paths by providing the configuration in Spring&apos;s application context or in web.xml.
+</code></pre><p>原文是这么讲述DelegatingFilterProxy的作用的，最关键的是第二段，这样的话，它就能充分享受Spring的依赖注入的特征和生命周期接口。</p>
+<p>再定义securityManager：</p>
 <pre><code>&lt;bean id=&quot;securityManager&quot; class=&quot;org.apache.shiro.web.mgt.DefaultWebSecurityManager&quot;&gt;
     &lt;property name=&quot;realm&quot; ref=&quot;tokenRealm&quot; /&gt;
     &lt;property name=&quot;cacheManager&quot; ref=&quot;cacheManager&quot;&gt;&lt;/property&gt;
@@ -301,11 +323,12 @@
 <pre><code>&lt;bean id=&quot;tokenRealm&quot; class=&quot;xx.xx.xx.TokenRealm&quot;&gt;
     &lt;property name=&quot;credentialsMatcher&quot; ref=&quot;credentialsMatcher&quot;/&gt;  
 &lt;/bean&gt;
-</code></pre><p>参数是自定义的一个凭证匹配器。<br>这里需要覆写两个方法：<br><code>protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException</code> 返回认证信息。<br>和<br><code>protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)</code> 返回授权信息。<br>这个地方之前一直没有搞明白，是最让我困惑的地方，doGetAuthenticationInfo的第一个参数就是login方法送过来的token，一般这个token带有username和password，这里根据这个用户名去把数据库把用户的密码取出来，然后构造一个<code>SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());</code>返回，然后会交由匹配器去匹配，匹配器主要匹配第二个参数（原型是：SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)），即凭证是否相等。</p>
+</code></pre><p>参数是自定义的一个凭证匹配器。<br>这里需要覆写两个方法：<br><code>protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException</code> 返回认证信息。<br>和<br><code>protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)</code> 返回授权信息。</p>
+<p>这个地方之前一直没有搞明白，是最让我困惑的地方，doGetAuthenticationInfo的第一个参数就是login方法送过来的token，一般这个token带有username和password，这里根据这个用户名去把数据库把用户的密码取出来，然后构造一个<code>SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());</code>返回，然后会交由匹配器去匹配，匹配器主要匹配第二个参数（原型是：SimpleAuthenticationInfo(Object principal, Object credentials, String realmName)），即凭证是否相等。</p>
 <p>而自定义的匹配器大体是下面这样，覆写匹配的函数（增加了缓存来保存尝试次数）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override  </span><br><span class="line">public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) &#123;  </span><br><span class="line">    String username = (String) token.getPrincipal();  </span><br><span class="line">    AtomicInteger retryCount = loginRetryCache.get(username);  </span><br><span class="line">    System.out.println(&quot;重试次数：&quot; + retryCount);</span><br><span class="line">    if (retryCount != null &amp;&amp; retryCount.intValue() &gt;= maxRetryCount) &#123;</span><br><span class="line">        throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    boolean matches = super.doCredentialsMatch(token, info);  </span><br><span class="line">    if (matches) &#123;  </span><br><span class="line">        //clear retry data  </span><br><span class="line">        System.out.println(&quot;清除重试次数缓存&quot;);</span><br><span class="line">        if (retryCount != null) &#123;</span><br><span class="line">            loginRetryCache.remove(username);  </span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (null == retryCount) &#123;  </span><br><span class="line">            retryCount = new AtomicInteger(1);  </span><br><span class="line">            loginRetryCache.put(username, retryCount);  </span><br><span class="line">            System.out.println(&quot;插入缓存，失败次数：&quot; + retryCount);</span><br><span class="line">        &#125; else if (retryCount.incrementAndGet() &gt;= maxRetryCount) &#123;  </span><br><span class="line">            log.warn(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;);  </span><br><span class="line">            throw new ExcessiveAttemptsException(&quot;username: &quot; + username + &quot; tried to login more than 5 times in period&quot;);  </span><br><span class="line">        &#125;  </span><br><span class="line">        </span><br><span class="line">        retryCount = loginRetryCache.get(username);</span><br><span class="line">        System.out.println(&quot;认证失败，失败次数：&quot; + retryCount);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在login完成后，Shiro其实会返回给客户端一个JSESSIONID，并且会在缓存中保存关于这个会话的一些信息，这些会话信息会被定期清理（由调度任务15分钟或者是下一次访问时判断是否过期）或者是由logout方法主动注销掉。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>初步总结了一下Shiro的用法，实践了一天，总结了一天，终于感觉搞明白了，使用Shiro的难度主要在于牵扯的类比较多，而且文档说的不是太清楚，需要自己反复地实践。这也可能说明它设计得很灵活，一般设计得很灵活的东西，都是不容易掌握，但是，一旦掌握了，就非常得方便。<br>这篇帖子还会不断更新，直到把这个地方的概念全部梳理清楚。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/10-minute-tutorial.html" target="_blank" rel="noopener">https://shiro.apache.org/10-minute-tutorial.html</a><br><a href="https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html" target="_blank" rel="noopener">https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html</a><br><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://shiro.apache.org/10-minute-tutorial.html" target="_blank" rel="noopener">https://shiro.apache.org/10-minute-tutorial.html</a><br><a href="https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html" target="_blank" rel="noopener">https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/authc/SimpleAuthenticationInfo.html</a><br><a href="https://shiro.apache.org/architecture.html" target="_blank" rel="noopener">https://shiro.apache.org/architecture.html</a><br><a href="https://stackoverflow.com/questions/6725234/whats-the-point-of-spring-mvcs-delegatingfilterproxy" target="_blank" rel="noopener">https://stackoverflow.com/questions/6725234/whats-the-point-of-spring-mvcs-delegatingfilterproxy</a><br><a href="https://docs.spring.io/spring-security/site/docs/3.0.x/reference/security-filter-chain.html" target="_blank" rel="noopener">https://docs.spring.io/spring-security/site/docs/3.0.x/reference/security-filter-chain.html</a><br><a href="https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/spring/web/ShiroFilterFactoryBean.html" target="_blank" rel="noopener">https://shiro.apache.org/static/1.3.0/apidocs/org/apache/shiro/spring/web/ShiroFilterFactoryBean.html</a></p>
 
     </div>
 
